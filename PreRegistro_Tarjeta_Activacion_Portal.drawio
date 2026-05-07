@@ -1,0 +1,450 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.1 Chrome/142.0.7444.265 Electron/39.8.0 Safari/537.36" version="29.6.1" pages="3">
+  <diagram id="preregistro-flujo-general" name="1. Flujo General PreRegistro + Activación">
+    <mxGraphModel dx="908" dy="644" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;fontSize=20;fontStyle=1;align=center;" value="PreRegistro de Tarjeta + Activación por Portal — Flujo General" vertex="1">
+          <mxGeometry height="35" width="900" x="300" y="15" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;fontSize=11;fontStyle=2;align=center;fontColor=#666;" value="Canales: API REST o Archivo Plano (Novedad NM Creación) · Onboarding SOLO en primera tarjeta del cliente · Tarjetas adicionales se activan directo" vertex="1">
+          <mxGeometry height="25" width="1100" x="200" y="48" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_entity" parent="1" style="shape=swimlane;startSize=30;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=13;horizontal=1;" value="Entidad / Empresa" vertex="1">
+          <mxGeometry height="1650" width="220" x="30" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_platform" parent="1" style="shape=swimlane;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=13;horizontal=1;" value="Plataforma Prepago (Credibanco)" vertex="1">
+          <mxGeometry height="1650" width="420" x="260" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_pomelo" parent="1" style="shape=swimlane;startSize=30;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=13;horizontal=1;" value="Pomelo (Procesador)" vertex="1">
+          <mxGeometry height="1650" width="250" x="690" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_sms" parent="1" style="shape=swimlane;startSize=30;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=13;horizontal=1;" value="Canal SMS" vertex="1">
+          <mxGeometry height="1650" width="200" x="950" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_th" parent="1" style="shape=swimlane;startSize=30;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=13;horizontal=1;" value="Tarjetahabiente" vertex="1">
+          <mxGeometry height="1650" width="250" x="1160" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_portal" parent="1" style="shape=swimlane;startSize=30;fillColor=#FF8C00;strokeColor=#d46b08;fontColor=#ffffff;fontStyle=1;fontSize=13;horizontal=1;" value="Portal Web / App" vertex="1">
+          <mxGeometry height="1650" width="300" x="1420" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="ph1" parent="1" style="text;html=1;fontSize=12;fontStyle=5;fillColor=#e1d5e7;strokeColor=#9673a6;rounded=1;" value="FASE 1 — SOLICITUD DE CREACIÓN (2 Canales)" vertex="1">
+          <mxGeometry height="28" width="310" x="30" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="canal_api" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="Canal 1: API REST&#xa;POST /api/v1/cards&#xa;{docType, docNumber,&#xa;affinityGroupId, phone}" vertex="1">
+          <mxGeometry height="70" width="180" x="50" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="canal_file" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="Canal 2: Archivo Plano&#xa;Novedad No Monetaria&#xa;de Creación (NXXXDDMMCC)&#xa;con campo celular" vertex="1">
+          <mxGeometry height="70" width="180" x="50" y="275" as="geometry" />
+        </mxCell>
+        <mxCell id="facade" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" value="Card Creation Facade&#xa;(Punto de entrada unificado)" vertex="1">
+          <mxGeometry height="50" width="220" x="310" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="e_api_facade" edge="1" parent="1" source="canal_api" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#3B82F6;" target="facade">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_file_facade" edge="1" parent="1" source="canal_file" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#3B82F6;" target="facade">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="step1" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" value="① Validar Grupo Afinidad&#xa;GET /affinity-groups/{id}" vertex="1">
+          <mxGeometry height="45" width="190" x="720" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="e_facade_step1" edge="1" parent="1" source="facade" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=1.5;strokeColor=#b85450;" target="step1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="step2" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" value="② Validar / Crear Cliente&#xa;GET-POST /clients" vertex="1">
+          <mxGeometry height="45" width="190" x="720" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s1s2" edge="1" parent="1" source="step1" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=1.5;strokeColor=#b85450;" target="step2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="step3" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" value="③ Crear Tarjeta en Pomelo&#xa;POST /cards → card_token" vertex="1">
+          <mxGeometry height="45" width="190" x="720" y="315" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s2s3" edge="1" parent="1" source="step2" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=1.5;strokeColor=#b85450;" target="step3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="step4" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;align=left;spacingLeft=10;" value="④ Persistir Localmente (Oracle)&#xa;• INSERT client (si no existe)&#xa;• INSERT account (balance=0)&#xa;• INSERT card (card_token)&#xa;• Almacena celular del TH" vertex="1">
+          <mxGeometry height="85" width="240" x="300" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s3s4" edge="1" parent="1" source="step3" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=1.5;strokeColor=#3B82F6;" target="step4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ph2" parent="1" style="text;html=1;fontSize=12;fontStyle=5;fillColor=#e1d5e7;strokeColor=#9673a6;rounded=1;" value="FASE 2 — ¿PRIMERA TARJETA DEL CLIENTE?" vertex="1">
+          <mxGeometry height="28" width="350" x="260" y="475" as="geometry" />
+        </mxCell>
+        <mxCell id="decision" parent="1" style="rhombus;whiteSpace=wrap;fillColor=#FFF9C4;strokeColor=#F9A825;fontSize=11;fontStyle=1;" value="¿Cliente ya tiene&#xa;tarjeta(s) ACTIVE&#xa;previamente?&#xa;(onboarding hecho)" vertex="1">
+          <mxGeometry height="120" width="200" x="340" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s4_decision" edge="1" parent="1" source="step4" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#F9A825;" target="decision">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="path_a_box" parent="1" style="rounded=1;fillColor=#FFF3E0;strokeColor=#EF6C00;dashed=1;dashPattern=8 4;arcSize=4;opacity=30;" value="" vertex="1">
+          <mxGeometry height="680" width="1690" x="30" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="path_a_label" parent="1" style="text;html=1;fontSize=13;fontStyle=1;fontColor=#BF360C;" value="CAMINO A — PRIMERA TARJETA DEL CLIENTE (Requiere Onboarding Completo en Portal)" vertex="1">
+          <mxGeometry height="22" width="600" x="45" y="678" as="geometry" />
+        </mxCell>
+        <mxCell id="a_prereg" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#FFF9C4;strokeColor=#F9A825;fontSize=11;fontStyle=1;" value="card.status = PRE_REGISTERED&#xa;client.onboarded = false" vertex="1">
+          <mxGeometry height="45" width="240" x="310" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="e_decision_a" edge="1" parent="1" source="decision" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#EF6C00;fontSize=10;fontStyle=1;fontColor=#BF360C;" target="a_prereg" value="NO — Primera tarjeta">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="340" y="580" />
+              <mxPoint x="280" y="580" />
+              <mxPoint x="280" y="743" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a_gen_token" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;align=left;spacingLeft=10;" value="⑤a Genera Token Activación&#xa;• JWT (card_id, client_id)&#xa;• TTL: 72 horas · Single-use&#xa;• Hash almacenado en Oracle" vertex="1">
+          <mxGeometry height="65" width="240" x="310" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a_prereg_token" edge="1" parent="1" source="a_prereg" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=1.5;strokeColor=#3B82F6;" target="a_gen_token">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_sms" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;fontStyle=1;" value="📱 Envía SMS&#xa;con link de activación" vertex="1">
+          <mxGeometry height="45" width="150" x="980" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a_token_sms" edge="1" parent="1" source="a_gen_token" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#9673a6;" target="a_sms">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_th_receives" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="📩 Recibe SMS" vertex="1">
+          <mxGeometry height="35" width="155" x="1210" y="804" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a_sms_th" edge="1" parent="1" source="a_sms" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#82b366;" target="a_th_receives">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_th_clicks" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="Hace clic en el link" vertex="1">
+          <mxGeometry height="30" width="140" x="1220" y="860" as="geometry" />
+        </mxCell>
+        <mxCell id="a_portal_validate" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#FF8C00;strokeColor=#d46b08;fontColor=#fff;fontSize=10;" value="Valida token JWT&#xa;(firma, TTL, single-use)" vertex="1">
+          <mxGeometry height="40" width="220" x="1460" y="855" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a_click_portal" edge="1" parent="1" source="a_th_clicks" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#d46b08;" target="a_portal_validate">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_portal_form" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#FF8C00;strokeColor=#d46b08;fontColor=#fff;fontSize=10;fontStyle=1;align=left;spacingLeft=10;" value="Formulario Onboarding:&#xa;1. Verificar identidad (OTP)&#xa;2. Aceptar T&amp;C&#xa;3. Completar datos personales" vertex="1">
+          <mxGeometry height="85" width="250" x="1445" y="913" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a_val_form" edge="1" parent="1" source="a_portal_validate" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=1.5;strokeColor=#d46b08;" target="a_portal_form">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_th_completes" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="Completa onboarding" vertex="1">
+          <mxGeometry height="30" width="140" x="1220" y="940" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a_form_th" edge="1" parent="1" source="a_portal_form" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=1.5;strokeColor=#82b366;dashed=1;" target="a_th_completes">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_backend" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;align=left;spacingLeft=10;" value="⑥a Backend Credibanco:&#xa;• Envía PIN Block → Pomelo HSM&#xa;• Persiste datos de contacto&#xa;• UPDATE card status=ACTIVE&#xa;• UPDATE client onboarded=true&#xa;• Invalida token y cache" vertex="1">
+          <mxGeometry height="95" width="250" x="300" y="1060" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a_th_backend" edge="1" parent="1" source="a_th_completes" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#3B82F6;" target="a_backend">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1290" y="1108" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a_pomelo" parent="1" style="shape=process;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" value="Pomelo HSM:&#xa;Descifra PIN, cifra LMK,&#xa;almacena PVV, activa" vertex="1">
+          <mxGeometry height="60" width="185" x="750" y="950" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a_backend_pomelo" edge="1" parent="1" source="a_backend" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=1.5;strokeColor=#b85450;fontStyle=2;fontSize=9;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="a_pomelo" value="mTLS">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="425" y="970" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a_ready" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=1;" value="🎉 Tarjeta ACTIVA&#xa;Cliente onboardeado" vertex="1">
+          <mxGeometry height="45" width="185" x="1200" y="1080" as="geometry" />
+        </mxCell>
+        <mxCell id="a_notify" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="Webhook: card.activated&#xa;+ client.onboarded" vertex="1">
+          <mxGeometry height="40" width="170" x="55" y="1085" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a_notify" edge="1" parent="1" source="a_backend" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=1.5;strokeColor=#d6b656;fontStyle=2;fontSize=9;" target="a_notify" value="Webhook">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="path_b_box" parent="1" style="rounded=1;fillColor=#E8F5E9;strokeColor=#388E3C;dashed=1;dashPattern=8 4;arcSize=4;opacity=30;" value="" vertex="1">
+          <mxGeometry height="310" width="1690" x="30" y="1370" as="geometry" />
+        </mxCell>
+        <mxCell id="path_b_label" parent="1" style="text;html=1;fontSize=13;fontStyle=1;fontColor=#1B5E20;" value="CAMINO B — TARJETA ADICIONAL (Cliente ya onboardeado → Activación Directa, sin Portal)" vertex="1">
+          <mxGeometry height="22" width="650" x="45" y="1378" as="geometry" />
+        </mxCell>
+        <mxCell id="b_active" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#C8E6C9;strokeColor=#388E3C;fontSize=11;fontStyle=1;" value="card.status = ACTIVE ✅&#xa;(activación inmediata)" vertex="1">
+          <mxGeometry height="45" width="240" x="310" y="1420" as="geometry" />
+        </mxCell>
+        <mxCell id="e_decision_b" edge="1" parent="1" source="decision" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#388E3C;fontSize=10;fontStyle=1;fontColor=#1B5E20;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" target="b_active" value="SÍ — Ya tiene tarjeta(s)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="670" y="580" />
+              <mxPoint x="670" y="1370" />
+              <mxPoint x="490" y="1370" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="b_sms_notify" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" value="📱 SMS informativo:&#xa;Su nueva tarjeta prepago&#xa;ya está activa y lista&#xa;para usar." vertex="1">
+          <mxGeometry height="60" width="160" x="975" y="1412" as="geometry" />
+        </mxCell>
+        <mxCell id="e_b_active_sms" edge="1" parent="1" source="b_active" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=1.5;strokeColor=#9673a6;" target="b_sms_notify">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="b_th_receives" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="📩 Recibe SMS&#xa;informativo" vertex="1">
+          <mxGeometry height="40" width="155" x="1215" y="1422" as="geometry" />
+        </mxCell>
+        <mxCell id="e_b_sms_th" edge="1" parent="1" source="b_sms_notify" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=1.5;strokeColor=#82b366;" target="b_th_receives">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="b_pomelo_activate" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" value="Pomelo: tarjeta creada&#xa;(PIN se asigna después&#xa;desde App/Portal existente)" vertex="1">
+          <mxGeometry height="50" width="195" x="725" y="1520" as="geometry" />
+        </mxCell>
+        <mxCell id="e_b_active_pomelo" edge="1" parent="1" source="b_active" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=1.5;strokeColor=#b85450;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="b_pomelo_activate">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="b_notify" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="Webhook:&#xa;card.activated" vertex="1">
+          <mxGeometry height="40" width="150" x="70" y="1425" as="geometry" />
+        </mxCell>
+        <mxCell id="e_b_notify" edge="1" parent="1" source="b_active" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=1.5;strokeColor=#d6b656;fontStyle=2;fontSize=9;" target="b_notify" value="Webhook">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="b_note" parent="1" style="shape=note;size=15;fillColor=#E8F5E9;strokeColor=#388E3C;fontSize=9;fontStyle=2;align=left;spacingLeft=5;" value="⚡ Tarjeta adicional:&#xa;• Cliente ya verificó identidad&#xa;• Ya aceptó T&amp;C&#xa;• Ya tiene datos de contacto&#xa;• PIN se asigna desde la App/Portal&#xa;  donde ya tiene sesión activa&#xa;• NO requiere onboarding" vertex="1">
+          <mxGeometry height="100" width="230" x="1440" y="1400" as="geometry" />
+        </mxCell>
+        <mxCell id="leg_box" parent="1" style="rounded=1;fillColor=#f5f5f5;strokeColor=#999;dashed=1;" value="" vertex="1">
+          <mxGeometry height="40" width="1690" x="30" y="1700" as="geometry" />
+        </mxCell>
+        <mxCell id="leg_text" parent="1" style="text;html=1;fontSize=10;align=center;" value="🟡 Entidad    🔵 Plataforma Credibanco    🔴 Pomelo    🟣 SMS    🟢 Tarjetahabiente    🟠 Portal PCI    |    🟧 Camino A: Primera tarjeta (onboarding)    🟩 Camino B: Tarjeta adicional (directo)" vertex="1">
+          <mxGeometry height="30" width="1670" x="40" y="1705" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="estados-tarjeta" name="2. Diagrama de Estados de Tarjeta">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="st_title" value="Diagrama de Estados — Tarjeta Prepago (con PreRegistro)" style="text;html=1;fontSize=20;fontStyle=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="250" y="20" width="700" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="st_sub" value="Primera tarjeta → PRE_REGISTERED → onboarding → ACTIVE  |  Tarjeta adicional (cliente onboardeado) → ACTIVE directo" style="text;html=1;fontSize=11;fontStyle=2;align=center;fontColor=#666;" parent="1" vertex="1">
+          <mxGeometry x="200" y="55" width="800" height="20" as="geometry" />
+        </mxCell>
+        <!-- Estado inicial -->
+        <mxCell id="st_start" value="" style="ellipse;fillColor=#000000;strokeColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="80" y="250" width="30" height="30" as="geometry" />
+        </mxCell>
+        <!-- PRE_REGISTERED -->
+        <mxCell id="st_prereg" value="PRE_REGISTERED" style="rounded=1;whiteSpace=wrap;fillColor=#FFF9C4;strokeColor=#F9A825;fontSize=14;fontStyle=1;fontColor=#E65100;" parent="1" vertex="1">
+          <mxGeometry x="200" y="100" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="st_prereg_desc" value="Primera tarjeta del cliente.&#xa;Pendiente de onboarding en portal.&#xa;NO puede operar." style="text;html=1;fontSize=9;fontStyle=2;fontColor=#E65100;align=center;" parent="1" vertex="1">
+          <mxGeometry x="200" y="160" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e_start_prereg" value="Creación&#xa;(1ra tarjeta)" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#F9A825;fontSize=9;fontStyle=1;" parent="1" source="st_start" target="st_prereg" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="95" y="130" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <!-- ACTIVE -->
+        <mxCell id="st_active" value="ACTIVE" style="rounded=1;whiteSpace=wrap;fillColor=#C8E6C9;strokeColor=#388E3C;fontSize=14;fontStyle=1;fontColor=#1B5E20;" parent="1" vertex="1">
+          <mxGeometry x="580" y="100" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="st_active_desc" value="Tarjeta operativa.&#xa;Puede transaccionar." style="text;html=1;fontSize=9;fontStyle=2;fontColor=#1B5E20;align=center;" parent="1" vertex="1">
+          <mxGeometry x="585" y="160" width="210" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="e_prereg_active" value="TH completa onboarding&#xa;en Portal + asigna PIN" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#388E3C;fontSize=9;fontStyle=1;" parent="1" source="st_prereg" target="st_active" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- Flecha directa: tarjeta adicional -->
+        <mxCell id="e_start_active" value="Creación&#xa;(tarjeta adicional,&#xa;cliente onboardeado)" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#388E3C;fontSize=9;fontStyle=1;dashed=1;dashPattern=8 4;" parent="1" source="st_start" target="st_active" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="95" y="370" />
+              <mxPoint x="690" y="370" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <!-- BLOCKED -->
+        <mxCell id="st_blocked" value="BLOCKED" style="rounded=1;whiteSpace=wrap;fillColor=#FFCDD2;strokeColor=#E53935;fontSize=14;fontStyle=1;fontColor=#B71C1C;" parent="1" vertex="1">
+          <mxGeometry x="580" y="430" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="st_blocked_desc" value="Bloqueada por novedad NM.&#xa;No puede operar." style="text;html=1;fontSize=9;fontStyle=2;fontColor=#B71C1C;align=center;" parent="1" vertex="1">
+          <mxGeometry x="585" y="490" width="210" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="e_active_blocked" value="Bloqueo (Novedad NM)" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#E53935;fontSize=9;fontStyle=1;" parent="1" source="st_active" target="st_blocked" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="850" y="130" />
+              <mxPoint x="850" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_blocked_active" value="Desbloqueo (Novedad NM)" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#388E3C;fontSize=9;fontStyle=1;" parent="1" source="st_blocked" target="st_active" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="540" y="460" />
+              <mxPoint x="540" y="130" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <!-- INACTIVE -->
+        <mxCell id="st_inactive" value="INACTIVE" style="rounded=1;whiteSpace=wrap;fillColor=#E0E0E0;strokeColor=#757575;fontSize=14;fontStyle=1;fontColor=#424242;" parent="1" vertex="1">
+          <mxGeometry x="580" y="620" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="st_inactive_desc" value="Desactivada permanentemente.&#xa;(Reexpedición / cancelación)" style="text;html=1;fontSize=9;fontStyle=2;fontColor=#616161;align=center;" parent="1" vertex="1">
+          <mxGeometry x="580" y="680" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="e_active_inactive" value="Reexpedición" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#757575;fontSize=9;fontStyle=1;" parent="1" source="st_active" target="st_inactive" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="900" y="130" />
+              <mxPoint x="900" y="650" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_blocked_inactive" value="Reexpedición" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#757575;fontSize=9;fontStyle=1;dashed=1;" parent="1" source="st_blocked" target="st_inactive" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- EXPIRED -->
+        <mxCell id="st_expired" value="EXPIRED" style="rounded=1;whiteSpace=wrap;fillColor=#FFE0B2;strokeColor=#EF6C00;fontSize=14;fontStyle=1;fontColor=#BF360C;" parent="1" vertex="1">
+          <mxGeometry x="200" y="430" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="st_expired_desc" value="Token expiró (72h × 3 intentos).&#xa;TH nunca completó onboarding.&#xa;Requiere reenvío manual." style="text;html=1;fontSize=9;fontStyle=2;fontColor=#BF360C;align=center;" parent="1" vertex="1">
+          <mxGeometry x="195" y="490" width="230" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e_prereg_expired" value="Token expira (72h)&#xa;3 reintentos agotados" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#EF6C00;fontSize=9;fontStyle=1;dashed=1;" parent="1" source="st_prereg" target="st_expired" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_expired_prereg" value="Reenvío SMS&#xa;(nuevo token)" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#F9A825;fontSize=9;fontStyle=1;dashed=1;" parent="1" source="st_expired" target="st_prereg" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="160" y="460" />
+              <mxPoint x="160" y="130" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <!-- Estado final -->
+        <mxCell id="st_end" value="" style="ellipse;fillColor=#000000;strokeColor=#000000;strokeWidth=3;" parent="1" vertex="1">
+          <mxGeometry x="675" y="750" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="st_end_ring" value="" style="ellipse;fillColor=none;strokeColor=#000000;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="670" y="745" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e_inactive_end" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#757575;" parent="1" source="st_inactive" target="st_end" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- Leyenda -->
+        <mxCell id="st_leg_box" value="" style="rounded=1;fillColor=#f5f5f5;strokeColor=#999;dashed=1;" parent="1" vertex="1">
+          <mxGeometry x="50" y="820" width="1100" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="st_leg_title" value="Resumen de Transiciones" style="text;html=1;fontSize=12;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="60" y="825" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="st_leg_content" value="• Creación (1ra tarjeta, cliente nuevo) → PRE_REGISTERED: Pendiente de onboarding en portal&#xa;• Creación (tarjeta adicional, cliente onboardeado) → ACTIVE: Activación directa sin portal (línea punteada)&#xa;• PRE_REGISTERED → ACTIVE: TH completa onboarding en portal + asigna PIN&#xa;• PRE_REGISTERED → EXPIRED: Token vence (72h) y se agotan 3 reintentos automáticos&#xa;• EXPIRED → PRE_REGISTERED: Reenvío manual de SMS con nuevo token&#xa;• ACTIVE → BLOCKED: Novedad no monetaria de bloqueo&#xa;• BLOCKED → ACTIVE: Novedad no monetaria de desbloqueo&#xa;• ACTIVE / BLOCKED → INACTIVE: Reexpedición (nueva tarjeta, esta se desactiva)" style="text;html=1;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;" parent="1" vertex="1">
+          <mxGeometry x="60" y="848" width="1080" height="105" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="edge-cases" name="3. Casos Borde y Reenvío SMS">
+    <mxGraphModel dx="772" dy="547" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ec_title" parent="1" style="text;html=1;fontSize=20;fontStyle=1;align=center;" value="Casos Borde — PreRegistro de Tarjeta" vertex="1">
+          <mxGeometry height="35" width="500" x="350" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="case1_box" parent="1" style="rounded=1;fillColor=#FFF3E0;strokeColor=#EF6C00;dashed=1;dashPattern=4 4;arcSize=4;" value="" vertex="1">
+          <mxGeometry height="300" width="620" x="40" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="case1_title" parent="1" style="text;html=1;fontSize=13;fontStyle=1;fontColor=#BF360C;" value="CASO 1: Token Expirado (TH no completó en 72h)" vertex="1">
+          <mxGeometry height="22" width="400" x="55" y="88" as="geometry" />
+        </mxCell>
+        <mxCell id="c1_cron" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="CronJob diario detecta&#xa;tarjetas PRE_REGISTERED&#xa;con token expirado" vertex="1">
+          <mxGeometry height="55" width="170" x="61" y="127" as="geometry" />
+        </mxCell>
+        <mxCell id="c1_check" parent="1" style="rhombus;whiteSpace=wrap;fillColor=#FFF9C4;strokeColor=#F9A825;fontSize=10;" value="¿Intentos&#xa;reenvío &lt; 3?" vertex="1">
+          <mxGeometry height="70" width="130" x="280" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="e_c1_cron_check" edge="1" parent="1" source="c1_cron" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=1.5;" target="c1_check">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c1_resend" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" value="Genera nuevo token (72h)&#xa;Reenvía SMS&#xa;Incrementa contador" vertex="1">
+          <mxGeometry height="55" width="175" x="463" y="127" as="geometry" />
+        </mxCell>
+        <mxCell id="e_c1_yes" edge="1" parent="1" source="c1_check" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=1.5;strokeColor=#388E3C;fontColor=#388E3C;fontStyle=1;fontSize=10;" target="c1_resend" value="Sí">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c1_alert" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#FFCDD2;strokeColor=#E53935;fontSize=10;" value="Marca tarjeta EXPIRED&#xa;Alerta a la Entidad&#xa;para gestión manual" vertex="1">
+          <mxGeometry height="55" width="170" x="260" y="252" as="geometry" />
+        </mxCell>
+        <mxCell id="e_c1_no" edge="1" parent="1" source="c1_check" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=1.5;strokeColor=#E53935;fontColor=#E53935;fontStyle=1;fontSize=9;" target="c1_alert" value="No (3 intentos)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c1_note" parent="1" style="shape=note;size=15;fillColor=#FFF3E0;strokeColor=#EF6C00;fontSize=9;fontStyle=2;align=left;spacingLeft=5;" value="⏱ Política de reenvío:&#xa;• Máximo 3 intentos automáticos&#xa;• Cada reenvío = nuevo token 72h&#xa;• Después de 3 → EXPIRED&#xa;• Entidad puede pedir reactivación" vertex="1">
+          <mxGeometry height="80" width="185" x="460" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="case2_box" parent="1" style="rounded=1;fillColor=#FFEBEE;strokeColor=#E53935;dashed=1;dashPattern=4 4;arcSize=4;" value="" vertex="1">
+          <mxGeometry height="300" width="740" x="700" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="case2_title" parent="1" style="text;html=1;fontSize=13;fontStyle=1;fontColor=#B71C1C;" value="CASO 2: Transacción con Tarjeta PRE_REGISTERED o EXPIRED" vertex="1">
+          <mxGeometry height="22" width="450" x="715" y="88" as="geometry" />
+        </mxCell>
+        <mxCell id="c2_txn" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="Transacción entrante&#xa;(compra, retiro,&#xa;recarga, etc.)" vertex="1">
+          <mxGeometry height="55" width="160" x="720" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="c2_validate" parent="1" style="rhombus;whiteSpace=wrap;fillColor=#FFF9C4;strokeColor=#F9A825;fontSize=10;" value="Card Validator:&#xa;¿status == ACTIVE?" vertex="1">
+          <mxGeometry height="65" width="150" x="920" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="e_c2_txn_val" edge="1" parent="1" source="c2_txn" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=1.5;" target="c2_validate">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c2_reject" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#FFCDD2;strokeColor=#E53935;fontSize=10;fontStyle=1;" value="❌ RECHAZADA&#xa;RC: CARD_NOT_ACTIVATED&#xa;Tarjeta pendiente&#xa;de activación" vertex="1">
+          <mxGeometry height="65" width="210" x="1220" y="127" as="geometry" />
+        </mxCell>
+        <mxCell id="e_c2_reject" edge="1" parent="1" source="c2_validate" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=1.5;strokeColor=#E53935;fontColor=#E53935;fontStyle=1;fontSize=9;" target="c2_reject" value="PRE_REGISTERED&#xa;o EXPIRED">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c2_proceed" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#C8E6C9;strokeColor=#388E3C;fontSize=10;" value="✅ Continúa flujo&#xa;de autorización" vertex="1">
+          <mxGeometry height="40" width="150" x="930" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="e_c2_proceed" edge="1" parent="1" source="c2_validate" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=1.5;strokeColor=#388E3C;fontColor=#388E3C;fontStyle=1;fontSize=9;" target="c2_proceed" value="ACTIVE">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c2_note" parent="1" style="shape=note;size=15;fillColor=#FFEBEE;strokeColor=#E53935;fontSize=9;fontStyle=2;align=left;spacingLeft=5;" value="⚠️ Nuevos error codes:&#xa;• CARD_NOT_ACTIVATED&#xa;• CARD_ACTIVATION_EXPIRED&#xa;&#xa;Agregar al catálogo del autorizador&#xa;y al flujo de validación de recargas." vertex="1">
+          <mxGeometry height="90" width="220" x="1110" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="case3_box" parent="1" style="rounded=1;fillColor=#E8F5E9;strokeColor=#388E3C;dashed=1;dashPattern=4 4;arcSize=4;" value="" vertex="1">
+          <mxGeometry height="250" width="620" x="40" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="case3_title" parent="1" style="text;html=1;fontSize=13;fontStyle=1;fontColor=#1B5E20;" value="CASO 3: Reenvío Manual de SMS (Entidad o Soporte)" vertex="1">
+          <mxGeometry height="22" width="400" x="55" y="428" as="geometry" />
+        </mxCell>
+        <mxCell id="c3_request" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="Entidad o Soporte:&#xa;POST /cards/{id}/&#xa;resend-activation" vertex="1">
+          <mxGeometry height="55" width="170" x="60" y="472" as="geometry" />
+        </mxCell>
+        <mxCell id="c3_validate" parent="1" style="rhombus;whiteSpace=wrap;fillColor=#FFF9C4;strokeColor=#F9A825;fontSize=10;" value="¿Tarjeta en&#xa;PRE_REGISTERED&#xa;o EXPIRED?" vertex="1">
+          <mxGeometry height="70" width="140" x="280" y="465" as="geometry" />
+        </mxCell>
+        <mxCell id="e_c3_req_val" edge="1" parent="1" source="c3_request" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=1.5;" target="c3_validate">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c3_new_token" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#C8E6C9;strokeColor=#388E3C;fontSize=10;" value="Genera nuevo token&#xa;Reenvía SMS&#xa;Resetea contador&#xa;Estado → PRE_REGISTERED" vertex="1">
+          <mxGeometry height="65" width="170" x="470" y="465" as="geometry" />
+        </mxCell>
+        <mxCell id="e_c3_yes" edge="1" parent="1" source="c3_validate" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=1.5;strokeColor=#388E3C;fontColor=#388E3C;fontStyle=1;fontSize=10;" target="c3_new_token" value="Sí">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c3_error" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#FFCDD2;strokeColor=#E53935;fontSize=10;" value="Error: Tarjeta no está&#xa;en estado válido" vertex="1">
+          <mxGeometry height="40" width="170" x="265" y="592" as="geometry" />
+        </mxCell>
+        <mxCell id="e_c3_no" edge="1" parent="1" source="c3_validate" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=1.5;strokeColor=#E53935;fontColor=#E53935;fontStyle=1;fontSize=10;" target="c3_error" value="No">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

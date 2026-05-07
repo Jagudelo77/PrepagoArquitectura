@@ -1,0 +1,204 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.3.0 Chrome/140.0.7339.249 Electron/38.7.2 Safari/537.36" version="29.3.0">
+  <diagram id="BMurTNKWDcX246esQBxM" name="Página-1">
+    <mxGraphModel dx="524" dy="344" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lane_angular" parent="1" style="swimlane;startSize=50;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=12;fontColor=#023d74;" value="Angular iframe" vertex="1">
+          <mxGeometry height="1110" width="260" x="170" y="17" as="geometry" />
+        </mxCell>
+        <mxCell id="fase4_title" parent="lane_angular" style="text;html=1;strokeColor=#cccccc;fillColor=#f0f0f0;align=center;              verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=10;fontColor=#555555;" value="FASE 4 — Backend invoca API JSON del proveedor con PIN re-cifrado bajo llave del proveedor" vertex="1">
+          <mxGeometry height="22" width="1100" y="880" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_backend" parent="1" style="swimlane;startSize=50;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=12;fontColor=#333333;" value="Backend portal Credibanco&#xa;(Proxy seguro — fuera CDE)" vertex="1">
+          <mxGeometry height="1110" width="240" x="450" y="17" as="geometry" />
+        </mxCell>
+        <mxCell id="nota_angular" parent="lane_backend" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;              fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=9;fontColor=#023d74;" value="Angular: cifra SOLO con pubKey_HSM&#xa;No maneja PAN ni datos de tarjeta&#xa;El ciphertext_HSM es opaco para&#xa;cualquier capa fuera del HSM" vertex="1">
+          <mxGeometry height="71" width="178" x="20" y="499" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_hsm" parent="1" style="swimlane;startSize=50;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=12;fontColor=#5a3d00;" value="HSM Credibanco&#xa;(CDE — Interchange de llaves)" vertex="1">
+          <mxGeometry height="1100" width="280" x="710" y="17" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_proveedor" parent="1" style="swimlane;startSize=50;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;fontColor=#1a3d1a;" value="Proveedor de cambio de PIN&#xa;(API JSON — TLS)" vertex="1">
+          <mxGeometry height="1110" width="260" x="1010" y="17" as="geometry" />
+        </mxCell>
+        <mxCell id="cde_border" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#d6b656;              dashed=1;dashPattern=8 4;fontSize=11;fontStyle=1;fontColor=#854f0b;              verticalAlign=top;spacingTop=4;pointerEvents=0;" value="Perímetro CDE — PCI DSS" vertex="1">
+          <mxGeometry height="1117" width="294" x="703" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="fase1_title" parent="1" style="text;html=1;strokeColor=#cccccc;fillColor=#f0f0f0;align=center;              verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=10;fontColor=#555555;" value="FASE 1 — Inicialización: Angular obtiene pubKey efímera del HSM" vertex="1">
+          <mxGeometry height="22" width="1100" x="170" y="73" as="geometry" />
+        </mxCell>
+        <mxCell id="fase2_title" parent="1" style="text;html=1;strokeColor=#cccccc;fillColor=#f0f0f0;align=center;              verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=10;fontColor=#555555;" value="FASE 2 — Captura y cifrado de PIN (Angular usa pubKey HSM — sin PAN, sin datos de tarjeta)" vertex="1">
+          <mxGeometry height="22" width="1100" x="170" y="385" as="geometry" />
+        </mxCell>
+        <mxCell id="fase3_title" parent="1" style="text;html=1;strokeColor=#cccccc;fillColor=#f0f0f0;align=center;              verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=10;fontColor=#555555;" value="FASE 3 — Interchange en HSM: descifra con privKey HSM → re-cifra con llave pública del proveedor" vertex="1">
+          <mxGeometry height="22" width="1100" x="170" y="689" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="Portal padre envía ref. de tarjeta&#xa;postMessage { cardId, tipo_op }&#xa;cardId = identificador opaco interno&#xa;valida event.origin estrictamente" vertex="1">
+          <mxGeometry height="70" width="200" x="190" y="105" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="POST /api/pin-session/init&#xa;{ cardId, tipo_op, sessionToken }" vertex="1">
+          <mxGeometry height="50" width="200" x="190" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="b1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Valida sesión de usuario&#xa;Verifica cardId autorizado&#xa;Solicita pubKey efímera al HSM" vertex="1">
+          <mxGeometry height="60" width="180" x="470" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="c1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="Genera par RSA-2048 efímero&lt;br&gt;pubKey_HSM + privKey_HSM&lt;br&gt;TTL: 5 min — uso único&lt;br&gt;Almacena: sessionId ↔ privKey_HSM" vertex="1">
+          <mxGeometry height="80" width="208" x="736" y="205" as="geometry" />
+        </mxCell>
+        <mxCell id="b2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Retorna { sessionId, pubKey_HSM_PEM }&#xa;al Angular iframe" vertex="1">
+          <mxGeometry height="50" width="180" x="470" y="317" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="importRsaPublicKey(pubKey_HSM_PEM)&#xa;SubtleCrypto.importKey(&#39;spki&#39;)&#xa;No exportable — solo [&#39;encrypt&#39;]" vertex="1">
+          <mxGeometry height="60" width="200" x="190" y="312" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="Teclado PIN enmascarado&#xa;autocomplete=&quot;off&quot;&#xa;oncopy / onpaste bloqueado&#xa;Timeout 30s → clear()" vertex="1">
+          <mxGeometry height="70" width="200" x="190" y="417" as="geometry" />
+        </mxCell>
+        <mxCell id="a5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;              fontSize=10;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=10;fontColor=default;" value="Construye bloque PIN&lt;br&gt;Formato acordado con proveedor&lt;br&gt;(estructura que el proveedor espera)" vertex="1">
+          <mxGeometry height="70" width="200" x="190" y="517" as="geometry" />
+        </mxCell>
+        <mxCell id="a6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="SubtleCrypto.encrypt(RSA-OAEP)&#xa;Cifra bloque PIN con pubKey_HSM&#xa;→ ciphertext_HSM" vertex="1">
+          <mxGeometry height="60" width="200" x="190" y="617" as="geometry" />
+        </mxCell>
+        <mxCell id="a7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" value="Uint8Array.fill(0)&#xa;Borra PIN de memoria — PCI req. 3.3&#xa;Solo sale ciphertext_HSM" vertex="1">
+          <mxGeometry height="50" width="200" x="190" y="746" as="geometry" />
+        </mxCell>
+        <mxCell id="b3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Recibe { ciphertext_HSM, sessionId }&#xa;Valida sessionId activo&#xa;Proxy opaco — NO descifra" vertex="1">
+          <mxGeometry height="60" width="180" x="470" y="741" as="geometry" />
+        </mxCell>
+        <mxCell id="b4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Envía cmd interchange al HSM&#xa;{ ciphertext_HSM, sessionId }&#xa;Canal TCP red interna — no internet" vertex="1">
+          <mxGeometry height="60" width="180" x="470" y="821" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="1. Descifra con privKey_HSM&#xa;RSA-OAEP → bloque PIN en claro&#xa;Solo en RAM protegida del HSM&#xa;privKey_HSM invalida tras uso" vertex="1">
+          <mxGeometry height="70" width="208" x="736" y="721" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;              fontStyle=1;fontSize=10;" value="2. Re-cifra con pubKey_PROVEEDOR&#xa;Llave pública del proveedor&#xa;precargada en el HSM bajo TR-31&#xa;→ ciphertext_PROVEEDOR&#xa;PIN claro NUNCA sale del HSM" vertex="1">
+          <mxGeometry height="80" width="208" x="736" y="811" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="3. Retorna ciphertext_PROVEEDOR&#xa;+ sessionId al backend&#xa;Audit log: sessionId + timestamp" vertex="1">
+          <mxGeometry height="60" width="208" x="736" y="981" as="geometry" />
+        </mxCell>
+        <mxCell id="b5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Construye request JSON&#xa;{ cardId, ciphertext_PROVEEDOR,&#xa;  sessionId, tipo_op, ... }&#xa;Agrega headers auth del proveedor" vertex="1">
+          <mxGeometry height="70" width="180" x="470" y="976" as="geometry" />
+        </mxCell>
+        <mxCell id="p1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="POST /api/pin/change (o /assign)&#xa;Recibe JSON con ciphertext_PROVEEDOR&#xa;Descifra con su privKey interna&#xa;Procesa cambio / asignación de PIN" vertex="1">
+          <mxGeometry height="70" width="200" x="1030" y="936" as="geometry" />
+        </mxCell>
+        <mxCell id="p2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="Retorna JSON response&#xa;{ status: OK/ERROR,&#xa;  code, message }&#xa;Sobre TLS 1.3 / mTLS" vertex="1">
+          <mxGeometry height="60" width="200" x="1030" y="1026" as="geometry" />
+        </mxCell>
+        <mxCell id="a10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="Resultado al usuario&#xa;postMessage al portal padre&#xa;{ status: &#39;success&#39;|&#39;error&#39;, code }&#xa;Sin ningún dato sensible" vertex="1">
+          <mxGeometry height="70" width="200" x="190" y="944" as="geometry" />
+        </mxCell>
+        <mxCell id="nota_interchange" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;              fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=9;fontColor=#5a3d00;fontStyle=1;" value="INTERCHANGE HSM:&#xa;PIN en claro existe SOLO en RAM&#xa;protegida del HSM entre pasos 1 y 2&#xa;pubKey_PROVEEDOR almacenada&#xa;en HSM bajo TR-31 — nunca expuesta" vertex="1">
+          <mxGeometry height="98" width="194" x="952" y="721" as="geometry" />
+        </mxCell>
+        <mxCell id="nota_backend" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;              fillColor=#f5f5f5;strokeColor=#666666;fontSize=9;fontColor=#333333;" value="Backend: PROXY SEGURO&#xa;Nunca descifra ciphertext_HSM&#xa;Nunca ve el PIN en claro&#xa;Fuera del scope CDE" vertex="1">
+          <mxGeometry height="72" width="180" x="470" y="607" as="geometry" />
+        </mxCell>
+        <mxCell id="nota_proveedor" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;              fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;fontColor=#1a3d1a;" value="Proveedor: recibe PIN cifrado&#xa;con SU propia llave pública&#xa;Solo él puede descifrar&#xa;Invocación: HTTP REST JSON / TLS" vertex="1">
+          <mxGeometry height="78" width="178" x="1248" y="936" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a1_a2" edge="1" parent="1" source="a1" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="a2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a2_b1" edge="1" parent="1" source="a2" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="b1" value="TLS 1.3 { cardId }">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_b1_c1" edge="1" parent="1" source="b1" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="c1" value="Solicita pubKey efímera">
+          <mxGeometry relative="1" x="-0.5349" y="38" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_c1_b2" edge="1" parent="1" source="c1" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;" target="b2" value="pubKey_HSM + sessionId">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="850" y="342" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_b2_a3" edge="1" parent="1" source="b2" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;" target="a3" value="pubKey_HSM + sessionId">
+          <mxGeometry relative="1" x="-0.25" y="-45" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_a3_a4" edge="1" parent="1" source="a3" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="a4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a4_a5" edge="1" parent="1" source="a4" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="a5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a5_a6" edge="1" parent="1" source="a5" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="a6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a6_a7" edge="1" parent="1" source="a6" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="a7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="290" y="721" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_a7_b3" edge="1" parent="1" source="a7" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="b3" value="{ ciphertext_HSM, sessionId } TLS 1.3">
+          <mxGeometry relative="1" x="0.2593" y="44" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_b3_b4" edge="1" parent="1" source="b3" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="b4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_b4_c2" edge="1" parent="1" source="b4" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" target="c2" value="TCP red interna">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="700" y="851" />
+              <mxPoint x="700" y="739" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_c2_c3" edge="1" parent="1" source="c2" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="c3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_c3_c4" edge="1" parent="1" source="c3" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="c4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="840.0000000000005" y="927.9999999999998" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_c4_b5" edge="1" parent="1" source="c4" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#d79b00;" target="b5" value="ciphertext_PROVEEDOR">
+          <mxGeometry relative="1" x="0.1209" y="-44" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_b5_p1" edge="1" parent="1" source="b5" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;" target="p1" value="POST JSON — TLS 1.3 / mTLS">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="605" y="1067" />
+              <mxPoint x="970" y="1067" />
+              <mxPoint x="970" y="971" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_p1_p2" edge="1" parent="1" source="p1" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="p2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_p2_b5" edge="1" parent="1" source="p2" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#82b366;" target="b5" value="JSON { status, code }">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1130" y="1106" />
+              <mxPoint x="560" y="1106" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_b5_a10" edge="1" parent="1" source="b5" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#82b366;" target="a10" value="Resultado">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a10_portal" edge="1" parent="1" source="a10" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#1D9E75;              exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="a1" value="postMessage { status, code }">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="290" y="927" />
+              <mxPoint x="120" y="927" />
+              <mxPoint x="120" y="140" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

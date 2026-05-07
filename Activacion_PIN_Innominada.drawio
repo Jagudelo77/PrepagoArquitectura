@@ -1,0 +1,219 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.1 Chrome/142.0.7444.265 Electron/39.8.0 Safari/537.36" version="29.6.1">
+  <diagram id="pin-innominada-001" name="Activación PIN Innominada">
+    <mxGraphModel dx="873" dy="624" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lane_th" parent="1" style="swimlane;startSize=50;fillColor=#E0F2FE;strokeColor=#0284C7;fontStyle=1;fontSize=12;fontColor=#0284C7;" value="Tarjetahabiente&#xa;(Navegador móvil / desktop)" vertex="1">
+          <mxGeometry height="1750" width="280" x="30" y="17" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_micro" parent="1" style="swimlane;startSize=50;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=12;fontColor=#023d74;" value="Micro-Portal Activación&#xa;(Angular SPA — URL pública)" vertex="1">
+          <mxGeometry height="1750" width="280" x="330" y="17" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_backend" parent="1" style="swimlane;startSize=50;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=12;fontColor=#333333;" value="Backend Activación&#xa;(Spring Boot — fuera CDE)" vertex="1">
+          <mxGeometry height="1750" width="260" x="630" y="17" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_b2_fail" parent="lane_backend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" value="❌ Fallo: incrementa intentos&#xa;Si intentos ≥ 3 → bloquea tarjeta&#xa;para activación digital&#xa;TH debe ir a canal presencial&#xa;Log: IP + timestamp + datos parciales" vertex="1">
+          <mxGeometry height="75" width="220" x="20" y="468" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_hsm" parent="1" style="swimlane;startSize=50;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=12;fontColor=#5a3d00;" value="HSM Thales payShield&#xa;(CDE — Interchange)" vertex="1">
+          <mxGeometry height="1750" width="260" x="910" y="19" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_pomelo" parent="1" style="swimlane;startSize=50;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;fontColor=#1a3d1a;" value="Pomelo API&#xa;(Proveedor — mTLS)" vertex="1">
+          <mxGeometry height="1750" width="240" x="1190" y="17" as="geometry" />
+        </mxCell>
+        <mxCell id="cde_border" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#d6b656;dashed=1;dashPattern=8 4;fontSize=11;fontStyle=1;fontColor=#854f0b;verticalAlign=top;spacingTop=4;pointerEvents=0;" value="Perímetro CDE — PCI DSS v4.0" vertex="1">
+          <mxGeometry height="1764" width="274" x="903" y="9" as="geometry" />
+        </mxCell>
+        <mxCell id="f0_title" parent="1" style="text;html=1;strokeColor=#b85450;fillColor=#f8cecc;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=10;fontColor=#555555;" value="FASE 0 — Preparación: al crear la tarjeta innominada (batch o API)" vertex="1">
+          <mxGeometry height="22" width="1400" x="30" y="73" as="geometry" />
+        </mxCell>
+        <mxCell id="f0_b1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Al crear tarjeta innominada:&#xa;Genera token_activacion (UUID)&#xa;Almacena en Oracle:&#xa;card_id ↔ token ↔ status=PENDING&#xa;TTL: 6 meses (configurable por AFG)" vertex="1">
+          <mxGeometry height="80" width="220" x="650" y="105" as="geometry" />
+        </mxCell>
+        <mxCell id="f0_note" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=9;fontColor=#0284C7;" value="URL pública de activación:&#xa;https://activate.credibanco.com/prepago&#xa;&#xa;Se comunica por:&#xa;• Texto impreso en carrier genérico&#xa;• Sticker de la entidad&#xa;• Web de la entidad emisora&#xa;• Folleto adjunto&#xa;&#xa;NO requiere QR ni impresión especial" vertex="1">
+          <mxGeometry height="140" width="230" x="50" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_title" parent="1" style="text;html=1;strokeColor=#cccccc;fillColor=#f0f0f0;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=10;fontColor=#555555;" value="FASE 1 — TH accede al micro-portal público (sin login, sin enrolamiento previo)" vertex="1">
+          <mxGeometry height="22" width="1400" x="30" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_th1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;" value="TH recibe tarjeta innominada&#xa;Lee URL en carrier/folleto/web&#xa;Abre navegador en su celular&#xa;o computador" vertex="1">
+          <mxGeometry height="65" width="240" x="50" y="295" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_th2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;" value="Navega a:&#xa;activate.credibanco.com/prepago" vertex="1">
+          <mxGeometry height="45" width="240" x="50" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_mp1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="Carga SPA mínima (Angular)&#xa;CSP: frame-ancestors &#39;none&#39;&#xa;script-src con SRI hashes&#xa;CAPTCHA invisible (anti-bot)&#xa;Muestra formulario de verificación" vertex="1">
+          <mxGeometry height="80" width="240" x="350" y="295" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f1_1" edge="1" parent="1" source="f1_th1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0284C7;strokeWidth=1.5;" target="f1_th2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f1_2" edge="1" parent="1" source="f1_th2" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0284C7;strokeWidth=1.5;fontSize=9;fontColor=#0284C7;" target="f1_mp1" value="HTTPS GET">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_title" parent="1" style="text;html=1;strokeColor=#cccccc;fillColor=#f0f0f0;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=10;fontColor=#555555;" value="FASE 2 — Proof of Possession: TH demuestra que tiene la tarjeta física (BIN + last4 + exp + CVV2)" vertex="1">
+          <mxGeometry height="22" width="1400" x="30" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_mp1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="Formulario de verificación:&#xa;• Entidad emisora (desplegable)&#xa;• Últimos 4 dígitos del PAN&#xa;• Fecha de vencimiento (MM/AA)&#xa;• CVV2 (3 dígitos reverso)&#xa;autocomplete=off en todos" vertex="1">
+          <mxGeometry height="90" width="240" x="350" y="619" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_th1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;" value="TH mira su tarjeta física&#xa;Ingresa los datos solicitados&#xa;Presiona &quot;Verificar tarjeta&quot;" vertex="1">
+          <mxGeometry height="55" width="240" x="35" y="634" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_mp2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="POST /api/activation/verify&#xa;{ entity_code, last4, exp,&#xa;  cvv2, captcha_token }&#xa;TLS 1.3" vertex="1">
+          <mxGeometry height="65" width="240" x="350" y="734" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_b1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Valida CAPTCHA (anti-bot)&#xa;Busca en Oracle:&#xa;entity + BIN(del entity) + last4&#xa;+ exp + cvv2_hash&#xa;Verifica: status = PEND_ACTIVAR&#xa;Verifica: intentos &lt; 3&#xa;Verifica: token no expirado" vertex="1">
+          <mxGeometry height="100" width="220" x="650" y="619" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_b2_ok" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;fontStyle=1;" value="✅ Verificación exitosa&#xa;Genera session_pin (UUID)&#xa;TTL: 5 min, uso único&#xa;Guarda en Redis&#xa;Retorna { session_pin }" vertex="1">
+          <mxGeometry height="75" width="220" x="650" y="744" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f2_1" edge="1" parent="1" source="f2_th1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0284C7;strokeWidth=1.5;fontSize=9;fontColor=#0284C7;" target="f2_mp1" value="Ingresa datos">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f2_2" edge="1" parent="1" source="f2_mp1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#6c8ebf;strokeWidth=1.5;" target="f2_mp2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f2_3" edge="1" parent="1" source="f2_mp2" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#666666;strokeWidth=1.5;fontSize=9;fontColor=#666666;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="f2_b1" value="TLS 1.3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f2_4" edge="1" parent="1" source="f2_b1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#82b366;strokeWidth=1.5;fontSize=9;fontColor=#059669;" target="f2_b2_ok" value="Match OK">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f2_5" edge="1" parent="1" source="f2_b1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#b85450;strokeWidth=1.5;fontSize=9;fontColor=#DC2626;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="f2_b2_fail" value="No match / max intentos">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_title" parent="1" style="text;html=1;strokeColor=#cccccc;fillColor=#f0f0f0;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=10;fontColor=#555555;" value="FASE 3 — Verificación OK: micro-portal carga Iframe PIN (secure-pin.credibanco.com) — mismo componente que portal TH nominadas" vertex="1">
+          <mxGeometry height="22" width="1400" x="30" y="864" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_b1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Micro-portal carga iframe:&#xa;&lt;iframe src=secure-pin.credibanco.com&gt;&#xa;postMessage { cardId, sessionToken }&#xa;Iframe solicita pubKey al backend&#xa;Backend → HSM cmd EI (RSA-2048)" vertex="1">
+          <mxGeometry height="55" width="220" x="650" y="899" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_hsm1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="Cmd EI: Genera par RSA-2048&#xa;Resp EJ: pubKey(DER) +&#xa;privKey(cifrada bajo LMK)&#xa;HSM es stateless — no retiene" vertex="1">
+          <mxGeometry height="65" width="220" x="945" y="892" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_b2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Guarda en Redis (TTL 5 min):&#xa;session_pin ↔ privKey(cifrada_LMK)&#xa;Retorna { pubKey_PEM, nonce }&#xa;al micro-portal" vertex="1">
+          <mxGeometry height="65" width="220" x="650" y="984" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_mp1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#8B5CF6;fontSize=10;strokeWidth=2;" value="IFRAME PIN (secure-pin.credibanco.com)&#xa;importRsaPublicKey(pubKey_PEM)&#xa;SubtleCrypto.importKey(&#39;spki&#39;)&#xa;No exportable — solo [&#39;encrypt&#39;]" vertex="1">
+          <mxGeometry height="55" width="240" x="342" y="984" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_mp2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#8B5CF6;fontSize=10;strokeWidth=2;" value="IFRAME: Teclado PIN enmascarado&#xa;autocomplete=off, oncopy blocked&#xa;Timeout 30s inactividad → clear&#xa;Máx 3 intentos → invalida sesión" vertex="1">
+          <mxGeometry height="65" width="240" x="342" y="1064" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_th1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;fontStyle=1;" value="TH digita su PIN (4-6 dígitos)&#xa;y lo confirma en el iframe" vertex="1">
+          <mxGeometry height="45" width="240" x="50" y="1074" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_mp3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#8B5CF6;fontSize=10;" value="IFRAME: Construye bloque PIN:&#xa;{ pin, nonce, timestamp }&#xa;SubtleCrypto.encrypt(RSA-OAEP)&#xa;→ ciphertext_HSM" vertex="1">
+          <mxGeometry height="65" width="240" x="343" y="1154" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_mp4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" value="IFRAME: Uint8Array.fill(0)&#xa;Borra PIN + nonce de memoria&#xa;Solo queda ciphertext_HSM" vertex="1">
+          <mxGeometry height="50" width="240" x="343" y="1239" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f3_1" edge="1" parent="1" source="f2_b2_ok" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#666666;strokeWidth=1.5;" target="f3_b1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f3_2" edge="1" parent="1" source="f3_b1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#d6b656;strokeWidth=1.5;fontSize=9;fontColor=#5a3d00;" target="f3_hsm1" value="mTLS&amp;nbsp;&lt;div&gt;interno&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f3_3" edge="1" parent="1" source="f3_hsm1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#d6b656;strokeWidth=1.5;dashed=1;fontSize=9;fontColor=#5a3d00;" target="f3_b2" value="pubKey + privKey(LMK)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1040" y="1017" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_f3_4" edge="1" parent="1" source="f3_b2" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#6c8ebf;strokeWidth=1.5;dashed=1;fontSize=9;fontColor=#023d74;" target="f3_mp1" value="pubKey&amp;nbsp;&lt;div&gt;+ nonce&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f3_5" edge="1" parent="1" source="f3_mp1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#6c8ebf;strokeWidth=1.5;" target="f3_mp2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f3_6" edge="1" parent="1" source="f3_th1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0284C7;strokeWidth=1.5;fontSize=9;fontColor=#0284C7;" target="f3_mp2" value="Digita PIN">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f3_7" edge="1" parent="1" source="f3_mp2" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#6c8ebf;strokeWidth=1.5;" target="f3_mp3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f3_8" edge="1" parent="1" source="f3_mp3" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#b85450;strokeWidth=1.5;" target="f3_mp4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f4_title" parent="1" style="text;html=1;strokeColor=#cccccc;fillColor=#f0f0f0;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=10;fontColor=#555555;" value="FASE 4 — Interchange HSM: descifra con privKey(LMK) → re-cifra con pubKey Pomelo → envía a Pomelo" vertex="1">
+          <mxGeometry height="22" width="1400" x="30" y="1304" as="geometry" />
+        </mxCell>
+        <mxCell id="f4_b1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Recibe { ciphertext_HSM, session_pin }&#xa;Valida session_pin en Redis (activa)&#xa;Lee privKey(cifrada_LMK) de Redis&#xa;Proxy opaco — NO descifra&#xa;Log: correlationId + timestamp" vertex="1">
+          <mxGeometry height="80" width="220" x="650" y="1339" as="geometry" />
+        </mxCell>
+        <mxCell id="f4_hsm1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="Cmd GI: Recibe privKey(LMK)&#xa;+ ciphertext del frontend&#xa;Descifra privKey con su LMK&#xa;Descifra ciphertext → PIN block&#xa;Valida nonce (anti-replay)" vertex="1">
+          <mxGeometry height="80" width="220" x="930" y="1339" as="geometry" />
+        </mxCell>
+        <mxCell id="f4_hsm2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;fontStyle=1;" value="Cmd EO: Re-cifra con pubKey Pomelo&#xa;(precargada con cmd FK, índice fijo)&#xa;→ Resp EP: ciphertext_POMELO&#xa;PIN claro NUNCA sale del HSM" vertex="1">
+          <mxGeometry height="65" width="220" x="930" y="1439" as="geometry" />
+        </mxCell>
+        <mxCell id="f4_b2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="POST /api/pin/assign&#xa;{ cardId, ciphertext_POMELO,&#xa;  idempotencyKey, correlationId }&#xa;mTLS + auth headers Pomelo" vertex="1">
+          <mxGeometry height="65" width="220" x="650" y="1459" as="geometry" />
+        </mxCell>
+        <mxCell id="f4_p1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="Recibe ciphertext_POMELO&#xa;Descifra con su privKey interna&#xa;Asigna PIN a la tarjeta&#xa;Valida idempotencyKey&#xa;Retorna { status: OK }" vertex="1">
+          <mxGeometry height="75" width="200" x="1210" y="1497" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f4_0" edge="1" parent="1" source="f3_mp4" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#666666;strokeWidth=1.5;fontSize=9;fontColor=#666666;" target="f4_b1" value="{ ciphertext_HSM, session_pin } TLS 1.3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f4_1" edge="1" parent="1" source="f4_b1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#d6b656;strokeWidth=1.5;fontSize=9;fontColor=#5a3d00;" target="f4_hsm1" value="mTLS interno">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f4_2" edge="1" parent="1" source="f4_hsm1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#d6b656;strokeWidth=1.5;" target="f4_hsm2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f4_3" edge="1" parent="1" source="f4_hsm2" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#d79b00;strokeWidth=1.5;dashed=1;fontSize=9;fontColor=#5a3d00;" target="f4_b2" value="ciphertext_POMELO">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f4_4" edge="1" parent="1" source="f4_b2" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#82b366;strokeWidth=2;fontSize=9;fontColor=#1a3d1a;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="f4_p1" value="POST JSON mTLS">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f5_title" parent="1" style="text;html=1;strokeColor=#cccccc;fillColor=#f0f0f0;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=10;fontColor=#555555;" value="FASE 5 — Confirmación: tarjeta activada, token invalidado, auditoría registrada" vertex="1">
+          <mxGeometry height="22" width="1400" x="30" y="1602" as="geometry" />
+        </mxCell>
+        <mxCell id="f5_b1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;fontStyle=1;" value="Pomelo confirma OK →&#xa;UPDATE card SET status = ACTIVA&#xa;Invalida token_activacion&#xa;Borra session_pin de Redis&#xa;Borra privKey(LMK) de Redis&#xa;Audit: IP, user-agent, timestamp" vertex="1">
+          <mxGeometry height="90" width="220" x="650" y="1637" as="geometry" />
+        </mxCell>
+        <mxCell id="f5_mp1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;fontStyle=1;" value="✅ &quot;Tarjeta activada exitosamente&quot;&#xa;&quot;Ya puede usar su PIN en ATM y POS&quot;&#xa;Auto-cierre en 10 segundos" vertex="1">
+          <mxGeometry height="55" width="240" x="350" y="1655" as="geometry" />
+        </mxCell>
+        <mxCell id="f5_th1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;fontStyle=1;" value="🎉 TH ve confirmación&#xa;Puede usar su tarjeta" vertex="1">
+          <mxGeometry height="40" width="240" x="50" y="1662" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f5_1" edge="1" parent="1" source="f4_p1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#82b366;strokeWidth=1.5;dashed=1;fontSize=9;fontColor=#059669;" target="f5_b1" value="{ status: OK }">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1310" y="1682" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_f5_2" edge="1" parent="1" source="f5_b1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#82b366;strokeWidth=1.5;dashed=1;" target="f5_mp1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f5_3" edge="1" parent="1" source="f5_mp1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#82b366;strokeWidth=1.5;dashed=1;" target="f5_th1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nota_seguridad" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;fontColor=#b85450;fontStyle=1;" value="SEGURIDAD — Proof of Possession:&#xa;&#xa;Para activar se necesita:&#xa;• Entidad emisora (público pero filtra)&#xa;• Últimos 4 dígitos PAN (10,000 combinaciones)&#xa;• Fecha vencimiento (36-60 combinaciones)&#xa;• CVV2 (1,000 combinaciones)&#xa;&#xa;Con max 3 intentos → probabilidad&#xa;de fuerza bruta ≈ 0.000000083%&#xa;&#xa;Rate limiting adicional:&#xa;• 5 intentos / IP / hora&#xa;• CAPTCHA obligatorio&#xa;• Bloqueo permanente tras 3 fallos&#xa;  (requiere canal presencial)" vertex="1">
+          <mxGeometry height="230" width="220" x="1450" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="nota_pci" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;fontColor=#b85450;" value="PCI DSS v4.0 COMPLIANCE:&#xa;&#xa;• Micro-portal NO captura PAN completo&#xa;  → fuera de scope CDE&#xa;• Solo captura: last4 + exp + CVV2&#xa;  (datos impresos, no track data)&#xa;• PIN cifrado E2E con SubtleCrypto&#xa;  → nunca en claro fuera del HSM&#xa;• CSP + SRI obligatorios (Req 6.4.3)&#xa;• TLS 1.3 en todo el flujo&#xa;• mTLS en canal HSM (Req 4.2.1)&#xa;• Nonce anti-replay en bloque PIN&#xa;• Idempotencia en llamada a Pomelo" vertex="1">
+          <mxGeometry height="200" width="220" x="1450" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="nota_diferencia" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#E6E6FA;strokeColor=#9370DB;fontSize=9;fontColor=#4B0082;" value="DIFERENCIA vs TARJETA NOMINADA:&#xa;&#xa;Nominada:&#xa;  Auth: SSO + MFA (usuario conocido)&#xa;  Canal: Portal TH autenticado&#xa;  Sesión: JWT con refresh&#xa;&#xa;Innominada:&#xa;  Auth: Proof of Possession&#xa;  (last4 + exp + CVV2)&#xa;  Canal: Micro-portal público efímero&#xa;  Sesión: session_pin TTL 5 min&#xa;  Sin refresh, sin cookies&#xa;&#xa;Flujo de PIN: IDÉNTICO en ambos casos&#xa;(SubtleCrypto → HSM EI/GI/EO → Pomelo)" vertex="1">
+          <mxGeometry height="240" width="220" x="1450" y="714" as="geometry" />
+        </mxCell>
+        <mxCell id="nota_errores" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#FFFBEB;strokeColor=#D97706;fontSize=9;fontColor=#92400E;" value="FLUJO DE ERRORES:&#xa;&#xa;• Datos tarjeta incorrectos (3x)&#xa;  → Bloqueo activación digital&#xa;  → TH debe ir a canal presencial&#xa;&#xa;• Token expirado (6 meses)&#xa;  → Mensaje: contacte a su entidad&#xa;&#xa;• Tarjeta ya activada&#xa;  → Mensaje: tarjeta ya está activa&#xa;&#xa;• HSM timeout&#xa;  → Invalida sesión, reintento manual&#xa;&#xa;• Pomelo error&#xa;  → idempotencyKey protege&#xa;  → TH puede reintentar" vertex="1">
+          <mxGeometry height="230" width="220" x="1450" y="974" as="geometry" />
+        </mxCell>
+        <mxCell id="nota_thales" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;fontColor=#5a3d00;" value="THALES payShield COMMANDS:&#xa;&#xa;• EI/EJ: Generate RSA Key Pair&#xa;• GI/GJ: RSA Decrypt (privKey bajo LMK)&#xa;• EO/EP: RSA Encrypt (pubKey Pomelo)&#xa;• FK/FL: Load Public RSA Key&#xa;&#xa;HSM es STATELESS:&#xa;privKey sale cifrada bajo LMK&#xa;Backend la guarda en Redis (TTL 5m)&#xa;Solo el HSM puede descifrarla" vertex="1">
+          <mxGeometry height="170" width="220" x="1450" y="1224" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

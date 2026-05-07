@@ -1,0 +1,337 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.1 Chrome/142.0.7444.265 Electron/39.8.0 Safari/537.36" version="29.6.1" pages="2">
+  <diagram id="envelope-enc-001" name="Envelope Encryption PAN">
+    <mxGraphModel dx="1665" dy="841" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;fontSize=22;fontStyle=1;align=left;verticalAlign=middle;fontColor=#000000;fillColor=none;strokeColor=none;" value="Envelope Encryption — Almacenamiento seguro de PAN y datos sensibles (sin HSM)" vertex="1">
+          <mxGeometry height="35" width="900" x="40" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;fontSize=11;align=left;verticalAlign=middle;fontColor=#9CA3AF;fillColor=none;strokeColor=none;" value="AES-256-GCM (cifra datos) + RSA-2048 OAEP (protege la llave AES) | KEK en PKCS12 KeyStore | PCI DSS v4.0 Req 3.5" vertex="1">
+          <mxGeometry height="20" width="900" x="40" y="55" as="geometry" />
+        </mxCell>
+        <mxCell id="enc-header" parent="1" style="text;html=1;strokeColor=#059669;fillColor=#D1FAE5;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=12;fontColor=#065F46;rounded=1;" value="FLUJO DE CIFRADO — Al crear/almacenar la tarjeta" vertex="1">
+          <mxGeometry height="28" width="990" x="40" y="93" as="geometry" />
+        </mxCell>
+        <mxCell id="enc-s1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;strokeWidth=2;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="90" width="250" x="40" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="enc-s1-num" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#0284C7;strokeColor=#0284C7;fontStyle=1;fontSize=11;fontColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry height="24" width="24" x="50" y="155" as="geometry" />
+        </mxCell>
+        <mxCell id="enc-s1-t" parent="1" style="text;html=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fontColor=#0284C7;fillColor=none;strokeColor=none;" value="Generar DEK" vertex="1">
+          <mxGeometry height="20" width="250" x="40" y="155" as="geometry" />
+        </mxCell>
+        <mxCell id="enc-s1-d" parent="1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#1E3A5F;fillColor=none;strokeColor=none;" value="DEK = SecureRandom(32 bytes)&lt;br&gt;Data Encryption Key — AES-256&lt;br&gt;Única por tarjeta (o por lote)&lt;br&gt;Generada en runtime, nunca persistida en claro" vertex="1">
+          <mxGeometry height="55" width="240" x="45" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="enc-s2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;strokeWidth=2;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="90" width="280" x="347" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="enc-s2-num" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#0284C7;strokeColor=#0284C7;fontStyle=1;fontSize=11;fontColor=#FFFFFF;" value="2" vertex="1">
+          <mxGeometry height="24" width="24" x="357" y="155" as="geometry" />
+        </mxCell>
+        <mxCell id="enc-s2-t" parent="1" style="text;html=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fontColor=#0284C7;fillColor=none;strokeColor=none;" value="Cifrar PAN con AES-256-GCM" vertex="1">
+          <mxGeometry height="20" width="280" x="347" y="155" as="geometry" />
+        </mxCell>
+        <mxCell id="enc-s2-d" parent="1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#1E3A5F;fillColor=none;strokeColor=none;" value="IV = SecureRandom(12 bytes) — nonce único&lt;br&gt;AAD = card_id + created_at (anti-tampering)&lt;br&gt;{ciphertext, authTag} = AES-GCM.encrypt(DEK, PAN, IV, AAD)&lt;br&gt;authTag garantiza integridad (16 bytes)" vertex="1">
+          <mxGeometry height="55" width="270" x="352" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="enc-s3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;strokeWidth=2;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="90" width="250" x="670" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="enc-s3-num" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#D97706;strokeColor=#D97706;fontStyle=1;fontSize=11;fontColor=#FFFFFF;" value="3" vertex="1">
+          <mxGeometry height="24" width="24" x="680" y="155" as="geometry" />
+        </mxCell>
+        <mxCell id="enc-s3-t" parent="1" style="text;html=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fontColor=#92400E;fillColor=none;strokeColor=none;" value="Cifrar DEK con RSA-OAEP (KEK)" vertex="1">
+          <mxGeometry height="20" width="248" x="682" y="155" as="geometry" />
+        </mxCell>
+        <mxCell id="enc-s3-d" parent="1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#92400E;fillColor=none;strokeColor=none;" value="KEK = par RSA-2048 (Key Encryption Key)&lt;br&gt;encrypted_DEK = RSA-OAEP.encrypt(KEK_public, DEK)&lt;br&gt;KEK_public cargada desde PKCS12 KeyStore&lt;br&gt;Solo la KEK_private puede descifrar la DEK" vertex="1">
+          <mxGeometry height="55" width="240" x="675" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="enc-s4" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=2;size=12;" value="" vertex="1">
+          <mxGeometry height="120" width="280" x="347" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="enc-s4-num" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#3B82F6;strokeColor=#3B82F6;fontStyle=1;fontSize=11;fontColor=#FFFFFF;" value="4" vertex="1">
+          <mxGeometry height="24" width="24" x="356" y="325" as="geometry" />
+        </mxCell>
+        <mxCell id="enc-s4-t" parent="1" style="text;html=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Almacenar en Oracle" vertex="1">
+          <mxGeometry height="20" width="280" x="347" y="328" as="geometry" />
+        </mxCell>
+        <mxCell id="enc-s4-d" parent="1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="pan_encrypted: RAW(64) — ciphertext AES&lt;br&gt;pan_iv: RAW(12) — nonce GCM&lt;br&gt;pan_auth_tag: RAW(16) — tag integridad&lt;br&gt;dek_encrypted: RAW(256) — DEK cifrada con RSA&lt;br&gt;kek_version: NUMBER(3) — versión de KEK usada" vertex="1">
+          <mxGeometry height="55" width="270" x="352" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="enc-s5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#DC2626;strokeWidth=2;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="72" width="250" x="760" y="328" as="geometry" />
+        </mxCell>
+        <mxCell id="enc-s5-num" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DC2626;strokeColor=#DC2626;fontStyle=1;fontSize=11;fontColor=#FFFFFF;" value="5" vertex="1">
+          <mxGeometry height="24" width="24" x="770" y="333" as="geometry" />
+        </mxCell>
+        <mxCell id="enc-s5-t" parent="1" style="text;html=1;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;fontColor=#DC2626;fillColor=none;strokeColor=none;" value="Borrar DEK y PAN de memoria" vertex="1">
+          <mxGeometry height="18" width="250" x="760" y="338" as="geometry" />
+        </mxCell>
+        <mxCell id="enc-s5-d" parent="1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#991B1B;fillColor=none;strokeColor=none;" value="Arrays.fill(dekBytes, (byte)0)&lt;br&gt;PAN = null — Solo queda cifrado en BD" vertex="1">
+          <mxGeometry height="24" width="240" x="765" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="enc-e1" edge="1" parent="1" source="enc-s1" style="endArrow=block;endFill=1;html=1;strokeColor=#0284C7;strokeWidth=2;fontSize=9;fontColor=#0284C7;" target="enc-s2" value="DEK">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="enc-e2" edge="1" parent="1" source="enc-s2" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1.5;fontSize=9;fontColor=#3B82F6;" target="enc-s4" value="ciphertext + IV + tag">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="enc-e3" edge="1" parent="1" source="enc-s1" style="endArrow=block;endFill=1;html=1;strokeColor=#D97706;strokeWidth=1.5;fontSize=9;fontColor=#D97706;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" target="enc-s3" value="DEK (en claro, temporal)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="310" y="173" />
+              <mxPoint x="310" y="130" />
+              <mxPoint x="650" y="130" />
+              <mxPoint x="650" y="173" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="enc-e4" edge="1" parent="1" source="enc-s3" style="endArrow=block;endFill=1;html=1;strokeColor=#D97706;strokeWidth=1.5;fontSize=9;fontColor=#D97706;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.855;entryY=0;entryDx=0;entryDy=3.4799999999999995;entryPerimeter=0;" target="enc-s4" value="encrypted_DEK">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="enc-e5" edge="1" parent="1" source="enc-s4" style="endArrow=block;endFill=1;html=1;strokeColor=#DC2626;strokeWidth=1.5;fontSize=9;fontColor=#DC2626;" target="enc-s5" value="Post-almacenamiento">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dec-header" parent="1" style="text;html=1;strokeColor=#DC2626;fillColor=#FEE2E2;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=12;fontColor=#991B1B;rounded=1;" value="FLUJO DE DESCIFRADO — Al visualizar datos sensibles (iframe)" vertex="1">
+          <mxGeometry height="28" width="990" x="40" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="dec-s1" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=2;size=12;" value="" vertex="1">
+          <mxGeometry height="80" width="220" x="40" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="dec-s1-num" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#3B82F6;strokeColor=#3B82F6;fontStyle=1;fontSize=11;fontColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry height="24" width="24" x="45" y="532" as="geometry" />
+        </mxCell>
+        <mxCell id="dec-s1-t" parent="1" style="text;html=1;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Leer de Oracle" vertex="1">
+          <mxGeometry height="18" width="220" x="40" y="535" as="geometry" />
+        </mxCell>
+        <mxCell id="dec-s1-d" parent="1" style="text;html=1;fontSize=9;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="SELECT pan_encrypted, pan_iv,&lt;br&gt;pan_auth_tag, dek_encrypted, kek_version" vertex="1">
+          <mxGeometry height="28" width="210" x="45" y="555" as="geometry" />
+        </mxCell>
+        <mxCell id="dec-s2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;strokeWidth=2;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="90" width="280" x="361" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="dec-s2-num" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#D97706;strokeColor=#D97706;fontStyle=1;fontSize=11;fontColor=#FFFFFF;" value="2" vertex="1">
+          <mxGeometry height="24" width="24" x="371" y="515" as="geometry" />
+        </mxCell>
+        <mxCell id="dec-s2-t" parent="1" style="text;html=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fontColor=#92400E;fillColor=none;strokeColor=none;" value="Descifrar DEK con KEK privada" vertex="1">
+          <mxGeometry height="20" width="280" x="361" y="518" as="geometry" />
+        </mxCell>
+        <mxCell id="dec-s2-d" parent="1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#92400E;fillColor=none;strokeColor=none;" value="KEK_private = KeyStore.load(pkcs12, passphrase)&lt;br&gt;passphrase viene de OpenShift Secret (env var)&lt;br&gt;DEK = RSA-OAEP.decrypt(KEK_private, dek_encrypted)&lt;br&gt;Selecciona KEK según kek_version (para rotación)" vertex="1">
+          <mxGeometry height="44" width="270" x="366" y="542" as="geometry" />
+        </mxCell>
+        <mxCell id="dec-s3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;strokeWidth=2;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="80" width="260" x="771" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="dec-s3-num" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#0284C7;strokeColor=#0284C7;fontStyle=1;fontSize=11;fontColor=#FFFFFF;" value="3" vertex="1">
+          <mxGeometry height="24" width="24" x="781" y="515" as="geometry" />
+        </mxCell>
+        <mxCell id="dec-s3-t" parent="1" style="text;html=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fontColor=#0284C7;fillColor=none;strokeColor=none;" value="Descifrar PAN con DEK" vertex="1">
+          <mxGeometry height="20" width="260" x="771" y="518" as="geometry" />
+        </mxCell>
+        <mxCell id="dec-s3-d" parent="1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#1E3A5F;fillColor=none;strokeColor=none;" value="PAN = AES-256-GCM.decrypt(DEK, ciphertext, IV, tag, AAD)&lt;br&gt;Si authTag no coincide → RECHAZA (dato corrupto/tampered)&lt;br&gt;PAN en claro solo en memoria del proceso" vertex="1">
+          <mxGeometry height="40" width="250" x="776" y="542" as="geometry" />
+        </mxCell>
+        <mxCell id="dec-s4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#DC2626;strokeWidth=2;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="70" width="271" x="765" y="636" as="geometry" />
+        </mxCell>
+        <mxCell id="dec-s4-num" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DC2626;strokeColor=#DC2626;fontStyle=1;fontSize=11;fontColor=#FFFFFF;" value="4" vertex="1">
+          <mxGeometry height="24" width="24" x="770" y="641" as="geometry" />
+        </mxCell>
+        <mxCell id="dec-s4-t" parent="1" style="text;html=1;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;fontColor=#DC2626;fillColor=none;strokeColor=none;" value="Entregar al iframe → Borrar de memoria" vertex="1">
+          <mxGeometry height="18" width="231" x="794" y="644" as="geometry" />
+        </mxCell>
+        <mxCell id="dec-s4-d" parent="1" style="text;html=1;fontSize=9;align=center;fontColor=#991B1B;fillColor=none;strokeColor=none;" value="Envía PAN al iframe (TLS, no-cache) → Arrays.fill(0)&lt;br&gt;DEK y PAN borrados inmediatamente post-uso" vertex="1">
+          <mxGeometry height="24" width="250" x="781" y="666" as="geometry" />
+        </mxCell>
+        <mxCell id="dec-e1" edge="1" parent="1" source="dec-s1" style="endArrow=block;endFill=1;html=1;strokeColor=#D97706;strokeWidth=2;fontSize=9;fontColor=#D97706;" target="dec-s2" value="dek_encrypted">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dec-e2" edge="1" parent="1" source="dec-s2" style="endArrow=block;endFill=1;html=1;strokeColor=#0284C7;strokeWidth=2;fontSize=9;fontColor=#0284C7;" target="dec-s3" value="DEK (en claro, temporal)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dec-e3" edge="1" parent="1" source="dec-s3" style="endArrow=block;endFill=1;html=1;strokeColor=#DC2626;strokeWidth=2;fontSize=9;fontColor=#DC2626;" target="dec-s4" value="PAN en claro → iframe → borrar">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kek-header" parent="1" style="text;html=1;strokeColor=#7C3AED;fillColor=#F3E8FF;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=12;fontColor=#5B21B6;rounded=1;" value="GESTIÓN DE KEK (Key Encryption Key) — Almacenamiento + Rotación" vertex="1">
+          <mxGeometry height="28" width="980" x="40" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="kek-ks" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E8FF;strokeColor=#7C3AED;strokeWidth=2;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="130" width="300" x="40" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="kek-ks-t" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#5B21B6;fillColor=none;strokeColor=none;" value="🔐 PKCS12 KeyStore" vertex="1">
+          <mxGeometry height="20" width="300" x="40" y="788" as="geometry" />
+        </mxCell>
+        <mxCell id="kek-ks-d" parent="1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#5B21B6;fillColor=none;strokeColor=none;" value="Archivo: /secrets/kek-keystore.p12&lt;br&gt;Montado como OpenShift Secret (volume mount)&lt;br&gt;Contiene: KEK_private + KEK_public (RSA-2048)&lt;br&gt;Protegido con passphrase&lt;br&gt;&lt;br&gt;&lt;b&gt;Passphrase:&lt;/b&gt; variable de entorno&lt;br&gt;KEK_KEYSTORE_PASS (OpenShift Secret)&lt;br&gt;Nunca hardcodeada en código ni en config files" vertex="1">
+          <mxGeometry height="90" width="290" x="45" y="812" as="geometry" />
+        </mxCell>
+        <mxCell id="kek-rot" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E8FF;strokeColor=#7C3AED;strokeWidth=2;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="160" width="320" x="390" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="kek-rot-t" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#5B21B6;fillColor=none;strokeColor=none;" value="🔄 Rotación de KEK (cada 12 meses)" vertex="1">
+          <mxGeometry height="20" width="320" x="390" y="788" as="geometry" />
+        </mxCell>
+        <mxCell id="kek-rot-d" parent="1" style="text;html=1;fontSize=9;align=left;verticalAlign=top;fontColor=#5B21B6;fillColor=none;strokeColor=none;" value="1. Generar nuevo par RSA: KEK_v(N+1)&lt;br&gt;2. Para cada tarjeta (batch nocturno):&lt;br&gt;   • Descifrar DEK con KEK_vN_private&lt;br&gt;   • Re-cifrar DEK con KEK_v(N+1)_public&lt;br&gt;   • UPDATE card SET dek_encrypted=nuevo, kek_version=N+1&lt;br&gt;3. Archivar KEK_vN (para backups antiguos)&lt;br&gt;4. Actualizar KeyStore con nueva KEK&lt;br&gt;&lt;br&gt;&lt;b&gt;Ventaja:&lt;/b&gt; pan_encrypted NO cambia → operación rápida&lt;br&gt;Solo se re-cifran las DEKs (32 bytes cada una)" vertex="1">
+          <mxGeometry height="90" width="310" x="395" y="812" as="geometry" />
+        </mxCell>
+        <mxCell id="kek-ver" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E8FF;strokeColor=#7C3AED;strokeWidth=2;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="130" width="200" x="760" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="kek-ver-t" parent="1" style="text;html=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fontColor=#5B21B6;fillColor=none;strokeColor=none;" value="Versionamiento" vertex="1">
+          <mxGeometry height="20" width="200" x="760" y="788" as="geometry" />
+        </mxCell>
+        <mxCell id="kek-ver-d" parent="1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#5B21B6;fillColor=none;strokeColor=none;" value="kek_version en tabla card:&lt;br&gt;• v1: KEK original (2025)&lt;br&gt;• v2: post-rotación (2026)&lt;br&gt;• v3: post-rotación (2027)&lt;br&gt;&lt;br&gt;KeyStore contiene TODAS&lt;br&gt;las versiones activas&lt;br&gt;(para descifrar cualquier tarjeta)" vertex="1">
+          <mxGeometry height="90" width="190" x="765" y="812" as="geometry" />
+        </mxCell>
+        <mxCell id="nota-pci" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;fontColor=#b85450;fontStyle=1;" value="PCI DSS v4.0 COMPLIANCE (sin HSM):&#xa;&#xa;Req 3.5.1 — Proteger llaves de cifrado:&#xa;• KEK en PKCS12 con passphrase&#xa;• Passphrase en OpenShift Secret (env var)&#xa;• Acceso restringido por RBAC de OpenShift&#xa;• Split knowledge: 2+ personas para passphrase&#xa;&#xa;Req 3.5.2 — Almacenar llaves separadas de datos:&#xa;• KEK en KeyStore (filesystem/Secret)&#xa;• Datos cifrados en Oracle (diferente sistema)&#xa;&#xa;Req 3.6 — Rotación periódica:&#xa;• KEK rotada cada 12 meses (documentado)&#xa;• Proceso batch de re-cifrado de DEKs&#xa;• Versionamiento para compatibilidad&#xa;&#xa;Req 3.7 — Destrucción segura:&#xa;• DEK borrada de memoria post-uso&#xa;• KEK antigua archivada (no destruida&#xa;  hasta que no haya datos cifrados con ella)" vertex="1">
+          <mxGeometry height="300" width="260" x="40" y="950" as="geometry" />
+        </mxCell>
+        <mxCell id="nota-why" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#EFF6FF;strokeColor=#3B82F6;fontSize=9;fontColor=#1E40AF;" value="¿POR QUÉ ENVELOPE ENCRYPTION?&#xa;&#xa;• RSA solo: máx 245 bytes (OAEP), lento para batch&#xa;• AES solo: ¿dónde guardas la llave AES?&#xa;• Envelope: AES cifra datos (rápido), RSA protege&#xa;  la llave AES (seguro)&#xa;&#xa;VENTAJAS:&#xa;• Rotación de KEK sin re-cifrar todos los PANs&#xa;• Cada tarjeta tiene su propia DEK (aislamiento)&#xa;• AES-GCM: cifrado + integridad en una operación&#xa;• Si se compromete 1 DEK, solo afecta 1 tarjeta&#xa;• Performance: AES ~1000x más rápido que RSA&#xa;&#xa;ALTERNATIVA FUTURA:&#xa;• Migrar KEK a HSM (solo cambiar el provider)&#xa;• O usar HashiCorp Vault Transit Engine&#xa;• El esquema de datos NO cambia" vertex="1">
+          <mxGeometry height="300" width="260" x="330" y="950" as="geometry" />
+        </mxCell>
+        <mxCell id="nota-code" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#F3F4F6;strokeColor=#6B7280;fontSize=9;fontColor=#374151;" value="IMPLEMENTACIÓN JAVA (pseudocódigo):&#xa;&#xa;// CIFRADO&#xa;KeyPair kek = loadFromKeyStore(&quot;kek-v1&quot;);&#xa;byte[] dek = SecureRandom.getBytes(32);&#xa;byte[] iv = SecureRandom.getBytes(12);&#xa;&#xa;Cipher aes = Cipher.getInstance(&quot;AES/GCM/NoPadding&quot;);&#xa;aes.init(ENCRYPT, new SecretKeySpec(dek, &quot;AES&quot;),&#xa;         new GCMParameterSpec(128, iv));&#xa;aes.updateAAD(cardId + createdAt);&#xa;byte[] ciphertext = aes.doFinal(pan.getBytes());&#xa;&#xa;Cipher rsa = Cipher.getInstance(&quot;RSA/ECB/OAEPPadding&quot;);&#xa;rsa.init(ENCRYPT, kek.getPublic());&#xa;byte[] encDek = rsa.doFinal(dek);&#xa;&#xa;Arrays.fill(dek, (byte)0); // borrar DEK&#xa;&#xa;// DESCIFRADO&#xa;rsa.init(DECRYPT, kek.getPrivate());&#xa;byte[] dek = rsa.doFinal(encDek);&#xa;&#xa;aes.init(DECRYPT, new SecretKeySpec(dek, &quot;AES&quot;),&#xa;         new GCMParameterSpec(128, iv));&#xa;aes.updateAAD(cardId + createdAt);&#xa;byte[] pan = aes.doFinal(ciphertext);&#xa;// usar pan... luego:&#xa;Arrays.fill(dek, (byte)0);&#xa;Arrays.fill(pan, (byte)0);" vertex="1">
+          <mxGeometry height="380" width="300" x="620" y="950" as="geometry" />
+        </mxCell>
+        <mxCell id="nota-schema" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#FFFBEB;strokeColor=#D97706;fontSize=9;fontColor=#92400E;" value="ESQUEMA ORACLE:&#xa;&#xa;CREATE TABLE card (&#xa;  card_id         NUMBER(10) PK,&#xa;  -- ... otros campos ...&#xa;  pan_encrypted   RAW(64),&#xa;  pan_iv          RAW(12),&#xa;  pan_auth_tag    RAW(16),&#xa;  dek_encrypted   RAW(256),&#xa;  kek_version     NUMBER(3) DEFAULT 1,&#xa;  cvv2_encrypted  RAW(64),&#xa;  cvv2_iv         RAW(12),&#xa;  cvv2_auth_tag   RAW(16),&#xa;  -- misma DEK cifra PAN y CVV2&#xa;  -- (se descifra una vez, se usa para ambos)&#xa;);&#xa;&#xa;-- Índice para rotación batch:&#xa;CREATE INDEX idx_card_kek_ver&#xa;  ON card(kek_version);" vertex="1">
+          <mxGeometry height="280" width="400" x="40" y="1280" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="kek-ceremony-001" name="Ceremonia Generación KEK">
+    <mxGraphModel dx="1141" dy="673" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c-title" parent="1" style="text;html=1;fontSize=22;fontStyle=1;align=left;verticalAlign=middle;fontColor=#000000;fillColor=none;strokeColor=none;" value="Ceremonia de Generación y Custodia de la KEK" vertex="1">
+          <mxGeometry height="35" width="800" x="40" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="c-sub" parent="1" style="text;html=1;fontSize=11;align=left;verticalAlign=middle;fontColor=#9CA3AF;fillColor=none;strokeColor=none;" value="Split Knowledge + Dual Control (PCI DSS v4.0 Req 3.6.6 y 3.6.7) — 2 custodios, 2 mitades, ambiente air-gapped" vertex="1">
+          <mxGeometry height="20" width="900" x="40" y="55" as="geometry" />
+        </mxCell>
+        <mxCell id="lane-a" parent="1" style="swimlane;startSize=50;fillColor=#E0F2FE;strokeColor=#0284C7;fontStyle=1;fontSize=12;fontColor=#0284C7;" value="Custodio A (Equipo Seguridad)" vertex="1">
+          <mxGeometry height="1580" width="320" x="40" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="lane-airgap" parent="1" style="swimlane;startSize=50;fillColor=#FEF3C7;strokeColor=#D97706;fontStyle=1;fontSize=12;fontColor=#92400E;" value="Máquina Air-Gapped&#xa;(Linux Live USB)" vertex="1">
+          <mxGeometry height="1580" width="420" x="380" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="lane-b" parent="1" style="swimlane;startSize=50;fillColor=#D1FAE5;strokeColor=#059669;fontStyle=1;fontSize=12;fontColor=#065F46;" value="Custodio B (Equipo Infraestructura)" vertex="1">
+          <mxGeometry height="1580" width="320" x="820" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="lane-storage" parent="1" style="swimlane;startSize=50;fillColor=#F3F4F6;strokeColor=#6B7280;fontStyle=1;fontSize=12;fontColor=#374151;" value="Custodia Física + OpenShift" vertex="1">
+          <mxGeometry height="1580" width="340" x="1160" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="f1-title" parent="1" style="text;html=1;strokeColor=#b85450;fillColor=#f8cecc;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=11;fontColor=#555555;" value="FASE 1 — Cada custodio genera su mitad del password (sin ver la del otro)" vertex="1">
+          <mxGeometry height="22" width="1460" x="40" y="175" as="geometry" />
+        </mxCell>
+        <mxCell id="f1-a1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;" value="Custodio A ejecuta:&#xa;&#xa;openssl rand -base64 24&#xa;&#xa;Output: xJ3kP9mQ2nR7vT4wY8zA1bC5...&#xa;(32 chars, 192 bits entropía)&#xa;&#xa;Solo él ve el resultado" vertex="1">
+          <mxGeometry height="130" width="280" x="60" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="f1-b1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;" value="Custodio B ejecuta:&#xa;&#xa;openssl rand -base64 24&#xa;&#xa;Output: L5oI4u2E8r6T3y1H9f7G5d4S...&#xa;(32 chars, 192 bits entropía)&#xa;&#xa;Solo él ve el resultado" vertex="1">
+          <mxGeometry height="130" width="280" x="840" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="f1-a2" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=9;fontColor=#0284C7;" value="Custodio A escribe su mitad&#xa;en sobre sellado, lo firma&#xa;y lo guarda en caja fuerte A" vertex="1">
+          <mxGeometry height="70" width="280" x="60" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="f1-b2" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#D1FAE5;strokeColor=#059669;fontSize=9;fontColor=#065F46;" value="Custodio B escribe su mitad&#xa;en sobre sellado, lo firma&#xa;y lo guarda en caja fuerte B&#xa;(diferente ubicación física)" vertex="1">
+          <mxGeometry height="70" width="280" x="840" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="f2-title" parent="1" style="text;html=1;strokeColor=#cccccc;fillColor=#f0f0f0;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=11;fontColor=#555555;" value="FASE 2 — Unir mitades en la máquina air-gapped (ningún custodio ve la mitad del otro)" vertex="1">
+          <mxGeometry height="22" width="1460" x="40" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="f2-ag1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=10;" value="Script genera-keystore.sh&#xa;&#xa;#!/bin/bash&#xa;read -s -p &quot;Custodio A: &quot; PART_A&#xa;read -s -p &quot;Custodio B: &quot; PART_B&#xa;FULL_PASSWORD=&quot;${PART_A}${PART_B}&quot;&#xa;&#xa;(el flag -s oculta el input)" vertex="1">
+          <mxGeometry height="140" width="380" x="400" y="495" as="geometry" />
+        </mxCell>
+        <mxCell id="f2-a3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;" value="Custodio A teclea su mitad&#xa;en la terminal (input oculto)" vertex="1">
+          <mxGeometry height="50" width="280" x="60" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="f2-b3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#059669;fontSize=10;" value="Custodio B teclea su mitad&#xa;en la terminal (input oculto)" vertex="1">
+          <mxGeometry height="50" width="280" x="840" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a3-ag" edge="1" parent="1" source="f2-a3" style="endArrow=block;endFill=1;html=1;strokeColor=#0284C7;strokeWidth=1.5;fontSize=9;fontColor=#0284C7;" target="f2-ag1" value="PART_A">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b3-ag" edge="1" parent="1" source="f2-b3" style="endArrow=block;endFill=1;html=1;strokeColor=#059669;strokeWidth=1.5;fontSize=9;fontColor=#065F46;" target="f2-ag1" value="PART_B">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f3-title" parent="1" style="text;html=1;strokeColor=#cccccc;fillColor=#f0f0f0;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=11;fontColor=#555555;" value="FASE 3 — Generar par RSA-4096 + certificado + empaquetar en PKCS12 con FULL_PASSWORD" vertex="1">
+          <mxGeometry height="22" width="1460" x="40" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="f3-ag1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=10;" value="1. Genera par RSA-4096:&#xa;openssl genrsa -aes256 \&#xa;  -passout pass:$FULL_PASSWORD \&#xa;  -out kek_private.pem 4096" vertex="1">
+          <mxGeometry height="85" width="380" x="400" y="699" as="geometry" />
+        </mxCell>
+        <mxCell id="f3-ag2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=10;" value="2. Certificado auto-firmado:&#xa;openssl req -new -x509 -key kek_private.pem \&#xa;  -passin pass:$FULL_PASSWORD \&#xa;  -out kek_cert.pem -days 3650 \&#xa;  -subj &quot;/CN=KEK-Prepago-v1/O=Credibanco&quot;" vertex="1">
+          <mxGeometry height="95" width="380" x="400" y="808" as="geometry" />
+        </mxCell>
+        <mxCell id="f3-ag3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=10;strokeWidth=2;" value="3. Empaquetar en PKCS12:&#xa;openssl pkcs12 -export \&#xa;  -in kek_cert.pem -inkey kek_private.pem \&#xa;  -passin pass:$FULL_PASSWORD \&#xa;  -out kek-prepago.p12 -name &quot;kek-prepago&quot; \&#xa;  -passout pass:$FULL_PASSWORD" vertex="1">
+          <mxGeometry height="110" width="380" x="400" y="926" as="geometry" />
+        </mxCell>
+        <mxCell id="f3-ag4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" value="4. Borrado seguro de archivos intermedios:&#xa;shred -u kek_private.pem kek_cert.pem&#xa;&#xa;unset PART_A PART_B FULL_PASSWORD&#xa;(limpia variables de memoria)" vertex="1">
+          <mxGeometry height="95" width="380" x="401" y="1060" as="geometry" />
+        </mxCell>
+        <mxCell id="e-f3-chain1" edge="1" parent="1" source="f3-ag1" style="endArrow=block;endFill=1;html=1;strokeColor=#D97706;strokeWidth=1.5;" target="f3-ag2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-f3-chain2" edge="1" parent="1" source="f3-ag2" style="endArrow=block;endFill=1;html=1;strokeColor=#D97706;strokeWidth=1.5;" target="f3-ag3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-f3-chain3" edge="1" parent="1" source="f3-ag3" style="endArrow=block;endFill=1;html=1;strokeColor=#b85450;strokeWidth=1.5;" target="f3-ag4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f4-title" parent="1" style="text;html=1;strokeColor=#cccccc;fillColor=#f0f0f0;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=11;fontColor=#555555;" value="FASE 4 — Distribución a OpenShift: cada Secret tiene una parte distinta (nadie junta las piezas fuera del pod)" vertex="1">
+          <mxGeometry height="22" width="1460" x="40" y="1204" as="geometry" />
+        </mxCell>
+        <mxCell id="f4-os1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F4F6;strokeColor=#6B7280;fontSize=10;fontStyle=1;" value="Secret: kek-password-part-a&#xa;stringData:&#xa;  PART_A: &lt;mitad A&gt;&#xa;RBAC: solo Custodio A + pod" vertex="1">
+          <mxGeometry height="80" width="300" x="1180" y="1244" as="geometry" />
+        </mxCell>
+        <mxCell id="f4-os2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F4F6;strokeColor=#6B7280;fontSize=10;fontStyle=1;" value="Secret: kek-password-part-b&#xa;stringData:&#xa;  PART_B: &lt;mitad B&gt;&#xa;RBAC: solo Custodio B + pod" vertex="1">
+          <mxGeometry height="80" width="300" x="1180" y="1334" as="geometry" />
+        </mxCell>
+        <mxCell id="f4-os3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F4F6;strokeColor=#6B7280;fontSize=10;fontStyle=1;" value="Secret: kek-keystore (volumen)&#xa;data:&#xa;  kek-prepago.p12: &lt;base64&gt;&#xa;mount: /secrets/kek (ro, 0400)" vertex="1">
+          <mxGeometry height="80" width="300" x="1180" y="1424" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-os" edge="1" parent="1" source="f1-a1" style="endArrow=block;endFill=1;html=1;strokeColor=#0284C7;strokeWidth=1.5;dashed=1;fontSize=9;fontColor=#0284C7;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;" target="f4-os1" value="Custodio A crea Secret">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="370" y="275" />
+              <mxPoint x="370" y="1284" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-b-os" edge="1" parent="1" source="f1-b1" style="endArrow=block;endFill=1;html=1;strokeColor=#059669;strokeWidth=1.5;dashed=1;fontSize=9;fontColor=#065F46;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;" target="f4-os2" value="Custodio B crea Secret">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1150" y="275" />
+              <mxPoint x="1150" y="1374" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-p12-os" edge="1" parent="1" source="f3-ag4" style="endArrow=block;endFill=1;html=1;strokeColor=#D97706;strokeWidth=1.5;dashed=1;fontSize=9;fontColor=#92400E;edgeStyle=orthogonalEdgeStyle;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;" target="f4-os3" value="Sube .p12 como Secret binario">
+          <mxGeometry relative="1" x="0.0906" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f5-title" parent="1" style="text;html=1;strokeColor=#cccccc;fillColor=#f0f0f0;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=11;fontColor=#555555;" value="FASE 5 — Cierre de ceremonia: acta firmada, backups, destrucción de evidencia intermedia" vertex="1">
+          <mxGeometry height="22" width="1460" x="40" y="1534" as="geometry" />
+        </mxCell>
+        <mxCell id="f5-final" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#F5F3FF;strokeColor=#8B5CF6;fontSize=9;fontColor=#4B0082;" value="• Acta firmada por A, B y testigo con fecha/hora&#xa;• Video de la ceremonia guardado (custodia legal)&#xa;• Backup del .p12 en 2 ubicaciones físicas cifradas&#xa;• Sobres sellados con cada mitad en cajas fuertes diferentes&#xa;• Live USB se reinicia → RAM se limpia automáticamente&#xa;• Cualquier papel intermedio se destruye (shredder cross-cut)" vertex="1">
+          <mxGeometry height="80" width="700" x="400" y="1574" as="geometry" />
+        </mxCell>
+        <mxCell id="nota-pci" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;fontColor=#b85450;fontStyle=1;" value="PCI DSS v4.0:&#xa;&#xa;Req 3.6.6 — Split Knowledge:&#xa;Ningún custodio tiene el password&#xa;completo. Siempre se necesitan 2.&#xa;&#xa;Req 3.6.7 — Dual Control:&#xa;Toda operación sobre la KEK&#xa;requiere 2 personas.&#xa;&#xa;Req 3.6.4 — Rotación periódica&#xa;de llaves (anual recomendado).&#xa;&#xa;Req 3.6.5 — Retirar llaves&#xa;comprometidas o sospechosas." vertex="1">
+          <mxGeometry height="220" width="220" x="1520" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="nota-runtime" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#EFF6FF;strokeColor=#3B82F6;fontSize=9;fontColor=#1E40AF;" value="COMPORTAMIENTO EN RUNTIME:&#xa;&#xa;Al arrancar el pod:&#xa;1. OpenShift inyecta PART_A y PART_B&#xa;   como env vars (desde 2 Secrets)&#xa;2. OpenShift monta el .p12 como volumen&#xa;3. Spring Boot hace:&#xa;   String pwd = PART_A + PART_B;&#xa;   KeyStore ks = KeyStore.getInstance(&quot;PKCS12&quot;);&#xa;   ks.load(p12File, pwd.toCharArray());&#xa;4. PrivateKey queda en RAM del JVM&#xa;5. Password completo solo existe en&#xa;   RAM durante el arranque&#xa;&#xa;Nunca se escribe en disco ni en log." vertex="1">
+          <mxGeometry height="260" width="220" x="1520" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="nota-rotacion" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#FFFBEB;strokeColor=#D97706;fontSize=9;fontColor=#92400E;" value="ROTACIÓN DE LA KEK:&#xa;&#xa;Frecuencia: anual (recomendado)&#xa;&#xa;Proceso:&#xa;1. Nueva ceremonia → kek-v2.p12&#xa;2. Batch re-cifra DEKs:&#xa;   DEK_plain = RSA_DEC(privKey_v1, enc_DEK)&#xa;   enc_DEK_v2 = RSA_ENC(pubKey_v2, DEK_plain)&#xa;   UPDATE card SET kek_version = 2&#xa;3. Backend soporta v1 y v2 durante migración&#xa;4. Cuando todo esté en v2 → retira v1&#xa;   (mantiene backup cifrado por compliance)&#xa;&#xa;Los PANs NO se re-cifran, solo las DEKs.&#xa;Esto es ~1000x más rápido." vertex="1">
+          <mxGeometry height="240" width="220" x="1520" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="nota-shamir" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#ECFDF5;strokeColor=#10B981;fontSize=9;fontColor=#065F46;" value="ALTERNATIVA AVANZADA:&#xa;Shamir&#39;s Secret Sharing&#xa;&#xa;En vez de 2 mitades rígidas, se&#xa;divide el password en N partes&#xa;con threshold M (ej: 3 de 5).&#xa;&#xa;# Instalar ssss&#xa;apt-get install ssss&#xa;&#xa;# Genera password maestro&#xa;MASTER=$(openssl rand -base64 32)&#xa;&#xa;# Divide en 5 partes, threshold 3&#xa;echo $MASTER | ssss-split -t 3 -n 5&#xa;&#xa;Ventaja: si un custodio se va,&#xa;aún puedes reconstruir con los&#xa;otros (tolerancia a fallos)." vertex="1">
+          <mxGeometry height="260" width="220" x="1520" y="980" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

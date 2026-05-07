@@ -1,0 +1,355 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.1 Chrome/142.0.7444.265 Electron/39.8.0 Safari/537.36" version="29.6.1" pages="2">
+  <diagram id="sftp-pgp-flow" name="Envio Archivos SFTP+PGP">
+    <mxGraphModel dx="2593" dy="1529" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title1" parent="1" style="text;html=1;fontSize=18;fontStyle=1;align=center;verticalAlign=middle;" value="Intercambio Bidireccional de Archivos - Canje y Compensación" vertex="1">
+          <mxGeometry height="40" width="900" x="470" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle1" parent="1" style="text;html=1;fontSize=13;fontStyle=2;align=center;verticalAlign=middle;fontColor=#666666;" value="Canal SFTP + Cifrado PGP/GPG" vertex="1">
+          <mxGeometry height="30" width="900" x="470" y="35" as="geometry" />
+        </mxCell>
+        <mxCell id="cb_zone" parent="1" style="swimlane;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;rounded=1;" value="Credibanco" vertex="1">
+          <mxGeometry height="720" width="560" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="hTr68lRMm2JzVGB8M4W1-11" parent="cb_zone" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="110" width="250" x="230" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="hTr68lRMm2JzVGB8M4W1-8" parent="cb_zone" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="220" width="250" x="230" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="hTr68lRMm2JzVGB8M4W1-6" parent="cb_zone" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" value="" vertex="1">
+          <mxGeometry height="112.5" width="220" x="238" y="177.5" as="geometry" />
+        </mxCell>
+        <mxCell id="cb_keys" parent="cb_zone" style="shape=note;whiteSpace=wrap;html=1;size=14;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;" value="🔑 Llaves PGP Credibanco&#xa;- Llave Pública (compartida)&#xa;- Llave Privada (secreta)" vertex="1">
+          <mxGeometry height="70" width="200" x="180" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="cb_ida_title" parent="cb_zone" style="text;html=1;fontSize=12;fontStyle=5;align=left;fontColor=#0050ef;" value="▶ FLUJO DE ENVIO" vertex="1">
+          <mxGeometry height="25" width="250" x="180" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="cb_step1" parent="cb_zone" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;align=center;" value="1. Generar Archivo&lt;br&gt;Salida&lt;br&gt;(texto plano)" vertex="1">
+          <mxGeometry height="55" width="160" x="270" y="219" as="geometry" />
+        </mxCell>
+        <mxCell id="cb_step2" parent="cb_zone" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;align=center;fontStyle=1;" value="2. Cifrar con Llave&#xa;Pública PGP de&#xa;Entidad Financiera" vertex="1">
+          <mxGeometry height="55" width="160" x="270" y="343" as="geometry" />
+        </mxCell>
+        <mxCell id="cb_step3" parent="cb_zone" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;align=center;fontStyle=1;" value="3. Firmar con Llave&lt;br&gt;privada de Credibanco" vertex="1">
+          <mxGeometry height="55" width="160" x="270" y="451" as="geometry" />
+        </mxCell>
+        <mxCell id="cb_step4" parent="cb_zone" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;align=center;fontStyle=1;" value="4. Enviar archivo&#xa;.pgp por SFTP" vertex="1">
+          <mxGeometry height="55" width="160" x="270" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="cb_arrow1" edge="1" parent="cb_zone" source="cb_step1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#0050ef;strokeWidth=2;" target="cb_step2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cb_arrow2" edge="1" parent="cb_zone" source="cb_step2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#0050ef;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="cb_step3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cb_arrow3" edge="1" parent="cb_zone" source="cb_step3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#0050ef;strokeWidth=2;" target="cb_step4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hTr68lRMm2JzVGB8M4W1-3" parent="cb_zone" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E7157B;strokeColor=#B8005A;fontColor=#ffffff;fontSize=10;align=center;fontStyle=1;" value="HSM&#xa;Gestión Llaves" vertex="1">
+          <mxGeometry height="45" width="100" x="430" y="59.5" as="geometry" />
+        </mxCell>
+        <mxCell id="hTr68lRMm2JzVGB8M4W1-9" parent="cb_zone" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="GoAnyWare" vertex="1">
+          <mxGeometry height="30" width="60" x="260" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="hTr68lRMm2JzVGB8M4W1-12" parent="cb_zone" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Servidor de transferencias" vertex="1">
+          <mxGeometry height="30" width="170" x="227" y="664" as="geometry" />
+        </mxCell>
+        <mxCell id="b99koDbpHPFQgBEw2vIV-1" parent="cb_zone" style="shape=note;whiteSpace=wrap;html=1;size=14;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;" value="🔑 KeyManager de GoAnyWare&amp;nbsp;&lt;div&gt;gestiona las publicas de las entidades y las privadas de Credibanco&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="200" x="20" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="sftp_ida" edge="1" parent="1" style="shape=flexArrow;endArrow=classic;startArrow=none;html=1;fillColor=#0050ef;strokeColor=#001DBC;fontColor=#ffffff;fontSize=10;fontStyle=1;width=20;endSize=6;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;" value="SFTP (SSH/TLS)&#xa;Archivo Cifrado .pgp&#xa;▶ ENVÍO">
+          <mxGeometry relative="1" x="0.1" as="geometry">
+            <mxPoint x="580" y="720" as="sourcePoint" />
+            <mxPoint x="910" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="canal_info" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=14;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;align=center;" value="Canal cifrado: AES-256-GCM / ChaCha20&#xa;Autenticación: Llaves SSH Ed25519/RSA-4096" vertex="1">
+          <mxGeometry height="50" width="240" x="610" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="ef_zone" parent="1" style="swimlane;startSize=30;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;fontStyle=1;rounded=1;" value="Entidad Financiera" vertex="1">
+          <mxGeometry height="720" width="433" x="940" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ef_keys" parent="ef_zone" style="shape=note;whiteSpace=wrap;html=1;size=14;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;" value="🔑 Llaves PGP Entidad&#xa;- Llave Pública (compartida)&#xa;- Llave Privada (secreta)" vertex="1">
+          <mxGeometry height="70" width="200" x="183" y="47.5" as="geometry" />
+        </mxCell>
+        <mxCell id="ef_hsm" parent="ef_zone" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E7157B;strokeColor=#B8005A;fontColor=#ffffff;fontSize=10;align=center;fontStyle=1;" value="HSM&#xa;Gestión Llaves" vertex="1">
+          <mxGeometry height="45" width="100" x="30" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ef_ida_title" parent="ef_zone" style="text;html=1;fontSize=12;fontStyle=5;align=left;fontColor=#0050ef;" value="▶ FLUJO DE RECEPCION" vertex="1">
+          <mxGeometry height="25" width="280" x="20" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="ef_step1" parent="ef_zone" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;align=center;fontStyle=1;" value="5. Recibir archivo&lt;br&gt;.pgp por SFTP" vertex="1">
+          <mxGeometry height="55" width="160" x="65" y="595" as="geometry" />
+        </mxCell>
+        <mxCell id="ef_step2" parent="ef_zone" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;align=center;fontStyle=1;" value="6. Verificar Firma con&lt;br&gt;Llave publica de&amp;nbsp; Credibanco" vertex="1">
+          <mxGeometry height="55" width="170" x="60" y="465" as="geometry" />
+        </mxCell>
+        <mxCell id="ef_step3" parent="ef_zone" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;align=center;fontStyle=1;" value="7. Descifrar con Llave&lt;br&gt;Privada PGP de&lt;br&gt;Entidad Financiera" vertex="1">
+          <mxGeometry height="55" width="160" x="67" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="ef_step4" parent="ef_zone" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;align=center;" value="8. Procesar Archivo&lt;br&gt;Canje/Compensación&lt;br&gt;(texto plano)" vertex="1">
+          <mxGeometry height="55" width="160" x="67" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="ef_arrow1" edge="1" parent="ef_zone" source="ef_step1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#0050ef;strokeWidth=2;" target="ef_step2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ef_arrow2" edge="1" parent="ef_zone" source="ef_step2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#0050ef;strokeWidth=2;exitX=0.513;exitY=0.017;exitDx=0;exitDy=0;exitPerimeter=0;" target="ef_step3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ef_arrow3" edge="1" parent="ef_zone" source="ef_step3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#0050ef;strokeWidth=2;" target="ef_step4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;dashed=1;" value="" vertex="1">
+          <mxGeometry height="110" width="1220" x="160" y="820" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_title" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=left;" value="Leyenda / Especificaciones Técnicas" vertex="1">
+          <mxGeometry height="25" width="300" x="180" y="825" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_col1" parent="1" style="text;html=1;fontSize=10;align=left;verticalAlign=top;whiteSpace=wrap;" value="Cifrado de Archivo:&#xa;• Algoritmo: PGP/GPG (OpenPGP)&#xa;• Llaves: RSA-4096 o Ed25519&#xa;• Cifrado simétrico interno: AES-256" vertex="1">
+          <mxGeometry height="70" width="250" x="180" y="850" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_col2" parent="1" style="text;html=1;fontSize=10;align=left;verticalAlign=top;whiteSpace=wrap;" value="Cifrado de Canal:&#xa;• Protocolo: SFTP sobre SSH v2&#xa;• Ciphers: AES-256-GCM, ChaCha20-Poly1305&#xa;• Auth: Llaves SSH Ed25519 / RSA-4096" vertex="1">
+          <mxGeometry height="70" width="280" x="460" y="850" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_col4" parent="1" style="text;html=1;fontSize=10;align=left;verticalAlign=top;whiteSpace=wrap;" value="Colores:&lt;br&gt;🔵 Flujo de Ida (Envío)&lt;br&gt;🟢 Cifrado&amp;nbsp;&lt;div&gt;🟣 Firma&amp;nbsp;&lt;/div&gt;&lt;div&gt;&amp;nbsp;⬜ Texto plano&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="250" x="700" y="840" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_col5" parent="1" style="text;html=1;fontSize=10;align=left;verticalAlign=top;whiteSpace=wrap;" value="Intercambio de Llaves:&#xa;• Cada parte genera su par PGP&#xa;• Se intercambian llaves públicas&#xa;• Llaves privadas NUNCA se comparten" vertex="1">
+          <mxGeometry height="70" width="280" x="830" y="845" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="zgOc0AdvNST0ab2fKT01" name="Recepcion Archivos SFTP+PGP">
+    <mxGraphModel dx="1123" dy="803" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-1" parent="1" style="text;html=1;fontSize=18;fontStyle=1;align=center;verticalAlign=middle;" value="Intercambio Bidireccional de Archivos - Canje y Compensación" vertex="1">
+          <mxGeometry height="40" width="900" x="340" y="14" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-2" parent="1" style="text;html=1;fontSize=13;fontStyle=2;align=center;verticalAlign=middle;fontColor=#666666;" value="Canal SFTP + Cifrado PGP/GPG" vertex="1">
+          <mxGeometry height="30" width="900" x="340" y="49" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-3" parent="1" style="swimlane;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;rounded=1;" value="Credibanco" vertex="1">
+          <mxGeometry height="1440" width="710" x="20" y="94" as="geometry" />
+        </mxCell>
+        <mxCell id="GLOjtiidYNdkyduu_xZ4-9" parent="dghXxTM-VC3UTz4sPfSB-3" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="390" width="265" x="285" y="1010" as="geometry" />
+        </mxCell>
+        <mxCell id="GLOjtiidYNdkyduu_xZ4-4" parent="dghXxTM-VC3UTz4sPfSB-3" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="120" width="270" x="290" y="877.5" as="geometry" />
+        </mxCell>
+        <mxCell id="GLOjtiidYNdkyduu_xZ4-1" parent="dghXxTM-VC3UTz4sPfSB-3" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="120" width="270" x="290" y="641.5" as="geometry" />
+        </mxCell>
+        <mxCell id="c4Sptt1vioZC9MJTEeKr-1" parent="dghXxTM-VC3UTz4sPfSB-3" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="450" width="280" x="290" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-4" parent="dghXxTM-VC3UTz4sPfSB-3" style="shape=note;whiteSpace=wrap;html=1;size=14;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;" value="🔑 Llaves PGP Credibanco&#xa;- Llave Pública (compartida)&#xa;- Llave Privada (secreta)" vertex="1">
+          <mxGeometry height="70" width="200" x="20" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-11" parent="dghXxTM-VC3UTz4sPfSB-3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E7157B;strokeColor=#B8005A;fontColor=#ffffff;fontSize=10;align=center;fontStyle=1;" value="HSM&#xa;Gestión Llaves" vertex="1">
+          <mxGeometry height="45" width="100" x="290" y="65.5" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-16" parent="dghXxTM-VC3UTz4sPfSB-3" style="text;html=1;fontSize=12;fontStyle=5;align=left;fontColor=#0050ef;" value="▶ FLUJO DE RESPUESTA" vertex="1">
+          <mxGeometry height="25" width="250" x="435" y="830" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-17" parent="dghXxTM-VC3UTz4sPfSB-3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;align=center;" value="10. Generar Archivo&lt;br&gt;Canje/Compensación&lt;br&gt;(texto plano)" vertex="1">
+          <mxGeometry height="55" width="160" x="335" y="910" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-18" parent="dghXxTM-VC3UTz4sPfSB-3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;align=center;fontStyle=1;" value="11. Cifrar con Llave&lt;br&gt;Pública PGP de&lt;br&gt;Entidad Financiera" vertex="1">
+          <mxGeometry height="55" width="160" x="335" y="1045" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-19" parent="dghXxTM-VC3UTz4sPfSB-3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;align=center;fontStyle=1;" value="12. Firmar con Llave&lt;br&gt;Privada PGP de&lt;br&gt;Credibanco" vertex="1">
+          <mxGeometry height="55" width="160" x="335" y="1155" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-20" parent="dghXxTM-VC3UTz4sPfSB-3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;align=center;fontStyle=1;" value="13. Enviar archivo&lt;br&gt;.pgp por SFTP" vertex="1">
+          <mxGeometry height="55" width="160" x="335" y="1295" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-21" edge="1" parent="dghXxTM-VC3UTz4sPfSB-3" source="dghXxTM-VC3UTz4sPfSB-17" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#0050ef;strokeWidth=2;" target="dghXxTM-VC3UTz4sPfSB-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-22" edge="1" parent="dghXxTM-VC3UTz4sPfSB-3" source="dghXxTM-VC3UTz4sPfSB-18" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#0050ef;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="dghXxTM-VC3UTz4sPfSB-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-23" edge="1" parent="dghXxTM-VC3UTz4sPfSB-3" source="dghXxTM-VC3UTz4sPfSB-19" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#0050ef;strokeWidth=2;" target="dghXxTM-VC3UTz4sPfSB-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-44" parent="dghXxTM-VC3UTz4sPfSB-3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;align=center;" value="8. Procesar Archivo&lt;br&gt;Solucitud&lt;br&gt;(texto plano)" vertex="1">
+          <mxGeometry height="55" width="160" x="350" y="674" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-43" parent="dghXxTM-VC3UTz4sPfSB-3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;align=center;fontStyle=1;" value="7. Descifrar con Llave&#xa;Privada PGP de&#xa;Credibanco" vertex="1">
+          <mxGeometry height="55" width="160" x="350" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-47" edge="1" parent="dghXxTM-VC3UTz4sPfSB-3" source="dghXxTM-VC3UTz4sPfSB-43" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#CC0000;strokeWidth=2;" target="dghXxTM-VC3UTz4sPfSB-44">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-42" parent="dghXxTM-VC3UTz4sPfSB-3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;align=center;fontStyle=1;" value="6. Verificar Firma con&#xa;Llave Pública PGP&#xa;de Entidad Financiera" vertex="1">
+          <mxGeometry height="55" width="170" x="345" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-46" edge="1" parent="dghXxTM-VC3UTz4sPfSB-3" source="dghXxTM-VC3UTz4sPfSB-42" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#CC0000;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="dghXxTM-VC3UTz4sPfSB-43">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-41" parent="dghXxTM-VC3UTz4sPfSB-3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;align=center;fontStyle=1;" value="5. Recibir archivo&lt;br&gt;Solicitud .pgp&lt;br&gt;por SFTP" vertex="1">
+          <mxGeometry height="55" width="160" x="350" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-45" edge="1" parent="dghXxTM-VC3UTz4sPfSB-3" source="dghXxTM-VC3UTz4sPfSB-41" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#CC0000;strokeWidth=2;" target="dghXxTM-VC3UTz4sPfSB-42">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="x-gr2bc5rhbvNAlTmPMd-1" parent="dghXxTM-VC3UTz4sPfSB-3" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Helvetica;fontSize=10;fontColor=default;fontStyle=1;" value="Servidor de transferencias" vertex="1">
+          <mxGeometry height="30" width="170" x="273" y="276" as="geometry" />
+        </mxCell>
+        <mxCell id="c4Sptt1vioZC9MJTEeKr-2" parent="dghXxTM-VC3UTz4sPfSB-3" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Helvetica;fontSize=10;fontColor=default;fontStyle=1;" value="GoAnyWare" vertex="1">
+          <mxGeometry height="30" width="60" x="320" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="GLOjtiidYNdkyduu_xZ4-2" parent="dghXxTM-VC3UTz4sPfSB-3" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Helvetica;fontSize=10;fontColor=default;fontStyle=1;" value="Servidor de transferencias" vertex="1">
+          <mxGeometry height="30" width="170" x="310" y="731.5" as="geometry" />
+        </mxCell>
+        <mxCell id="GLOjtiidYNdkyduu_xZ4-5" parent="dghXxTM-VC3UTz4sPfSB-3" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Helvetica;fontSize=10;fontColor=default;fontStyle=1;" value="Servidor de transferencias" vertex="1">
+          <mxGeometry height="30" width="170" x="300" y="880" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-40" parent="dghXxTM-VC3UTz4sPfSB-3" style="text;html=1;fontSize=12;fontStyle=5;align=left;fontColor=#CC0000;" value="◀ FLUJO DE RECEPCIÓN" vertex="1">
+          <mxGeometry height="25" width="170" x="430" y="132" as="geometry" />
+        </mxCell>
+        <mxCell id="GLOjtiidYNdkyduu_xZ4-6" parent="dghXxTM-VC3UTz4sPfSB-3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFB366;strokeColor=#666666;fontSize=10;align=center;" value="9. Procesamiento&lt;br&gt;Batch&lt;br&gt;(Spring Batch)" vertex="1">
+          <mxGeometry height="55" width="160" x="30" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="GLOjtiidYNdkyduu_xZ4-7" edge="1" parent="dghXxTM-VC3UTz4sPfSB-3" source="dghXxTM-VC3UTz4sPfSB-44" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#CC0000;strokeWidth=2;entryX=1;entryY=0.25;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" target="GLOjtiidYNdkyduu_xZ4-6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="510" y="670" as="sourcePoint" />
+            <mxPoint x="510" y="769" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_wNA8l5_a3-J3UkPpBlb-1" connectable="0" parent="GLOjtiidYNdkyduu_xZ4-7" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Procesa request" vertex="1">
+          <mxGeometry relative="1" x="0.0786" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="GLOjtiidYNdkyduu_xZ4-8" edge="1" parent="dghXxTM-VC3UTz4sPfSB-3" source="GLOjtiidYNdkyduu_xZ4-6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#0050ef;strokeWidth=2;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="dghXxTM-VC3UTz4sPfSB-17">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="540" y="1120" as="sourcePoint" />
+            <mxPoint x="540" y="1200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_wNA8l5_a3-J3UkPpBlb-3" connectable="0" parent="GLOjtiidYNdkyduu_xZ4-8" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Genera el&amp;nbsp;&lt;div&gt;response&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.0112" y="-3" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="GLOjtiidYNdkyduu_xZ4-10" parent="dghXxTM-VC3UTz4sPfSB-3" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Helvetica;fontSize=10;fontColor=default;fontStyle=1;" value="GoAnyWare" vertex="1">
+          <mxGeometry height="30" width="60" x="318" y="1212" as="geometry" />
+        </mxCell>
+        <mxCell id="GLOjtiidYNdkyduu_xZ4-12" parent="dghXxTM-VC3UTz4sPfSB-3" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Helvetica;fontSize=10;fontColor=default;fontStyle=1;" value="Servidor de transferencias" vertex="1">
+          <mxGeometry height="30" width="170" x="300" y="1352.5" as="geometry" />
+        </mxCell>
+        <mxCell id="Nhom7_5FE6hKY-u4MU7o-1" parent="dghXxTM-VC3UTz4sPfSB-3" style="shape=note;whiteSpace=wrap;html=1;size=14;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;" value="🔑 KeyManager de GoAnyWare&amp;nbsp;&lt;div&gt;gestiona las publicas de las entidades y las privadas de Credibanco&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="200" x="40" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="XRHCTsne9jksTCz-GuNF-1" parent="dghXxTM-VC3UTz4sPfSB-3" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Generar archivo interno CCO para verificaciones futuras cifrado con llave Publica CCO&amp;nbsp;" vertex="1">
+          <mxGeometry height="55" width="230" x="50" y="1240" as="geometry" />
+        </mxCell>
+        <mxCell id="r_Bh5oaiX7Alj_IAGH2y-2" parent="dghXxTM-VC3UTz4sPfSB-3" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="/Inbound" vertex="1">
+          <mxGeometry height="30" width="60" x="580" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="r_Bh5oaiX7Alj_IAGH2y-3" parent="dghXxTM-VC3UTz4sPfSB-3" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="/Outbound" vertex="1">
+          <mxGeometry height="30" width="60" x="580" y="545" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-12" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=14;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;align=center;" value="Canal cifrado: SFTP / AES-256-GCM / ChaCha20&lt;br&gt;Autenticación: Llaves SSH Ed25519/RSA-4096" vertex="1">
+          <mxGeometry height="50" width="240" x="767" y="823" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-13" parent="1" style="swimlane;startSize=30;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;fontStyle=1;rounded=1;" value="Entidad Financiera" vertex="1">
+          <mxGeometry height="1440" width="480" x="1140" y="94" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-14" parent="dghXxTM-VC3UTz4sPfSB-13" style="shape=note;whiteSpace=wrap;html=1;size=14;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;" value="🔑 Llaves PGP Entidad&#xa;- Llave Pública (compartida)&#xa;- Llave Privada (secreta)" vertex="1">
+          <mxGeometry height="70" width="200" x="260" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-15" parent="dghXxTM-VC3UTz4sPfSB-13" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E7157B;strokeColor=#B8005A;fontColor=#ffffff;fontSize=10;align=center;fontStyle=1;" value="HSM&#xa;Gestión Llaves" vertex="1">
+          <mxGeometry height="45" width="100" x="30" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-25" parent="dghXxTM-VC3UTz4sPfSB-13" style="text;html=1;fontSize=12;fontStyle=5;align=left;fontColor=#0050ef;" value="▶ FLUJO DE RECEPCION DE RESPUESTA" vertex="1">
+          <mxGeometry height="25" width="280" x="25" y="850" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-26" parent="dghXxTM-VC3UTz4sPfSB-13" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;align=center;fontStyle=1;" value="14. Recibir archivo&lt;br&gt;.pgp por SFTP" vertex="1">
+          <mxGeometry height="55" width="160" x="20" y="1270" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-27" parent="dghXxTM-VC3UTz4sPfSB-13" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;align=center;fontStyle=1;" value="15. Verificar Firma con&lt;br&gt;Llave Pública PGP&lt;br&gt;de Credibanco" vertex="1">
+          <mxGeometry height="55" width="170" x="290" y="1270" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-28" parent="dghXxTM-VC3UTz4sPfSB-13" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;align=center;fontStyle=1;" value="16. Descifrar con Llave&lt;br&gt;Privada PGP de&lt;br&gt;Entidad Financiera" vertex="1">
+          <mxGeometry height="55" width="160" x="40" y="1140" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-29" parent="dghXxTM-VC3UTz4sPfSB-13" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;align=center;" value="17. Procesar Archivo&lt;br&gt;Canje/Compensación&lt;br&gt;(texto plano)" vertex="1">
+          <mxGeometry height="55" width="160" x="270" y="1140" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-30" edge="1" parent="dghXxTM-VC3UTz4sPfSB-13" source="dghXxTM-VC3UTz4sPfSB-26" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#0050ef;strokeWidth=2;" target="dghXxTM-VC3UTz4sPfSB-27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-31" edge="1" parent="dghXxTM-VC3UTz4sPfSB-13" source="dghXxTM-VC3UTz4sPfSB-27" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#0050ef;strokeWidth=2;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="dghXxTM-VC3UTz4sPfSB-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-32" edge="1" parent="dghXxTM-VC3UTz4sPfSB-13" source="dghXxTM-VC3UTz4sPfSB-28" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#0050ef;strokeWidth=2;" target="dghXxTM-VC3UTz4sPfSB-29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-50" parent="dghXxTM-VC3UTz4sPfSB-13" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;align=center;fontStyle=1" value="1. Generar Archivo&lt;br&gt;Solicitud&lt;br&gt;(texto plano)" vertex="1">
+          <mxGeometry height="55" width="160" x="270" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-51" parent="dghXxTM-VC3UTz4sPfSB-13" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;align=center;fontStyle=1;" value="2. Cifrar con Llave&lt;br&gt;Pública PGP de&lt;br&gt;Credibanco" vertex="1">
+          <mxGeometry height="55" width="170" x="20" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-54" edge="1" parent="dghXxTM-VC3UTz4sPfSB-13" source="dghXxTM-VC3UTz4sPfSB-50" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#CC0000;strokeWidth=2;" target="dghXxTM-VC3UTz4sPfSB-51">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-52" parent="dghXxTM-VC3UTz4sPfSB-13" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;align=center;fontStyle=1;" value="3. Firmar con Llave&lt;br&gt;Privada PGP de&lt;br&gt;Entidad Financiera" vertex="1">
+          <mxGeometry height="55" width="160" x="280" y="252.5" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-55" edge="1" parent="dghXxTM-VC3UTz4sPfSB-13" source="dghXxTM-VC3UTz4sPfSB-51" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#CC0000;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="dghXxTM-VC3UTz4sPfSB-52">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-53" parent="dghXxTM-VC3UTz4sPfSB-13" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;align=center;fontStyle=1;" value="4. Enviar archivo&lt;br&gt;respuesta .pgp&lt;br&gt;por SFTP" vertex="1">
+          <mxGeometry height="55" width="160" x="25" y="252.5" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-56" edge="1" parent="dghXxTM-VC3UTz4sPfSB-13" source="dghXxTM-VC3UTz4sPfSB-52" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#CC0000;strokeWidth=2;" target="dghXxTM-VC3UTz4sPfSB-53">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-33" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;dashed=1;" value="" vertex="1">
+          <mxGeometry height="110" width="1520" x="25" y="1580" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-34" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=left;" value="Leyenda / Especificaciones Técnicas" vertex="1">
+          <mxGeometry height="25" width="300" x="45" y="1585" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-35" parent="1" style="text;html=1;fontSize=10;align=left;verticalAlign=top;whiteSpace=wrap;" value="Cifrado de Archivo:&#xa;• Algoritmo: PGP/GPG (OpenPGP)&#xa;• Llaves: RSA-4096 o Ed25519&#xa;• Cifrado simétrico interno: AES-256" vertex="1">
+          <mxGeometry height="70" width="250" x="45" y="1610" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-36" parent="1" style="text;html=1;fontSize=10;align=left;verticalAlign=top;whiteSpace=wrap;" value="Cifrado de Canal:&#xa;• Protocolo: SFTP sobre SSH v2&#xa;• Ciphers: AES-256-GCM, ChaCha20-Poly1305&#xa;• Auth: Llaves SSH Ed25519 / RSA-4096" vertex="1">
+          <mxGeometry height="70" width="280" x="325" y="1610" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-39" parent="1" style="text;html=1;fontSize=10;align=left;verticalAlign=top;whiteSpace=wrap;" value="Intercambio de Llaves:&#xa;• Cada parte genera su par PGP&#xa;• Se intercambian llaves públicas&#xa;• Llaves privadas NUNCA se comparten" vertex="1">
+          <mxGeometry height="70" width="280" x="562" y="1600" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-48" edge="1" parent="1" style="shape=flexArrow;endArrow=classic;startArrow=none;html=1;fillColor=#CC0000;strokeColor=#990000;fontColor=#ffffff;fontSize=10;fontStyle=1;width=20;endSize=6;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;" value="SFTP (SSH/TLS)&#xa;Archivo Respuesta .pgp&#xa;◀ RESPUESTA">
+          <mxGeometry relative="1" x="0.1" as="geometry">
+            <mxPoint x="1130" y="319" as="sourcePoint" />
+            <mxPoint x="740" y="319" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-49" parent="1" style="text;html=1;fontSize=12;fontStyle=5;align=left;fontColor=#CC0000;" value="◀ FLUJO DE ENVIO" vertex="1">
+          <mxGeometry height="25" width="300" x="1169" y="224" as="geometry" />
+        </mxCell>
+        <mxCell id="dghXxTM-VC3UTz4sPfSB-24" edge="1" parent="1" style="shape=flexArrow;endArrow=classic;startArrow=none;html=1;fillColor=#0050ef;strokeColor=#001DBC;fontColor=#ffffff;fontSize=10;fontStyle=1;width=20;endSize=6;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;" value="SFTP (SSH/TLS)&#xa;Archivo Cifrado .pgp&#xa;▶ ENVÍO">
+          <mxGeometry relative="1" x="0.1" as="geometry">
+            <mxPoint x="756" y="1406" as="sourcePoint" />
+            <mxPoint x="1086" y="1406" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r_Bh5oaiX7Alj_IAGH2y-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#b85450;fillColor=#f8cecc;align=center;verticalAlign=middle;rounded=0;" value="&lt;div&gt;Premisas&lt;/div&gt;Recibe, procesa y elimina&lt;div&gt;Retencion de archivos descifrados&amp;nbsp;&amp;nbsp;&lt;/div&gt;&lt;div&gt;Retencion de archivos cifrados tiempo de retencion de GAW&amp;nbsp;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="230" x="40" y="300" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,192 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.1 Chrome/142.0.7444.265 Electron/39.8.0 Safari/537.36" version="29.6.1">
+  <diagram id="security-flow-pin-hsm" name="Flujo Seguridad - PIN Iframe HSM (Credibanco + Pomelo)">
+    <mxGraphModel dx="2642" dy="388" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2100" pageHeight="1600" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;fontSize=20;fontStyle=1;align=center;" value="Flujo de Seguridad — Captura de PIN vía Iframe Credibanco + HSM Interchange → Pomelo" vertex="1">
+          <mxGeometry height="35" width="1100" x="100" y="15" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;fontSize=12;fontStyle=2;align=center;fontColor=#666666;" value="El PIN NUNCA viaja en texto plano — Credibanco es responsable del Iframe PCI DSS — HSM traduce PIN Block (ZPK Credibanco → ZPK Pomelo)" vertex="1">
+          <mxGeometry height="25" width="1100" x="100" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="zone_untrusted" parent="1" style="rounded=1;fillColor=#ffcccc;strokeColor=#b85450;opacity=15;dashed=1;dashPattern=8 4;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="1445" width="700" x="-140" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="zone_untrusted_label" parent="1" style="text;html=1;fontSize=13;fontStyle=1;fontColor=#b85450;align=center;verticalAlign=top;" value="🔓 ZONA NO CONFIABLE — Browser del Usuario" vertex="1">
+          <mxGeometry height="25" width="520" x="30" y="98" as="geometry" />
+        </mxCell>
+        <mxCell id="zone_emisor" parent="1" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;opacity=15;dashed=1;dashPattern=8 4;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="1415" width="350" x="580" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="zone_emisor_label" parent="1" style="text;html=1;fontSize=13;fontStyle=1;fontColor=#d6b656;align=center;verticalAlign=top;" value="🟡 EMISOR (No PCI — Pass-through)" vertex="1">
+          <mxGeometry height="25" width="270" x="585" y="98" as="geometry" />
+        </mxCell>
+        <mxCell id="zone_credibanco" parent="1" style="rounded=1;fillColor=#ffe0cc;strokeColor=#d46b08;opacity=15;dashed=1;dashPattern=8 4;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="1435" width="460" x="950" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="zone_credibanco_label" parent="1" style="text;html=1;fontSize=13;fontStyle=1;fontColor=#d46b08;align=center;verticalAlign=top;" value="🔒 CREDIBANCO — PCI DSS Level 1 (Responsable del Iframe + HSM)" vertex="1">
+          <mxGeometry height="25" width="520" x="957" y="98" as="geometry" />
+        </mxCell>
+        <mxCell id="zone_pomelo" parent="1" style="rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;opacity=15;dashed=1;dashPattern=8 4;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="1425" width="260" x="1502" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="zone_pomelo_label" parent="1" style="text;html=1;fontSize=13;fontStyle=1;fontColor=#9673a6;align=center;verticalAlign=top;" value="🔒 POMELO — PCI DSS (Procesador)" vertex="1">
+          <mxGeometry height="25" width="250" x="1507" y="98" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_angular" parent="1" style="shape=swimlane;startSize=35;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=11;" value="Angular App (Frontend Tarjeta Habiente)" vertex="1">
+          <mxGeometry height="1360" width="270" x="-110" y="123" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_iframe" parent="1" style="shape=swimlane;startSize=35;fillColor=#FF8C00;strokeColor=#d46b08;fontColor=#ffffff;fontStyle=1;fontSize=11;" value="Iframe Credibanco (PCI DSS)" vertex="1">
+          <mxGeometry height="1360" width="370" x="180" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_spring" parent="1" style="shape=swimlane;startSize=35;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=11;" value="Spring Boot (Backend Emisor)" vertex="1">
+          <mxGeometry height="1360" width="320" x="590" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_cb_back" parent="1" style="shape=swimlane;startSize=35;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=11;" value="Credibanco Backend (PCI DSS)" vertex="1">
+          <mxGeometry height="1360" width="250" x="962" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_hsm" parent="1" style="shape=swimlane;startSize=35;fillColor=#FF8C00;strokeColor=#d46b08;fontColor=#ffffff;fontStyle=1;fontSize=11;" value="HSM Credibanco " vertex="1">
+          <mxGeometry height="1360" width="240" x="1232" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_pomelo" parent="1" style="shape=swimlane;startSize=35;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=11;" value="Pomelo API + HSM (PCI DSS)" vertex="1">
+          <mxGeometry height="1360" width="240" x="1512" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="ph1" parent="1" style="text;html=1;fontSize=11;fontStyle=5;fillColor=#e1d5e7;strokeColor=#9673a6;rounded=1;" value="FASE 1 — AUTENTICACIÓN DEL USUARIO" vertex="1">
+          <mxGeometry height="25" width="250" x="-102" y="183" as="geometry" />
+        </mxCell>
+        <mxCell id="s1" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="Usuario se autentica&#xa;en la App Angular&#xa;(OAuth2 / JWT)" vertex="1">
+          <mxGeometry height="50" width="180" x="-45" y="229" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="Spring Boot valida&#xa;credenciales.&#xa;Genera sesión JWT." vertex="1">
+          <mxGeometry height="50" width="210" x="648" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s1_s2" edge="1" parent="1" source="s1" style="edgeStyle=orthogonalEdgeStyle;fontSize=9;fontStyle=2;" target="s2" value="HTTPS (TLS 1.2+)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ph2" parent="1" style="text;html=1;fontSize=11;fontStyle=5;fillColor=#e1d5e7;strokeColor=#9673a6;rounded=1;" value="FASE 2 — OBTENCIÓN TOKEN IFRAME CREDIBANCO" vertex="1">
+          <mxGeometry height="25" width="310" x="590" y="305" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;" value="Backend Emisor solicita&#xa;token a Credibanco&#xa;POST /iframe/token&#xa;{card_id, action: &#39;change_pin&#39;}" vertex="1">
+          <mxGeometry height="65" width="220" x="643" y="345" as="geometry" />
+        </mxCell>
+        <mxCell id="s4" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;" value="Credibanco valida emisor.&#xa;Genera iframe_token (JWT)&#xa;scope: change_pin&#xa;TTL: 5 min" vertex="1">
+          <mxGeometry height="65" width="210" x="982" y="345" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s3_s4" edge="1" parent="1" source="s3" style="edgeStyle=orthogonalEdgeStyle;fontSize=9;fontStyle=2;strokeColor=#b85450;strokeWidth=2;" target="s4" value="mTLS">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="s5" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="Angular recibe&#xa;iframe_token + URL&#xa;de Credibanco" vertex="1">
+          <mxGeometry height="50" width="180" x="-45" y="348" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s4_s5" edge="1" parent="1" source="s4" style="edgeStyle=orthogonalEdgeStyle;dashed=1;fontSize=9;fontStyle=2;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" target="s5" value="Respuesta vía Backend Emisor">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1035" y="440" />
+              <mxPoint x="575" y="440" />
+              <mxPoint x="575" y="385" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ph3" parent="1" style="text;html=1;fontSize=11;fontStyle=5;fillColor=#e1d5e7;strokeColor=#9673a6;rounded=1;" value="FASE 3 — CARGA IFRAME CREDIBANCO (Entorno PCI)" vertex="1">
+          <mxGeometry height="25" width="360" x="185" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="s6" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="Angular embebe Iframe&#xa;con sandbox y CSP.&#xa;NO tiene acceso al&#xa;DOM del Iframe&#xa;(Same-Origin Policy)" vertex="1">
+          <mxGeometry height="75" width="190" x="-50" y="482" as="geometry" />
+        </mxCell>
+        <mxCell id="s7" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#FF8C00;strokeColor=#d46b08;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Iframe CREDIBANCO se carga&#xa;desde dominio PCI Credibanco.&#xa;Muestra formulario:&#xa;• Campo PIN actual&#xa;• Campo PIN nuevo (x2)&#xa;• Teclado virtual aleatorio" vertex="1">
+          <mxGeometry height="90" width="250" x="241" y="475" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s6_s7" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;fontSize=9;fontStyle=2;strokeColor=#d46b08;strokeWidth=2;" target="s7" value="HTTPS">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="91" y="519.4999999999998" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="note_iframe" parent="1" style="shape=note;size=15;fillColor=#FF8C00;strokeColor=#d46b08;fontSize=9;fontStyle=2;fontColor=#000000;" value="🔐 RESPONSABILIDAD DE CREDIBANCO:&#xa;• Iframe construido y hospedado por Credibanco&#xa;• Credibanco es PCI DSS Level 1 certificado&#xa;• Headers: CSP, X-Frame-Options, Referrer-Policy&#xa;• sandbox=&quot;allow-scripts allow-same-origin&quot;&#xa;• Pen testing anual es responsabilidad de Credibanco" vertex="1">
+          <mxGeometry height="110" width="260" x="236" y="575" as="geometry" />
+        </mxCell>
+        <mxCell id="ph4" parent="1" style="text;html=1;fontSize=11;fontStyle=5;fillColor=#e1d5e7;strokeColor=#9673a6;rounded=1;" value="FASE 4 — CAPTURA Y CIFRADO DEL PIN EN IFRAME CREDIBANCO" vertex="1">
+          <mxGeometry height="25" width="370" x="180" y="705" as="geometry" />
+        </mxCell>
+        <mxCell id="s8" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#FF8C00;strokeColor=#d46b08;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Usuario ingresa PIN en Iframe.&#xa;Credibanco CIFRA el PIN con&#xa;llave pública RSA del HSM&#xa;Credibanco → PIN Block cifrado.&#xa;&#xa;⚠️ PIN NUNCA en texto plano&#xa;fuera del Iframe Credibanco." vertex="1">
+          <mxGeometry height="105" width="250" x="241" y="745" as="geometry" />
+        </mxCell>
+        <mxCell id="ph5" parent="1" style="text;html=1;fontSize=11;fontStyle=5;fillColor=#e1d5e7;strokeColor=#9673a6;rounded=1;" value="FASE 5 — TRANSPORTE DEL PIN BLOCK CIFRADO" vertex="1">
+          <mxGeometry height="25" width="282" x="-109" y="990" as="geometry" />
+        </mxCell>
+        <mxCell id="s9" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="Angular recibe PIN Block&#xa;cifrado vía postMessage.&#xa;⚠️ NO puede descifrar.&#xa;Solo transporta." vertex="1">
+          <mxGeometry height="60" width="195" x="-55" y="1030" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s8_s9" edge="1" parent="1" source="s8" style="edgeStyle=orthogonalEdgeStyle;fontSize=9;fontStyle=2;strokeColor=#006600;strokeWidth=2;" target="s9" value="postMessage (PIN Block cifrado)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="s10" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="Spring Boot recibe&#xa;PIN Block cifrado.&#xa;⚠️ NO puede descifrar.&#xa;Reenvía a Credibanco." vertex="1">
+          <mxGeometry height="60" width="220" x="643" y="1037" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s9_s10" edge="1" parent="1" source="s9" style="edgeStyle=orthogonalEdgeStyle;fontSize=9;fontStyle=2;strokeColor=#006600;strokeWidth=2;" target="s10" value="HTTPS POST /api/v1/pin/change">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="note_spring" parent="1" style="shape=note;size=15;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;fontStyle=2;" value="🔑 EMISOR ES PASS-THROUGH:&#xa;• Angular y Spring Boot NO tienen&#xa;  la llave privada del HSM&#xa;• NO pueden descifrar el PIN Block&#xa;• Solo transportan datos cifrados&#xa;• Esto REDUCE el alcance PCI del emisor&#xa;• Emisor puede aplicar a SAQ-A" vertex="1">
+          <mxGeometry height="100" width="250" x="628" y="1107" as="geometry" />
+        </mxCell>
+        <mxCell id="s11" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" value="Credibanco Backend&#xa;recibe PIN Block cifrado&#xa;con ZPK Credibanco." vertex="1">
+          <mxGeometry height="55" width="220" x="977" y="1039" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s10_s11" edge="1" parent="1" source="s10" style="edgeStyle=orthogonalEdgeStyle;fontSize=9;fontStyle=2;strokeColor=#b85450;strokeWidth=2;" target="s11" value="mTLS">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ph6" parent="1" style="text;html=1;fontSize=11;fontStyle=5;fillColor=#e1d5e7;strokeColor=#9673a6;rounded=1;" value="FASE 6 — HSM: PIN BLOCK INTERCHANGE (ZPK Credibanco → ZPK Pomelo)" vertex="1">
+          <mxGeometry height="25" width="420" x="962" y="1122" as="geometry" />
+        </mxCell>
+        <mxCell id="s12" parent="1" style="shape=process;whiteSpace=wrap;fillColor=#FF8C00;strokeColor=#d46b08;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="HSM Credibanco realiza&#xa;PIN BLOCK INTERCHANGE:&#xa;&#xa;1. Descifra PIN Block con&#xa;   ZPK Credibanco (llave origen)&#xa;2. Re-cifra PIN Block con&#xa;   ZPK Pomelo (llave destino)&#xa;3. PIN nunca sale del HSM&#xa;   en texto plano&#xa;4. Genera nuevo PIN Block&#xa;   cifrado bajo ZPK Pomelo" vertex="1">
+          <mxGeometry height="160" width="220" x="1242" y="1157" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s11_s12" edge="1" parent="1" source="s11" style="edgeStyle=orthogonalEdgeStyle;fontSize=9;fontStyle=2;strokeColor=#d46b08;strokeWidth=2;" target="s12" value="Red privada Credibanco">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="note_hsm" parent="1" style="shape=note;size=15;fillColor=#FF8C00;strokeColor=#d46b08;fontSize=9;fontStyle=2;fontColor=#000000;" value="🔐 HSM PIN BLOCK INTERCHANGE:&#xa;• Operación criptográfica interna del HSM&#xa;• El PIN se descifra y re-cifra DENTRO&#xa;  del HSM (FIPS 140-2 Level 3)&#xa;• Las ZPK (Zone PIN Keys) se intercambian&#xa;  previamente entre Credibanco y Pomelo&#xa;  mediante Key Ceremony (dual control)&#xa;• El PIN NUNCA existe en texto plano&#xa;  fuera del boundary del HSM&#xa;• Comando HSM típico: DC (Thales) o&#xa;  TranslatePinData (AWS Payment Crypto)" vertex="1">
+          <mxGeometry height="165" width="260" x="967" y="1172" as="geometry" />
+        </mxCell>
+        <mxCell id="ph7" parent="1" style="text;html=1;fontSize=11;fontStyle=5;fillColor=#e1d5e7;strokeColor=#9673a6;rounded=1;" value="FASE 7 — ENVÍO PIN BLOCK TRADUCIDO A POMELO" vertex="1">
+          <mxGeometry height="25" width="320" x="1232" y="1337" as="geometry" />
+        </mxCell>
+        <mxCell id="s13" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;" value="Credibanco Backend envía&#xa;PIN Block re-cifrado&#xa;(ahora bajo ZPK Pomelo)&#xa;POST /cards/{id}/pin/change&#xa;{pinBlock, keyId}" vertex="1">
+          <mxGeometry height="75" width="220" x="977" y="1372" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s12_s13" edge="1" parent="1" source="s12" style="edgeStyle=orthogonalEdgeStyle;fontSize=9;fontStyle=2;strokeColor=#b85450;" target="s13" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="s14" parent="1" style="shape=process;whiteSpace=wrap;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;fontStyle=1;" value="Pomelo HSM:&#xa;1. Descifra PIN Block&#xa;   con ZPK Pomelo&#xa;2. Valida formato PIN&#xa;3. Cifra bajo LMK&#xa;4. Actualiza PVV&#xa;5. Confirma cambio PIN ✅" vertex="1">
+          <mxGeometry height="110" width="210" x="1527" y="1367" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s13_s14" edge="1" parent="1" source="s13" style="edgeStyle=orthogonalEdgeStyle;fontSize=9;fontStyle=2;strokeColor=#9673a6;strokeWidth=2;" target="s14" value="mTLS">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_box" parent="1" style="rounded=1;fillColor=#f5f5f5;strokeColor=#999999;dashed=1;" value="" vertex="1">
+          <mxGeometry height="35" width="1670" x="10" y="1555" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_text" parent="1" style="text;html=1;fontSize=10;align=center;" value="🔵 Angular App (No PCI)    🟠 Iframe + HSM Credibanco (PCI DSS L1)    🟡 Spring Boot Emisor (No PCI — Pass-through)    🔴 Backend Credibanco (PCI DSS)    🟣 Pomelo API + HSM (PCI DSS)" vertex="1">
+          <mxGeometry height="25" width="1650" x="20" y="1560" as="geometry" />
+        </mxCell>
+        <mxCell id="resp_emisor" parent="1" style="shape=mxgraph.basic.rect;fillColor=#1a1a2e;strokeColor=#16213e;fontColor=#ffffff;fontSize=10;rounded=1;arcSize=10;align=left;spacingLeft=10;spacingTop=5;whiteSpace=wrap;" value="📋 RESPONSABILIDAD DEL EMISOR (Angular + Spring Boot):&#xa;&#xa;✅ Autenticar al usuario (OAuth2/JWT)&#xa;✅ Solicitar iframe_token a Credibanco&#xa;✅ Embeber Iframe con sandbox y CSP&#xa;✅ Validar origin del postMessage (solo dominio Credibanco)&#xa;✅ Transportar PIN Block cifrado (pass-through)&#xa;✅ Rate limiting en endpoint /api/v1/pin/change&#xa;✅ Audit log de cada operación (sin logear PIN Block)&#xa;✅ Mantener AOC vigente de Credibanco y Pomelo como TPSP&#xa;&#xa;❌ NO captura el PIN&#xa;❌ NO cifra ni descifra&#xa;❌ NO tiene llaves criptográficas&#xa;❌ NO almacena datos de tarjeta → Aplica SAQ-A" vertex="1">
+          <mxGeometry height="230" width="540" x="10" y="1605" as="geometry" />
+        </mxCell>
+        <mxCell id="resp_credibanco" parent="1" style="shape=mxgraph.basic.rect;fillColor=#4a2800;strokeColor=#d46b08;fontColor=#ffffff;fontSize=10;rounded=1;arcSize=10;align=left;spacingLeft=10;spacingTop=5;whiteSpace=wrap;" value="📋 RESPONSABILIDAD DE CREDIBANCO (Iframe + HSM + Backend):&#xa;&#xa;✅ Construir y hospedar Iframe PCI DSS&#xa;✅ Capturar PIN en entorno seguro (teclado virtual)&#xa;✅ Cifrar PIN con llave pública RSA del HSM&#xa;✅ Gestionar llaves criptográficas (ZPK, ZMK, TMK)&#xa;✅ HSM: PIN Block Interchange (ZPK CB → ZPK Pomelo)&#xa;✅ Key Ceremony con dual control para intercambio ZPK con Pomelo&#xa;✅ Pen testing anual del Iframe y endpoints&#xa;✅ Segmentación de red (CDE aislado)&#xa;✅ WAF + CSP headers en el Iframe&#xa;✅ Audit logs de todas las operaciones HSM&#xa;✅ Mantener certificación PCI DSS Level 1" vertex="1">
+          <mxGeometry height="230" width="540" x="570" y="1605" as="geometry" />
+        </mxCell>
+        <mxCell id="resp_pomelo" parent="1" style="shape=mxgraph.basic.rect;fillColor=#2d1b4e;strokeColor=#9673a6;fontColor=#ffffff;fontSize=10;rounded=1;arcSize=10;align=left;spacingLeft=10;spacingTop=5;whiteSpace=wrap;" value="📋 RESPONSABILIDAD DE POMELO (Procesador):&#xa;&#xa;✅ Recibir PIN Block cifrado bajo ZPK Pomelo&#xa;✅ HSM: Descifrar PIN Block con ZPK Pomelo&#xa;✅ Validar formato y políticas de PIN&#xa;✅ Cifrar PIN bajo LMK para almacenamiento&#xa;✅ Generar/actualizar PVV&#xa;✅ Confirmar cambio de PIN al emisor&#xa;✅ Mantener certificación PCI DSS&#xa;✅ Key Ceremony con Credibanco para ZPK" vertex="1">
+          <mxGeometry height="230" width="540" x="1130" y="1605" as="geometry" />
+        </mxCell>
+        <mxCell id="crypto_title" parent="1" style="text;html=1;fontSize=14;fontStyle=1;align=center;" value="🔐 Flujo Criptográfico del PIN Block (Interchange)" vertex="1">
+          <mxGeometry height="30" width="500" x="10" y="1855" as="geometry" />
+        </mxCell>
+        <mxCell id="crypto_box" parent="1" style="shape=mxgraph.basic.rect;fillColor=#0d3b66;strokeColor=#16213e;fontColor=#ffffff;fontSize=11;rounded=1;arcSize=10;align=left;spacingLeft=15;spacingTop=8;whiteSpace=wrap;" value="PIN (texto plano) → [Iframe Credibanco cifra con ZPK_CB] → PIN_Block_CB (cifrado)&#xa;&#xa;PIN_Block_CB → [Angular transporta] → PIN_Block_CB (sin cambios, no puede descifrar)&#xa;&#xa;PIN_Block_CB → [Spring Boot transporta] → PIN_Block_CB (sin cambios, no puede descifrar)&#xa;&#xa;PIN_Block_CB → [Credibanco Backend reenvía al HSM] → PIN_Block_CB&#xa;&#xa;PIN_Block_CB → [HSM Credibanco: descifra con ZPK_CB, re-cifra con ZPK_Pomelo] → PIN_Block_Pomelo&#xa;&#xa;PIN_Block_Pomelo → [Credibanco Backend envía a Pomelo] → PIN_Block_Pomelo&#xa;&#xa;PIN_Block_Pomelo → [Pomelo HSM: descifra con ZPK_Pomelo, cifra bajo LMK] → PIN almacenado seguro ✅" vertex="1">
+          <mxGeometry height="145" width="1660" x="10" y="1890" as="geometry" />
+        </mxCell>
+        <mxCell id="note_critical" parent="1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;fillColor=#f44336;strokeColor=#990000;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="⛔ BARRERA CRIPTOGRÁFICA&#xa;El PIN se cifra AQUÍ&#xa;por Credibanco.&#xa;Desde este punto solo&#xa;viaja como PIN Block&#xa;cifrado (E2E)." vertex="1">
+          <mxGeometry height="90" width="250" x="238" y="860" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

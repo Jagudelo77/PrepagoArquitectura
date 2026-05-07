@@ -1,0 +1,628 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/27.0.9 Chrome/134.0.6998.205 Electron/35.4.0 Safari/537.36" version="27.0.9">
+  <diagram id="onprem-1" name="Creación Masiva de Tarjetas — On-Premises">
+    <mxGraphModel dx="1700" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- TÍTULO -->
+        <mxCell id="title" value="&lt;b style=&quot;font-size:20px;&quot;&gt;Creación Masiva de Tarjetas — On-Premises&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:12px;color:#666;&quot;&gt;SFTP / GoAnywhere → MinIO → Temporal (Orquestación) → RabbitMQ → OpenShift (ROSA equiv) → Callback → Respuesta SFTP&lt;br&gt;Equivalencias: S3→MinIO · Step Functions→Temporal · SQS→RabbitMQ · EventBridge→Kafka · SNS/SES→SMTP · DynamoDB→Redis · CloudWatch→Prometheus+Grafana · KMS→HashiCorp Vault&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=14;fontColor=#232F3E;" parent="1" vertex="1">
+          <mxGeometry x="200" y="20" width="1700" height="80" as="geometry" />
+        </mxCell>
+        <!-- ==================== ENTIDAD ==================== -->
+        <mxCell id="ent-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;verticalAlign=top;fontSize=13;arcSize=8;dashed=1;dashPattern=5 5;" parent="1" vertex="1">
+          <mxGeometry x="40" y="370" width="160" height="165" as="geometry" />
+        </mxCell>
+        <mxCell id="ent-icon" value="👤" style="text;html=1;align=center;verticalAlign=middle;fontSize=40;" parent="1" vertex="1">
+          <mxGeometry x="85" y="385" width="70" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ent-label" value="&lt;b&gt;Entidad&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=top;fontSize=11;fontColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="67" y="450" width="110" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="ent-note" value="📧 Recibe notificación&lt;br&gt;vía email (SMTP)" style="text;html=1;align=center;verticalAlign=top;fontSize=9;fontColor=#999999;fontStyle=2;" parent="1" vertex="1">
+          <mxGeometry x="62" y="476" width="120" height="40" as="geometry" />
+        </mxCell>
+        <!-- ==================== DMZ ==================== -->
+        <mxCell id="dmz-box" value="&lt;b&gt;DMZ&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8EAF6;strokeColor=#5C6BC0;fontColor=#283593;verticalAlign=top;fontSize=13;arcSize=6;" parent="1" vertex="1">
+          <mxGeometry x="260" y="320" width="200" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="sftp" value="&lt;b&gt;SFTP Server&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C5CAE9;strokeColor=#3F51B5;fontColor=#1A237E;fontSize=11;arcSize=10;" parent="1" vertex="1">
+          <mxGeometry x="290" y="380" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="goanywhere" value="&lt;b&gt;GoAnywhere MFT&lt;/b&gt;&lt;br&gt;Valida estructura/formato" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C5CAE9;strokeColor=#3F51B5;fontColor=#1A237E;fontSize=11;arcSize=10;" parent="1" vertex="1">
+          <mxGeometry x="290" y="500" width="140" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== DATA CENTER BOUNDARY ==================== -->
+        <mxCell id="dc-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#37474F;dashed=1;dashPattern=8 4;arcSize=3;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="520" y="105" width="1600" height="1250" as="geometry" />
+        </mxCell>
+        <mxCell id="dc-label" value="&lt;font style=&apos;font-size:15px;&apos;&gt;&lt;b&gt;🏢 Data Center On-Premises&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;fillColor=none;strokeColor=none;fontColor=#37474F;" parent="1" vertex="1">
+          <mxGeometry x="540" y="110" width="250" height="30" as="geometry" />
+        </mxCell>
+        <!-- NETWORK BOUNDARY -->
+        <mxCell id="net-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#1A73E8;dashed=1;dashPattern=8 4;arcSize=3;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="535" y="155" width="1570" height="1185" as="geometry" />
+        </mxCell>
+        <mxCell id="net-label" value="&lt;font color=&apos;#1A73E8&apos; style=&apos;font-size:13px;&apos;&gt;&lt;b&gt;VLAN Segmentada — Firewall + IDS/IPS&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&apos;#1A73E8&apos; style=&apos;font-size:9px;&apos;&gt;PCI DSS Compliant Network Isolation&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;fillColor=none;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="550" y="160" width="320" height="35" as="geometry" />
+        </mxCell>
+        <!-- ==================== VAULT BANNER (equiv KMS) ==================== -->
+        <mxCell id="vault-banner" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#FFA000;dashed=1;dashPattern=4 4;arcSize=4;" parent="1" vertex="1">
+          <mxGeometry x="900" y="160" width="700" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="vault-icon" value="🔐" style="text;html=1;align=center;verticalAlign=middle;fontSize=20;" parent="1" vertex="1">
+          <mxGeometry x="910" y="163" width="35" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="vault-text" value="&lt;b&gt;HashiCorp Vault&lt;/b&gt; — Cifrado en reposo: MinIO (SSE), PostgreSQL (TDE), Redis. Cifrado en tránsito: mTLS entre OpenShift ↔ API Externo. PKI + Secret Engine" style="text;html=1;align=left;verticalAlign=middle;fontSize=9;fontColor=#E65100;" parent="1" vertex="1">
+          <mxGeometry x="948" y="166" width="640" height="32" as="geometry" />
+        </mxCell>
+        <!-- ==================== MinIO INBOUND (equiv S3) ==================== -->
+        <mxCell id="minio-in-icon" value="📦" style="text;html=1;align=center;verticalAlign=middle;fontSize=30;" parent="1" vertex="1">
+          <mxGeometry x="585" y="420" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="minio-in-label" value="&lt;b&gt;MinIO&lt;/b&gt;&lt;br&gt;/inbound&lt;br&gt;&lt;font color=&apos;#E65100&apos; style=&apos;font-size:8px;&apos;&gt;🔒 SSE (Vault)&lt;/font&gt;&lt;br&gt;&lt;font color=&apos;#666&apos; style=&apos;font-size:8px;&apos;&gt;equiv: S3 Landing Zone&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=top;fontSize=10;fontColor=#3F8624;" parent="1" vertex="1">
+          <mxGeometry x="548" y="465" width="120" height="60" as="geometry" />
+        </mxCell>
+        <!-- ==================== KAFKA (equiv EventBridge) ==================== -->
+        <mxCell id="kafka-s3" value="📡" style="text;html=1;align=center;verticalAlign=middle;fontSize=28;" parent="1" vertex="1">
+          <mxGeometry x="700" y="265" width="45" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kafka-s3-label" value="&lt;b&gt;Apache Kafka&lt;/b&gt;&lt;br&gt;topic: file.uploaded&lt;br&gt;&lt;font color=&apos;#666&apos; style=&apos;font-size:8px;&apos;&gt;equiv: EventBridge&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=top;fontSize=10;fontColor=#E7157B;" parent="1" vertex="1">
+          <mxGeometry x="670" y="308" width="110" height="45" as="geometry" />
+        </mxCell>
+        <!-- ==================== VALIDATOR SERVICE (equiv Lambda Validator) ==================== -->
+        <mxCell id="validator-svc" value="⚙️" style="text;html=1;align=center;verticalAlign=middle;fontSize=28;" parent="1" vertex="1">
+          <mxGeometry x="805" y="265" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="validator-svc-label" value="&lt;b&gt;Validator Service&lt;/b&gt;&lt;br&gt;(Spring Boot / Pod)&lt;br&gt;Valida schema, genera&lt;br&gt;file_hash, calcula timeout&lt;br&gt;&lt;font color=&apos;#666&apos; style=&apos;font-size:8px;&apos;&gt;equiv: Lambda Validator&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=top;fontSize=9;fontColor=#D45B07;" parent="1" vertex="1">
+          <mxGeometry x="765" y="308" width="130" height="60" as="geometry" />
+        </mxCell>
+        <!-- ==================== REDIS (equiv DynamoDB Idempotency) ==================== -->
+        <mxCell id="redis-icon" value="🔴" style="text;html=1;align=center;verticalAlign=middle;fontSize=25;" parent="1" vertex="1">
+          <mxGeometry x="585" y="265" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="redis-label" value="&lt;b&gt;Redis&lt;/b&gt;&lt;br&gt;Idempotency Cache&lt;br&gt;&lt;font color=&apos;#E65100&apos; style=&apos;font-size:8px;&apos;&gt;TTL=24h · Key=file_hash&lt;br&gt;🔒 TLS + Vault&lt;/font&gt;&lt;br&gt;&lt;font color=&apos;#666&apos; style=&apos;font-size:8px;&apos;&gt;equiv: DynamoDB&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=top;fontSize=9;fontColor=#C925D1;" parent="1" vertex="1">
+          <mxGeometry x="548" y="308" width="115" height="65" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== TEMPORAL BOX (equiv Step Functions) ==================== -->
+        <mxCell id="temporal-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE4EC;strokeColor=#E7157B;dashed=1;dashPattern=4 4;arcSize=4;" parent="1" vertex="1">
+          <mxGeometry x="920" y="230" width="310" height="640" as="geometry" />
+        </mxCell>
+        <mxCell id="temporal-title" value="&lt;b&gt;Temporal.io — File Orchestrator&lt;/b&gt;&lt;br&gt;&lt;font style=&apos;font-size:8px;&apos; color=&apos;#880E4F&apos;&gt;equiv: AWS Step Functions · Durable Workflows&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontColor=#E7157B;" parent="1" vertex="1">
+          <mxGeometry x="935" y="235" width="280" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="temporal-icon" value="⏱️" style="text;html=1;align=center;verticalAlign=middle;fontSize=18;" parent="1" vertex="1">
+          <mxGeometry x="1090" y="237" width="30" height="25" as="geometry" />
+        </mxCell>
+        <!-- STEP 1: Dedup -->
+        <mxCell id="step1" value="&lt;b&gt;① Dedup Check&lt;/b&gt;&lt;br&gt;Consulta file_hash en Redis&lt;br&gt;Si existe → REJECT + notifica&lt;br&gt;Si no → SET con TTL 24h" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8BBD0;strokeColor=#E7157B;fontColor=#880E4F;fontSize=9;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="945" y="278" width="260" height="60" as="geometry" />
+        </mxCell>
+        <!-- STEP 2: Register Batch -->
+        <mxCell id="step2" value="&lt;b&gt;② Register Batch&lt;/b&gt;&lt;br&gt;INSERT file_batch (status=PROCESSING,&lt;br&gt;file_hash, total_records, metadata)&lt;br&gt;&lt;font color=&apos;#880E4F&apos; style=&apos;font-size:8px;&apos;&gt;Calcula ScheduleToCloseTimeout = total_records × 5s (min 3600)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8BBD0;strokeColor=#E7157B;fontColor=#880E4F;fontSize=9;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="945" y="353" width="260" height="65" as="geometry" />
+        </mxCell>
+        <!-- STEP 3: Fan-Out (equiv Map Distributed) -->
+        <mxCell id="step3" value="&lt;b&gt;③ Fan-Out (Child Workflows)&lt;/b&gt;&lt;br&gt;Temporal lee MinIO, split en chunks&lt;br&gt;Cada child workflow encola msgs&lt;br&gt;a RabbitMQ&lt;br&gt;&lt;font color=&apos;#4A148C&apos; style=&apos;font-size:8px;&apos;&gt;⚡ workflowRunId como correlationId&lt;br&gt;en cada msg RabbitMQ header&lt;br&gt;MaxConcurrency configurable&lt;/font&gt;&lt;br&gt;&lt;font color=&apos;#666&apos; style=&apos;font-size:8px;&apos;&gt;equiv: Map Distributed + SQS taskToken&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1BEE7;strokeColor=#7B1FA2;fontColor=#4A148C;fontSize=9;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="945" y="433" width="260" height="120" as="geometry" />
+        </mxCell>
+        <!-- STEP 4: Wait for Signal (equiv waitForTaskToken) -->
+        <mxCell id="step4" value="&lt;b&gt;④ Wait for Signal&lt;/b&gt;&lt;br&gt;(Temporal Signal / Activity Heartbeat)&lt;br&gt;&lt;font color=&apos;#B71C1C&apos; style=&apos;font-size:8px;&apos;&gt;⏱ ScheduleToCloseTimeout = dinámico&lt;br&gt;HeartbeatTimeout = 300s&lt;br&gt;Catch: TimeoutError → ⑤b Failure Handler&lt;br&gt;Acepta: Signal complete | Signal fail&lt;/font&gt;&lt;br&gt;&lt;font color=&apos;#666&apos; style=&apos;font-size:8px;&apos;&gt;equiv: .waitForTaskToken + SendTaskSuccess/Failure&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C8E6C9;strokeColor=#388E3C;fontColor=#1B5E20;fontSize=9;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="945" y="568" width="260" height="100" as="geometry" />
+        </mxCell>
+        <!-- STEP 5a: Build Response -->
+        <mxCell id="step5" value="&lt;b&gt;⑤a Build Response&lt;/b&gt;&lt;br&gt;Invoca Response Builder Service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8BBD0;strokeColor=#E7157B;fontColor=#880E4F;fontSize=9;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="945" y="685" width="260" height="40" as="geometry" />
+        </mxCell>
+        <!-- STEP 5b: Failure Handler -->
+        <mxCell id="step5b" value="&lt;b&gt;⑤b Failure Handler&lt;/b&gt;&lt;br&gt;Marca batch FAILED en PostgreSQL&lt;br&gt;Genera reporte parcial de errores&lt;br&gt;&lt;font color=&apos;#B71C1C&apos; style=&apos;font-size:8px;&apos;&gt;Catch: TimeoutError | Signal fail&lt;br&gt;error + cause en workflow history&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCDD2;strokeColor=#E53935;fontColor=#B71C1C;fontSize=9;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="945" y="738" width="260" height="65" as="geometry" />
+        </mxCell>
+        <!-- STEP 6: Notify -->
+        <mxCell id="step6" value="&lt;b&gt;⑥ Notify&lt;/b&gt;&lt;br&gt;Publica en Kafka topic → SMTP email&lt;br&gt;&lt;font style=&apos;font-size:8px;&apos;&gt;(éxito o fallo)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8BBD0;strokeColor=#E7157B;fontColor=#880E4F;fontSize=9;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="945" y="818" width="260" height="40" as="geometry" />
+        </mxCell>
+        <!-- Temporal internal edges -->
+        <mxCell id="t-e1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#E7157B;strokeWidth=1;" parent="1" source="step1" target="step2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t-e2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#E7157B;strokeWidth=1;" parent="1" source="step2" target="step3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t-e3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#E7157B;strokeWidth=1;" parent="1" source="step3" target="step4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- Happy path -->
+        <mxCell id="t-e4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#388E3C;strokeWidth=1;" parent="1" source="step4" target="step5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t-e4-lbl" value="✅ Signal complete" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=8;fontColor=#388E3C;" parent="t-e4" connectable="0" vertex="1">
+          <mxGeometry x="-0.1" relative="1" as="geometry">
+            <mxPoint x="40" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Error path -->
+        <mxCell id="t-e4b" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#E53935;strokeWidth=1;dashed=1;" parent="1" source="step4" target="step5b" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="935" y="618" />
+              <mxPoint x="935" y="770" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t-e4b-lbl" value="❌ Timeout&lt;br&gt;/ Signal fail" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=7;fontColor=#E53935;" parent="t-e4b" connectable="0" vertex="1">
+          <mxGeometry x="-0.3" relative="1" as="geometry">
+            <mxPoint x="-40" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t-e5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#E7157B;strokeWidth=1;" parent="1" source="step5" target="step6" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1210" y="705" />
+              <mxPoint x="1210" y="838" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t-e5b" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#E53935;strokeWidth=1;" parent="1" source="step5b" target="step6" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== RABBITMQ WORK QUEUE (equiv SQS) ==================== -->
+        <mxCell id="rabbit-work" value="🐰" style="text;html=1;align=center;verticalAlign=middle;fontSize=28;" parent="1" vertex="1">
+          <mxGeometry x="1305" y="455" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="rabbit-work-label" value="&lt;b&gt;RabbitMQ&lt;/b&gt;&lt;br&gt;queue: card-requests&lt;br&gt;1 msg = 1 solicitud tarjeta&lt;br&gt;&lt;font color=&apos;#7B1FA2&apos; style=&apos;font-size:8px;&apos;&gt;Header: workflowRunId&lt;br&gt;(correlationId para callback)&lt;br&gt;+ file_id + batch_id&lt;/font&gt;&lt;br&gt;&lt;font color=&apos;#666&apos; style=&apos;font-size:8px;&apos;&gt;equiv: SQS Work Queue + taskToken attr&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=top;fontSize=10;fontColor=#E7157B;" parent="1" vertex="1">
+          <mxGeometry x="1255" y="498" width="150" height="90" as="geometry" />
+        </mxCell>
+        <!-- RABBITMQ DLQ -->
+        <mxCell id="rabbit-dlq" value="🐰" style="text;html=1;align=center;verticalAlign=middle;fontSize=20;" parent="1" vertex="1">
+          <mxGeometry x="1310" y="620" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rabbit-dlq-label" value="&lt;b&gt;RabbitMQ DLX&lt;/b&gt;&lt;br&gt;x-max-retries=5" style="text;html=1;align=center;verticalAlign=top;fontSize=9;fontColor=#999999;" parent="1" vertex="1">
+          <mxGeometry x="1275" y="650" width="100" height="30" as="geometry" />
+        </mxCell>
+        <!-- PROMETHEUS ALARM (equiv CloudWatch Alarm on DLQ) -->
+        <mxCell id="prom-alarm" value="📊" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;" parent="1" vertex="1">
+          <mxGeometry x="1305" y="700" width="35" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="prom-alarm-label" value="&lt;b&gt;Prometheus Alert&lt;/b&gt;&lt;br&gt;DLQ depth &gt; 0&lt;br&gt;→ AlertManager → PagerDuty&lt;br&gt;&lt;font color=&apos;#666&apos; style=&apos;font-size:8px;&apos;&gt;equiv: CloudWatch Alarm&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=top;fontSize=8;fontColor=#E7157B;" parent="1" vertex="1">
+          <mxGeometry x="1260" y="738" width="130" height="50" as="geometry" />
+        </mxCell>
+        <!-- DLQ REPROCESSOR SERVICE (equiv Lambda DLQ Reprocessor) -->
+        <mxCell id="dlq-reproc" value="⚙️" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;" parent="1" vertex="1">
+          <mxGeometry x="1400" y="620" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dlq-reproc-label" value="&lt;b&gt;DLQ Reprocessor&lt;/b&gt;&lt;br&gt;(Pod / CronJob)&lt;br&gt;Analiza, reintenta o&lt;br&gt;marca FAILED&lt;br&gt;&lt;font color=&apos;#666&apos; style=&apos;font-size:8px;&apos;&gt;equiv: Lambda DLQ Reprocessor&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=top;fontSize=8;fontColor=#D45B07;" parent="1" vertex="1">
+          <mxGeometry x="1365" y="652" width="120" height="60" as="geometry" />
+        </mxCell>
+        <!-- ==================== COMPLETION CHECKER SERVICE (equiv Lambda Completion Checker) ==================== -->
+        <mxCell id="checker-svc" value="⚙️" style="text;html=1;align=center;verticalAlign=middle;fontSize=28;" parent="1" vertex="1">
+          <mxGeometry x="1305" y="870" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="checker-svc-label" value="&lt;b&gt;Completion Checker Service&lt;/b&gt;&lt;br&gt;(Spring Boot Pod)&lt;br&gt;count(results) == total_records?&lt;br&gt;&lt;font color=&apos;#1B5E20&apos; style=&apos;font-size:8px;&apos;&gt;✅ → Temporal Signal &apos;complete&apos;&lt;br&gt;payload: {file_id, ok, errors, minio_key}&lt;br&gt;❌ → Temporal Signal &apos;fail&apos;&lt;br&gt;error + cause en signal payload&lt;/font&gt;&lt;br&gt;&lt;font color=&apos;#B71C1C&apos; style=&apos;font-size:8px;&apos;&gt;Catch: WorkflowNotFound → log + alert&lt;/font&gt;&lt;br&gt;&lt;font color=&apos;#666&apos; style=&apos;font-size:8px;&apos;&gt;equiv: Lambda Completion Checker&lt;br&gt;+ SendTaskSuccess/Failure&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=top;fontSize=9;fontColor=#D45B07;" parent="1" vertex="1">
+          <mxGeometry x="1225" y="915" width="210" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== POSTGRESQL ==================== -->
+        <mxCell id="pg-proxy" value="🔄" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;" parent="1" vertex="1">
+          <mxGeometry x="790" y="1060" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pg-proxy-label" value="&lt;b&gt;PgBouncer&lt;/b&gt;&lt;br&gt;&lt;font style=&apos;font-size:8px;&apos;&gt;Connection pooling&lt;/font&gt;&lt;br&gt;&lt;font color=&apos;#666&apos; style=&apos;font-size:8px;&apos;&gt;equiv: RDS Proxy&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=top;fontSize=10;fontColor=#C925D1;" parent="1" vertex="1">
+          <mxGeometry x="755" y="1095" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="pg-icon" value="🐘" style="text;html=1;align=center;verticalAlign=middle;fontSize=30;" parent="1" vertex="1">
+          <mxGeometry x="788" y="1185" width="35" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="pg-label" value="&lt;b&gt;PostgreSQL (Única instancia)&lt;/b&gt;&lt;br&gt;Tablas: file_batch | file_record_result&lt;br&gt;+ Prepago DB (schemas separados)&lt;br&gt;&lt;font color=&apos;#E65100&apos; style=&apos;font-size:8px;&apos;&gt;🔒 TDE (Vault) · Patroni HA&lt;/font&gt;&lt;br&gt;&lt;font color=&apos;#666&apos; style=&apos;font-size:8px;&apos;&gt;equiv: RDS PostgreSQL Multi-AZ&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=top;fontSize=10;fontColor=#C925D1;" parent="1" vertex="1">
+          <mxGeometry x="695" y="1225" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="pg-proxy-to-pg" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#C925D1;strokeWidth=2;" parent="1" source="pg-proxy" target="pg-icon" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- ==================== RESPONSE BUILDER SERVICE (equiv Lambda Response Builder) ==================== -->
+        <mxCell id="resp-svc" value="⚙️" style="text;html=1;align=center;verticalAlign=middle;fontSize=28;" parent="1" vertex="1">
+          <mxGeometry x="790" y="670" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="resp-svc-label" value="&lt;b&gt;Response Builder Service&lt;/b&gt;&lt;br&gt;(Spring Boot Pod)&lt;br&gt;Arma archivo de respuesta&lt;br&gt;&lt;font color=&apos;#666&apos; style=&apos;font-size:8px;&apos;&gt;equiv: Lambda Response Builder&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=top;fontSize=10;fontColor=#D45B07;" parent="1" vertex="1">
+          <mxGeometry x="730" y="715" width="160" height="50" as="geometry" />
+        </mxCell>
+        <!-- MinIO OUTBOUND -->
+        <mxCell id="minio-out-icon" value="📦" style="text;html=1;align=center;verticalAlign=middle;fontSize=30;" parent="1" vertex="1">
+          <mxGeometry x="585" y="670" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="minio-out-label" value="&lt;b&gt;MinIO&lt;/b&gt;&lt;br&gt;/outbound&lt;br&gt;&lt;font color=&apos;#E65100&apos; style=&apos;font-size:8px;&apos;&gt;🔒 SSE (Vault)&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=top;fontSize=10;fontColor=#3F8624;" parent="1" vertex="1">
+          <mxGeometry x="550" y="715" width="110" height="50" as="geometry" />
+        </mxCell>
+        <!-- KAFKA NOTIFICATIONS (equiv SNS) -->
+        <mxCell id="kafka-notify" value="📡" style="text;html=1;align=center;verticalAlign=middle;fontSize=25;" parent="1" vertex="1">
+          <mxGeometry x="690" y="800" width="35" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="kafka-notify-label" value="&lt;b&gt;Kafka&lt;/b&gt;&lt;br&gt;topic: notifications&lt;br&gt;&lt;font color=&apos;#666&apos; style=&apos;font-size:8px;&apos;&gt;equiv: SNS&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=top;fontSize=10;fontColor=#E7157B;" parent="1" vertex="1">
+          <mxGeometry x="660" y="838" width="100" height="40" as="geometry" />
+        </mxCell>
+        <!-- SMTP (equiv SES) -->
+        <mxCell id="smtp-icon" value="✉️" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;" parent="1" vertex="1">
+          <mxGeometry x="595" y="805" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="smtp-label" value="&lt;b&gt;SMTP Server&lt;/b&gt;&lt;br&gt;(Postfix / Exchange)&lt;br&gt;&lt;font color=&apos;#666&apos; style=&apos;font-size:8px;&apos;&gt;equiv: SES&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=top;fontSize=9;fontColor=#DD344C;" parent="1" vertex="1">
+          <mxGeometry x="560" y="840" width="100" height="40" as="geometry" />
+        </mxCell>
+        <!-- ==================== VAULT (equiv Secrets Manager) ==================== -->
+        <mxCell id="vault-secrets" value="🔐" style="text;html=1;align=center;verticalAlign=middle;fontSize=25;" parent="1" vertex="1">
+          <mxGeometry x="1645" y="235" width="35" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="vault-secrets-label" value="&lt;b&gt;Vault Secret Engine&lt;/b&gt;&lt;br&gt;&lt;font color=&apos;#666&apos; style=&apos;font-size:8px;&apos;&gt;equiv: Secrets Manager&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=top;fontSize=10;fontColor=#DD344C;" parent="1" vertex="1">
+          <mxGeometry x="1605" y="275" width="120" height="30" as="geometry" />
+        </mxCell>
+        <!-- PROMETHEUS + GRAFANA (equiv CloudWatch) -->
+        <mxCell id="prom-icon" value="📊" style="text;html=1;align=center;verticalAlign=middle;fontSize=25;" parent="1" vertex="1">
+          <mxGeometry x="1945" y="235" width="35" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="prom-label" value="&lt;b&gt;Prometheus + Grafana&lt;/b&gt;&lt;br&gt;Métricas + Dashboards&lt;br&gt;AlertManager&lt;br&gt;&lt;font color=&apos;#666&apos; style=&apos;font-size:8px;&apos;&gt;equiv: CloudWatch&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=top;fontSize=10;fontColor=#E7157B;" parent="1" vertex="1">
+          <mxGeometry x="1895" y="275" width="140" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== OPENSHIFT (equiv ROSA) ==================== -->
+        <mxCell id="ocp-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#E53935;verticalAlign=top;fontSize=13;arcSize=4;dashed=1;dashPattern=8 4;" parent="1" vertex="1">
+          <mxGeometry x="1530" y="380" width="330" height="580" as="geometry" />
+        </mxCell>
+        <mxCell id="ocp-title" value="&lt;font color=&apos;#E53935&apos; style=&apos;font-size:14px;&apos;&gt;&lt;b&gt;OpenShift Container Platform&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&apos;#666&apos; style=&apos;font-size:9px;&apos;&gt;equiv: ROSA (Red Hat OpenShift on AWS)&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;fillColor=none;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="1545" y="385" width="300" height="35" as="geometry" />
+        </mxCell>
+        <!-- CARD PROVISIONING SERVICE -->
+        <mxCell id="card-svc" value="&lt;b&gt;Card Provisioning Service&lt;/b&gt;&lt;br&gt;(Spring Boot Pod)&lt;br&gt;&lt;br&gt;Lógica por registro:&lt;br&gt;1) Upsert Cliente&lt;br&gt;2) Validar Grupo Afinidad&lt;br&gt;3) Crear Cuenta si no existe&lt;br&gt;4) Invocar API Emisor (mTLS)&lt;br&gt;5) Persistir resultado (PG schema prepago)&lt;br&gt;6) UPSERT file_record_result (PG schema batch)&lt;br&gt;&lt;font color=&apos;#7B1FA2&apos; style=&apos;font-size:8px;&apos;&gt;⚡ Lee workflowRunId del RabbitMQ header&lt;br&gt;(sin round-trip a DB para correlationId)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCDD2;strokeColor=#E53935;fontColor=#B71C1C;fontSize=10;arcSize=6;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="1560" y="435" width="260" height="230" as="geometry" />
+        </mxCell>
+        <!-- RESILIENCE4J -->
+        <mxCell id="retry-box" value="&lt;b&gt;Resilience4j&lt;/b&gt;&lt;br&gt;&lt;font style=&apos;font-size:8px;&apos;&gt;CircuitBreaker: CLOSED→OPEN→HALF_OPEN&lt;br&gt;Retry: maxAttempts=3, backoff exponencial&lt;br&gt;Bulkhead: maxConcurrent=50&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;fontColor=#E65100;fontSize=9;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="1560" y="685" width="260" height="60" as="geometry" />
+        </mxCell>
+        <!-- HEARTBEAT SENDER -->
+        <mxCell id="heartbeat-box" value="&lt;b&gt;Heartbeat Sender&lt;/b&gt;&lt;br&gt;&lt;font style=&apos;font-size:8px;&apos;&gt;Temporal Activity Heartbeat cada 300s&lt;br&gt;Si recibe TimeoutError → stop processing&lt;br&gt;workflowRunId del RabbitMQ header&lt;/font&gt;&lt;br&gt;&lt;font color=&apos;#666&apos; style=&apos;font-size:8px;&apos;&gt;equiv: SendTaskHeartbeat&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C8E6C9;strokeColor=#388E3C;fontColor=#1B5E20;fontSize=9;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="1560" y="765" width="260" height="70" as="geometry" />
+        </mxCell>
+        <!-- EVENT PUBLISHER -->
+        <mxCell id="event-pub-box" value="&lt;b&gt;Event Publisher&lt;/b&gt;&lt;br&gt;&lt;font style=&apos;font-size:8px;&apos;&gt;Publica batch_completed a Kafka&lt;br&gt;Payload: {file_id, workflowRunId,&lt;br&gt;total_ok, total_error, minio_key}&lt;/font&gt;&lt;br&gt;&lt;font color=&apos;#666&apos; style=&apos;font-size:8px;&apos;&gt;equiv: EventBridge event publisher&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8EAF6;strokeColor=#5C6BC0;fontColor=#283593;fontSize=9;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="1560" y="855" width="260" height="70" as="geometry" />
+        </mxCell>
+        <!-- API POMELO -->
+        <mxCell id="api-pomelo" value="&lt;b&gt;API Pomelo&lt;/b&gt;&lt;br&gt;(Crear cliente + tarjeta)&lt;br&gt;&lt;font color=&quot;#E65100&quot; style=&quot;font-size: 8px;&quot;&gt;🔒 mTLS (certs from Vault PKI)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#FF6F00;fontColor=#E65100;fontSize=11;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="1960" y="510" width="170" height="90" as="geometry" />
+        </mxCell>
+        <!-- KAFKA BATCH COMPLETED (equiv EventBridge batch_completed) -->
+        <mxCell id="kafka-batch" value="📡" style="text;html=1;align=center;verticalAlign=middle;fontSize=28;" parent="1" vertex="1">
+          <mxGeometry x="1305" y="1080" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kafka-batch-label" value="&lt;b&gt;Kafka&lt;/b&gt;&lt;br&gt;topic: batch.completed&lt;br&gt;&lt;font style=&apos;font-size:8px;&apos;&gt;{file_id, workflowRunId,&lt;br&gt;total_ok, total_error}&lt;/font&gt;&lt;br&gt;&lt;font color=&apos;#666&apos; style=&apos;font-size:8px;&apos;&gt;equiv: EventBridge&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=top;fontSize=9;fontColor=#E7157B;" parent="1" vertex="1">
+          <mxGeometry x="1255" y="1123" width="140" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== EQUIVALENCE TABLE ==================== -->
+        <mxCell id="equiv-box" value="&lt;b&gt;📋 Tabla de Equivalencias AWS → On-Premises&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&apos;font-size:9px;&apos;&gt;&lt;b&gt;S3&lt;/b&gt; → MinIO (S3-compatible API)&lt;br&gt;&lt;b&gt;Step Functions&lt;/b&gt; → Temporal.io (durable workflows)&lt;br&gt;&lt;b&gt;SQS&lt;/b&gt; → RabbitMQ (AMQP)&lt;br&gt;&lt;b&gt;EventBridge&lt;/b&gt; → Apache Kafka (event streaming)&lt;br&gt;&lt;b&gt;Lambda&lt;/b&gt; → Spring Boot Pods (OpenShift)&lt;br&gt;&lt;b&gt;SNS/SES&lt;/b&gt; → Kafka topic + SMTP (Postfix/Exchange)&lt;br&gt;&lt;b&gt;DynamoDB&lt;/b&gt; → Redis (TTL cache)&lt;br&gt;&lt;b&gt;RDS + RDS Proxy&lt;/b&gt; → PostgreSQL + PgBouncer + Patroni HA&lt;br&gt;&lt;b&gt;ROSA&lt;/b&gt; → OpenShift Container Platform (OCP)&lt;br&gt;&lt;b&gt;KMS + Secrets Manager&lt;/b&gt; → HashiCorp Vault (Transit + KV + PKI)&lt;br&gt;&lt;b&gt;CloudWatch&lt;/b&gt; → Prometheus + Grafana + AlertManager&lt;br&gt;&lt;br&gt;&lt;b&gt;Callback Pattern:&lt;/b&gt;&lt;br&gt;  · SendTaskSuccess → Temporal Signal &apos;complete&apos;&lt;br&gt;  · SendTaskFailure → Temporal Signal &apos;fail&apos;&lt;br&gt;  · SendTaskHeartbeat → Temporal Activity Heartbeat&lt;br&gt;  · taskToken → workflowRunId (en RabbitMQ header)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1565C0;fontColor=#0D47A1;fontSize=10;arcSize=6;verticalAlign=top;align=left;spacingLeft=8;spacingRight=8;" parent="1" vertex="1">
+          <mxGeometry x="1560" y="1070" width="320" height="260" as="geometry" />
+        </mxCell>
+        <!-- ==================== EDGES ==================== -->
+        <!-- Entidad → SFTP -->
+        <mxCell id="e-ent-sftp" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#5C6BC0;strokeWidth=2;entryX=0;entryY=0.75;" parent="1" source="ent-box" target="sftp" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-ent-sftp-lbl" value="Sube archivo solicitudes" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;fontColor=#5C6BC0;" parent="e-ent-sftp" connectable="0" vertex="1">
+          <mxGeometry x="-0.1" relative="1" as="geometry">
+            <mxPoint x="-5" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- SFTP → GoAnywhere -->
+        <mxCell id="e-sftp-ga" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#3F51B5;strokeWidth=2;" parent="1" source="sftp" target="goanywhere" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-sftp-ga-lbl" value="Detecta archivo" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;fontColor=#3F51B5;" parent="e-sftp-ga" connectable="0" vertex="1">
+          <mxGeometry x="-0.1" relative="1" as="geometry">
+            <mxPoint x="10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- GoAnywhere → MinIO inbound -->
+        <mxCell id="e-ga-minio" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#3F8624;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="goanywhere" target="minio-in-icon" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-ga-minio-lbl" value="Deposita archivo validado" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;fontColor=#3F8624;" parent="e-ga-minio" connectable="0" vertex="1">
+          <mxGeometry x="-0.1" relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- MinIO → Kafka (bucket notification) -->
+        <mxCell id="e-minio-kafka" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#E7157B;strokeWidth=2;" parent="1" source="minio-in-icon" target="kafka-s3" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="605" y="283" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-minio-kafka-lbl" value="Bucket Notification&lt;br&gt;(MinIO → Kafka)" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;fontColor=#E7157B;" parent="e-minio-kafka" connectable="0" vertex="1">
+          <mxGeometry x="-0.3" relative="1" as="geometry">
+            <mxPoint x="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Kafka → Validator Service -->
+        <mxCell id="e-kafka-val" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#D45B07;strokeWidth=2;" parent="1" source="kafka-s3" target="validator-svc" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-kafka-val-lbl" value="Consumer" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;fontColor=#D45B07;" parent="e-kafka-val" connectable="0" vertex="1">
+          <mxGeometry x="-0.1" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Validator → Redis -->
+        <mxCell id="e-val-redis" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#C925D1;strokeWidth=1;dashed=1;" parent="1" source="validator-svc" target="redis-icon" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="770" y="285" />
+              <mxPoint x="660" y="285" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-val-redis-lbl" value="Check file_hash" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=8;fontColor=#C925D1;" parent="e-val-redis" connectable="0" vertex="1">
+          <mxGeometry x="-0.1" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Validator → Temporal -->
+        <mxCell id="e-val-temporal" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#E7157B;strokeWidth=2;" parent="1" source="validator-svc" target="temporal-box" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-val-temporal-lbl" value="Start Workflow&lt;br&gt;(minio_key, file_id,&lt;br&gt;total_records)" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;fontColor=#E7157B;" parent="e-val-temporal" connectable="0" vertex="1">
+          <mxGeometry x="-0.1" relative="1" as="geometry">
+            <mxPoint y="-20" as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Temporal → PostgreSQL -->
+        <mxCell id="e-temporal-pg" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#C925D1;strokeWidth=1;dashed=1;exitX=0;exitY=0.5;" parent="1" target="pg-proxy" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="900" y="385" />
+              <mxPoint x="900" y="1075" />
+            </Array>
+            <mxPoint x="945" y="385" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-temporal-pg-lbl" value="INSERT file_batch&lt;br&gt;(workflowRunId viaja&lt;br&gt;por RabbitMQ header)" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=8;fontColor=#C925D1;" parent="e-temporal-pg" connectable="0" vertex="1">
+          <mxGeometry x="-0.5" relative="1" as="geometry">
+            <mxPoint x="-55" y="-43" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Temporal Fan-Out → RabbitMQ -->
+        <mxCell id="e-fanout-rabbit" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7B1FA2;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="step3" target="rabbit-work" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-fanout-rabbit-lbl" value="Encola 1 msg por solicitud&lt;br&gt;&lt;font style=&apos;font-size:8px;&apos;&gt;Header: workflowRunId&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;fontColor=#7B1FA2;" parent="e-fanout-rabbit" connectable="0" vertex="1">
+          <mxGeometry x="-0.1" relative="1" as="geometry">
+            <mxPoint x="-3" y="-25" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- RabbitMQ → DLQ -->
+        <mxCell id="e-rabbit-dlq" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#999999;strokeWidth=1;dashed=1;" parent="1" source="rabbit-work" target="rabbit-dlq" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-rabbit-dlq-lbl" value="Dead Letter Exchange" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=8;fontColor=#999999;" parent="e-rabbit-dlq" connectable="0" vertex="1">
+          <mxGeometry x="-0.1" relative="1" as="geometry">
+            <mxPoint y="15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- DLQ → Prometheus Alarm -->
+        <mxCell id="e-dlq-prom" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#E7157B;strokeWidth=1;dashed=1;" parent="1" source="rabbit-dlq" target="prom-alarm" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- DLQ → Reprocessor -->
+        <mxCell id="e-dlq-reproc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#D45B07;strokeWidth=1;dashed=1;" parent="1" source="rabbit-dlq" target="dlq-reproc" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- RabbitMQ → OpenShift Card Service -->
+        <mxCell id="e-rabbit-ocp" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#E53935;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.15;" parent="1" source="rabbit-work" target="card-svc" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-rabbit-ocp-lbl" value="Consumer AMQP&lt;br&gt;&lt;font style=&apos;font-size:8px;&apos;&gt;Lee body + workflowRunId header&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;fontColor=#E53935;" parent="e-rabbit-ocp" connectable="0" vertex="1">
+          <mxGeometry x="-0.1" relative="1" as="geometry">
+            <mxPoint x="-7" y="-15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- OCP → Vault Secrets -->
+        <mxCell id="e-ocp-vault" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#DD344C;strokeWidth=1;dashed=1;" parent="1" source="card-svc" target="vault-secrets" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1590" y="425" />
+              <mxPoint x="1590" y="350" />
+              <mxPoint x="1663" y="350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-ocp-vault-lbl" value="Credenciales (Vault Agent)" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=8;fontColor=#DD344C;" parent="e-ocp-vault" connectable="0" vertex="1">
+          <mxGeometry x="0.3" relative="1" as="geometry">
+            <mxPoint y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- OCP → API Pomelo -->
+        <mxCell id="e-ocp-pomelo" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#FF6F00;strokeWidth=2;exitX=1;exitY=0.35;entryX=0;entryY=0.4;" parent="1" source="card-svc" target="api-pomelo" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-ocp-pomelo-lbl" value="Crear cliente + tarjeta&lt;br&gt;&lt;font style=&apos;font-size:8px;&apos;&gt;🔒 mTLS (Vault PKI) + Circuit Breaker&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;fontColor=#FF6F00;" parent="e-ocp-pomelo" connectable="0" vertex="1">
+          <mxGeometry x="-0.1" relative="1" as="geometry">
+            <mxPoint x="2" y="-20" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- API Pomelo → OCP -->
+        <mxCell id="e-pomelo-ocp" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#FF6F00;strokeWidth=1;dashed=1;exitX=0;exitY=0.7;entryX=1;entryY=0.55;" parent="1" source="api-pomelo" target="card-svc" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-pomelo-ocp-lbl" value="OK/ERROR + datos tarjeta" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=8;fontColor=#FF6F00;" parent="e-pomelo-ocp" connectable="0" vertex="1">
+          <mxGeometry x="-0.1" relative="1" as="geometry">
+            <mxPoint y="15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- OCP → PostgreSQL -->
+        <mxCell id="e-ocp-pg" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#C925D1;strokeWidth=2;exitX=0;exitY=0.85;" parent="1" source="card-svc" target="pg-proxy" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1480" y="631" />
+              <mxPoint x="1480" y="1075" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-ocp-pg-lbl" value="Persist prepago + batch schemas" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=8;fontColor=#C925D1;" parent="e-ocp-pg" connectable="0" vertex="1">
+          <mxGeometry x="0.3" relative="1" as="geometry">
+            <mxPoint x="-15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- OCP → Prometheus -->
+        <mxCell id="e-ocp-prom" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#E7157B;strokeWidth=1;dashed=1;" parent="1" source="card-svc" target="prom-icon" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1870" y="460" />
+              <mxPoint x="1870" y="350" />
+              <mxPoint x="1963" y="350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-ocp-prom-lbl" value="Métricas (Micrometer)" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=8;fontColor=#E7157B;" parent="e-ocp-prom" connectable="0" vertex="1">
+          <mxGeometry x="0.5" relative="1" as="geometry">
+            <mxPoint x="25" as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- OCP Event Publisher → Kafka batch.completed -->
+        <mxCell id="e-ocp-kafka" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1B5E20;strokeWidth=2;exitX=0;exitY=0.5;" parent="1" source="event-pub-box" target="kafka-batch" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1500" y="890" />
+              <mxPoint x="1500" y="1100" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-ocp-kafka-lbl" value="batch_completed&lt;br&gt;&lt;font style=&apos;font-size:8px;&apos;&gt;{file_id, workflowRunId,&lt;br&gt;total_ok, total_error}&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=8;fontColor=#1B5E20;" parent="e-ocp-kafka" connectable="0" vertex="1">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint y="-24" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Kafka → Completion Checker -->
+        <mxCell id="e-kafka-checker" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#E7157B;strokeWidth=2;" parent="1" source="kafka-batch" target="checker-svc" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- Checker → Temporal (Signal complete/fail) -->
+        <mxCell id="e-checker-temporal" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1B5E20;strokeWidth=2;exitX=0;exitY=0.5;" parent="1" source="checker-svc" target="temporal-box" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1260" y="890" />
+              <mxPoint x="1260" y="618" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-checker-temporal-lbl" value="&lt;b&gt;Temporal Signal&lt;/b&gt;&lt;br&gt;✅ &apos;complete&apos; {file_id, ok, errors, minio_key}&lt;br&gt;❌ &apos;fail&apos; {error, cause}&lt;br&gt;&lt;font style=&apos;font-size:8px;&apos;&gt;workflowRunId del Kafka event&lt;br&gt;equiv: SendTaskSuccess / SendTaskFailure&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;fontColor=#1B5E20;" parent="e-checker-temporal" connectable="0" vertex="1">
+          <mxGeometry x="0.2" relative="1" as="geometry">
+            <mxPoint x="5" y="60" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Temporal → Response Builder -->
+        <mxCell id="e-temporal-resp" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#D45B07;strokeWidth=2;exitX=0;exitY=0.5;" parent="1" source="step5" target="resp-svc" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="880" y="705" />
+              <mxPoint x="880" y="690" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-temporal-resp-lbl" value="Build Response" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;fontColor=#D45B07;" parent="e-temporal-resp" connectable="0" vertex="1">
+          <mxGeometry x="-0.1" relative="1" as="geometry">
+            <mxPoint x="-4" y="-18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Response Builder → PostgreSQL -->
+        <mxCell id="e-resp-pg" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#C925D1;strokeWidth=1;dashed=1;" parent="1" source="resp-svc" target="pg-proxy" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- Response Builder → MinIO outbound -->
+        <mxCell id="e-resp-minio" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#3F8624;strokeWidth=2;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" parent="1" source="resp-svc" target="minio-out-icon" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-resp-minio-lbl" value="response_&lt;file&gt;.csv" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;fontColor=#3F8624;" parent="e-resp-minio" connectable="0" vertex="1">
+          <mxGeometry x="-0.1" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Temporal Notify → Kafka notifications -->
+        <mxCell id="e-temporal-kafka-notify" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#E7157B;strokeWidth=2;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" parent="1" source="step6" target="kafka-notify" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="880" y="838" />
+              <mxPoint x="880" y="818" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <!-- Kafka → SMTP -->
+        <mxCell id="e-kafka-smtp" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#DD344C;strokeWidth=1;" parent="1" source="kafka-notify" target="smtp-icon" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- SMTP → Entidad -->
+        <mxCell id="e-smtp-ent" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#DD344C;strokeWidth=1;dashed=1;exitX=0;exitY=0.5;" parent="1" source="smtp-icon" target="ent-box" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="250" y="820" />
+              <mxPoint x="250" y="535" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-smtp-ent-lbl" value="Notificación email&lt;br&gt;(éxito o fallo)" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=8;fontColor=#DD344C;" parent="e-smtp-ent" connectable="0" vertex="1">
+          <mxGeometry x="0.3" relative="1" as="geometry">
+            <mxPoint x="-45" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- MinIO outbound → GoAnywhere -->
+        <mxCell id="e-minio-ga" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#3F51B5;strokeWidth=2;exitX=0;exitY=0.5;entryX=1;entryY=0.8;" parent="1" source="minio-out-icon" target="goanywhere" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="500" y="690" />
+              <mxPoint x="500" y="548" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-minio-ga-lbl" value="GoAnywhere&lt;br&gt;toma outbound" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;fontColor=#3F51B5;" parent="e-minio-ga" connectable="0" vertex="1">
+          <mxGeometry x="0.3" relative="1" as="geometry">
+            <mxPoint y="32" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- GoAnywhere → SFTP -->
+        <mxCell id="e-ga-sftp" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#3F51B5;strokeWidth=1;dashed=1;" parent="1" source="goanywhere" target="sftp" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-ga-sftp-lbl" value="Publica response" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=8;fontColor=#3F51B5;" parent="e-ga-sftp" connectable="0" vertex="1">
+          <mxGeometry x="-0.1" relative="1" as="geometry">
+            <mxPoint y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- SFTP → Entidad -->
+        <mxCell id="e-sftp-ent" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=1;dashed=1;exitX=0;exitY=0.25;" parent="1" source="sftp" target="ent-box" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-sftp-ent-lbl" value="Descarga&lt;br&gt;respuesta" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=8;fontColor=#666666;" parent="e-sftp-ent" connectable="0" vertex="1">
+          <mxGeometry x="-0.1" relative="1" as="geometry">
+            <mxPoint x="1" y="-4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Heartbeat → Temporal -->
+        <mxCell id="e-hb-temporal" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#388E3C;strokeWidth=1;dashed=1;exitX=0;exitY=0.5;" parent="1" source="heartbeat-box" target="temporal-box" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1500" y="800" />
+              <mxPoint x="1260" y="800" />
+              <mxPoint x="1260" y="625" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-hb-temporal-lbl" value="Activity Heartbeat&lt;br&gt;cada 300s&lt;br&gt;&lt;font style=&apos;font-size:7px;&apos;&gt;Catch: TimeoutError → stop&lt;br&gt;equiv: SendTaskHeartbeat&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=8;fontColor=#388E3C;" parent="e-hb-temporal" connectable="0" vertex="1">
+          <mxGeometry x="-0.3" relative="1" as="geometry">
+            <mxPoint y="-20" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,237 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.1 Chrome/142.0.7444.265 Electron/39.8.0 Safari/537.36" version="29.6.1">
+  <diagram id="onboarding-th-001" name="Onboarding Tarjetahabiente">
+    <mxGraphModel dx="661" dy="363" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lane_sistema" parent="1" style="swimlane;startSize=50;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=12;fontColor=#333333;" value="Sistema Prepago&#xa;(Creación de tarjeta — Batch/API)" vertex="1">
+          <mxGeometry height="1850" width="240" x="30" y="17" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_email" parent="1" style="swimlane;startSize=50;fillColor=#FEF3C7;strokeColor=#D97706;fontStyle=1;fontSize=12;fontColor=#92400E;" value="Canal de Notificación&#xa;(Email — Servidor SMTP)" vertex="1">
+          <mxGeometry height="1850" width="240" x="290" y="17" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_th" parent="1" style="swimlane;startSize=50;fillColor=#E0F2FE;strokeColor=#0284C7;fontStyle=1;fontSize=12;fontColor=#0284C7;" value="Tarjetahabiente&#xa;(Navegador / Email)" vertex="1">
+          <mxGeometry height="1850" width="280" x="550" y="17" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_portal" parent="1" style="swimlane;startSize=50;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=12;fontColor=#023d74;" value="Portal Pre-Registro&#xa;(Angular SPA — URL con código)" vertex="1">
+          <mxGeometry height="1850" width="280" x="850" y="17" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_backend" parent="1" style="swimlane;startSize=50;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=12;fontColor=#333333;" value="Backend Pre-Registro API&#xa;(Spring Boot — Credibanco)" vertex="1">
+          <mxGeometry height="1850" width="260" x="1150" y="17" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_b2_fail" parent="lane_backend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" value="❌ Fallo: incrementa intentos&#xa;Si intentos ≥ 3 → invalida código&#xa;TH debe contactar a la entidad" vertex="1">
+          <mxGeometry height="50" width="220" x="20" y="483" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_sso" parent="1" style="swimlane;startSize=50;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;fontColor=#1a3d1a;" value="SSO (Identity Provider)&#xa;(Realm CARDHOLDER)" vertex="1">
+          <mxGeometry height="1850" width="240" x="1430" y="17" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_title" parent="1" style="text;html=1;strokeColor=#b85450;fillColor=#f8cecc;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=10;fontColor=#555555;" value="FASE 1 — Creación de tarjeta: el sistema genera código de pre-registro y envía email al TH" vertex="1">
+          <mxGeometry height="22" width="1640" x="30" y="73" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_s1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Creación de tarjeta exitosa&#xa;(Batch archivo NXXX o API)&#xa;Tarjeta queda en estado CREADA&#xa;Se tiene email del TH (campo 37)" vertex="1">
+          <mxGeometry height="70" width="200" x="50" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_s2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;fontStyle=1;" value="Genera código pre-registro:&#xa;preregistro_code (UUID)&#xa;Asocia: code ↔ card_id ↔ email&#xa;TTL: 30 días (configurable)&#xa;Estado: PENDING&#xa;Almacena en Oracle" vertex="1">
+          <mxGeometry height="90" width="200" x="50" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_s3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Construye URL de pre-registro:&#xa;https://preregistro.credibanco&#xa;.com/registro/{preregistro_code}&#xa;Envía solicitud de email" vertex="1">
+          <mxGeometry height="70" width="200" x="50" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_e1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=10;" value="Envía email al TH:&#xa;Asunto: &quot;Active su tarjeta prepago&quot;&#xa;Cuerpo: link de pre-registro&#xa;+ instrucciones&#xa;Remitente: no-reply@credibanco.com" vertex="1">
+          <mxGeometry height="80" width="200" x="310" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_th1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;" value="TH recibe email&#xa;con link de pre-registro&#xa;en su bandeja de entrada" vertex="1">
+          <mxGeometry height="50" width="240" x="570" y="345" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f1_1" edge="1" parent="1" source="f1_s1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#666666;strokeWidth=1.5;" target="f1_s2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f1_2" edge="1" parent="1" source="f1_s2" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#666666;strokeWidth=1.5;" target="f1_s3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f1_3" edge="1" parent="1" source="f1_s3" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#D97706;strokeWidth=1.5;fontSize=9;fontColor=#D97706;" target="f1_e1" value="Solicita envío email">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f1_4" edge="1" parent="1" source="f1_e1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0284C7;strokeWidth=1.5;fontSize=9;fontColor=#0284C7;" target="f1_th1" value="Email con link">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_title" parent="1" style="text;html=1;strokeColor=#cccccc;fillColor=#f0f0f0;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=10;fontColor=#555555;" value="FASE 2 — TH accede al link de pre-registro, ingresa cédula para verificar identidad y entidad" vertex="1">
+          <mxGeometry height="22" width="1640" x="30" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_th1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;" value="TH hace clic en el link&#xa;del email&#xa;Abre navegador con la URL&#xa;de pre-registro" vertex="1">
+          <mxGeometry height="60" width="240" x="570" y="607" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_p1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="Portal Pre-Registro carga&#xa;Valida que preregistro_code&#xa;esté en la URL&#xa;Muestra formulario:&#xa;&quot;Ingrese su número de cédula&quot;" vertex="1">
+          <mxGeometry height="75" width="240" x="870" y="607" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_th2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;fontStyle=1;" value="TH ingresa su tipo de documento y número&lt;br&gt;de cédula (documento)&lt;br&gt;Presiona &quot;Verificar&quot;" vertex="1">
+          <mxGeometry height="50" width="240" x="570" y="712" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_p2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="POST /api/preregistro/verify&#xa;{ preregistro_code, doc_number }" vertex="1">
+          <mxGeometry height="45" width="240" x="870" y="712" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_b1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Valida en Oracle:&#xa;• preregistro_code existe y no expirado&#xa;• Estado = PENDING&#xa;• doc_number coincide con el TH&#xa;  asociado a la tarjeta&#xa;• Intentos fallidos &lt; 3&#xa;• Identifica entidad del TH" vertex="1">
+          <mxGeometry height="100" width="220" x="1170" y="607" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_b2_ok" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;fontStyle=1;" value="✅ Identidad verificada&#xa;Prepara envío de OTP&#xa;Genera OTP (6 dígitos, TTL 5 min)&#xa;Almacena OTP hash en Oracle" vertex="1">
+          <mxGeometry height="65" width="220" x="1170" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f2_1" edge="1" parent="1" source="f2_th1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#6c8ebf;strokeWidth=1.5;fontSize=9;fontColor=#023d74;" target="f2_p1" value="HTTPS GET /registro/{code}">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f2_2" edge="1" parent="1" source="f2_p1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0284C7;strokeWidth=1.5;dashed=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;" target="f2_th2" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="820" y="663" />
+              <mxPoint x="820" y="682" />
+              <mxPoint x="690" y="682" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_f2_3" edge="1" parent="1" source="f2_th2" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0284C7;strokeWidth=1.5;fontSize=9;fontColor=#0284C7;" target="f2_p2" value="Ingresa información&amp;nbsp;&lt;div&gt;identidad&amp;nbsp;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f2_4" edge="1" parent="1" source="f2_p2" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#666666;strokeWidth=1.5;fontSize=9;fontColor=#666666;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="f2_b1" value="TLS 1.3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f2_5" edge="1" parent="1" source="f2_b1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#82b366;strokeWidth=1.5;fontSize=9;fontColor=#059669;" target="f2_b2_ok" value="Match OK">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f2_6" edge="1" parent="1" source="f2_b1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#b85450;strokeWidth=1.5;fontSize=9;fontColor=#DC2626;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="f2_b2_fail" value="No match">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_title" parent="1" style="text;html=1;strokeColor=#cccccc;fillColor=#f0f0f0;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=10;fontColor=#555555;" value="FASE 3 — Sistema envía OTP al TH (email/SMS), TH ingresa OTP en el portal, sistema valida" vertex="1">
+          <mxGeometry height="22" width="1640" x="30" y="902" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_b1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Envía OTP al TH:&#xa;Canal: email registrado&#xa;(o SMS si hay teléfono)&#xa;OTP: 6 dígitos, TTL 5 min&#xa;Máx 3 intentos de validación" vertex="1">
+          <mxGeometry height="75" width="220" x="1170" y="942" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_e1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=10;" value="Email/SMS con OTP:&#xa;&quot;Su código de verificación es:&#xa;123456. Válido por 5 minutos.&quot;" vertex="1">
+          <mxGeometry height="55" width="200" x="310" y="947" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_th1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;" value="TH recibe OTP&#xa;en su email/SMS" vertex="1">
+          <mxGeometry height="40" width="240" x="570" y="955" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_p1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="Portal muestra campo:&#xa;&quot;Ingrese el código OTP&quot;&#xa;+ botón &quot;Validar OTP&quot;" vertex="1">
+          <mxGeometry height="50" width="240" x="870" y="953" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_th2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;fontStyle=1;" value="TH ingresa el OTP recibido&#xa;Presiona &quot;Validar OTP&quot;" vertex="1">
+          <mxGeometry height="40" width="240" x="570" y="1032" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_p2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="POST /api/preregistro/validate-otp&#xa;{ preregistro_code, otp }" vertex="1">
+          <mxGeometry height="40" width="240" x="870" y="1032" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_b2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Valida OTP:&#xa;• Hash del OTP coincide&#xa;• No expirado (TTL 5 min)&#xa;• Intentos &lt; 3&#xa;Si OK → genera session_registro&#xa;(TTL 10 min, permite asignar password)" vertex="1">
+          <mxGeometry height="85" width="220" x="1170" y="1042" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f3_0" edge="1" parent="1" source="f2_b2_ok" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#666666;strokeWidth=1.5;" target="f3_b1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f3_1" edge="1" parent="1" source="f3_b1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#D97706;strokeWidth=1.5;fontSize=9;fontColor=#D97706;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.79;entryY=-0.028;entryDx=0;entryDy=0;entryPerimeter=0;" target="f3_e1" value="Envía OTP">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1225" y="932" />
+              <mxPoint x="468" y="932" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_f3_2" edge="1" parent="1" source="f3_e1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0284C7;strokeWidth=1.5;" target="f3_th1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f3_3" edge="1" parent="1" source="f3_th2" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0284C7;strokeWidth=1.5;fontSize=9;fontColor=#0284C7;" target="f3_p2" value="Ingresa OTP">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f3_4" edge="1" parent="1" source="f3_p2" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#666666;strokeWidth=1.5;fontSize=9;fontColor=#666666;" target="f3_b2" value="TLS 1.3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f4_title" parent="1" style="text;html=1;strokeColor=#cccccc;fillColor=#f0f0f0;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=10;fontColor=#555555;" value="FASE 4 — OTP validado: TH asigna contraseña para el portal. Sistema registra usuario en SSO (Realm CARDHOLDER)" vertex="1">
+          <mxGeometry height="22" width="1640" x="30" y="1152" as="geometry" />
+        </mxCell>
+        <mxCell id="f4_p1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="Portal muestra formulario:&lt;br&gt;&quot;Cree su contraseña&quot;&lt;br&gt;• Campo: Nueva contraseña&lt;br&gt;• Campo: Confirmar contraseña&lt;br&gt;Validaciones: min 12 chars,&lt;br&gt;mayúscula, minusculas, número, especial" vertex="1">
+          <mxGeometry height="85" width="240" x="870" y="1192" as="geometry" />
+        </mxCell>
+        <mxCell id="f4_th1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;fontStyle=1;" value="TH ingresa y confirma&#xa;su nueva contraseña&#xa;Presiona &quot;Crear cuenta&quot;" vertex="1">
+          <mxGeometry height="50" width="240" x="570" y="1207" as="geometry" />
+        </mxCell>
+        <mxCell id="f4_p2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="POST /api/preregistro/create-account&#xa;{ preregistro_code, session_registro,&#xa;  password (cifrada en tránsito) }" vertex="1">
+          <mxGeometry height="55" width="240" x="870" y="1316" as="geometry" />
+        </mxCell>
+        <mxCell id="f4_b1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Valida session_registro (activa)&#xa;Valida política de contraseña&#xa;Prepara creación de usuario&#xa;en SSO Realm CARDHOLDER" vertex="1">
+          <mxGeometry height="65" width="220" x="1170" y="1192" as="geometry" />
+        </mxCell>
+        <mxCell id="f4_sso1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;fontStyle=1;" value="Crea usuario en Realm CARDHOLDER:&#xa;• username = doc_number&#xa;• password = hash(password)&#xa;• attributes: card_id, entity_id,&#xa;  email, phone&#xa;• role: CARDHOLDER&#xa;• enabled: true" vertex="1">
+          <mxGeometry height="100" width="200" x="1450" y="1192" as="geometry" />
+        </mxCell>
+        <mxCell id="f4_b2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;fontStyle=1;" value="✅ Usuario creado exitosamente&#xa;Actualiza preregistro:&#xa;status = COMPLETED&#xa;Actualiza tarjeta si aplica&#xa;Audit log: timestamp, IP" vertex="1">
+          <mxGeometry height="75" width="220" x="1170" y="1322" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f4_0" edge="1" parent="1" source="f3_b2" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#6c8ebf;strokeWidth=1.5;dashed=1;fontSize=9;fontColor=#023d74;exitX=0;exitY=0.75;exitDx=0;exitDy=0;" target="f4_p1" value="OTP OK → muestra form password">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f4_1" edge="1" parent="1" source="f4_th1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0284C7;strokeWidth=1.5;fontSize=9;fontColor=#0284C7;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="f4_p2" value="Asigna contraseña">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="690" y="1290" />
+              <mxPoint x="990" y="1290" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_f4_2" edge="1" parent="1" source="f4_p2" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#666666;strokeWidth=1.5;fontSize=9;fontColor=#666666;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="f4_b1" value="TLS 1.3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f4_3" edge="1" parent="1" source="f4_b1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#82b366;strokeWidth=2;fontSize=9;fontColor=#1a3d1a;" target="f4_sso1" value="POST /admin/realms/&#xa;cardholder/users">
+          <mxGeometry relative="1" x="0.2255" y="-18" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_f4_4" edge="1" parent="1" source="f4_sso1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#82b366;strokeWidth=1.5;dashed=1;fontSize=9;fontColor=#1a3d1a;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="f4_b2" value="201 Created">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f5_title" parent="1" style="text;html=1;strokeColor=#cccccc;fillColor=#f0f0f0;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=10;fontColor=#555555;" value="FASE 5 — Cuenta creada: TH puede acceder al Portal con número de identificación + contraseña asignada" vertex="1">
+          <mxGeometry height="22" width="1640" x="30" y="1432" as="geometry" />
+        </mxCell>
+        <mxCell id="f5_p1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;fontStyle=1;" value="Portal muestra confirmación:&#xa;&quot;✅ Cuenta creada exitosamente&quot;&#xa;&quot;Ya puede acceder al portal con&#xa;su número de cédula y contraseña&quot;&#xa;Botón: &quot;Ir al Portal&quot;" vertex="1">
+          <mxGeometry height="75" width="240" x="870" y="1472" as="geometry" />
+        </mxCell>
+        <mxCell id="f5_th1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;fontStyle=1;" value="🎉 TH presiona &quot;Ir al Portal&quot;&#xa;Redirige a portal.entidad.com&#xa;Login: número de cédula&#xa;Password: contraseña asignada" vertex="1">
+          <mxGeometry height="65" width="240" x="570" y="1477" as="geometry" />
+        </mxCell>
+        <mxCell id="f5_sso1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="SSO autentica:&#xa;Realm CARDHOLDER&#xa;username = doc_number&#xa;password = contraseña&#xa;Emite JWT token&#xa;TH accede al Portal TH" vertex="1">
+          <mxGeometry height="80" width="200" x="1450" y="1472" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f5_1" edge="1" parent="1" source="f4_b2" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#82b366;strokeWidth=1.5;dashed=1;" target="f5_p1" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1280" y="1410" />
+              <mxPoint x="990" y="1410" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_f5_2" edge="1" parent="1" source="f5_p1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0284C7;strokeWidth=1.5;dashed=1;" target="f5_th1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f5_3" edge="1" parent="1" source="f5_th1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#82b366;strokeWidth=2;fontSize=9;fontColor=#1a3d1a;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="f5_sso1" value="Login: cédula + password&#xa;→ JWT token">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="690" y="1570" />
+              <mxPoint x="1230" y="1570" />
+              <mxPoint x="1230" y="1512" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nota-seguridad" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;fontColor=#b85450;fontStyle=1;" value="SEGURIDAD:&#xa;&#xa;• Código pre-registro: UUID, TTL 30 días, 1 solo uso&#xa;• Verificación identidad: doc_number debe coincidir&#xa;  con el TH asociado a la tarjeta (max 3 intentos)&#xa;• OTP: 6 dígitos, TTL 5 min, hash almacenado,&#xa;  max 3 intentos de validación&#xa;• Session registro: TTL 10 min post-OTP&#xa;• Contraseña: min 8 chars, mayúscula, número, especial&#xa;• Password viaja cifrada (TLS 1.3), se almacena&#xa;  como hash en SSO (bcrypt/argon2)&#xa;• Rate limiting en todos los endpoints&#xa;• CAPTCHA en formulario de cédula (anti-bot)" vertex="1">
+          <mxGeometry height="200" width="250" x="30" y="1602" as="geometry" />
+        </mxCell>
+        <mxCell id="nota-flujo" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#EFF6FF;strokeColor=#3B82F6;fontSize=9;fontColor=#1E40AF;" value="FLUJO COMPLETO:&#xa;&#xa;1. Creación tarjeta → genera código pre-registro&#xa;2. Email con link al TH&#xa;3. TH abre link → ingresa cédula → verifica identidad&#xa;4. Sistema envía OTP al email/SMS del TH&#xa;5. TH ingresa OTP → sistema valida&#xa;6. TH asigna contraseña&#xa;7. Sistema crea usuario en SSO (Realm CARDHOLDER)&#xa;8. TH accede al portal con cédula + contraseña&#xa;&#xa;Después del onboarding, el TH puede:&#xa;• Activar tarjeta + asignar PIN (iframe)&#xa;• Consultar saldo, historial, bloquear/desbloquear" vertex="1">
+          <mxGeometry height="200" width="250" x="310" y="1602" as="geometry" />
+        </mxCell>
+        <mxCell id="nota-errores" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#FFFBEB;strokeColor=#D97706;fontSize=9;fontColor=#92400E;" value="ERRORES:&#xa;&#xa;• Código expirado (30 días) → &quot;Link expirado,&#xa;  contacte a su entidad&quot;&#xa;• Código ya usado → &quot;Ya tiene cuenta creada&quot;&#xa;• Cédula no coincide (3x) → invalida código&#xa;• OTP incorrecto (3x) → invalida sesión,&#xa;  debe reiniciar desde verificación de cédula&#xa;• OTP expirado (5 min) → &quot;Código expirado,&#xa;  solicite uno nuevo&quot;&#xa;• Session registro expirada → reiniciar desde OTP&#xa;• SSO error → retry interno, notifica si falla" vertex="1">
+          <mxGeometry height="200" width="260" x="580" y="1602" as="geometry" />
+        </mxCell>
+        <mxCell id="nota-innominada" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#E6E6FA;strokeColor=#9370DB;fontSize=9;fontColor=#4B0082;" value="TARJETAS INNOMINADAS:&#xa;&#xa;Este flujo aplica para tarjetas NOMINADAS&#xa;(donde se conoce el email del TH al crear).&#xa;&#xa;Para INNOMINADAS:&#xa;• No se envía email de pre-registro&#xa;• El TH se activa por micro-portal público&#xa;  (Proof of Possession: last4+exp+CVV2)&#xa;• El onboarding en SSO se hace DESPUÉS&#xa;  de la activación, si el TH quiere&#xa;  acceder al portal (flujo opcional)" vertex="1">
+          <mxGeometry height="180" width="250" x="870" y="1602" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

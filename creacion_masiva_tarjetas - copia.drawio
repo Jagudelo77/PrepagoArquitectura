@@ -1,0 +1,33 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/27.0.9 Chrome/134.0.6998.205 Electron/35.4.0 Safari/537.36" version="27.0.9">
+  <diagram id="LamLdo6QG2lLe64XtMqh" name="Creación Masiva de Tarjetas ">
+    <mxGraphModel dx="1572" dy="1124" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- ==================== TÍTULO ==================== -->
+        <mxCell id="44cz_wSERUpTtJDoTt25-1" value="&lt;b style=&quot;font-size:20px;&quot;&gt;Creación Masiva de Tarjetas (v2 — Corregido)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:13px;color:#666;&quot;&gt;SFTP / GoAnywhere → S3 → Lambda Validator → Step Functions (Map Distributed) → SQS → ROSA → EventBridge Callback → Respuesta por SFTP&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=14;fontColor=#232F3E;" parent="1" vertex="1">
+          <mxGeometry x="370" y="50" width="1500" height="65" as="geometry" />
+        </mxCell>
+        <!-- ==================== ENTIDAD (On-Prem) ==================== -->
+        <mxCell id="44cz_wSERUpTtJDoTt25-2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;verticalAlign=top;fontSize=13;arcSize=8;dashed=1;dashPattern=5 5;" parent="1" vertex="1">
+          <mxGeometry x="40" y="345" width="160" height="165" as="geometry" />
+        </mxCell>
+        <mxCell id="44cz_wSERUpTtJDoTt25-3" value="" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.users;labelBackgroundColor=none;sketch=0;fillColor=#D45B07;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="92" y="369" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="44cz_wSERUpTtJDoTt25-4" value="&lt;b&gt;Entidad&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=top;fontSize=11;fontColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="67" y="434" width="110" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="44cz_wSERUpTtJDoTt25-5" value="📧 Recibe notificación&lt;br&gt;vía email (SES)" style="text;html=1;align=center;verticalAlign=top;fontSize=9;fontColor=#999999;fontStyle=2;" parent="1" vertex="1">
+          <mxGeometry x="62" y="460" width="120" height="40" as="geometry" />
+        </mxCell>
+        <!-- ==================== ON-PREM / DMZ ==================== -->
+        <mxCell id="44cz_wSERUpTtJDoTt25-6" value="&lt;b&gt;On-Prem / DMZ&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8EAF6;strokeColor=#5C6BC0;fontColor=#283593;verticalAlign=top;fontSize=13;arcSize=6;" parent="1" vertex="1">
+          <mxGeometry x="260" y="295" width="200" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="44cz_wSERUpTtJDoTt25-7" value="&lt;b&gt;SFTP Server&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C5CAE9;strokeColor=#3F51B5;fontColor=#1A237E;fontSize=11;arcSize=10;" parent="1" vertex="1">
+          <mxGeometry x="290" y="355" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="44cz_wSERUpTtJDoTt25-8" value="&lt;b&gt;GoAnywhere MFT&lt;/b&gt;&lt;br&gt;Valida estructura/formato" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C5CAE9;strokeColor=#3F51B5;fontColor=#1A237E;fontSize=11;arcSize=10;" parent="1" vertex="1">
+          <mxGeometry x="290" y="475" width="140" height="60" as="geometry" />
+        </mxCell>

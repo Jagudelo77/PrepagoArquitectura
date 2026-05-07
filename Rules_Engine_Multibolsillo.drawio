@@ -1,0 +1,317 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.1 Chrome/142.0.7444.265 Electron/39.8.0 Safari/537.36" version="29.6.1">
+  <diagram id="rules-engine-arch" name="Arquitectura Rules Engine Multibolsillo">
+    <mxGraphModel dx="983" dy="703" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1600" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="t1" parent="1" style="text;html=1;fontSize=22;fontStyle=1;align=center;" value="Arquitectura Rules Engine — Multibolsillo con Reglas Compuestas" vertex="1">
+          <mxGeometry height="35" width="700" x="300" y="15" as="geometry" />
+        </mxCell>
+        <mxCell id="t2" parent="1" style="text;html=1;fontSize=11;fontStyle=2;align=center;fontColor=#666666;" value="Estrategia 4: Motor de reglas configurable por empresa — MCC + Monto + Horario + Comercio + GeoFence" vertex="1">
+          <mxGeometry height="20" width="700" x="300" y="48" as="geometry" />
+        </mxCell>
+        <mxCell id="auth_in" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;align=left;spacingLeft=10;" value="📥 Auth Request (ISO 8583 0100)&#xa;&#xa;• PAN: 4000-XXXX-XXXX-1234&#xa;• MCC: 5812&#xa;• Monto: $30.000&#xa;• Comercio: RESTAURANTE EL BUEN SABOR&#xa;• Hora: 12:35 (Martes)&#xa;• País/Depto: CO / ANT&#xa;• Adquirente ID: 12345" vertex="1">
+          <mxGeometry height="160" width="260" x="30" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="config_lookup" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;fontStyle=1;align=left;spacingLeft=10;" value="🏢 Company Config Lookup&#xa;&#xa;PAN → userId → companyId&#xa;companyId → ruleset config" vertex="1">
+          <mxGeometry height="70" width="200" x="355" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="e_auth_config" edge="1" parent="1" source="auth_in" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;" target="config_lookup">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="config_db" parent="1" style="shape=cylinder3;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;size=8;" value="🗄️ Company&#xa;Rules DB" vertex="1">
+          <mxGeometry height="55" width="90" x="660" y="117.5" as="geometry" />
+        </mxCell>
+        <mxCell id="e_lookup_db" edge="1" parent="1" source="config_lookup" style="edgeStyle=orthogonalEdgeStyle;" target="config_db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pocket_db" parent="1" style="shape=cylinder3;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;size=8;" value="🗄️ Pocket DB&#xa;(saldos usuario)" vertex="1">
+          <mxGeometry height="55" width="90" x="552" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="re_box" parent="1" style="rounded=1;fillColor=#FFF8E1;strokeColor=#d6b656;strokeWidth=3;" value="" vertex="1">
+          <mxGeometry height="380" width="850" x="30" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="re_title" parent="1" style="text;html=1;fontSize=16;fontStyle=1;align=center;" value="⚙️ RULES ENGINE (Motor de Reglas Compuestas)" vertex="1">
+          <mxGeometry height="25" width="500" x="180" y="308" as="geometry" />
+        </mxCell>
+        <mxCell id="re_sub" parent="1" style="text;html=1;fontSize=9;fontStyle=2;align=center;fontColor=#666666;" value="Cada validador es independiente. Se evalúan en cadena. Todos deben pasar para que el bolsillo aplique." vertex="1">
+          <mxGeometry height="16" width="600" x="130" y="332" as="geometry" />
+        </mxCell>
+        <mxCell id="e_config_re" edge="1" parent="1" source="config_lookup" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#CC0000;" target="re_box">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="440" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="v1_box" parent="1" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="130" width="160" x="50" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="v1_icon" parent="1" style="text;fontSize=24;align=center;" value="🏷️" vertex="1">
+          <mxGeometry height="30" width="40" x="105" y="365" as="geometry" />
+        </mxCell>
+        <mxCell id="v1_title" parent="1" style="text;html=1;fontSize=11;fontStyle=1;align=center;" value="MCC Matcher" vertex="1">
+          <mxGeometry height="18" width="130" x="65" y="395" as="geometry" />
+        </mxCell>
+        <mxCell id="v1_desc" parent="1" style="text;html=1;fontSize=9;align=center;fontColor=#333333;" value="¿El MCC de la txn&#xa;está en la lista&#xa;del bolsillo?&#xa;&#xa;Ej: 5812 ∈ [5411,&#xa;5412,5812,5813]" vertex="1">
+          <mxGeometry height="70" width="140" x="60" y="415" as="geometry" />
+        </mxCell>
+        <mxCell id="v2_box" parent="1" style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="130" width="160" x="230" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="v2_icon" parent="1" style="text;fontSize=24;align=center;" value="💰" vertex="1">
+          <mxGeometry height="30" width="40" x="285" y="365" as="geometry" />
+        </mxCell>
+        <mxCell id="v2_title" parent="1" style="text;html=1;fontSize=11;fontStyle=1;align=center;" value="Amount Validator" vertex="1">
+          <mxGeometry height="18" width="140" x="240" y="395" as="geometry" />
+        </mxCell>
+        <mxCell id="v2_desc" parent="1" style="text;html=1;fontSize=9;align=center;fontColor=#333333;" value="¿Monto dentro de&#xa;límites?&#xa;&#xa;• maxPerTxn: $80K&#xa;• maxDaily: $150K&#xa;• maxMonthly: $2M" vertex="1">
+          <mxGeometry height="70" width="140" x="240" y="415" as="geometry" />
+        </mxCell>
+        <mxCell id="v3_box" parent="1" style="rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="130" width="160" x="410" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="v3_icon" parent="1" style="text;fontSize=24;align=center;" value="🕐" vertex="1">
+          <mxGeometry height="30" width="40" x="465" y="365" as="geometry" />
+        </mxCell>
+        <mxCell id="v3_title" parent="1" style="text;html=1;fontSize=11;fontStyle=1;align=center;" value="Schedule Validator" vertex="1">
+          <mxGeometry height="18" width="140" x="420" y="395" as="geometry" />
+        </mxCell>
+        <mxCell id="v3_desc" parent="1" style="text;html=1;fontSize=9;align=center;fontColor=#333333;" value="¿Hora y día dentro&#xa;del horario?&#xa;&#xa;• days: L-V&#xa;• hours: 06:00-22:00&#xa;• holidays: blocked" vertex="1">
+          <mxGeometry height="70" width="140" x="420" y="415" as="geometry" />
+        </mxCell>
+        <mxCell id="v4_box" parent="1" style="rounded=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="130" width="160" x="590" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="v4_icon" parent="1" style="text;fontSize=24;align=center;" value="🏪" vertex="1">
+          <mxGeometry height="30" width="40" x="645" y="365" as="geometry" />
+        </mxCell>
+        <mxCell id="v4_title" parent="1" style="text;html=1;fontSize=11;fontStyle=1;align=center;" value="Merchant Filter" vertex="1">
+          <mxGeometry height="18" width="140" x="600" y="395" as="geometry" />
+        </mxCell>
+        <mxCell id="v4_desc" parent="1" style="text;html=1;fontSize=9;align=center;fontColor=#333333;" value="¿Comercio permitido?&#xa;&#xa;• nameContains: OK&#xa;• blockedNames:&#xa;  LICORERIA*, BAR*,&#xa;  CASINO*, APUESTAS*" vertex="1">
+          <mxGeometry height="70" width="140" x="600" y="415" as="geometry" />
+        </mxCell>
+        <mxCell id="ev12" edge="1" parent="1" source="v1_box" style="edgeStyle=orthogonalEdgeStyle;fontSize=12;strokeWidth=2;strokeColor=#82b366;" target="v2_box" value="✅">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ev23" edge="1" parent="1" source="v2_box" style="edgeStyle=orthogonalEdgeStyle;fontSize=12;strokeWidth=2;strokeColor=#82b366;" target="v3_box" value="✅">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ev34" edge="1" parent="1" source="v3_box" style="edgeStyle=orthogonalEdgeStyle;fontSize=12;strokeWidth=2;strokeColor=#82b366;" target="v4_box" value="✅">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v5_box" parent="1" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="130" width="160" x="140" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="v5_icon" parent="1" style="text;fontSize=24;align=center;" value="📍" vertex="1">
+          <mxGeometry height="30" width="40" x="195" y="525" as="geometry" />
+        </mxCell>
+        <mxCell id="v5_title" parent="1" style="text;html=1;fontSize=11;fontStyle=1;align=center;" value="GeoFence Validator" vertex="1">
+          <mxGeometry height="18" width="140" x="150" y="555" as="geometry" />
+        </mxCell>
+        <mxCell id="v5_desc" parent="1" style="text;html=1;fontSize=9;align=center;fontColor=#333333;" value="¿Ubicación del&#xa;comercio permitida?&#xa;&#xa;• country: CO&#xa;• departments:&#xa;  [ANT, BOG, VAL]" vertex="1">
+          <mxGeometry height="70" width="140" x="150" y="575" as="geometry" />
+        </mxCell>
+        <mxCell id="v6_box" parent="1" style="rounded=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="130" width="160" x="320" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="v6_icon" parent="1" style="text;fontSize=24;align=center;" value="🚫" vertex="1">
+          <mxGeometry height="30" width="40" x="375" y="525" as="geometry" />
+        </mxCell>
+        <mxCell id="v6_title" parent="1" style="text;html=1;fontSize=11;fontStyle=1;align=center;" value="Blocked MCC Filter" vertex="1">
+          <mxGeometry height="18" width="140" x="330" y="555" as="geometry" />
+        </mxCell>
+        <mxCell id="v6_desc" parent="1" style="text;html=1;fontSize=9;align=center;fontColor=#333333;" value="¿MCC explícitamente&#xa;bloqueado?&#xa;&#xa;• 5813 (bares)&#xa;• 5921 (licores)&#xa;• 7995 (apuestas)" vertex="1">
+          <mxGeometry height="70" width="140" x="330" y="575" as="geometry" />
+        </mxCell>
+        <mxCell id="v7_box" parent="1" style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="130" width="160" x="500" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="v7_icon" parent="1" style="text;fontSize=24;align=center;" value="🎯" vertex="1">
+          <mxGeometry height="30" width="40" x="555" y="525" as="geometry" />
+        </mxCell>
+        <mxCell id="v7_title" parent="1" style="text;html=1;fontSize=11;fontStyle=1;align=center;" value="Priority Resolver" vertex="1">
+          <mxGeometry height="18" width="140" x="510" y="555" as="geometry" />
+        </mxCell>
+        <mxCell id="v7_desc" parent="1" style="text;html=1;fontSize=9;align=center;fontColor=#333333;" value="Si múltiples bolsillos&#xa;aplican, ¿cuál tiene&#xa;prioridad?&#xa;&#xa;P1: Específico&#xa;P2: Fallback (Libre)" vertex="1">
+          <mxGeometry height="70" width="140" x="510" y="575" as="geometry" />
+        </mxCell>
+        <mxCell id="ev45" edge="1" parent="1" source="v4_box" style="edgeStyle=orthogonalEdgeStyle;fontSize=12;strokeWidth=2;strokeColor=#82b366;" target="v5_box" value="✅">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="760" y="425" />
+              <mxPoint x="760" y="500" />
+              <mxPoint x="220" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ev56" edge="1" parent="1" source="v5_box" style="edgeStyle=orthogonalEdgeStyle;fontSize=12;strokeWidth=2;strokeColor=#82b366;" target="v6_box" value="✅">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ev67" edge="1" parent="1" source="v6_box" style="edgeStyle=orthogonalEdgeStyle;fontSize=12;strokeWidth=2;strokeColor=#82b366;" target="v7_box" value="✅">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fail_note" parent="1" style="shape=note;size=15;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;fontStyle=2;align=left;" value="❌ Si CUALQUIER validador falla →&#xa;Se intenta el siguiente bolsillo en prioridad.&#xa;Si ninguno aplica → Fallback a Libre → Si no alcanza → RC 51" vertex="1">
+          <mxGeometry height="55" width="270" x="690" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="pocket_sel" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;fontStyle=1;align=left;spacingLeft=10;" value="🎯 Pocket Selector&#xa;&#xa;Bolsillo ganador:&#xa;🍔 Alimentación ($200K)&#xa;&#xa;¿Tiene saldo ≥ $30K?  ✅" vertex="1">
+          <mxGeometry height="100" width="200" x="200" y="710" as="geometry" />
+        </mxCell>
+        <mxCell id="e_re_sel" edge="1" parent="1" source="v7_desc" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#82b366;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="pocket_sel">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="580" y="670" />
+              <mxPoint x="300" y="670" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="balance_mgr" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;align=left;spacingLeft=10;" value="💰 Balance Manager&#xa;&#xa;Debita $30K de Alimentación&#xa;Antes: $200K → Después: $170K&#xa;Registra movimiento en TX Log" vertex="1">
+          <mxGeometry height="100" width="220" x="460" y="710" as="geometry" />
+        </mxCell>
+        <mxCell id="e_sel_bal" edge="1" parent="1" source="pocket_sel" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;" target="balance_mgr">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="response_out" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;align=left;spacingLeft=10;" value="📤 Auth Response&#xa;&#xa;RC 00 — Aprobada ✅&#xa;Bolsillo: Alimentación&#xa;Saldo restante: $170K" vertex="1">
+          <mxGeometry height="100" width="200" x="740" y="710" as="geometry" />
+        </mxCell>
+        <mxCell id="e_bal_resp" edge="1" parent="1" source="balance_mgr" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#82b366;" target="response_out">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="seg_box" parent="1" style="rounded=1;fillColor=#f5f5f5;strokeColor=#999999;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="250" width="910" x="30" y="850" as="geometry" />
+        </mxCell>
+        <mxCell id="seg_title" parent="1" style="text;html=1;fontSize=14;fontStyle=1;" value="Segmentos de Mercado — Misma plataforma, diferentes configuraciones" vertex="1">
+          <mxGeometry height="22" width="550" x="40" y="858" as="geometry" />
+        </mxCell>
+        <mxCell id="seg1" parent="1" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="190" width="200" x="45" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="seg1_t" parent="1" style="text;html=1;fontSize=11;fontStyle=1;align=center;" value="🏢 Corporativo (Nómina)" vertex="1">
+          <mxGeometry height="20" width="190" x="50" y="895" as="geometry" />
+        </mxCell>
+        <mxCell id="seg1_d" parent="1" style="text;html=1;fontSize=9;align=left;verticalAlign=top;" value="Bolsillos:&#xa;🍔 Alimentación (subsidio)&#xa;🚌 Transporte (viáticos)&#xa;💳 Libre (salario)&#xa;&#xa;Reglas:&#xa;• MCC por categoría&#xa;• Tope diario alimentación&#xa;• Solo días laborales&#xa;• Bloqueo licor/apuestas&#xa;&#xa;Funding: Nómina mensual" vertex="1">
+          <mxGeometry height="152" width="180" x="55" y="918" as="geometry" />
+        </mxCell>
+        <mxCell id="seg2" parent="1" style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="190" width="200" x="260" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="seg2_t" parent="1" style="text;html=1;fontSize=11;fontStyle=1;align=center;" value="🚗 Fuerza de Ventas" vertex="1">
+          <mxGeometry height="20" width="190" x="265" y="895" as="geometry" />
+        </mxCell>
+        <mxCell id="seg2_d" parent="1" style="text;html=1;fontSize=9;align=left;verticalAlign=top;" value="Bolsillos:&#xa;⛽ Combustible&#xa;🛣️ Peajes&#xa;🏨 Hospedaje&#xa;🍔 Alimentación&#xa;&#xa;Reglas:&#xa;• GeoFence por zona&#xa;• Tope mensual combustible&#xa;• Hospedaje solo L-V&#xa;• MCC específicos&#xa;&#xa;Funding: Anticipo viáticos" vertex="1">
+          <mxGeometry height="162" width="180" x="270" y="918" as="geometry" />
+        </mxCell>
+        <mxCell id="seg3" parent="1" style="rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="190" width="200" x="475" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="seg3_t" parent="1" style="text;html=1;fontSize=11;fontStyle=1;align=center;" value="🎓 Becas Universitarias" vertex="1">
+          <mxGeometry height="20" width="190" x="480" y="895" as="geometry" />
+        </mxCell>
+        <mxCell id="seg3_d" parent="1" style="text;html=1;fontSize=9;align=left;verticalAlign=top;" value="Bolsillos:&#xa;🍔 Alimentación campus&#xa;🚌 Transporte&#xa;📚 Materiales&#xa;&#xa;Reglas:&#xa;• Merchant name campus&#xa;• Tope diario bajo&#xa;• Solo horario académico&#xa;• MCC papelerías/libros&#xa;&#xa;Funding: Beca semestral" vertex="1">
+          <mxGeometry height="142" width="180" x="485" y="918" as="geometry" />
+        </mxCell>
+        <mxCell id="seg4" parent="1" style="rounded=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="190" width="230" x="690" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="seg4_t" parent="1" style="text;html=1;fontSize=11;fontStyle=1;align=center;" value="🏛️ Subsidios Gobierno" vertex="1">
+          <mxGeometry height="20" width="210" x="700" y="895" as="geometry" />
+        </mxCell>
+        <mxCell id="seg4_d" parent="1" style="text;html=1;fontSize=9;align=left;verticalAlign=top;" value="Bolsillos:&#xa;🛒 Canasta básica&#xa;💊 Salud&#xa;📖 Educación&#xa;&#xa;Reglas:&#xa;• Bloqueo estricto licor,&#xa;  apuestas, entretenimiento&#xa;• Solo MCC permitidos&#xa;• Tope por transacción&#xa;• Auditoría completa&#xa;&#xa;Funding: Subsidio gobierno" vertex="1">
+          <mxGeometry height="152" width="210" x="700" y="918" as="geometry" />
+        </mxCell>
+        <mxCell id="json_box" parent="1" style="rounded=1;fillColor=#f5f5f5;strokeColor=#999999;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="590" width="420" x="960" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="json_title" parent="1" style="text;html=1;fontSize=12;fontStyle=1;" value="Ejemplo: Configuración por empresa (Rules DB)" vertex="1">
+          <mxGeometry height="20" width="400" x="994" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="json_code" parent="1" style="text;html=1;fontSize=9;fontFamily=Courier New;align=left;verticalAlign=top;fillColor=#EEEEEE;rounded=1;strokeColor=#999999;spacingLeft=8;spacingTop=5;" value="{&#xa;  &quot;companyId&quot;: &quot;empresa-abc&quot;,&#xa;  &quot;pockets&quot;: [&#xa;    {&#xa;      &quot;name&quot;: &quot;Alimentación&quot;,&#xa;      &quot;fundingSource&quot;: &quot;subsidio&quot;,&#xa;      &quot;priority&quot;: 1,&#xa;      &quot;rules&quot;: {&#xa;        &quot;mccCodes&quot;: [&quot;5411&quot;,&quot;5812&quot;,&quot;5813&quot;],&#xa;        &quot;maxPerTransaction&quot;: 80000,&#xa;        &quot;maxDaily&quot;: 150000,&#xa;        &quot;schedule&quot;: {&#xa;          &quot;days&quot;: [&quot;MON&quot;,&quot;TUE&quot;,&quot;WED&quot;,&#xa;                   &quot;THU&quot;,&quot;FRI&quot;],&#xa;          &quot;hours&quot;: &quot;06:00-22:00&quot;&#xa;        },&#xa;        &quot;blockedMerchants&quot;: [&#xa;          &quot;LICORERIA*&quot;,&quot;BAR*&quot;,&quot;CASINO*&quot;&#xa;        ],&#xa;        &quot;blockedMccCodes&quot;: [&#xa;          &quot;5813&quot;,&quot;5921&quot;,&quot;7995&quot;&#xa;        ]&#xa;      },&#xa;      &quot;fallbackPocket&quot;: &quot;Libre&quot;&#xa;    },&#xa;    {&#xa;      &quot;name&quot;: &quot;Transporte&quot;,&#xa;      &quot;fundingSource&quot;: &quot;viaticos&quot;,&#xa;      &quot;priority&quot;: 1,&#xa;      &quot;rules&quot;: {&#xa;        &quot;mccCodes&quot;: [&quot;4111&quot;,&quot;4121&quot;,&quot;5541&quot;],&#xa;        &quot;maxMonthly&quot;: 2000000,&#xa;        &quot;geoFence&quot;: {&#xa;          &quot;country&quot;: &quot;CO&quot;,&#xa;          &quot;departments&quot;: [&quot;ANT&quot;,&quot;BOG&quot;]&#xa;        }&#xa;      },&#xa;      &quot;fallbackPocket&quot;: &quot;Libre&quot;&#xa;    },&#xa;    {&#xa;      &quot;name&quot;: &quot;Libre&quot;,&#xa;      &quot;fundingSource&quot;: &quot;nomina&quot;,&#xa;      &quot;priority&quot;: 99,&#xa;      &quot;rules&quot;: {&#xa;        &quot;mccCodes&quot;: [&quot;*&quot;]&#xa;      },&#xa;      &quot;fallbackPocket&quot;: null&#xa;    }&#xa;  ]&#xa;}" vertex="1">
+          <mxGeometry height="554" width="400" x="970" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="biz_box" parent="1" style="rounded=1;fillColor=#f5f5f5;strokeColor=#999999;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="210" width="420" x="960" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="biz_title" parent="1" style="text;html=1;fontSize=13;fontStyle=1;" value="💼 Modelo de Negocio" vertex="1">
+          <mxGeometry height="22" width="200" x="970" y="675" as="geometry" />
+        </mxCell>
+        <mxCell id="biz1" parent="1" style="text;html=1;fontSize=10;align=left;" value="💳 Fee por tarjeta emitida" vertex="1">
+          <mxGeometry height="16" width="250" x="975" y="702" as="geometry" />
+        </mxCell>
+        <mxCell id="biz2" parent="1" style="text;html=1;fontSize=10;align=left;" value="📅 Fee mensual por gestión de bolsillos" vertex="1">
+          <mxGeometry height="16" width="300" x="975" y="722" as="geometry" />
+        </mxCell>
+        <mxCell id="biz3" parent="1" style="text;html=1;fontSize=10;align=left;" value="⚙️ Setup fee por configuración de reglas custom" vertex="1">
+          <mxGeometry height="16" width="350" x="975" y="742" as="geometry" />
+        </mxCell>
+        <mxCell id="biz4" parent="1" style="text;html=1;fontSize=10;align=left;" value="💰 Interchange share por transacción procesada" vertex="1">
+          <mxGeometry height="16" width="350" x="975" y="762" as="geometry" />
+        </mxCell>
+        <mxCell id="biz5" parent="1" style="text;html=1;fontSize=10;align=left;" value="📊 Dashboard corporativo (uso por empleado/bolsillo)" vertex="1">
+          <mxGeometry height="16" width="350" x="975" y="782" as="geometry" />
+        </mxCell>
+        <mxCell id="biz6" parent="1" style="text;html=1;fontSize=10;align=left;" value="📋 Reportes de cumplimiento (subsidios gobierno)" vertex="1">
+          <mxGeometry height="16" width="350" x="975" y="802" as="geometry" />
+        </mxCell>
+        <mxCell id="biz_note" parent="1" style="text;html=1;fontSize=10;fontStyle=3;fontColor=#006600;align=left;" value="⚡ Escala horizontalmente en mercado&#xa;sin escalar en complejidad técnica.&#xa;Solo cambias configuración en Rules DB." vertex="1">
+          <mxGeometry height="35" width="380" x="975" y="830" as="geometry" />
+        </mxCell>
+        <mxCell id="dash_box" parent="1" style="rounded=1;fillColor=#f5f5f5;strokeColor=#999999;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="270" width="420" x="960" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="dash_title" parent="1" style="text;html=1;fontSize=13;fontStyle=1;" value="📊 Dashboard Corporativo (por empresa)" vertex="1">
+          <mxGeometry height="22" width="350" x="970" y="895" as="geometry" />
+        </mxCell>
+        <mxCell id="dash1" parent="1" style="text;html=1;fontSize=10;align=left;" value="• Saldo total y por bolsillo (todos los empleados)" vertex="1">
+          <mxGeometry height="16" width="350" x="975" y="922" as="geometry" />
+        </mxCell>
+        <mxCell id="dash2" parent="1" style="text;html=1;fontSize=10;align=left;" value="• Transacciones por bolsillo, MCC, comercio" vertex="1">
+          <mxGeometry height="16" width="350" x="975" y="942" as="geometry" />
+        </mxCell>
+        <mxCell id="dash3" parent="1" style="text;html=1;fontSize=10;align=left;" value="• Alertas de uso anómalo (fuera de reglas)" vertex="1">
+          <mxGeometry height="16" width="350" x="975" y="962" as="geometry" />
+        </mxCell>
+        <mxCell id="dash4" parent="1" style="text;html=1;fontSize=10;align=left;" value="• Reportes de cumplimiento regulatorio" vertex="1">
+          <mxGeometry height="16" width="350" x="975" y="982" as="geometry" />
+        </mxCell>
+        <mxCell id="dash5" parent="1" style="text;html=1;fontSize=10;align=left;" value="• Gestión de reglas por bolsillo (CRUD)" vertex="1">
+          <mxGeometry height="16" width="350" x="975" y="1002" as="geometry" />
+        </mxCell>
+        <mxCell id="dash6" parent="1" style="text;html=1;fontSize=10;align=left;" value="• Carga masiva de tarjetas y asignación de bolsillos" vertex="1">
+          <mxGeometry height="16" width="350" x="975" y="1022" as="geometry" />
+        </mxCell>
+        <mxCell id="dash7" parent="1" style="text;html=1;fontSize=10;align=left;" value="• Exportación de datos para contabilidad/nómina" vertex="1">
+          <mxGeometry height="16" width="350" x="975" y="1042" as="geometry" />
+        </mxCell>
+        <mxCell id="dash_apis" parent="1" style="text;html=1;fontSize=9;fontFamily=Courier New;align=left;fillColor=#EEEEEE;rounded=1;strokeColor=#999999;spacingLeft=5;spacingTop=3;" value="APIs Dashboard:&#xa;GET  /api/companies/{id}/summary&#xa;GET  /api/companies/{id}/transactions&#xa;PUT  /api/companies/{id}/rules&#xa;POST /api/companies/{id}/cards/bulk&#xa;GET  /api/companies/{id}/reports/compliance" vertex="1">
+          <mxGeometry height="82" width="390" x="975" y="1068" as="geometry" />
+        </mxCell>
+        <mxCell id="leg_t" parent="1" style="text;html=1;fontSize=10;fontStyle=1;" value="Leyenda Validadores:" vertex="1">
+          <mxGeometry height="18" width="150" x="30" y="1170" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1" parent="1" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="" vertex="1">
+          <mxGeometry height="14" width="18" x="30" y="1195" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1t" parent="1" style="text;fontSize=9;" value="MCC Matcher / GeoFence" vertex="1">
+          <mxGeometry height="18" width="140" x="52" y="1193" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2" parent="1" style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="" vertex="1">
+          <mxGeometry height="14" width="18" x="200" y="1195" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2t" parent="1" style="text;fontSize=9;" value="Amount / Priority" vertex="1">
+          <mxGeometry height="18" width="110" x="222" y="1193" as="geometry" />
+        </mxCell>
+        <mxCell id="leg3" parent="1" style="rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="" vertex="1">
+          <mxGeometry height="14" width="18" x="340" y="1195" as="geometry" />
+        </mxCell>
+        <mxCell id="leg3t" parent="1" style="text;fontSize=9;" value="Schedule" vertex="1">
+          <mxGeometry height="18" width="80" x="362" y="1193" as="geometry" />
+        </mxCell>
+        <mxCell id="leg4" parent="1" style="rounded=1;fillColor=#f8cecc;strokeColor=#b85450;" value="" vertex="1">
+          <mxGeometry height="14" width="18" x="450" y="1195" as="geometry" />
+        </mxCell>
+        <mxCell id="leg4t" parent="1" style="text;fontSize=9;" value="Merchant Filter / Blocked MCC" vertex="1">
+          <mxGeometry height="18" width="170" x="472" y="1193" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,216 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) draw.io/29.6.1" version="29.6.1" pages="1">
+  <diagram id="card-data-view-001" name="Visualización Datos Sensibles">
+    <mxGraphModel dx="1800" dy="1600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- SWIMLANES -->
+        <mxCell id="lane_portal" parent="1" style="swimlane;startSize=50;fillColor=#E0F2FE;strokeColor=#0284C7;fontStyle=1;fontSize=12;fontColor=#0284C7;" value="Portal Tarjetahabiente&#xa;(Angular SPA — Dominio portal.entidad.com)" vertex="1">
+          <mxGeometry x="30" y="17" width="280" height="1650" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_iframe" parent="1" style="swimlane;startSize=50;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=12;fontColor=#023d74;" value="Iframe Card Data&#xa;(Angular — secure-data.credibanco.com)" vertex="1">
+          <mxGeometry x="330" y="17" width="300" height="1650" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_backend" parent="1" style="swimlane;startSize=50;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=12;fontColor=#333333;" value="Backend Card Data API&#xa;(Spring Boot — CDE scope)" vertex="1">
+          <mxGeometry x="650" y="17" width="270" height="1650" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_vault" parent="1" style="swimlane;startSize=50;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=12;fontColor=#5a3d00;" value="HSM / Vault&#xa;(Custodia de datos cifrados)" vertex="1">
+          <mxGeometry x="940" y="17" width="250" height="1650" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_pomelo" parent="1" style="swimlane;startSize=50;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;fontColor=#1a3d1a;" value="Pomelo API&#xa;(CVV dinámico — opcional)" vertex="1">
+          <mxGeometry x="1210" y="17" width="230" height="1650" as="geometry" />
+        </mxCell>
+
+        <!-- CDE BORDER -->
+        <mxCell id="cde" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#d6b656;dashed=1;dashPattern=8 4;fontSize=11;fontStyle=1;fontColor=#854f0b;verticalAlign=top;spacingTop=4;pointerEvents=0;" value="Perímetro CDE — PCI DSS v4.0" vertex="1">
+          <mxGeometry x="323" y="10" width="884" height="1664" as="geometry" />
+        </mxCell>
+
+        <!-- ============================================ -->
+        <!-- FASE 0 — Pre-requisitos -->
+        <!-- ============================================ -->
+        <mxCell id="f0_title" parent="1" style="text;html=1;strokeColor=#b85450;fillColor=#f8cecc;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=10;fontColor=#555555;" value="FASE 0 — Pre-requisitos: CSP, SRI, MFA, dominio separado para iframe (PCI DSS v4.0 — Req 6.4.3, 8.3.6)" vertex="1">
+          <mxGeometry x="30" y="73" width="1410" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="f0_p1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;" value="Portal TH en dominio:&#xa;portal.entidad.com&#xa;Usuario autenticado SSO + MFA&#xa;FUERA de scope CDE" vertex="1">
+          <mxGeometry x="50" y="105" width="240" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="f0_i1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="Iframe en dominio separado:&#xa;secure-data.credibanco.com&#xa;CSP: frame-ancestors portal.entidad.com&#xa;script-src con SRI hashes&#xa;DENTRO de scope CDE" vertex="1">
+          <mxGeometry x="350" y="105" width="260" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="f0_b1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Backend Card Data API:&#xa;Solo sirve al iframe (CORS)&#xa;Valida origin = secure-data.*&#xa;Rate limit: 3 views/tarjeta/hora&#xa;DENTRO de scope CDE" vertex="1">
+          <mxGeometry x="670" y="105" width="230" height="75" as="geometry" />
+        </mxCell>
+
+        <!-- ============================================ -->
+        <!-- FASE 1 — Portal solicita visualización -->
+        <!-- ============================================ -->
+        <mxCell id="f1_title" parent="1" style="text;html=1;strokeColor=#cccccc;fillColor=#f0f0f0;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=10;fontColor=#555555;" value="FASE 1 — Portal carga iframe y envía referencia de tarjeta (postMessage — sin datos sensibles)" vertex="1">
+          <mxGeometry x="30" y="200" width="1410" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_p1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;" value="TH presiona &quot;Ver datos de tarjeta&quot;&#xa;Portal valida que MFA esté activo&#xa;Carga iframe:&#xa;&lt;iframe src=&quot;secure-data.credibanco&#xa;.com/card-view&quot; sandbox=&quot;allow-scripts&#xa;allow-same-origin&quot;&gt;" vertex="1">
+          <mxGeometry x="50" y="235" width="240" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_p2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;" value="postMessage al iframe:&#xa;{ cardId, sessionToken,&#xa;  action: 'VIEW_CARD_DATA' }&#xa;Valida event.origin del iframe" vertex="1">
+          <mxGeometry x="50" y="345" width="240" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_i1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="Iframe recibe postMessage&#xa;Valida event.origin === portal.*&#xa;Valida event.source === parent&#xa;Extrae cardId + sessionToken" vertex="1">
+          <mxGeometry x="350" y="345" width="260" height="65" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_f1_1" edge="1" parent="1" source="f1_p1" target="f1_p2" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0284C7;strokeWidth=1.5;" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f1_2" edge="1" parent="1" source="f1_p2" target="f1_i1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0284C7;strokeWidth=1.5;fontSize=9;fontColor=#0284C7;" value="postMessage&#xa;(sin datos sensibles)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ============================================ -->
+        <!-- FASE 2 — Iframe solicita datos al backend -->
+        <!-- ============================================ -->
+        <mxCell id="f2_title" parent="1" style="text;html=1;strokeColor=#cccccc;fillColor=#f0f0f0;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=10;fontColor=#555555;" value="FASE 2 — Iframe solicita datos sensibles al backend (TLS 1.3, viewToken de un solo uso)" vertex="1">
+          <mxGeometry x="30" y="430" width="1410" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_i1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="POST /api/card-data/request&#xa;{ cardId, sessionToken,&#xa;  action: 'VIEW_CARD_DATA' }&#xa;Headers: Origin, X-Correlation-Id&#xa;TLS 1.3 — No cache" vertex="1">
+          <mxGeometry x="350" y="465" width="260" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_b1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Valida:&#xa;• sessionToken activo (SSO)&#xa;• MFA completado para esta sesión&#xa;• Origin === secure-data.credibanco.*&#xa;• Rate limit: &lt; 3 views/tarjeta/hora&#xa;• cardId pertenece al usuario&#xa;Genera viewToken (UUID, TTL 30s, 1 uso)" vertex="1">
+          <mxGeometry x="670" y="465" width="230" height="105" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_f2_1" edge="1" parent="1" source="f2_i1" target="f2_b1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#666666;strokeWidth=1.5;fontSize=9;fontColor=#666666;" value="TLS 1.3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f1i_f2i" edge="1" parent="1" source="f1_i1" target="f2_i1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#6c8ebf;strokeWidth=1.5;" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ============================================ -->
+        <!-- FASE 3 — Backend obtiene datos del Vault/HSM -->
+        <!-- ============================================ -->
+        <mxCell id="f3_title" parent="1" style="text;html=1;strokeColor=#cccccc;fillColor=#f0f0f0;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=10;fontColor=#555555;" value="FASE 3 — Backend descifra datos de tarjeta desde Vault/HSM (PAN, exp) + obtiene CVV2 (estático o dinámico)" vertex="1">
+          <mxGeometry x="30" y="590" width="1410" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_b1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Busca en Oracle:&#xa;card_id → pan_encrypted,&#xa;exp_date, card_token_pomelo&#xa;PAN almacenado cifrado (AES-256)&#xa;bajo llave custodiada en HSM/Vault" vertex="1">
+          <mxGeometry x="670" y="625" width="230" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_v1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="Descifra PAN:&#xa;Cmd Thales M2/M4 (Data Decrypt)&#xa;o Vault Transit Engine&#xa;Llave AES-256 bajo LMK&#xa;PAN en claro solo en memoria&#xa;del proceso (nunca en disco/log)" vertex="1">
+          <mxGeometry x="960" y="625" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_b2_static" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Opción A — CVV2 estático:&#xa;Descifra cvv2_encrypted&#xa;del mismo registro Oracle&#xa;(mismo flujo que PAN)" vertex="1">
+          <mxGeometry x="670" y="730" width="230" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_p1_dynamic" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="Opción B — CVV dinámico (mejor):&#xa;GET /cards/{token}/sensitive-data&#xa;Pomelo genera CVV2 temporal&#xa;TTL: 20 min — un solo uso&#xa;Más seguro: no se almacena" vertex="1">
+          <mxGeometry x="1230" y="625" width="190" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_f3_1" edge="1" parent="1" source="f2_b1" target="f3_b1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#666666;strokeWidth=1.5;" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f3_2" edge="1" parent="1" source="f3_b1" target="f3_v1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#d6b656;strokeWidth=1.5;fontSize=9;fontColor=#5a3d00;" value="Descifra PAN&#xa;mTLS interno">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f3_3" edge="1" parent="1" source="f3_b1" target="f3_b2_static" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#666666;strokeWidth=1;dashed=1;" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f3_4" edge="1" parent="1" source="f3_b1" target="f3_p1_dynamic" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#82b366;strokeWidth=1.5;fontSize=9;fontColor=#1a3d1a;" value="O: CVV dinámico&#xa;mTLS Pomelo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ============================================ -->
+        <!-- FASE 4 — Backend entrega datos al iframe -->
+        <!-- ============================================ -->
+        <mxCell id="f4_title" parent="1" style="text;html=1;strokeColor=#cccccc;fillColor=#f0f0f0;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=10;fontColor=#555555;" value="FASE 4 — Backend entrega datos al iframe (respuesta TLS, no cacheada, viewToken consumido)" vertex="1">
+          <mxGeometry x="30" y="815" width="1410" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="f4_b1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Construye respuesta:&#xa;{ pan, exp, cvv2, viewToken }&#xa;Headers:&#xa;  Cache-Control: no-store, no-cache&#xa;  Pragma: no-cache&#xa;  X-Content-Type-Options: nosniff&#xa;Consume viewToken (1 solo uso)&#xa;Log: correlationId + timestamp&#xa;(SIN loguear PAN ni CVV2)" vertex="1">
+          <mxGeometry x="670" y="850" width="230" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="f4_i1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="Recibe JSON con datos sensibles&#xa;Solo dentro del contexto del iframe&#xa;Same-origin policy impide que&#xa;el portal padre lea este DOM" vertex="1">
+          <mxGeometry x="350" y="870" width="260" height="65" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_f4_1" edge="1" parent="1" source="f3_v1" target="f4_b1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#d6b656;strokeWidth=1.5;dashed=1;fontSize=9;fontColor=#5a3d00;" value="PAN en claro&#xa;(solo en memoria)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1065" y="780" />
+              <mxPoint x="785" y="780" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_f4_2" edge="1" parent="1" source="f4_b1" target="f4_i1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#6c8ebf;strokeWidth=2;dashed=1;fontSize=9;fontColor=#023d74;" value="JSON { pan, exp, cvv2 }&#xa;TLS 1.3 — No cache">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ============================================ -->
+        <!-- FASE 5 — Iframe renderiza datos protegidos -->
+        <!-- ============================================ -->
+        <mxCell id="f5_title" parent="1" style="text;html=1;strokeColor=#cccccc;fillColor=#f0f0f0;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=10;fontColor=#555555;" value="FASE 5 — Iframe renderiza datos con protecciones anti-copia, auto-oculta en 30s, borra DOM (Req 3.3, 3.4)" vertex="1">
+          <mxGeometry x="30" y="1000" width="1410" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="f5_i1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;strokeWidth=2;" value="Renderiza en DOM del iframe:&#xa;&#xa;┌─────────────────────────┐&#xa;│ Número de tarjeta            │&#xa;│ **** **** **** 1234          │&#xa;│         [👁 Ver completo]       │&#xa;│                                         │&#xa;│ Vencimiento    CVV              │&#xa;│ 12/28              •••              │&#xa;│                  [👁 Ver]           │&#xa;└─────────────────────────┘&#xa;&#xa;PAN enmascarado por defecto (Req 3.3)" vertex="1">
+          <mxGeometry x="350" y="1035" width="260" height="175" as="geometry" />
+        </mxCell>
+        <mxCell id="f5_i2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="Al presionar &quot;Ver completo&quot;:&#xa;Muestra PAN full por 30 segundos&#xa;Protecciones CSS/JS:&#xa;• user-select: none&#xa;• -webkit-user-select: none&#xa;• oncopy/oncut/onpaste = return false&#xa;• oncontextmenu = return false&#xa;• No drag-and-drop&#xa;• Screenshot: no se puede prevenir&#xa;  (limitación del navegador)" vertex="1">
+          <mxGeometry x="350" y="1230" width="260" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="f5_p1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;" value="Portal padre ve el iframe&#xa;pero NO puede leer su contenido&#xa;(same-origin policy)&#xa;&#xa;TH ve los datos de su tarjeta&#xa;dentro del iframe" vertex="1">
+          <mxGeometry x="50" y="1080" width="240" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_f5_1" edge="1" parent="1" source="f4_i1" target="f5_i1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#6c8ebf;strokeWidth=1.5;" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f5_2" edge="1" parent="1" source="f5_i1" target="f5_i2" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#6c8ebf;strokeWidth=1.5;fontSize=9;fontColor=#023d74;" value="TH presiona 'Ver'">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f5_3" edge="1" parent="1" source="f5_i1" target="f5_p1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0284C7;strokeWidth=1;dashed=1;fontSize=9;fontColor=#0284C7;" value="Visible dentro&#xa;del iframe">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ============================================ -->
+        <!-- FASE 6 — Auto-ocultar y limpieza -->
+        <!-- ============================================ -->
+        <mxCell id="f6_title" parent="1" style="text;html=1;strokeColor=#cccccc;fillColor=#f0f0f0;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=10;fontColor=#555555;" value="FASE 6 — Auto-ocultar: timer 30s → enmascara datos → borra de memoria → notifica portal padre" vertex="1">
+          <mxGeometry x="30" y="1390" width="1410" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="f6_i1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;fontStyle=1;" value="Timer 30s expira:&#xa;1. Reemplaza PAN → **** **** **** 1234&#xa;2. Reemplaza CVV → •••&#xa;3. Sobreescribe variables JS:&#xa;   pan = '0'.repeat(16)&#xa;   cvv = '000'&#xa;4. Elimina nodos DOM con datos&#xa;5. viewToken ya consumido (no reusable)" vertex="1">
+          <mxGeometry x="350" y="1425" width="260" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="f6_i2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="postMessage al portal padre:&#xa;{ action: 'CARD_DATA_HIDDEN',&#xa;  reason: 'TIMEOUT' }&#xa;Sin datos sensibles" vertex="1">
+          <mxGeometry x="350" y="1565" width="260" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="f6_p1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;" value="Portal recibe notificación&#xa;Muestra: &quot;Datos ocultos por seguridad&quot;&#xa;Botón: &quot;Ver de nuevo&quot;&#xa;(requiere nuevo viewToken + MFA)" vertex="1">
+          <mxGeometry x="50" y="1555" width="240" height="65" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_f6_1" edge="1" parent="1" source="f5_i2" target="f6_i1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#b85450;strokeWidth=2;fontSize=9;fontColor=#DC2626;" value="⏱ 30 segundos">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f6_2" edge="1" parent="1" source="f6_i1" target="f6_i2" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#6c8ebf;strokeWidth=1.5;" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f6_3" edge="1" parent="1" source="f6_i2" target="f6_p1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0284C7;strokeWidth=1.5;dashed=1;fontSize=9;fontColor=#0284C7;" value="postMessage&#xa;(sin datos sensibles)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ============================================ -->
+        <!-- NOTAS -->
+        <!-- ============================================ -->
+        <mxCell id="nota_pci" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;fontColor=#b85450;fontStyle=1;" value="PCI DSS v4.0 COMPLIANCE:&#xa;&#xa;Req 3.3 — PAN enmascarado por defecto&#xa;  Solo se revela con acción explícita&#xa;  Auto-oculta en 30 segundos&#xa;&#xa;Req 3.4 — PAN no legible en storage&#xa;  No localStorage, no sessionStorage&#xa;  No cookies, no cache del navegador&#xa;  Headers: Cache-Control: no-store&#xa;&#xa;Req 4.2.1 — TLS 1.3 en todo el flujo&#xa;  mTLS entre backend y HSM/Vault&#xa;&#xa;Req 6.4.3 — CSP + SRI en iframe&#xa;  frame-ancestors restringido&#xa;  No scripts de terceros&#xa;&#xa;Req 7.2 — Acceso mínimo&#xa;  viewToken de un solo uso, TTL 30s&#xa;  Rate limit: 3 views/tarjeta/hora&#xa;&#xa;Req 8.3.6 — MFA obligatorio&#xa;  Antes de cada visualización" vertex="1">
+          <mxGeometry x="1460" y="100" width="220" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="nota_scope" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#E6E6FA;strokeColor=#9370DB;fontSize=9;fontColor=#4B0082;" value="SCOPE PCI:&#xa;&#xa;DENTRO del CDE:&#xa;• Iframe (secure-data.credibanco.com)&#xa;• Backend Card Data API&#xa;• HSM / Vault&#xa;• Canal iframe ↔ backend&#xa;&#xa;FUERA del CDE:&#xa;• Portal TH (portal.entidad.com)&#xa;• El portal NUNCA recibe PAN/CVV2&#xa;• Comunicación portal ↔ iframe:&#xa;  solo postMessage con cardId&#xa;&#xa;Same-origin policy garantiza&#xa;que el portal no puede leer&#xa;el DOM del iframe" vertex="1">
+          <mxGeometry x="1460" y="440" width="220" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="nota_protecciones" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#FFFBEB;strokeColor=#D97706;fontSize=9;fontColor=#92400E;" value="PROTECCIONES ANTI-COPIA:&#xa;&#xa;CSS:&#xa;  user-select: none&#xa;  -webkit-user-select: none&#xa;&#xa;JS:&#xa;  oncopy = return false&#xa;  oncut = return false&#xa;  onpaste = return false&#xa;  oncontextmenu = return false&#xa;  ondragstart = return false&#xa;&#xa;LIMITACIONES CONOCIDAS:&#xa;  • Screenshot: no se puede prevenir&#xa;    (limitación del navegador/OS)&#xa;  • DevTools: usuario avanzado podría&#xa;    inspeccionar el DOM&#xa;    Mitigación: timer corto (30s)&#xa;    + viewToken de un solo uso&#xa;  • Extensiones del navegador:&#xa;    CSP mitiga parcialmente" vertex="1">
+          <mxGeometry x="1460" y="700" width="220" height="310" as="geometry" />
+        </mxCell>
+        <mxCell id="nota_cvv" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;fontColor=#1a3d1a;" value="CVV2 — DOS OPCIONES:&#xa;&#xa;A) CVV2 estático:&#xa;  Almacenado cifrado en Oracle&#xa;  Se descifra igual que el PAN&#xa;  Es el mismo impreso en la tarjeta&#xa;  Riesgo: si se filtra, es permanente&#xa;&#xa;B) CVV2 dinámico (RECOMENDADO):&#xa;  Pomelo genera CVV temporal&#xa;  TTL: 20 min, un solo uso&#xa;  No se almacena en Credibanco&#xa;  Si se filtra, expira rápido&#xa;  Requiere API Pomelo disponible" vertex="1">
+          <mxGeometry x="1460" y="1030" width="220" height="220" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

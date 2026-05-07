@@ -1,0 +1,230 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.1 Chrome/142.0.7444.265 Electron/39.8.0 Safari/537.36" version="29.6.1">
+  <diagram id="BMurTNKWDcX246esQBxM" name="Página-1">
+    <mxGraphModel dx="772" dy="547" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1600" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lane_angular" parent="1" style="swimlane;startSize=50;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=12;fontColor=#023d74;" value="Angular iframe" vertex="1">
+          <mxGeometry height="1500" width="260" x="170" y="17" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_backend" parent="1" style="swimlane;startSize=50;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=12;fontColor=#333333;" value="Backend portal Credibanco&#xa;(Proxy seguro — fuera CDE)" vertex="1">
+          <mxGeometry height="1500" width="240" x="450" y="17" as="geometry" />
+        </mxCell>
+        <mxCell id="nota_angular" parent="lane_backend" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=9;fontColor=#023d74;" value="Angular: cifra SOLO con pubKey_HSM&#xa;No maneja PAN ni datos de tarjeta&#xa;El ciphertext_HSM es opaco para&#xa;cualquier capa fuera del HSM&#xa;CSP + SRI obligatorios (Req 6.4.3)" vertex="1">
+          <mxGeometry height="82" width="178" x="10" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="nota_backend" parent="lane_backend" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#f5f5f5;strokeColor=#666666;fontSize=9;fontColor=#333333;" value="Backend: PROXY SEGURO&#xa;Nunca descifra ciphertext_HSM&#xa;Nunca ve el PIN en claro&#xa;Fuera del scope CDE&#xa;Guarda privKey(cifrada_LMK) en Redis&#xa;TTL 5 min — uso único — luego borra&#xa;privKey es opaca: solo HSM la descifra&#xa;correlationId en todos los logs&#xa;Circuit breaker + idempotencyKey" vertex="1">
+          <mxGeometry height="130" width="180" x="20" y="733" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_hsm" parent="1" style="swimlane;startSize=50;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=12;fontColor=#5a3d00;" value="HSM Credibanco (HA Cluster)&#xa;(CDE — Interchange de llaves)" vertex="1">
+          <mxGeometry height="1500" width="280" x="710" y="17" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_proveedor" parent="1" style="swimlane;startSize=50;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;fontColor=#1a3d1a;" value="Proveedor de cambio de PIN&#xa;(API JSON — TLS 1.3 / mTLS)" vertex="1">
+          <mxGeometry height="1500" width="260" x="1010" y="17" as="geometry" />
+        </mxCell>
+        <mxCell id="cde_border" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#d6b656;dashed=1;dashPattern=8 4;fontSize=11;fontStyle=1;fontColor=#854f0b;verticalAlign=top;spacingTop=4;pointerEvents=0;" value="Perímetro CDE — PCI DSS v4.0" vertex="1">
+          <mxGeometry height="1507" width="294" x="703" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="fase0_title" parent="1" style="text;html=1;strokeColor=#b85450;fillColor=#f8cecc;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=10;fontColor=#555555;" value="FASE 0 — Pre-requisitos de seguridad: CSP, SRI, MFA (PCI DSS v4.0 — Req 6.4.3, 8.3.6)" vertex="1">
+          <mxGeometry height="22" width="1100" x="170" y="73" as="geometry" />
+        </mxCell>
+        <mxCell id="a0_csp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="CSP Headers estrictos:&#xa;frame-ancestors &#39;self&#39; portal.dominio&#xa;script-src con nonce/SRI hashes&#xa;Subresource Integrity en scripts" vertex="1">
+          <mxGeometry height="70" width="200" x="190" y="105" as="geometry" />
+        </mxCell>
+        <mxCell id="b0_mfa" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Autenticación MFA del usuario&#xa;(PCI v4.0 Req 8.3.6)&#xa;Valida token MFA antes de&#xa;permitir operación de PIN" vertex="1">
+          <mxGeometry height="70" width="180" x="470" y="105" as="geometry" />
+        </mxCell>
+        <mxCell id="b0_ratelimit" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Rate Limiting por usuario/tarjeta&#xa;Máx 3 sesiones PIN / hora&#xa;Protege HSM de agotamiento&#xa;de recursos" vertex="1">
+          <mxGeometry height="70" width="180" x="470" y="189" as="geometry" />
+        </mxCell>
+        <mxCell id="fase1_title" parent="1" style="text;html=1;strokeColor=#cccccc;fillColor=#f0f0f0;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=10;fontColor=#555555;" value="FASE 1 — Inicialización: Angular obtiene pubKey efímera del HSM + correlationId" vertex="1">
+          <mxGeometry height="22" width="1100" x="170" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="Portal padre envía ref. de tarjeta&#xa;postMessage { cardId, tipo_op }&#xa;cardId = identificador opaco interno&#xa;valida event.origin + event.source" vertex="1">
+          <mxGeometry height="70" width="200" x="190" y="302" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="POST /api/pin-session/init&#xa;{ cardId, tipo_op, sessionToken,&#xa;  mfaToken }" vertex="1">
+          <mxGeometry height="60" width="200" x="190" y="402" as="geometry" />
+        </mxCell>
+        <mxCell id="b1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Valida sesión + MFA + rate limit&#xa;Genera correlationId (UUID)&#xa;Verifica cardId autorizado&#xa;Solicita pubKey efímera al HSM" vertex="1">
+          <mxGeometry height="70" width="180" x="470" y="397" as="geometry" />
+        </mxCell>
+        <mxCell id="c1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="Cmd EI: Genera par RSA-2048 efímero&lt;br&gt;Resp EJ: pubKey(DER) +&lt;br&gt;privKey(cifrada bajo LMK)&lt;br&gt;+ genera nonce anti-replay" vertex="1">
+          <mxGeometry height="90" width="208" x="758" y="387" as="geometry" />
+        </mxCell>
+        <mxCell id="b2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Guarda en Redis (TTL 5 min):&#xa;sessionId ↔ privKey(cifrada_LMK)&#xa;Retorna { sessionId, pubKey_PEM,&#xa;  nonce, correlationId } al iframe&#xa;privKey es opaca — solo HSM la usa" vertex="1">
+          <mxGeometry height="80" width="180" x="470" y="497" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="importRsaPublicKey(pubKey_HSM_PEM)&#xa;SubtleCrypto.importKey(&#39;spki&#39;)&#xa;No exportable — solo [&#39;encrypt&#39;]&#xa;Almacena nonce para bloque PIN" vertex="1">
+          <mxGeometry height="70" width="200" x="190" y="502" as="geometry" />
+        </mxCell>
+        <mxCell id="fase2_title" parent="1" style="text;html=1;strokeColor=#cccccc;fillColor=#f0f0f0;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=10;fontColor=#555555;" value="FASE 2 — Captura y cifrado de PIN (Angular usa pubKey HSM — sin PAN, sin datos de tarjeta) + nonce anti-replay" vertex="1">
+          <mxGeometry height="22" width="1100" x="170" y="585" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="Teclado PIN enmascarado&#xa;autocomplete=&quot;off&quot;&#xa;oncopy / onpaste bloqueado&#xa;Timeout 30s inactividad → clear()&#xa;Máx 3 intentos → invalida sesión" vertex="1">
+          <mxGeometry height="80" width="200" x="190" y="617" as="geometry" />
+        </mxCell>
+        <mxCell id="a5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;strokeWidth=2;" value="Construye bloque PIN&lt;br&gt;Formato acordado con proveedor&lt;br&gt;Incluye nonce + timestamp&lt;br&gt;(protección anti-replay)" vertex="1">
+          <mxGeometry height="70" width="200" x="190" y="717" as="geometry" />
+        </mxCell>
+        <mxCell id="a6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="SubtleCrypto.encrypt(RSA-OAEP)&#xa;Cifra bloque PIN con pubKey_HSM&#xa;→ ciphertext_HSM" vertex="1">
+          <mxGeometry height="60" width="200" x="190" y="807" as="geometry" />
+        </mxCell>
+        <mxCell id="a7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" value="Uint8Array.fill(0)&#xa;Borra PIN + nonce de memoria&#xa;PCI req. 3.3 — Solo sale ciphertext_HSM" vertex="1">
+          <mxGeometry height="50" width="200" x="190" y="887" as="geometry" />
+        </mxCell>
+        <mxCell id="fase3_title" parent="1" style="text;html=1;strokeColor=#cccccc;fillColor=#f0f0f0;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=10;fontColor=#555555;" value="FASE 3 — Interchange en HSM: descifra con privKey HSM → valida nonce → re-cifra con llave pública del proveedor" vertex="1">
+          <mxGeometry height="22" width="1100" x="170" y="950" as="geometry" />
+        </mxCell>
+        <mxCell id="b3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Recibe { ciphertext_HSM, sessionId,&#xa;  correlationId }&#xa;Valida sessionId activo&#xa;Proxy opaco — NO descifra&#xa;Log: correlationId + timestamp" vertex="1">
+          <mxGeometry height="80" width="180" x="470" y="982" as="geometry" />
+        </mxCell>
+        <mxCell id="b4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Lee privKey(cifrada_LMK) de Redis&#xa;Envía cmd GI al HSM:&#xa;{ privKey_LMK, ciphertext_HSM,&#xa;  padding=OAEP_SHA256 }&#xa;Canal mTLS red interna&#xa;Circuit breaker: timeout 5s" vertex="1">
+          <mxGeometry height="90" width="180" x="470" y="1088" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="Cmd GI: Recibe privKey(cifrada_LMK)&#xa;+ ciphertext del frontend&#xa;1. Descifra privKey con su LMK&#xa;2. Descifra ciphertext → PIN block&#xa;Solo en RAM del procesador cripto&#xa;Valida nonce (anti-replay)" vertex="1">
+          <mxGeometry height="90" width="208" x="736" y="977" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;fontSize=10;" value="&lt;span style=&quot;font-weight: normal;&quot;&gt;Cmd EO: Re-cifra con pubKey_PROVEEDOR&lt;br&gt;pubKey Pomelo precargada en HSM&lt;br&gt;(importada con cmd FK, índice fijo)&lt;br&gt;Rotación periódica programada&lt;br&gt;→ Resp EP: ciphertext_PROVEEDOR&lt;br&gt;PIN claro NUNCA sale del HSM&lt;/span&gt;" vertex="1">
+          <mxGeometry height="90" width="208" x="736" y="1087" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="Resp EP: ciphertext_PROVEEDOR&#xa;+ sessionId al backend&#xa;HSM olvida todo (stateless)&#xa;Audit log: correlationId +&#xa;sessionId + timestamp + resultado" vertex="1">
+          <mxGeometry height="80" width="208" x="736" y="1188" as="geometry" />
+        </mxCell>
+        <mxCell id="fase4_title" parent="1" style="text;html=1;strokeColor=#cccccc;fillColor=#f0f0f0;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=10;fontColor=#555555;" value="FASE 4 — Backend invoca API JSON del proveedor con PIN re-cifrado + idempotencyKey" vertex="1">
+          <mxGeometry height="22" width="1100" x="170" y="1270" as="geometry" />
+        </mxCell>
+        <mxCell id="b5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="Construye request JSON&#xa;{ cardId, ciphertext_PROVEEDOR,&#xa;  sessionId, tipo_op,&#xa;  idempotencyKey, correlationId }&#xa;Agrega headers auth del proveedor" vertex="1">
+          <mxGeometry height="80" width="180" x="470" y="1297" as="geometry" />
+        </mxCell>
+        <mxCell id="p1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="POST /api/pin/change (o /assign)&#xa;Recibe JSON con ciphertext_PROVEEDOR&#xa;Valida idempotencyKey (evita doble op)&#xa;Descifra con su privKey interna&#xa;Procesa cambio / asignación de PIN" vertex="1">
+          <mxGeometry height="80" width="200" x="1030" y="1297" as="geometry" />
+        </mxCell>
+        <mxCell id="p2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="Retorna JSON response&#xa;{ status: OK/ERROR,&#xa;  code, message, correlationId }&#xa;Sobre TLS 1.3 / mTLS" vertex="1">
+          <mxGeometry height="70" width="200" x="1030" y="1397" as="geometry" />
+        </mxCell>
+        <mxCell id="a10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="Resultado al usuario&#xa;postMessage al portal padre&#xa;{ status: &#39;success&#39;|&#39;error&#39;, code }&#xa;Sin ningún dato sensible" vertex="1">
+          <mxGeometry height="70" width="200" x="190" y="1307" as="geometry" />
+        </mxCell>
+        <mxCell id="nota_interchange" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=9;fontColor=#5a3d00;fontStyle=1;" value="THALES payShield — STATELESS:&#xa;HSM no retiene llaves entre llamadas&#xa;privKey sale cifrada bajo LMK (cmd EI/EJ)&#xa;Backend guarda privKey(LMK) en Redis TTL 5m&#xa;En cmd GI: HSM descifra privKey con su LMK&#xa;luego descifra ciphertext → PIN block&#xa;En cmd EO: re-cifra con pubKey Pomelo&#xa;(precargada con cmd FK, índice fijo)&#xa;PIN en claro: solo en RAM del procesador&#xa;cripto, entre GI y EO (microsegundos)&#xa;Canal interno: mTLS (Req 4.2.1)" vertex="1">
+          <mxGeometry height="160" width="200" x="952" y="977" as="geometry" />
+        </mxCell>
+        <mxCell id="nota_proveedor" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;fontColor=#1a3d1a;" value="Proveedor: recibe PIN cifrado&#xa;con SU propia llave pública&#xa;Solo él puede descifrar&#xa;Soporta idempotencyKey&#xa;Invocación: HTTP REST JSON / mTLS" vertex="1">
+          <mxGeometry height="82" width="178" x="1248" y="1297" as="geometry" />
+        </mxCell>
+        <mxCell id="nota_pciv4" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;fontColor=#b85450;fontStyle=1;" value="MEJORAS PCI DSS v4.0:&#xa;• Req 4.2.1: mTLS en red interna&#xa;• Req 6.4.3: CSP + SRI en iframe&#xa;• Req 8.3.6: MFA pre-operación&#xa;• Req 12.3.1: TTL/timeout documentados&#xa;• Anti-replay: nonce en bloque PIN&#xa;• Observabilidad: correlationId E2E&#xa;• Resiliencia: circuit breaker + HA HSM&#xa;• Idempotencia: idempotencyKey al proveedor&#xa;• Rate limiting: protección HSM&#xa;&#xa;THALES payShield COMMANDS:&#xa;• EI/EJ: Generate RSA Key Pair&#xa;• GI/GJ: RSA Decrypt (privKey bajo LMK)&#xa;• EO/EP: RSA Encrypt (pubKey proveedor)&#xa;• FK/FL: Load Public RSA Key (Pomelo)&#xa;• GK/GL: Translate RSA→RSA (si firmware ok)" vertex="1">
+          <mxGeometry height="240" width="210" x="1248" y="105" as="geometry" />
+        </mxCell>
+        <mxCell id="nota_errores" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;fontColor=#b85450;" value="FLUJO DE ERROR:&#xa;• HSM timeout → invalida sesión,&#xa;  notifica usuario, log correlationId&#xa;• Proveedor error → NO reintenta&#xa;  (idempotencyKey protege)&#xa;• Nonce inválido → rechaza, alerta&#xa;• Rate limit excedido → HTTP 429&#xa;• MFA fallido → bloquea operación" vertex="1">
+          <mxGeometry height="138" width="200" x="1470" y="359" as="geometry" />
+        </mxCell>
+        <mxCell id="nota_observabilidad" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#E6E6FA;strokeColor=#9370DB;fontSize=9;fontColor=#4B0082;" value="OBSERVABILIDAD:&#xa;correlationId viaja por las 4 capas&#xa;Métricas: tasa éxito/fallo, latencia&#xa;por fase, intentos fallidos/tarjeta&#xa;Alertas: anomalías en rate de uso&#xa;Dashboard PCI para auditoría" vertex="1">
+          <mxGeometry height="100" width="200" x="1248" y="472" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a0_b0" edge="1" parent="1" source="a0_csp" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="b0_mfa" value="Usuario autenticado">
+          <mxGeometry relative="1" y="-40" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_b0mfa_b0rate" edge="1" parent="1" source="b0_mfa" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="b0_ratelimit">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a1_a2" edge="1" parent="1" source="a1" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="a2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a2_b1" edge="1" parent="1" source="a2" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="b1" value="TLS 1.3 { cardId, mfaToken }">
+          <mxGeometry relative="1" x="-0.25" y="42" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_b1_c1" edge="1" parent="1" source="b1" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="c1" value="Solicita pubKey efímera + nonce">
+          <mxGeometry relative="1" x="-0.4444" y="52" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_c1_b2" edge="1" parent="1" source="c1" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;" target="b2" value="pubKey_HSM + sessionId + nonce">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="850" y="537" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_b2_a3" edge="1" parent="1" source="b2" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;" target="a3" value="pubKey_HSM + sessionId + nonce + correlationId">
+          <mxGeometry relative="1" x="-0.25" y="-57" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_a3_a4" edge="1" parent="1" source="a3" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="a4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a4_a5" edge="1" parent="1" source="a4" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="a5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a5_a6" edge="1" parent="1" source="a5" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="a6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a6_a7" edge="1" parent="1" source="a6" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="a7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a7_b3" edge="1" parent="1" source="a7" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="b3" value="{ ciphertext_HSM, sessionId, correlationId } TLS 1.3">
+          <mxGeometry relative="1" x="0.1667" y="12" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_b3_b4" edge="1" parent="1" source="b3" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="b4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_b4_c2" edge="1" parent="1" source="b4" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="c2" value="mTLS red interna (Req 4.2.1)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="700" y="1133" />
+              <mxPoint x="700" y="1000" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_c2_c3" edge="1" parent="1" source="c2" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="c3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_c3_c4" edge="1" parent="1" source="c3" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="c4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_c4_b5" edge="1" parent="1" source="c4" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#d79b00;" target="b5" value="ciphertext_PROVEEDOR + correlationId">
+          <mxGeometry relative="1" x="0.4367" y="-18" as="geometry">
+            <mxPoint x="18" y="-18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_b5_p1" edge="1" parent="1" source="b5" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;" target="p1" value="POST JSON — mTLS + idempotencyKey">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="605" y="1430" />
+              <mxPoint x="970" y="1430" />
+              <mxPoint x="970" y="1337" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_p1_p2" edge="1" parent="1" source="p1" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="p2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_p2_b5" edge="1" parent="1" source="p2" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#82b366;" target="b5" value="JSON { status, code, correlationId }">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1130" y="1480" />
+              <mxPoint x="560" y="1480" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_b5_a10" edge="1" parent="1" source="b5" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#82b366;" target="a10" value="Resultado">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a10_portal" edge="1" parent="1" source="a10" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#1D9E75;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" target="a1" value="postMessage { status, code }">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="120" y="1343" />
+              <mxPoint x="120" y="337" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
