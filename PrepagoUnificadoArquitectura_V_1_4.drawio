@@ -810,7 +810,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="Etapa1_V1_2" id="2vZ4jaYpajtVqyFtegUc">
-    <mxGraphModel dx="3226" dy="2293" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="3900" dy="2775" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WYurlSI6gKorOprcLl8n-0" />
         <mxCell id="WYurlSI6gKorOprcLl8n-1" parent="WYurlSI6gKorOprcLl8n-0" />
@@ -818,7 +818,7 @@
           <mxGeometry height="1113" width="950" x="-1340" y="-913" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-2" parent="WYurlSI6gKorOprcLl8n-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;arcSize=8;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;" value="" vertex="1">
-          <mxGeometry height="560" width="1310" x="110" y="-660" as="geometry" />
+          <mxGeometry height="560" width="1310" x="109" y="-660" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-3" parent="WYurlSI6gKorOprcLl8n-1" style="text;html=1;fontSize=20;fontStyle=1;align=left;verticalAlign=middle;fontColor=#000000;fillColor=none;strokeColor=none;" value="Portales Admin + Tarjetahabiente" vertex="1">
           <mxGeometry height="35" width="650" x="-1122" y="-1154" as="geometry" />
@@ -881,16 +881,16 @@
           <mxGeometry height="161" width="330" x="-1011" y="-421" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-23" parent="WYurlSI6gKorOprcLl8n-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;strokeColor=#2CA02C;strokeWidth=2;arcSize=8;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;" value="" vertex="1">
-          <mxGeometry height="140" width="340" x="160" y="-250" as="geometry" />
+          <mxGeometry height="140" width="340" x="159" y="-250" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-24" parent="WYurlSI6gKorOprcLl8n-1" style="text;html=1;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;fontColor=#2CA02C;fillColor=none;strokeColor=none;" value="Prepaid_Cardholder_API" vertex="1">
-          <mxGeometry height="22" width="297" x="175" y="-242" as="geometry" />
+          <mxGeometry height="22" width="297" x="174" y="-242" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-25" parent="WYurlSI6gKorOprcLl8n-1" style="text;html=1;fontSize=8;align=center;verticalAlign=middle;fontColor=#2CA02C;fillColor=none;strokeColor=none;" value="[Container: Java 21 + Spring Boot 3 — REST API]" vertex="1">
-          <mxGeometry height="14" width="340" x="160" y="-220" as="geometry" />
+          <mxGeometry height="14" width="340" x="159" y="-220" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-26" parent="WYurlSI6gKorOprcLl8n-1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#2CA02C;fillColor=none;strokeColor=none;" value="Backend del portal tarjetahabiente:&lt;br&gt;• Consulta de saldo&lt;br&gt;• Historial de transacciones (paginado, Oracle Replica)&lt;br&gt;• Bloqueo/Desbloqueo de tarjeta (update status)&lt;br&gt;• Actualización de datos personales (client update)&lt;br&gt;• Generación de extracto PDF&lt;br&gt;• Rate limiting estricto por usuario" vertex="1">
-          <mxGeometry height="75" width="312" x="174" y="-202" as="geometry" />
+          <mxGeometry height="75" width="312" x="173" y="-202" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-27" parent="WYurlSI6gKorOprcLl8n-1" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=default;strokeColor=#3B82F6;strokeWidth=1.5;size=12;" value="" vertex="1">
           <mxGeometry height="90" width="210" x="-1290.5" y="62" as="geometry" />
@@ -1035,13 +1035,13 @@
           <mxGeometry height="26" width="117" x="-565.5" y="-160" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-57" parent="WYurlSI6gKorOprcLl8n-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;" value="" vertex="1">
-          <mxGeometry height="100" width="210" x="530" y="-633.87" as="geometry" />
+          <mxGeometry height="100" width="210" x="529" y="-633.87" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-58" parent="WYurlSI6gKorOprcLl8n-1" style="text;html=1;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="SmartVista&lt;div&gt;Front End&lt;/div&gt;" vertex="1">
-          <mxGeometry height="22" width="170" x="550" y="-613.87" as="geometry" />
+          <mxGeometry height="22" width="170" x="549" y="-613.87" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-59" parent="WYurlSI6gKorOprcLl8n-1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="consulta de comercios&amp;nbsp;" vertex="1">
-          <mxGeometry height="26" width="117" x="576.5" y="-579.87" as="geometry" />
+          <mxGeometry height="26" width="117" x="575.5" y="-579.87" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-60" edge="1" parent="WYurlSI6gKorOprcLl8n-1" source="WYurlSI6gKorOprcLl8n-19" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1.5;fontSize=8;fontColor=#3B82F6;entryX=0;entryY=0.5;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;exitX=0.75;exitY=1;exitDx=0;exitDy=0;" target="WYurlSI6gKorOprcLl8n-53" value="Consulta de&amp;nbsp;&lt;div&gt;comercios&lt;/div&gt;&lt;div&gt;REST&amp;nbsp;&lt;/div&gt;">
           <mxGeometry relative="1" x="0.3132" as="geometry">
@@ -1088,25 +1088,25 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-66" parent="WYurlSI6gKorOprcLl8n-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6c8ebf;strokeWidth=2;arcSize=8;" value="" vertex="1">
-          <mxGeometry height="135" width="280" x="1100" y="-473" as="geometry" />
+          <mxGeometry height="135" width="280" x="1099" y="-473" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-67" parent="WYurlSI6gKorOprcLl8n-1" style="text;html=1;fontSize=15;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="APIs Pomelo" vertex="1">
-          <mxGeometry height="25" width="280" x="1100" y="-460" as="geometry" />
+          <mxGeometry height="25" width="280" x="1099" y="-460" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-68" parent="WYurlSI6gKorOprcLl8n-1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="[Sistema Externo]&lt;br&gt;&lt;br&gt;• GET /affinity-groups/{id}&lt;br&gt;• GET /clients/{docType}/{docNumber}&lt;br&gt;• POST /clients&lt;br&gt;• POST /cards" vertex="1">
-          <mxGeometry height="80" width="270" x="1105" y="-436" as="geometry" />
+          <mxGeometry height="80" width="270" x="1104" y="-436" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-69" parent="WYurlSI6gKorOprcLl8n-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;pointerEvents=0;align=center;verticalAlign=top;fontFamily=Helvetica;fontSize=12;fontColor=default;gradientColor=none;" value="" vertex="1">
-          <mxGeometry height="131" width="340" x="337" y="-455" as="geometry" />
+          <mxGeometry height="131" width="340" x="336" y="-455" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-70" parent="WYurlSI6gKorOprcLl8n-1" style="text;html=1;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Pomelo _API_Client" vertex="1">
-          <mxGeometry height="22" width="340" x="337" y="-447" as="geometry" />
+          <mxGeometry height="22" width="340" x="336" y="-447" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-71" parent="WYurlSI6gKorOprcLl8n-1" style="text;html=1;fontSize=8;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="[Component: Spring WebClient — Resilience4j Circuit Breaker + Retry]" vertex="1">
-          <mxGeometry height="14" width="340" x="337" y="-425" as="geometry" />
+          <mxGeometry height="14" width="340" x="336" y="-425" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-72" parent="WYurlSI6gKorOprcLl8n-1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Cliente HTTP unificado para todas las APIs de Pomelo:&lt;br&gt;• GET /affinity-groups/{id}&lt;br&gt;• GET /clients/{docType}/{docNumber}&lt;br&gt;• POST /clients&lt;br&gt;• POST /cards&lt;br&gt;Circuit breaker, retry con backoff, timeout 5s." vertex="1">
-          <mxGeometry height="65" width="330" x="342" y="-407" as="geometry" />
+          <mxGeometry height="65" width="330" x="341" y="-407" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-73" edge="1" parent="WYurlSI6gKorOprcLl8n-1" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1.5;fontSize=8;fontColor=#60A5FA;align=center;entryX=0.5;entryY=0;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;exitDx=0;exitDy=0;jumpStyle=arc;" target="WYurlSI6gKorOprcLl8n-69" value="">
           <mxGeometry relative="1" as="geometry">
@@ -1122,28 +1122,28 @@
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-74" edge="1" parent="WYurlSI6gKorOprcLl8n-1" source="WYurlSI6gKorOprcLl8n-69" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=2;fontSize=8;fontColor=#3B82F6;align=center;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" value="REST: Validar affinity group,&lt;br&gt;&lt;div&gt;Token autenticación&lt;/div&gt;&lt;div&gt;VPN&lt;/div&gt;">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1100" y="-391.5" as="targetPoint" />
+            <mxPoint x="1099" y="-391.5" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-81" parent="WYurlSI6gKorOprcLl8n-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;strokeColor=#2CA02C;strokeWidth=2;arcSize=8;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;" value="" vertex="1">
-          <mxGeometry height="100" width="170" x="860" y="-324" as="geometry" />
+          <mxGeometry height="100" width="170" x="859" y="-324" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-82" parent="WYurlSI6gKorOprcLl8n-1" style="text;html=1;fontSize=15;fontStyle=1;align=center;verticalAlign=middle;fontColor=#2CA02C;fillColor=none;strokeColor=none;" value="HSM" vertex="1">
-          <mxGeometry height="25" width="130" x="875" y="-325" as="geometry" />
+          <mxGeometry height="25" width="130" x="874" y="-325" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-83" parent="WYurlSI6gKorOprcLl8n-1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#2CA02C;fillColor=none;strokeColor=none;" value="[Sistema Criptografico Credibanco ]&lt;br&gt;&lt;br&gt;• Generacion RSA Efimera&lt;div&gt;• Proceso Interchange&amp;nbsp;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="66" width="165" x="860" y="-300" as="geometry" />
+          <mxGeometry height="66" width="165" x="859" y="-300" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-84" edge="1" parent="WYurlSI6gKorOprcLl8n-1" source="WYurlSI6gKorOprcLl8n-23" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1.5;fontSize=8;fontColor=#3B82F6;exitX=0.693;exitY=0;exitDx=0;exitDy=0;edgeStyle=orthogonalEdgeStyle;rounded=1;align=center;verticalAlign=middle;fontFamily=Helvetica;labelBackgroundColor=default;entryX=0.25;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;exitPerimeter=0;" target="WYurlSI6gKorOprcLl8n-92" value="Generacion de RSA Efimera&lt;div&gt;Creacion de Interchange&lt;/div&gt;">
           <mxGeometry relative="1" x="0.0858" y="10" as="geometry">
             <mxPoint x="1" as="offset" />
             <Array as="points">
-              <mxPoint x="396" y="-270" />
-              <mxPoint x="396" y="-290" />
-              <mxPoint x="618" y="-290" />
+              <mxPoint x="395" y="-270" />
+              <mxPoint x="395" y="-290" />
+              <mxPoint x="617" y="-290" />
             </Array>
-            <mxPoint x="350" y="-748" as="sourcePoint" />
-            <mxPoint x="740" y="-869" as="targetPoint" />
+            <mxPoint x="349" y="-748" as="sourcePoint" />
+            <mxPoint x="739" y="-869" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-85" parent="WYurlSI6gKorOprcLl8n-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;strokeColor=#2CA02C;strokeWidth=2;arcSize=8;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;fontStyle=1;gradientColor=none;" value="" vertex="1">
@@ -1169,18 +1169,18 @@
           <mxGeometry height="60" width="100" x="-147" y="-1027" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-91" parent="WYurlSI6gKorOprcLl8n-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;strokeColor=#2CA02C;strokeWidth=2;arcSize=8;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;" value="" vertex="1">
-          <mxGeometry height="100" width="240" x="530" y="-230" as="geometry" />
+          <mxGeometry height="100" width="240" x="529" y="-230" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-92" parent="WYurlSI6gKorOprcLl8n-1" style="text;html=1;fontSize=15;fontStyle=1;align=center;verticalAlign=middle;fontColor=#2CA02C;fillColor=none;strokeColor=none;" value="HSM_COMMANDER_API" vertex="1">
-          <mxGeometry height="25" width="130" x="585" y="-231" as="geometry" />
+          <mxGeometry height="25" width="130" x="584" y="-231" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-93" parent="WYurlSI6gKorOprcLl8n-1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#2CA02C;fillColor=none;strokeColor=none;" value="API Integracion&amp;nbsp; HSM ]&lt;br&gt;&lt;br&gt;• Generacion RSA Efimera&lt;div&gt;• Proceso Interchange&amp;nbsp;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="66" width="165" x="570" y="-206" as="geometry" />
+          <mxGeometry height="66" width="165" x="569" y="-206" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-94" edge="1" parent="WYurlSI6gKorOprcLl8n-1" source="WYurlSI6gKorOprcLl8n-91" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=2;fontSize=8;fontColor=#3B82F6;align=center;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" target="WYurlSI6gKorOprcLl8n-83" value="Envia comandos al HSM">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1010" y="227" as="sourcePoint" />
-            <mxPoint x="1433" y="226" as="targetPoint" />
+            <mxPoint x="1009" y="227" as="sourcePoint" />
+            <mxPoint x="1432" y="226" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-95" parent="WYurlSI6gKorOprcLl8n-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=2;arcSize=8;fontColor=#333333;" value="" vertex="1">
@@ -1199,7 +1199,7 @@
           <mxGeometry height="14" width="210" x="-332" y="-866.5" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-100" parent="WYurlSI6gKorOprcLl8n-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;b&gt;&lt;font style=&quot;font-size: 19px;&quot;&gt;CDE&lt;/font&gt;&lt;/b&gt;" vertex="1">
-          <mxGeometry height="30" width="60" x="130" y="-654" as="geometry" />
+          <mxGeometry height="30" width="60" x="129" y="-654" as="geometry" />
         </mxCell>
         <mxCell id="q7H3kgr6xPdOiqjrGk1Z-0" parent="WYurlSI6gKorOprcLl8n-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;strokeColor=#2CA02C;strokeWidth=2;arcSize=8;pointerEvents=0;align=center;verticalAlign=top;fontFamily=Helvetica;fontSize=12;fontColor=default;gradientColor=none;" value="" vertex="1">
           <mxGeometry height="94" width="279" x="-366" y="-617" as="geometry" />
@@ -1643,7 +1643,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="file-exchange-001" name="Intercambio de Archivos">
-    <mxGraphModel dx="749" dy="535" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+    <mxGraphModel dx="2246" dy="1606" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1960,6 +1960,286 @@
         </mxCell>
         <mxCell id="xoWdRxr2fHIb4EwiPkV6-3" parent="1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="[Keycloac]&lt;br&gt;&lt;br&gt;• Realm ADMIN: roles (ADMIN, OPERATOR, VIEWER)&lt;br&gt;• Realm CARDHOLDER: autenticación por doc + OTP&lt;br&gt;• OAuth2 / OIDC, JWT tokens, MFA" vertex="1">
           <mxGeometry height="55" width="261" x="1315" y="352" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="non-monetary-novelties-001" name="Flujo Novedades No Monetarias">
+    <mxGraphModel dx="5240" dy="3747" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1300" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <object placeholders="1" c4Name="OpenShift" c4Type="SystemScopeBoundary" c4Application="Container Platform" label="&lt;font style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;&lt;div style=&quot;text-align: left&quot;&gt;%c4Name%&lt;/div&gt;&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;text-align: left&quot;&gt;[%c4Application%]&lt;/div&gt;" id="nm-openshift">
+          <mxCell parent="1" style="rounded=0;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#CC0000;fontColor=#CC0000;align=left;verticalAlign=bottom;dashPattern=8 4;strokeWidth=2;spacing=10;" vertex="1">
+            <mxGeometry height="900" width="1120" x="620" y="230" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="nm-title" parent="1" style="text;html=1;fontSize=20;fontStyle=1;align=left;verticalAlign=middle;fontColor=#000000;fillColor=none;strokeColor=none;" value="Container Diagram — Flujo de Novedades No Monetarias" vertex="1">
+          <mxGeometry height="35" width="900" x="10" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-subtitle" parent="1" style="text;html=1;fontSize=11;align=left;verticalAlign=middle;fontColor=#9CA3AF;fillColor=none;strokeColor=none;" value="Bloqueo Definitivo (Deshabilitado) | Bloqueo Temporal | Desbloqueo | Modificación de Datos | C4 Level 2 — alineado con requerimientos-ciclo-vida-tarjeta-y-portal-th.md (§4 y §5)" vertex="1">
+          <mxGeometry height="20" width="1400" x="10" y="175" as="geometry" />
+        </mxCell>
+        <object placeholders="1" c4Name="Credibanco" c4Type="SystemScopeBoundary" c4Application="Software System" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;&lt;div style=&quot;text-align: left&quot;&gt;%c4Name%&lt;/div&gt;&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;text-align: left&quot;&gt;[%c4Application%]&lt;/div&gt;" id="nm-credibanco">
+          <mxCell parent="1" style="rounded=0;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#003366;fontColor=#333333;align=left;verticalAlign=bottom;dashPattern=8 4;strokeWidth=2;spacing=10;" vertex="1">
+            <mxGeometry height="1190" width="1580" x="210" y="210" as="geometry" />
+          </mxCell>
+        </object>
+        <object placeholders="1" c4Name="On-Prem / DMZ" c4Type="SystemScopeBoundary" c4Application="Zona Desmilitarizada" label="&lt;font style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;&lt;div style=&quot;text-align: left&quot;&gt;%c4Name%&lt;/div&gt;&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;text-align: left&quot;&gt;[%c4Application%]&lt;/div&gt;" id="nm-dmz">
+          <mxCell parent="1" style="rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#6B7280;fontColor=#6B7280;align=left;verticalAlign=bottom;dashPattern=8 4;strokeWidth=2;spacing=10;" vertex="1">
+            <mxGeometry height="500" width="350" x="230" y="230" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="nm-sftp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="80" width="160" x="340" y="265" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-sftp-t" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="SFTP Server" vertex="1">
+          <mxGeometry height="20" width="160" x="340" y="275" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-sftp-d" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="[Infraestructura On-Prem]&lt;br&gt;Recepción NXXXddmmcc cifrado PGP&lt;br&gt;Entrega TNN / TAS / NOVR" vertex="1">
+          <mxGeometry height="44" width="160" x="340" y="297" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-gaw" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="80" width="160" x="340" y="395" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-gaw-t" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="GoAnywhere MFT" vertex="1">
+          <mxGeometry height="20" width="160" x="340" y="405" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-gaw-d" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="[Managed File Transfer]&lt;br&gt;Descifra PGP, valida estructura,&lt;br&gt;deposita en NFS /input" vertex="1">
+          <mxGeometry height="44" width="160" x="340" y="427" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-nfs" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#10B981;strokeWidth=2;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="70" width="260" x="290" y="525" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-nfs-t" parent="1" style="text;html=1;fontSize=11;fontStyle=1;align=center;verticalAlign=middle;fontColor=#10B981;fillColor=none;strokeColor=none;" value="📁 File Storage (NFS / PV)" vertex="1">
+          <mxGeometry height="18" width="260" x="290" y="535" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-nfs-d" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#10B981;fillColor=none;strokeColor=none;" value="/input — NXXXddmmcc&#xa;/output — TNNxxxMMDD, TASxxxMMDD, NOVRdd.MM&#xa;/error — archivos rechazados" vertex="1">
+          <mxGeometry height="36" width="260" x="290" y="555" as="geometry" />
+        </mxCell>
+        <mxCell id="iYyg1i36GOpgUE_Kgo2T-4" edge="1" parent="1" source="nm-gw" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#3B82F6;strokeWidth=1.5;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=8;fontColor=#3B82F6;labelBackgroundColor=default;endArrow=block;endFill=1;" target="iYyg1i36GOpgUE_Kgo2T-1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iYyg1i36GOpgUE_Kgo2T-5" connectable="0" parent="iYyg1i36GOpgUE_Kgo2T-4" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&lt;font style=&quot;color: rgb(59, 130, 246);&quot;&gt;Autenticación&lt;/font&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.0202" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nm-gw" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="80" width="280" x="960" y="265" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-gw-t" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Authorization Gateway" vertex="1">
+          <mxGeometry height="20" width="280" x="960" y="275" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-gw-tech" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="[OpenShift Route + Spring Cloud Gateway]" vertex="1">
+          <mxGeometry height="14" width="280" x="960" y="295" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-gw-d" parent="1" style="text;html=1;fontSize=9;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="TLS 1.3, JWT (Keycloak), rate limiting,&lt;br&gt;validación de schema, firma HMAC-SHA256" vertex="1">
+          <mxGeometry height="32" width="280" x="960" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-fib" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="125" width="280" x="650" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-fib-t" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Prepaid_File_Ingestion_Batch" vertex="1">
+          <mxGeometry height="20" width="280" x="650" y="387" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-fib-tech" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="[Java 21 + Spring Batch — CronJob OpenShift]" vertex="1">
+          <mxGeometry height="14" width="280" x="650" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-fib-d" parent="1" style="text;html=1;fontSize=9;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Polling cada 15 min sobre /input.&lt;br&gt;Parseo de NXXXddmmcc, validaciones:&lt;br&gt;• Estructura del archivo&lt;br&gt;• Fecha (no &gt; ni &lt; 6 días calendario)&lt;br&gt;• No reproceso (file_name + control_record)" vertex="1">
+          <mxGeometry height="55" width="280" x="640" y="421" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-fia" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="115" width="280" x="960" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-fia-t" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Prepaid_Ingestion_API" vertex="1">
+          <mxGeometry height="20" width="280" x="960" y="391" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-fia-tech" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="[Java 21 + Spring Boot 3 + WebFlux]" vertex="1">
+          <mxGeometry height="14" width="280" x="960" y="411" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-fia-d" parent="1" style="text;html=1;fontSize=9;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="POST /api/v1/cards/{id}/block&#xa;POST /api/v1/cards/{id}/unblock&#xa;PATCH /api/v1/cards/{id}&#xa;Operaciones uno-a-uno, idempotentes&#xa;Respuesta JSON con código + descripción" vertex="1">
+          <mxGeometry height="55" width="280" x="960" y="427" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-proc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;" value="" vertex="1">
+          <mxGeometry height="320" width="590" x="670" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-proc-t" parent="1" style="text;html=1;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Prepaid_Non_Monetary_Novelty_Processor" vertex="1">
+          <mxGeometry height="22" width="540" x="670" y="568" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-proc-tech" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="[Container: Java 21 + Spring Service — Core de Negocio compartido por batch y API]" vertex="1">
+          <mxGeometry height="14" width="540" x="670" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-proc-d" parent="1" style="text;html=1;fontSize=9;align=left;verticalAlign=top;fontColor=#3B82F6;fillColor=none;strokeColor=none;spacingLeft=12;spacingTop=4;" value="&lt;b&gt;Lógica común para todas las novedades no monetarias:&lt;/b&gt;&#xa;1. Resolver tarjeta (card_id por User ID + AFG)&#xa;2. Validar AFG asociado al NIT y entidad correctos&#xa;3. Validar estado de tarjeta válido (Creada, Activa, Bloqueo Temporal)&#xa;     ↳ EXCEPCIÓN: Bloqueo Definitivo procesa cualquier estado&#xa;4. Idempotencia (rechaza si flag novedad_aplicada = S)&#xa;5. Despachar a sub-handler según tipo de novedad:" vertex="1">
+          <mxGeometry height="100" width="520" x="680" y="608" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-h1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#DC2626;strokeWidth=2;arcSize=8;align=center;verticalAlign=top;fontSize=9;fontColor=#991B1B;spacingTop=4;" value="&lt;b&gt;Bloqueo Definitivo&lt;/b&gt;&#xa;(Deshabilitación)&#xa;━━━━━━━━━━━━━&#xa;• Cualquier estado&#xa;• Captura saldo final&#xa;  → insumo NOVR&#xa;• status = DESHABILITADA&#xa;• card_state_history" vertex="1">
+          <mxGeometry height="155" width="125" x="685" y="715" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-h2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;strokeWidth=2;arcSize=8;align=center;verticalAlign=top;fontSize=9;fontColor=#92400E;spacingTop=4;" value="&lt;b&gt;Bloqueo Temporal&lt;/b&gt;&#xa;━━━━━━━━━━━━━&#xa;• Estado válido:&#xa;  Creada / Activa&#xa;• status =&#xa;  BLOQUEO_TEMPORAL&#xa;• card_state_history" vertex="1">
+          <mxGeometry height="155" width="125" x="820" y="715" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-h3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#047857;strokeWidth=2;arcSize=8;align=center;verticalAlign=top;fontSize=9;fontColor=#065F46;spacingTop=4;" value="&lt;b&gt;Desbloqueo&lt;/b&gt;&#xa;━━━━━━━━━━━━━&#xa;• Estado válido:&#xa;  BLOQUEO_TEMPORAL&#xa;• status = ACTIVA&#xa;• card_state_history" vertex="1">
+          <mxGeometry height="155" width="125" x="955" y="715" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-h4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;strokeWidth=2;arcSize=8;align=center;verticalAlign=top;fontSize=9;fontColor=#5B21B6;spacingTop=4;" value="&lt;b&gt;Modificación de Datos&lt;/b&gt;&#xa;━━━━━━━━━━━━━━━&#xa;• NIT, AFG, doc → INMUTABLES&#xa;• Email modificable&#xa;  → si registrado: correo&#xa;     login&#xa;  → si no: PreRegistration&#xa;• gmf_exempt (pos 440)&#xa;• Update Pomelo&#xa;• Auditoría exoneración" vertex="1">
+          <mxGeometry height="155" width="160" x="1090" y="715" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-pomcl" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="100" width="320" x="1396" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-pomcl-t" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Pomelo_API_Client" vertex="1">
+          <mxGeometry height="20" width="320" x="1396" y="568" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-pomcl-tech" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="[Spring WebClient + Resilience4j (CB + Retry, timeout 5s)]" vertex="1">
+          <mxGeometry height="14" width="320" x="1396" y="588" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-pomcl-d" parent="1" style="text;html=1;fontSize=9;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="• PATCH /cards/{id}/status (block/unblock)&#xa;• PATCH /clients/{id} (modificación de datos)&#xa;• PATCH /cards/{id} (campos editables)" vertex="1">
+          <mxGeometry height="50" width="320" x="1396" y="606" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-prereg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#7C3AED;strokeWidth=2;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="100" width="320" x="1396" y="715" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-prereg-t" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#5B21B6;fillColor=none;strokeColor=none;" value="PreRegistration_Service" vertex="1">
+          <mxGeometry height="20" width="290" x="1409" y="719" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-prereg-tech" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#5B21B6;fillColor=none;strokeColor=none;" value="[Spring Boot + Notification_Adapter + SMTP]" vertex="1">
+          <mxGeometry height="14" width="290" x="1409" y="739" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-prereg-d" parent="1" style="text;html=1;fontSize=9;align=center;fontColor=#5B21B6;fillColor=none;strokeColor=none;" value="Disparado al cambiar correo de TH no registrado.&lt;br&gt;Genera UUID v4, persiste preregistration&lt;br&gt;(TTL 30 días, status=PENDIENTE), envía link.&lt;br&gt;Ver Onboarding_Tarjetahabiente.drawio (ADR-016)." vertex="1">
+          <mxGeometry height="55" width="300" x="1409" y="755" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-audit" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#0EA5E9;strokeWidth=2;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="120" width="320" x="1396" y="910" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-audit-t" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#0EA5E9;fillColor=none;strokeColor=none;" value="Audit_Service" vertex="1">
+          <mxGeometry height="20" width="320" x="1396" y="918" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-audit-tech" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#0EA5E9;fillColor=none;strokeColor=none;" value="[Java 21 + Spring Boot — async fire-and-forget]" vertex="1">
+          <mxGeometry height="14" width="320" x="1396" y="938" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-audit-d" parent="1" style="text;html=1;fontSize=9;align=center;fontColor=#0EA5E9;fillColor=none;strokeColor=none;" value="audit_log: ID_AUDIT, SERVICE_NAME, MESSAGE_ID,&lt;br&gt;REQUEST/RESPONSE_PAYLOAD, STATUS, MS,&lt;br&gt;TECHNICAL_USER, ID_TARJETA, ID_PROCESO&lt;br&gt;pci_event_log: PCI DSS v4.0 Req 10.2&lt;br&gt;Auditoría de exoneración GMF (campo dedicado)" vertex="1">
+          <mxGeometry height="70" width="320" x="1396" y="954" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-oracle" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=2;size=12;" value="" vertex="1">
+          <mxGeometry height="170" width="280" x="685" y="1190" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-oracle-t" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Oracle Primary (R/W)" vertex="1">
+          <mxGeometry height="20" width="280" x="685" y="1215" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-oracle-tech" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="[Oracle 19c+]" vertex="1">
+          <mxGeometry height="14" width="280" x="685" y="1235" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-oracle-d" parent="1" style="text;html=1;fontSize=9;align=left;verticalAlign=top;fontColor=#3B82F6;fillColor=none;strokeColor=none;spacingLeft=20;" value="• card (status, gmf_exempt)&#xa;• card_state_history&#xa;• client (email, datos modificables)&#xa;• preregistration (UUID, TTL 30d)&#xa;• file_processing (UQ file_name+control)&#xa;• file_record (raw_payload, response_code)" vertex="1">
+          <mxGeometry height="100" width="280" x="685" y="1253" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-pomelo" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="80" width="200" x="1826" y="445" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-pomelo-t" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Pomelo" vertex="1">
+          <mxGeometry height="20" width="200" x="1826" y="455" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-pomelo-d" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="[Sistema Externo — Procesador]&lt;br&gt;APIs Pomelo (cards, clients).&lt;br&gt;Mismo cambio de estado en Pomelo." vertex="1">
+          <mxGeometry height="44" width="200" x="1826" y="477" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-ent-sftp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="80" width="160" x="30" y="285" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-ent-sftp-t" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Entidad — SFTP" vertex="1">
+          <mxGeometry height="20" width="160" x="30" y="295" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-ent-sftp-d" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="[Sistema Externo]&lt;br&gt;Sube NXXXddmmcc cifrado PGP&lt;br&gt;Recibe TNN / TAS / NOVR" vertex="1">
+          <mxGeometry height="44" width="160" x="30" y="317" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-ent-api" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="80" width="160" x="1020" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-ent-api-t" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Entidad — API" vertex="1">
+          <mxGeometry height="20" width="160" x="1020" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-ent-api-d" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="[Sistema Externo]&lt;br&gt;POST/PATCH /api/v1/cards&#xa;(JSON + JWT, uno-a-uno)" vertex="1">
+          <mxGeometry height="44" width="160" x="1020" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-th" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="80" width="160" x="1843" y="743" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-th-t" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Tarjetahabiente" vertex="1">
+          <mxGeometry height="20" width="160" x="1843" y="753" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-th-d" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="[Persona]&lt;br&gt;Recibe email de pre-registro&lt;br&gt;ante cambio de correo" vertex="1">
+          <mxGeometry height="44" width="160" x="1843" y="775" as="geometry" />
+        </mxCell>
+        <mxCell id="e-ent-sftp" edge="1" parent="1" source="nm-ent-sftp" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1.5;fontSize=8;fontColor=#3B82F6;edgeStyle=orthogonalEdgeStyle;" target="nm-sftp" value="1. NXXXddmmcc + PGP">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-sftp-gaw" edge="1" parent="1" source="nm-sftp" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1.5;fontSize=8;fontColor=#3B82F6;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="nm-gaw" value="2. Transfiere">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-gaw-nfs" edge="1" parent="1" source="nm-gaw" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1.5;fontSize=8;fontColor=#3B82F6;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="nm-nfs" value="3. Descifra,&#xa;valida formato">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-nfs-fib" edge="1" parent="1" source="nm-nfs" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1.5;fontSize=8;fontColor=#3B82F6;exitX=1;exitY=0.4;entryX=0;entryY=0.5;edgeStyle=orthogonalEdgeStyle;" target="nm-fib" value="4. Polling (15 min)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-ent-api-gw" edge="1" parent="1" source="nm-ent-api" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1.5;fontSize=8;fontColor=#3B82F6;edgeStyle=orthogonalEdgeStyle;" target="nm-gw" value="1&#39;. POST/PATCH /api/v1/cards&#xa;JSON + JWT">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-gw-fia" edge="1" parent="1" source="nm-gw" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1.5;fontSize=8;fontColor=#3B82F6;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="nm-fia" value="2&#39;. Rutea">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-fib-proc" edge="1" parent="1" source="nm-fib" style="endArrow=block;endFill=1;html=1;strokeColor=#D97706;strokeWidth=2;fontSize=8;fontColor=#3B82F6;exitX=0.5;exitY=1;entryX=0.3;entryY=0;edgeStyle=orthogonalEdgeStyle;" target="nm-proc" value="5. Por cada registro&#xa;del archivo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-fia-proc" edge="1" parent="1" source="nm-fia" style="endArrow=block;endFill=1;html=1;strokeColor=#D97706;strokeWidth=2;fontSize=8;fontColor=#3B82F6;exitX=0.5;exitY=1;entryX=0.7;entryY=0;edgeStyle=orthogonalEdgeStyle;" target="nm-proc" value="3&#39;. processNovelty()">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-proc-pomcl" edge="1" parent="1" source="nm-proc" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1.5;fontSize=8;fontColor=#3B82F6;exitX=1;exitY=0.15;entryX=0;entryY=0.5;edgeStyle=orthogonalEdgeStyle;" target="nm-pomcl" value="6. Replica el cambio&#xa;en Pomelo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-pomcl-pomelo" edge="1" parent="1" source="nm-pomcl" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1.5;fontSize=8;fontColor=#3B82F6;exitX=0.5;exitY=0;entryX=0;entryY=0.25;edgeStyle=orthogonalEdgeStyle;entryDx=0;entryDy=0;" target="nm-pomelo-d" value="HTTPS + JWT">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-proc-prereg" edge="1" parent="1" source="nm-proc" style="endArrow=block;endFill=1;html=1;strokeColor=#7C3AED;strokeWidth=1.5;strokeDashArray=6;fontSize=8;fontColor=#7C3AED;exitX=1;exitY=0.7;entryX=0;entryY=0.4;edgeStyle=orthogonalEdgeStyle;" target="nm-prereg" value="7. Si cambio email&#xa;y TH no registrado">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-prereg-th" edge="1" parent="1" source="nm-prereg" style="endArrow=block;endFill=1;html=1;strokeColor=#7C3AED;strokeWidth=1.5;strokeDashArray=6;fontSize=8;fontColor=#7C3AED;exitX=0.999;exitY=0.539;entryX=0;entryY=0.25;edgeStyle=orthogonalEdgeStyle;exitDx=0;exitDy=0;entryDx=0;entryDy=0;exitPerimeter=0;" target="nm-th-d" value="Email con URL&#xa;de pre-registro">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1786" y="769" />
+              <mxPoint x="1786" y="786" />
+            </Array>
+            <mxPoint x="1716" y="766" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-proc-oracle" edge="1" parent="1" source="nm-proc" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=2;fontSize=8;fontColor=#3B82F6;exitX=0.4;exitY=1;entryX=0.5;entryY=0;edgeStyle=orthogonalEdgeStyle;" target="nm-oracle" value="8. UPDATE atómico&#xa;card + history + audit">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-proc-audit" edge="1" parent="1" source="nm-proc" style="endArrow=block;endFill=1;html=1;strokeColor=#0EA5E9;strokeWidth=1.5;strokeDashArray=6;fontSize=8;fontColor=#0EA5E9;exitX=1;exitY=0.95;entryX=0;entryY=0.3;edgeStyle=orthogonalEdgeStyle;" target="nm-audit" value="9. Auditoría async&#xa;(req+resp+ctx+correlation_id)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-audit-oracle" edge="1" parent="1" source="nm-audit" style="endArrow=block;endFill=1;html=1;strokeColor=#0EA5E9;strokeWidth=1.5;strokeDashArray=6;fontSize=8;fontColor=#0EA5E9;exitX=0.5;exitY=1;entryX=0.95;entryY=0.4;edgeStyle=orthogonalEdgeStyle;exitDx=0;exitDy=0;" target="nm-oracle" value="INSERT&#xa;audit_log + pci_event_log">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-note-validations" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#FEF9C3;strokeColor=#CA8A04;fontSize=9;fontColor=#713F12;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;" value="&lt;b&gt;VALIDACIONES (paso 1-4 del Processor)&lt;/b&gt;&#xa;━━━━━━━━━━━━━━━━━━━━━━&#xa;✅ AFG existe y está ACTIVA&#xa;✅ AFG asociado al NIT correcto&#xa;✅ AFG asociado a la entidad correcta&#xa;✅ User ID con tarjeta en estado válido:&#xa;     Creada / Activa / Bloqueo Temporal&#xa;     ⚠️ Bloqueo Definitivo: cualquier estado&#xa;✅ NXXXddmmcc:&#xa;     • dd-día: ≤ 6 días calendario&#xa;     • file_name + control_record único&#xa;✅ Idempotencia (flag novedad_aplicada)&#xa;━━━━━━━━━━━━━━━━━━━━━━&#xa;Si falla → archivo TAS con causal" vertex="1">
+          <mxGeometry height="240" width="280" x="230" y="1070" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-note-modif" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#EDE9FE;strokeColor=#7C3AED;fontSize=9;fontColor=#5B21B6;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;" value="&lt;b&gt;MODIFICACIÓN DE DATOS — REGLAS&lt;/b&gt;&#xa;━━━━━━━━━━━━━━━━━━━━━━&#xa;❌ NO modificables (lanza error):&#xa;     NIT • AFG • tipo_doc • número_doc&#xa;✅ Modificables:&#xa;     email, phone, address, city,&#xa;     nominated/innominada (S↔N),&#xa;     gmf_exempt (S↔N) — pos 440&#xa;━━━ Cambio de email del TH ━━━&#xa;     1) Si email nuevo ya existe en BD&#xa;        para otro client → RECHAZA&#xa;     2) Si TH ya está registrado&#xa;        → email de ingreso al portal&#xa;     3) Si TH no registrado&#xa;        → PreRegistration_Service&#xa;        → email con URL pre-registro" vertex="1">
+          <mxGeometry height="240" width="320" x="1826" y="1095" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-note-novr" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#FEE2E2;strokeColor=#DC2626;fontSize=9;fontColor=#991B1B;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;" value="&lt;b&gt;ARCHIVO NOVR&lt;/b&gt; (batch 01:00 AM)&#xa;━━━━━━━━━━━━━━━━━━━━━━&#xa;Solo bloqueos definitivos (Deshabilitación)&#xa;y retiros del día.&#xa;Cada registro debe incluir el SALDO de la&#xa;tarjeta al momento del bloqueo&#xa;(captura por el Processor en el paso 5).&#xa;━━━━━━━━━━━━━━━━━━━━━━&#xa;Bloqueo Temporal y Desbloqueo:&#xa;NO van en NOVR — solo en TNN.&#xa;Cuota de manejo y comisiones del&#xa;saldo en deshabilitación: ver pestaña&#xa;Cuotas de manejo / Comisiones Batch." vertex="1">
+          <mxGeometry height="180" width="320" x="1826" y="1345" as="geometry" />
+        </mxCell>
+        <mxCell id="nm-note-pendientes" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#F3F4F6;strokeColor=#6B7280;fontSize=9;fontColor=#374151;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;" value="&lt;b&gt;PENDIENTES (del documento fuente)&lt;/b&gt;&#xa;━━━━━━━━━━━━━━━━━━━━━━&#xa;1. Detalle de validaciones que ejecuta GAW&#xa;     hoy y deben replicarse en el Processor.&#xa;2. Soporte para multibolsillo y tarjeta&#xa;     amparada (diferido Fase 2).&#xa;3. Confirmar con Pomelo si aplican&#xa;     restricciones a la modificación de datos.&#xa;4. Otros movimientos administrativos&#xa;     desde portal admin (Postman) que&#xa;     pasen también por este flujo.&#xa;Ver: docs/requerimientos-ciclo-vida-tarjeta&#xa;-y-portal-th.md §4 y §5." vertex="1">
+          <mxGeometry height="220" width="280" x="10" y="1500" as="geometry" />
+        </mxCell>
+        <mxCell id="iYyg1i36GOpgUE_Kgo2T-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="100" width="280" x="1371" y="255" as="geometry" />
+        </mxCell>
+        <mxCell id="iYyg1i36GOpgUE_Kgo2T-2" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="SSO" vertex="1">
+          <mxGeometry height="22" width="266" x="1375" y="265" as="geometry" />
+        </mxCell>
+        <mxCell id="iYyg1i36GOpgUE_Kgo2T-3" parent="1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="[Keycloac]&lt;br&gt;&lt;br&gt;• Realm ADMIN: roles (ADMIN, OPERATOR, VIEWER)&lt;br&gt;• Realm CARDHOLDER: autenticación por doc + OTP&lt;br&gt;• OAuth2 / OIDC, JWT tokens, MFA" vertex="1">
+          <mxGeometry height="55" width="261" x="1376" y="283" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
@@ -3069,7 +3349,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="card-states-v13" name="Estados de Tarjeta">
-    <mxGraphModel dx="983" dy="703" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1000" math="0" shadow="0">
+    <mxGraphModel dx="786" dy="562" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1000" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -3160,73 +3440,6 @@
         </mxCell>
         <mxCell id="cs-note" parent="1" style="text;html=1;fontSize=9;align=left;verticalAlign=top;fontColor=#374151;fillColor=#F3F4F6;strokeColor=#D1D5DB;rounded=1;spacingLeft=8;spacingRight=8;spacingTop=6;" value="&lt;b&gt;Transiciones reversibles (desbloqueo):&lt;/b&gt;&lt;br&gt;• BLOQ_TEMP(Cli) → ACTIVA (TH desbloquea por Portal)&lt;br&gt;• BLOQ_TEMP(Ent) → ACTIVA (Entidad desbloquea por Archivo/API)&lt;br&gt;• BLOQ_PIN → ACTIVA (Reset PIN por Admin/Entidad)&lt;br&gt;&lt;br&gt;&lt;b&gt;Irreversibles:&lt;/b&gt;&lt;br&gt;• BLOQ_DEF → solo puede ir a RETIRADA (cuando saldo=0)&lt;br&gt;• EXPIRADA y RETIRADA son estados terminales&lt;br&gt;&lt;br&gt;&lt;b&gt;Mapeo Pomelo:&lt;/b&gt; BLOQ_TEMP → Bloqueado | BLOQ_DEF → Deshabilitado&lt;br&gt;&lt;b&gt;Regla:&lt;/b&gt; No crear tarjeta si existe otra en estado ≠ RETIRADA/EXPIRADA en mismo AFG+UserID" vertex="1">
           <mxGeometry height="170" width="420" x="700" y="150" as="geometry" />
-        </mxCell>
-      </root>
-    </mxGraphModel>
-  </diagram>
-  <diagram id="SUu871bsGLv_Ydvva1sv" name="Página-13">
-    <mxGraphModel dx="771" dy="562" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
-      <root>
-        <mxCell id="0" />
-        <mxCell id="1" parent="0" />
-        <mxCell id="kIp9g3Qf6R-p7dDGO7Hq-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Cliente" vertex="1">
-          <mxGeometry height="60" width="120" x="130" y="120" as="geometry" />
-        </mxCell>
-        <mxCell id="kIp9g3Qf6R-p7dDGO7Hq-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Pomelo" vertex="1">
-          <mxGeometry height="60" width="120" x="400" y="120" as="geometry" />
-        </mxCell>
-        <mxCell id="kIp9g3Qf6R-p7dDGO7Hq-3" edge="1" parent="1" source="kIp9g3Qf6R-p7dDGO7Hq-1" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="kIp9g3Qf6R-p7dDGO7Hq-2" value="">
-          <mxGeometry height="50" relative="1" width="50" as="geometry">
-            <mxPoint x="380" y="260" as="sourcePoint" />
-            <mxPoint x="430" y="210" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="kIp9g3Qf6R-p7dDGO7Hq-4" connectable="0" parent="kIp9g3Qf6R-p7dDGO7Hq-3" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="API" vertex="1">
-          <mxGeometry relative="1" x="-0.1511" y="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="kIp9g3Qf6R-p7dDGO7Hq-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="PIN - CIFRADO" vertex="1">
-          <mxGeometry height="30" width="126" x="397" y="190" as="geometry" />
-        </mxCell>
-        <mxCell id="kIp9g3Qf6R-p7dDGO7Hq-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Iframe" vertex="1">
-          <mxGeometry height="60" width="120" x="130" y="270" as="geometry" />
-        </mxCell>
-        <mxCell id="kIp9g3Qf6R-p7dDGO7Hq-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="HSM" vertex="1">
-          <mxGeometry height="60" width="120" x="620" y="270" as="geometry" />
-        </mxCell>
-        <mxCell id="kIp9g3Qf6R-p7dDGO7Hq-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Back" vertex="1">
-          <mxGeometry height="60" width="120" x="370" y="270" as="geometry" />
-        </mxCell>
-        <mxCell id="kIp9g3Qf6R-p7dDGO7Hq-9" edge="1" parent="1" source="kIp9g3Qf6R-p7dDGO7Hq-6" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#FF3333;" target="kIp9g3Qf6R-p7dDGO7Hq-8" value="">
-          <mxGeometry height="50" relative="1" width="50" as="geometry">
-            <mxPoint x="370" y="320" as="sourcePoint" />
-            <mxPoint x="420" y="270" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="kIp9g3Qf6R-p7dDGO7Hq-10" edge="1" parent="1" source="kIp9g3Qf6R-p7dDGO7Hq-8" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeColor=#FF3333;" target="kIp9g3Qf6R-p7dDGO7Hq-7" value="">
-          <mxGeometry height="50" relative="1" width="50" as="geometry">
-            <mxPoint x="370" y="320" as="sourcePoint" />
-            <mxPoint x="420" y="270" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="kIp9g3Qf6R-p7dDGO7Hq-11" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="TH" vertex="1">
-          <mxGeometry height="60" width="30" x="50" y="269" as="geometry" />
-        </mxCell>
-        <mxCell id="kIp9g3Qf6R-p7dDGO7Hq-12" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="PIN Claro" vertex="1">
-          <mxGeometry height="30" width="60" x="110" y="340" as="geometry" />
-        </mxCell>
-        <mxCell id="kIp9g3Qf6R-p7dDGO7Hq-13" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="PIN Cifrado" vertex="1">
-          <mxGeometry height="30" width="100" x="380" y="340" as="geometry" />
-        </mxCell>
-        <mxCell id="kIp9g3Qf6R-p7dDGO7Hq-14" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="PIN Cifrado" vertex="1">
-          <mxGeometry height="30" width="100" x="630" y="340" as="geometry" />
-        </mxCell>
-        <mxCell id="kIp9g3Qf6R-p7dDGO7Hq-15" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="PIN - CIFRADO" vertex="1">
-          <mxGeometry height="30" width="126" x="130" y="190" as="geometry" />
-        </mxCell>
-        <mxCell id="kIp9g3Qf6R-p7dDGO7Hq-16" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="PIN Cifrado" vertex="1">
-          <mxGeometry height="30" width="100" x="190" y="340" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
