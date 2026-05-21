@@ -2245,18 +2245,18 @@
     </mxGraphModel>
   </diagram>
   <diagram name="Realce" id="qiSxbhjP-73DP9pdnFpm">
-    <mxGraphModel dx="1209" dy="865" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+    <mxGraphModel dx="1572" dy="1124" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
       <root>
         <mxCell id="URsqXnTEW7ZUEUOE-tDV-0" />
         <mxCell id="URsqXnTEW7ZUEUOE-tDV-1" parent="URsqXnTEW7ZUEUOE-tDV-0" />
         <mxCell id="lh_vLZY8Mr3XH9lA1Hi3-4" parent="URsqXnTEW7ZUEUOE-tDV-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="" vertex="1">
           <mxGeometry height="1070" width="1250" x="30" y="70" as="geometry" />
         </mxCell>
-        <mxCell id="URsqXnTEW7ZUEUOE-tDV-2" parent="URsqXnTEW7ZUEUOE-tDV-1" style="text;html=1;fontSize=20;fontStyle=1;align=left;verticalAlign=middle;fontColor=#000000;fillColor=none;strokeColor=none;" value="Container Diagram — Plataforma de Intercambio de Archivos" vertex="1">
-          <mxGeometry height="35" width="700" x="370" y="10" as="geometry" />
+        <mxCell id="URsqXnTEW7ZUEUOE-tDV-2" parent="URsqXnTEW7ZUEUOE-tDV-1" style="text;html=1;fontSize=20;fontStyle=1;align=left;verticalAlign=middle;fontColor=#000000;fillColor=none;strokeColor=none;" value="Container Diagram — Proceso de Realce de Tarjetas" vertex="1">
+          <mxGeometry height="35" width="900" x="370" y="10" as="geometry" />
         </mxCell>
-        <mxCell id="URsqXnTEW7ZUEUOE-tDV-3" parent="URsqXnTEW7ZUEUOE-tDV-1" style="text;html=1;fontSize=11;align=left;verticalAlign=middle;fontColor=#9CA3AF;fillColor=none;strokeColor=none;" value="Java 21 + Spring Boot 3 / Spring Batch + Oracle 19c + Redis 7+ + GoAnywhere MFT + OpenShift" vertex="1">
-          <mxGeometry height="20" width="700" x="370" y="45" as="geometry" />
+        <mxCell id="URsqXnTEW7ZUEUOE-tDV-3" parent="URsqXnTEW7ZUEUOE-tDV-1" style="text;html=1;fontSize=11;align=left;verticalAlign=middle;fontColor=#9CA3AF;fillColor=none;strokeColor=none;" value="C4 Level 2 | Pomelo (archivo base) → Embossing Batch → archivo por AFG → SFTP a Realzadores | Generación diaria 07:00 ARG / 05:00 COL" vertex="1">
+          <mxGeometry height="20" width="900" x="370" y="45" as="geometry" />
         </mxCell>
         <object placeholders="1" c4Name="Credibanco" c4Type="SystemScopeBoundary" c4Application="Software System" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;&lt;div style=&quot;text-align: left&quot;&gt;%c4Name%&lt;/div&gt;&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;text-align: left&quot;&gt;[%c4Application%]&lt;/div&gt;" id="URsqXnTEW7ZUEUOE-tDV-4">
           <mxCell parent="URsqXnTEW7ZUEUOE-tDV-1" style="rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#003366;fontColor=#333333;labelBackgroundColor=none;align=left;verticalAlign=bottom;labelBorderColor=none;spacingTop=0;spacing=10;dashPattern=8 4;metaEdit=1;rotatable=0;perimeter=rectanglePerimeter;noLabel=0;labelPadding=0;allowArrows=0;connectable=0;expand=0;recursiveResize=0;editable=1;pointerEvents=0;absoluteArcSize=1;strokeWidth=2;" vertex="1">
@@ -2303,25 +2303,25 @@
         <mxCell id="URsqXnTEW7ZUEUOE-tDV-19" parent="URsqXnTEW7ZUEUOE-tDV-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;" value="" vertex="1">
           <mxGeometry height="100" width="280" x="898" y="255" as="geometry" />
         </mxCell>
-        <mxCell id="URsqXnTEW7ZUEUOE-tDV-20" parent="URsqXnTEW7ZUEUOE-tDV-1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; font-weight: 400; text-align: start;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20parent%3D%221%22%20style%3D%22rounded%3D1%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3BfillColor%3Ddefault%3BstrokeColor%3D%233B82F6%3BstrokeWidth%3D2%3BarcSize%3D8%3B%22%20value%3D%22%22%20vertex%3D%221%22%3E%3CmxGeometry%20height%3D%22100%22%20width%3D%22280%22%20x%3D%22-357%22%20y%3D%22-780%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3CmxCell%20id%3D%223%22%20parent%3D%221%22%20style%3D%22text%3Bhtml%3D1%3BfontSize%3D13%3BfontStyle%3D1%3Balign%3Dcenter%3BverticalAlign%3Dmiddle%3BfontColor%3D%233B82F6%3BfillColor%3Dnone%3BstrokeColor%3Dnone%3B%22%20value%3D%22SSO%22%20vertex%3D%221%22%3E%3CmxGeometry%20height%3D%2222%22%20width%3D%22266%22%20x%3D%22-353%22%20y%3D%22-770%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3CmxCell%20id%3D%224%22%20parent%3D%221%22%20style%3D%22text%3Bhtml%3D1%3BfontSize%3D9%3Balign%3Dcenter%3BverticalAlign%3Dtop%3BfontColor%3D%233B82F6%3BfillColor%3Dnone%3BstrokeColor%3Dnone%3B%22%20value%3D%22%5BKeycloac%5D%26lt%3Bbr%26gt%3B%26lt%3Bbr%26gt%3B%E2%80%A2%20Realm%20ADMIN%3A%20roles%20(ADMIN%2C%20OPERATOR%2C%20VIEWER)%26lt%3Bbr%26gt%3B%E2%80%A2%20Realm%20CARDHOLDER%3A%20autenticaci%C3%B3n%20por%20doc%20%2B%20OTP%26lt%3Bbr%26gt%3B%E2%80%A2%20OAuth2%20%2F%20OIDC%2C%20JWT%20tokens%2C%20MFA%22%20vertex%3D%221%22%3E%3CmxGeometry%20height%3D%2255%22%20width%3D%22261%22%20x%3D%22-352%22%20y%3D%22-752%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3&lt;/span&gt;&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; font-weight: 400; text-align: start;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20parent%3D%221%22%20style%3D%22rounded%3D1%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3BfillColor%3Ddefault%3BstrokeColor%3D%233B82F6%3BstrokeWidth%3D2%3BarcSize%3D8%3B%22%20value%3D%22%22%20vertex%3D%221%22%3E%3CmxGeometry%20height%3D%22100%22%20width%3D%22280%22%20x%3D%22-357%22%20y%3D%22-780%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3CmxCell%20id%3D%223%22%20parent%3D%221%22%20style%3D%22text%3Bhtml%3D1%3BfontSize%3D13%3BfontStyle%3D1%3Balign%3Dcenter%3BverticalAlign%3Dmiddle%3BfontColor%3D%233B82F6%3BfillColor%3Dnone%3BstrokeColor%3Dnone%3B%22%20value%3D%22SSO%22%20vertex%3D%221%22%3E%3CmxGeometry%20height%3D%2222%22%20width%3D%22266%22%20x%3D%22-353%22%20y%3D%22-770%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3CmxCell%20id%3D%224%22%20parent%3D%221%22%20style%3D%22text%3Bhtml%3D1%3BfontSize%3D9%3Balign%3Dcenter%3BverticalAlign%3Dtop%3BfontColor%3D%233B82F6%3BfillColor%3Dnone%3BstrokeColor%3Dnone%3B%22%20value%3D%22%5BKeycloac%5D%26lt%3Bbr%26gt%3B%26lt%3Bbr%26gt%3B%E2%80%A2%20Realm%20ADMIN%3A%20roles%20(ADMIN%2C%20OPERATOR%2C%20VIEWER)%26lt%3Bbr%26gt%3B%E2%80%A2%20Realm%20CARDHOLDER%3A%20autenticaci%C3%B3n%20por%20doc%20%2B%20OTP%26lt%3Bbr%26gt%3B%E2%80%A2%20OAuth2%20%2F%20OIDC%2C%20JWT%20tokens%2C%20MFA%22%20vertex%3D%221%22%3E%3CmxGeometry%20height%3D%2255%22%20width%3D%22261%22%20x%3D%22-352%22%20y%3D%22-752%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;Prepaid_embossing&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(59, 130, 246), rgb(76, 137, 236));&quot;&gt;_Batch&lt;/span&gt;&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; font-weight: 400; text-align: start;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20parent%3D%221%22%20style%3D%22rounded%3D1%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3BfillColor%3Ddefault%3BstrokeColor%3D%233B82F6%3BstrokeWidth%3D2%3BarcSize%3D8%3B%22%20value%3D%22%22%20vertex%3D%221%22%3E%3CmxGeometry%20height%3D%22100%22%20width%3D%22280%22%20x%3D%22-357%22%20y%3D%22-780%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3CmxCell%20id%3D%223%22%20parent%3D%221%22%20style%3D%22text%3Bhtml%3D1%3BfontSize%3D13%3BfontStyle%3D1%3Balign%3Dcenter%3BverticalAlign%3Dmiddle%3BfontColor%3D%233B82F6%3BfillColor%3Dnone%3BstrokeColor%3Dnone%3B%22%20value%3D%22SSO%22%20vertex%3D%221%22%3E%3CmxGeometry%20height%3D%2222%22%20width%3D%22266%22%20x%3D%22-353%22%20y%3D%22-770%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3CmxCell%20id%3D%224%22%20parent%3D%221%22%20style%3D%22text%3Bhtml%3D1%3BfontSize%3D9%3Balign%3Dcenter%3BverticalAlign%3Dtop%3BfontColor%3D%233B82F6%3BfillColor%3Dnone%3BstrokeColor%3Dnone%3B%22%20value%3D%22%5BKeycloac%5D%26lt%3Bbr%26gt%3B%26lt%3Bbr%26gt%3B%E2%80%A2%20Realm%20ADMIN%3A%20roles%20(ADMIN%2C%20OPERATOR%2C%20VIEWER)%26lt%3Bbr%26gt%3B%E2%80%A2%20Realm%20CARDHOLDER%3A%20autenticaci%C3%B3n%20por%20doc%20%2B%20OTP%26lt%3Bbr%26gt%3B%E2%80%A2%20OAuth2%20%2F%20OIDC%2C%20JWT%20tokens%2C%20MFA%22%20vertex%3D%221%22%3E%3CmxGeometry%20height%3D%2255%22%20width%3D%22261%22%20x%3D%22-352%22%20y%3D%22-752%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;" vertex="1">
+        <mxCell id="URsqXnTEW7ZUEUOE-tDV-20" parent="URsqXnTEW7ZUEUOE-tDV-1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Prepaid_Embossing_Batch" vertex="1">
           <mxGeometry height="20" width="280" x="898" y="263" as="geometry" />
         </mxCell>
         <mxCell id="URsqXnTEW7ZUEUOE-tDV-21" parent="URsqXnTEW7ZUEUOE-tDV-1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="[Container: Java 21 + Spring Batch — CronJob OpenShift]" vertex="1">
           <mxGeometry height="14" width="280" x="898" y="283" as="geometry" />
         </mxCell>
-        <mxCell id="URsqXnTEW7ZUEUOE-tDV-22" parent="URsqXnTEW7ZUEUOE-tDV-1" style="text;html=1;fontSize=9;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Detecta archivos en NFS, parsea nombres,&lt;br&gt;ensambla multiarchivo, invoca processors.&lt;br&gt;Schedule: cada 15 min (configurable)" vertex="1">
+        <mxCell id="URsqXnTEW7ZUEUOE-tDV-22" parent="URsqXnTEW7ZUEUOE-tDV-1" style="text;html=1;fontSize=9;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Detecta archivo base de realce de Pomelo en NFS,&lt;br&gt;invoca Prepaid_Embossing_Processor por archivo.&lt;br&gt;Schedule: diario tras 05:00 COL (post-disposición Pomelo)" vertex="1">
           <mxGeometry height="45" width="280" x="898" y="299" as="geometry" />
         </mxCell>
         <mxCell id="URsqXnTEW7ZUEUOE-tDV-27" parent="URsqXnTEW7ZUEUOE-tDV-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;" value="" vertex="1">
-          <mxGeometry height="100" width="280" x="898" y="440" as="geometry" />
+          <mxGeometry height="130" width="280" x="898" y="440" as="geometry" />
         </mxCell>
-        <mxCell id="URsqXnTEW7ZUEUOE-tDV-28" parent="URsqXnTEW7ZUEUOE-tDV-1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Prepaid_embossing_Processor" vertex="1">
+        <mxCell id="URsqXnTEW7ZUEUOE-tDV-28" parent="URsqXnTEW7ZUEUOE-tDV-1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Prepaid_Embossing_Processor" vertex="1">
           <mxGeometry height="20" width="280" x="898" y="448" as="geometry" />
         </mxCell>
         <mxCell id="URsqXnTEW7ZUEUOE-tDV-29" parent="URsqXnTEW7ZUEUOE-tDV-1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="[Container: Java 21 + Spring Service — Core de Negocio]" vertex="1">
           <mxGeometry height="14" width="280" x="898" y="468" as="geometry" />
         </mxCell>
-        <mxCell id="URsqXnTEW7ZUEUOE-tDV-30" parent="URsqXnTEW7ZUEUOE-tDV-1" style="text;html=1;fontSize=9;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Recargas, débitos, reversos, anulaciones.&lt;br&gt;Validación tarjeta activa, balance suficiente.&lt;br&gt;Operación atómica&lt;br&gt;Idempotencia por novelty_id" vertex="1">
+        <mxCell id="URsqXnTEW7ZUEUOE-tDV-30" parent="URsqXnTEW7ZUEUOE-tDV-1" style="text;html=1;fontSize=9;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="1. Lee archivo base de Pomelo, agrupa por AFG.&lt;br&gt;2. Asigna consecutivo de pedido por AFG.&lt;br&gt;3. Genera archivo por AFG: consecutivo+AFG+fecha+realzador.&lt;br&gt;4. Respeta estructura de variables expuesta por Pomelo.&lt;br&gt;5. UPDATE card SET status=PENDIENTE_POR_ACTIVAR.&lt;br&gt;6. Genera reporte de pedido por entidad." vertex="1">
           <mxGeometry height="50" width="280" x="898" y="484" as="geometry" />
         </mxCell>
         <mxCell id="URsqXnTEW7ZUEUOE-tDV-39" parent="URsqXnTEW7ZUEUOE-tDV-1" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=default;strokeColor=#3B82F6;strokeWidth=1.5;size=12;" value="" vertex="1">
@@ -2330,7 +2330,7 @@
         <mxCell id="URsqXnTEW7ZUEUOE-tDV-40" parent="URsqXnTEW7ZUEUOE-tDV-1" style="text;html=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="OraclePrimary (R/W)" vertex="1">
           <mxGeometry height="18" width="200" x="1370" y="565" as="geometry" />
         </mxCell>
-        <mxCell id="URsqXnTEW7ZUEUOE-tDV-41" parent="URsqXnTEW7ZUEUOE-tDV-1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="file_ingestion_log, multifile_batch,&lt;br&gt;monetary_novelty, non_monetary_novelty,&lt;br&gt;file_output_log, gmf_calculation" vertex="1">
+        <mxCell id="URsqXnTEW7ZUEUOE-tDV-41" parent="URsqXnTEW7ZUEUOE-tDV-1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="card (status, last_state_change),&lt;br&gt;card_state_history,&lt;br&gt;embossing_order (consecutivo, AFG, fecha,&lt;br&gt;realzador, cantidad_tarjetas)" vertex="1">
           <mxGeometry height="35" width="200" x="1370" y="585" as="geometry" />
         </mxCell>
         <mxCell id="URsqXnTEW7ZUEUOE-tDV-45" parent="URsqXnTEW7ZUEUOE-tDV-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;arcSize=8;" value="" vertex="1">
@@ -2339,10 +2339,10 @@
         <mxCell id="URsqXnTEW7ZUEUOE-tDV-46" parent="URsqXnTEW7ZUEUOE-tDV-1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Pomelo — SFTP" vertex="1">
           <mxGeometry height="20" width="200" x="70" y="160" as="geometry" />
         </mxCell>
-        <mxCell id="URsqXnTEW7ZUEUOE-tDV-47" parent="URsqXnTEW7ZUEUOE-tDV-1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="[Sistema Externo — Entidad Emisora]&lt;br&gt;Sube archivos de realce vía SFTP" vertex="1">
+        <mxCell id="URsqXnTEW7ZUEUOE-tDV-47" parent="URsqXnTEW7ZUEUOE-tDV-1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="[Sistema Externo — Procesador]&lt;br&gt;Dispone archivo base de realce&lt;br&gt;diariamente 07:00 ARG / 05:00 COL" vertex="1">
           <mxGeometry height="28" width="200" x="70" y="182" as="geometry" />
         </mxCell>
-        <mxCell id="URsqXnTEW7ZUEUOE-tDV-51" edge="1" parent="URsqXnTEW7ZUEUOE-tDV-1" source="URsqXnTEW7ZUEUOE-tDV-45" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1.5;fontSize=8;fontColor=#3B82F6;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" target="URsqXnTEW7ZUEUOE-tDV-6" value="Sube archivos&lt;br&gt;NXXXDDMMCC / MXXXDDMMCC">
+        <mxCell id="URsqXnTEW7ZUEUOE-tDV-51" edge="1" parent="URsqXnTEW7ZUEUOE-tDV-1" source="URsqXnTEW7ZUEUOE-tDV-45" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1.5;fontSize=8;fontColor=#3B82F6;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" target="URsqXnTEW7ZUEUOE-tDV-6" value="Archivo base de realce&lt;br&gt;(diario, 05:00 COL)">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="URsqXnTEW7ZUEUOE-tDV-52" edge="1" parent="URsqXnTEW7ZUEUOE-tDV-1" source="URsqXnTEW7ZUEUOE-tDV-6" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1.5;fontSize=8;fontColor=#3B82F6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="URsqXnTEW7ZUEUOE-tDV-9" value="Transfiere">
@@ -2357,10 +2357,10 @@
         <mxCell id="URsqXnTEW7ZUEUOE-tDV-54" edge="1" parent="URsqXnTEW7ZUEUOE-tDV-1" source="URsqXnTEW7ZUEUOE-tDV-12" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1.5;fontSize=8;fontColor=#3B82F6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" target="URsqXnTEW7ZUEUOE-tDV-19" value="Lee archivos&lt;br&gt;nuevos (polling)">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="URsqXnTEW7ZUEUOE-tDV-58" edge="1" parent="URsqXnTEW7ZUEUOE-tDV-1" source="URsqXnTEW7ZUEUOE-tDV-19" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1.5;fontSize=8;fontColor=#3B82F6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" target="URsqXnTEW7ZUEUOE-tDV-27" value="Novedades&lt;br&gt;monetarias">
+        <mxCell id="URsqXnTEW7ZUEUOE-tDV-58" edge="1" parent="URsqXnTEW7ZUEUOE-tDV-1" source="URsqXnTEW7ZUEUOE-tDV-19" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1.5;fontSize=8;fontColor=#3B82F6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" target="URsqXnTEW7ZUEUOE-tDV-27" value="Procesa archivo,&lt;br&gt;agrupa por AFG">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="URsqXnTEW7ZUEUOE-tDV-62" edge="1" parent="URsqXnTEW7ZUEUOE-tDV-1" source="URsqXnTEW7ZUEUOE-tDV-27" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1.5;fontSize=8;fontColor=#3B82F6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" target="URsqXnTEW7ZUEUOE-tDV-40" value="INSERT/UPDATE&lt;br&gt;atómico">
+        <mxCell id="URsqXnTEW7ZUEUOE-tDV-62" edge="1" parent="URsqXnTEW7ZUEUOE-tDV-1" source="URsqXnTEW7ZUEUOE-tDV-27" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1.5;fontSize=8;fontColor=#3B82F6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" target="URsqXnTEW7ZUEUOE-tDV-40" value="UPDATE card SET&lt;br&gt;status=PENDIENTE_POR_ACTIVAR&lt;br&gt;INSERT embossing_order">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1038" y="583" />
@@ -2418,13 +2418,13 @@
         <mxCell id="gCvaRtfvi0-jn_e2HZX4-14" parent="URsqXnTEW7ZUEUOE-tDV-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;arcSize=8;" value="" vertex="1">
           <mxGeometry height="80" width="200" x="68" y="711" as="geometry" />
         </mxCell>
-        <mxCell id="gCvaRtfvi0-jn_e2HZX4-15" parent="URsqXnTEW7ZUEUOE-tDV-1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Embozadora — SFTP" vertex="1">
+        <mxCell id="gCvaRtfvi0-jn_e2HZX4-15" parent="URsqXnTEW7ZUEUOE-tDV-1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Realzador (Embozadora) — SFTP" vertex="1">
           <mxGeometry height="20" width="200" x="68" y="721" as="geometry" />
         </mxCell>
-        <mxCell id="gCvaRtfvi0-jn_e2HZX4-16" parent="URsqXnTEW7ZUEUOE-tDV-1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="[Sistema Externo — Entidad Emisora]&lt;br&gt;Sube archivos de realce vía SFTP" vertex="1">
+        <mxCell id="gCvaRtfvi0-jn_e2HZX4-16" parent="URsqXnTEW7ZUEUOE-tDV-1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="[Sistema Externo — Proveedor de embozado]&lt;br&gt;Recibe archivos de realce por AFG&lt;br&gt;(uno por entidad, consecutivo de pedido)" vertex="1">
           <mxGeometry height="28" width="200" x="68" y="743" as="geometry" />
         </mxCell>
-        <mxCell id="gCvaRtfvi0-jn_e2HZX4-17" edge="1" parent="URsqXnTEW7ZUEUOE-tDV-1" source="gCvaRtfvi0-jn_e2HZX4-7" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1.5;fontSize=8;fontColor=#3B82F6;exitX=0;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" target="gCvaRtfvi0-jn_e2HZX4-15" value="Sube archivos&lt;br&gt;NXXXDDMMCC / MXXXDDMMCC">
+        <mxCell id="gCvaRtfvi0-jn_e2HZX4-17" edge="1" parent="URsqXnTEW7ZUEUOE-tDV-1" source="gCvaRtfvi0-jn_e2HZX4-7" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1.5;fontSize=8;fontColor=#3B82F6;exitX=0;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" target="gCvaRtfvi0-jn_e2HZX4-15" value="Recibe archivo de&lt;br&gt;realce por AFG (PGP)">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="379" y="736" />
@@ -2464,6 +2464,9 @@
         </mxCell>
         <mxCell id="lh_vLZY8Mr3XH9lA1Hi3-5" parent="URsqXnTEW7ZUEUOE-tDV-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="CDE" vertex="1">
           <mxGeometry height="30" width="60" x="170" y="1105" as="geometry" />
+        </mxCell>
+        <mxCell id="realce-note-report" parent="URsqXnTEW7ZUEUOE-tDV-1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=9;fontColor=#92400E;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;" value="&lt;b&gt;Reporte de Pedido por Entidad&lt;/b&gt;&#xa;━━━━━━━━━━━━━━━━━━━━━━━&#xa;Generado al final del proceso de realce, contiene:&#xa;• Fecha de procesamiento&#xa;• Consecutivo del pedido&#xa;• ID y nombre del AFG&#xa;• Cantidad de tarjetas&#xa;• Entidad emisora&#xa;• Embozador / Realzador&#xa;━━━━━━━━━━━━━━━━━━━━━━━&#xa;⚠️ Si Pomelo dispone el archivo fuera del&#xa;horario definido, se procesa en el corte&#xa;del día siguiente.&#xa;⚠️ Errores de embozado notificados por el&#xa;realzador → bloqueo de las tarjetas y&#xa;solicitud de nuevas tarjetas a Pomelo." vertex="1">
+          <mxGeometry height="240" width="280" x="70" y="280" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
