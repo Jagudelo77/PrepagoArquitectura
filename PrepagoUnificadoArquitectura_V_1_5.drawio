@@ -1,4 +1,4 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.1 Chrome/142.0.7444.265 Electron/39.8.0 Safari/537.36" version="29.6.1" pages="15">
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.1 Chrome/142.0.7444.265 Electron/39.8.0 Safari/537.36" version="29.6.1" pages="16">
   <diagram name="Portal" id="Ys766nw4KWMkH7397uTs">
     <mxGraphModel dx="2702" dy="1918" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -810,7 +810,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="onboarding-th-c4l2" name="Onboarding Tarjetahabiente">
-    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1700" pageHeight="1300" math="0" shadow="0">
+    <mxGraphModel dx="2224" dy="375" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1300" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -822,29 +822,29 @@
         </mxCell>
         <object placeholders="1" c4Name="On-Prem / DMZ" c4Type="SystemScopeBoundary" c4Application="Zona Desmilitarizada" label="&lt;font style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;&lt;div style=&quot;text-align: left&quot;&gt;%c4Name%&lt;/div&gt;&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;text-align: left&quot;&gt;[%c4Application%]&lt;/div&gt;" id="onb-dmz">
           <mxCell parent="1" style="rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#6B7280;fontColor=#6B7280;align=left;verticalAlign=bottom;dashPattern=8 4;strokeWidth=2;spacing=10;" vertex="1">
-            <mxGeometry height="480" width="220" x="-82" y="100" as="geometry" />
+            <mxGeometry height="300" width="238" x="-100" y="280" as="geometry" />
           </mxCell>
         </object>
         <mxCell id="onb-smtp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;" value="" vertex="1">
-          <mxGeometry height="80" width="180" x="-62" y="220" as="geometry" />
+          <mxGeometry height="80" width="180" x="-62" y="324" as="geometry" />
         </mxCell>
         <mxCell id="onb-smtp-t" parent="1" style="text;html=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="SMTP Server (corporativo)" vertex="1">
-          <mxGeometry height="20" width="180" x="-62" y="232" as="geometry" />
+          <mxGeometry height="20" width="180" x="-62" y="336" as="geometry" />
         </mxCell>
         <mxCell id="onb-smtp-d" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="[Infraestructura On-Prem]&#xa;Saliente: emails transaccionales&#xa;Remitente: no-reply@credibanco.com" vertex="1">
-          <mxGeometry height="44" width="180" x="-62" y="254" as="geometry" />
+          <mxGeometry height="44" width="180" x="-62" y="358" as="geometry" />
         </mxCell>
         <mxCell id="onb-portal" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;" value="" vertex="1">
-          <mxGeometry height="120" width="280" x="580" y="135" as="geometry" />
+          <mxGeometry height="120" width="280" x="230" y="134" as="geometry" />
         </mxCell>
         <mxCell id="onb-portal-t" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="PreRegistration_Portal" vertex="1">
-          <mxGeometry height="20" width="280" x="580" y="143" as="geometry" />
+          <mxGeometry height="20" width="280" x="230" y="142" as="geometry" />
         </mxCell>
         <mxCell id="onb-portal-tech" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="[Container: Angular 17+ SPA]" vertex="1">
-          <mxGeometry height="14" width="280" x="580" y="163" as="geometry" />
+          <mxGeometry height="14" width="280" x="230" y="162" as="geometry" />
         </mxCell>
-        <mxCell id="onb-portal-d" parent="1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#3B82F6;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="URL: preregistro.credibanco.com/registro/{code}&lt;br&gt;Pasos UX: 1) verificar cédula → 2) ingresar OTP →&lt;br&gt;3) crear contraseña → 4) ir al Portal TH&lt;br&gt;Validaciones de cliente (longitud password, etc.)&lt;br&gt;CAPTCHA + rate limiting" vertex="1">
-          <mxGeometry height="70" width="270" x="585" y="180" as="geometry" />
+        <mxCell id="onb-portal-d" parent="1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#3B82F6;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="URL: preregistro.credibanco.com/registro/{code}&lt;br&gt;Pasos UX: 1) verificar identidad (tipo+núm doc + correo) →&lt;br&gt;2) ingresar OTP → 3) crear contraseña → 4) ir al Portal TH&lt;br&gt;Validaciones de cliente (longitud password, etc.)&lt;br&gt;CAPTCHA + rate limiting" vertex="1">
+          <mxGeometry height="70" width="270" x="235" y="179" as="geometry" />
         </mxCell>
         <mxCell id="onb-api" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;" value="" vertex="1">
           <mxGeometry height="120" width="320" x="1000" y="135" as="geometry" />
@@ -855,7 +855,7 @@
         <mxCell id="onb-api-tech" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="[Container: Java 21 + Spring Boot 3 + WebFlux]" vertex="1">
           <mxGeometry height="14" width="320" x="1000" y="163" as="geometry" />
         </mxCell>
-        <mxCell id="onb-api-d" parent="1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#3B82F6;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="POST /api/preregistro/verify (cédula)&lt;br&gt;POST /api/preregistro/validate-otp&lt;br&gt;POST /api/preregistro/create-account&lt;br&gt;Validaciones de schema y autenticación.&lt;br&gt;OTP delegada a OTP_Service.&lt;br&gt;session_registro post-OTP (10 min)." vertex="1">
+        <mxCell id="onb-api-d" parent="1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#3B82F6;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="POST /api/preregistro/verify (doc_type + doc_number + email)&lt;br&gt;POST /api/preregistro/validate-otp&lt;br&gt;POST /api/preregistro/create-account&lt;br&gt;Validaciones de schema y autenticación.&lt;br&gt;Delega lógica de negocio en PreRegistration_Service.&lt;br&gt;session_registro post-OTP (TTL 10 min)." vertex="1">
           <mxGeometry height="70" width="310" x="1005" y="180" as="geometry" />
         </mxCell>
         <mxCell id="onb-prereg-svc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;" value="" vertex="1">
@@ -867,32 +867,32 @@
         <mxCell id="onb-prereg-svc-tech" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="[Container: Java 21 + Spring Service — núcleo de negocio del onboarding]" vertex="1">
           <mxGeometry height="14" width="640" x="580" y="350" as="geometry" />
         </mxCell>
-        <mxCell id="onb-prereg-svc-d" parent="1" style="text;html=1;fontSize=9;align=left;verticalAlign=top;fontColor=#3B82F6;fillColor=none;strokeColor=none;whiteSpace=wrap;spacingLeft=12;spacingTop=4;" value="1. createPreRegistration(client_id, email) — disparado desde Prepaid_Card_Creation_Orchestrator (ver pestaña &#39;Creacion de tarjetas&#39;)&#xa;     • Idempotente: si ya existe PENDING vigente para client_id → reusar&#xa;     • code = UUID v4, expires_at = NOW + 30 días, status = PENDIENTE&#xa;     • INSERT preregistration; invoca Notification_Adapter (URL pre-registro)&#xa;2. verifyIdentity(code, doc_number) — Fase 2: valida cédula vs cliente, cuenta intentos (max 3 → BLOQUEADO)&#xa;3. requestOtp(code) — Fase 3: delega en OTP_Service.issueOtp(client_id, purpose=PRE_REGISTRO)&#xa;4. confirmOtp(code, otp) — delega en OTP_Service.validateOtp; si OK emite session_registro (TTL 10 min)&#xa;5. createAccount(code, password) — Fase 4: crea usuario en SSO Realm CARDHOLDER, marca status=COMPLETADO" vertex="1">
+        <mxCell id="onb-prereg-svc-d" parent="1" style="text;html=1;fontSize=9;align=left;verticalAlign=top;fontColor=#3B82F6;fillColor=none;strokeColor=none;whiteSpace=wrap;spacingLeft=12;spacingTop=4;" value="1. createPreRegistration(client_id, email) — disparado desde Prepaid_Card_Creation_Orchestrator (ver pestaña &#39;Creacion de tarjetas&#39;)&#xa;     • Idempotente: si ya existe PENDING vigente para client_id → reusar&#xa;     • code = UUID v4, expires_at = NOW + 30 días, status = PENDIENTE&#xa;     • INSERT preregistration; invoca B2B_Mail_Service (URL pre-registro)&#xa;2. verifyIdentity(code, doc_type, doc_number, email) — Fase 2: valida tipo+número de doc + correo vs cliente; max 3 intentos → BLOQUEADO&#xa;3. requestOtp(code) — Fase 3: invoca OTP_Service.issueOtp(client_id, purpose=PRE_REGISTRO); orquesta envío vía B2B_Mail_Service&#xa;4. confirmOtp(code, otp) — invoca OTP_Service.validateOtp; si OK emite session_registro (TTL 10 min)&#xa;5. createAccount(code, password) — Fase 4: crea usuario en SSO Realm CARDHOLDER; status=COMPLETADO; orquesta email confirmación" vertex="1">
           <mxGeometry height="105" width="620" x="590" y="368" as="geometry" />
         </mxCell>
         <mxCell id="onb-notif" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#7C3AED;strokeWidth=2;arcSize=8;" value="" vertex="1">
           <mxGeometry height="140" width="320" x="570" y="700" as="geometry" />
         </mxCell>
-        <mxCell id="onb-notif-t" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#5B21B6;fillColor=none;strokeColor=none;" value="&lt;font style=&quot;color: rgb(91, 33, 182);&quot;&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;B2B_&lt;/span&gt;&lt;span style=&quot;font-size: 14px; background-color: transparent;&quot;&gt;Mail_Service&lt;/span&gt;&lt;/font&gt;" vertex="1">
+        <mxCell id="onb-notif-t" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#5B21B6;fillColor=none;strokeColor=none;" value="B2B_Mail_Service" vertex="1">
           <mxGeometry height="20" width="320" x="570" y="708" as="geometry" />
         </mxCell>
-        <mxCell id="onb-notif-tech" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#5B21B6;fillColor=none;strokeColor=none;" value="[Container: Spring Boot — cliente SMTP B2C / TH]" vertex="1">
+        <mxCell id="onb-notif-tech" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#5B21B6;fillColor=none;strokeColor=none;" value="[Container: Servicio existente en CCO — cliente SMTP corporativo]" vertex="1">
           <mxGeometry height="14" width="320" x="570" y="728" as="geometry" />
         </mxCell>
-        <mxCell id="onb-notif-d" parent="1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#5B21B6;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="Templates HTML transaccionales al TH:&#xa;• Email Pre-Registro (URL con UUID)&#xa;• Email/SMS OTP (6 dígitos, TTL 5 min)&#xa;• Email Confirmación de cuenta creada&#xa;Audit log por envío. Sin PAN ni datos sensibles.&#xa;Diferente del B2B_Mail_Service (entidades emisoras)." vertex="1">
+        <mxCell id="onb-notif-d" parent="1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#5B21B6;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="Servicio único de envío de correos transaccionales en CCO.&#xa;Compartido por todos los componentes que requieren email&#xa;(onboarding TH, distribución a entidades emisoras, alertas).&#xa;Templates HTML por tipo de mensaje. Audit log por envío.&#xa;Sin PAN ni datos sensibles. TLS 1.3 al SMTP corporativo." vertex="1">
           <mxGeometry height="90" width="310" x="575" y="746" as="geometry" />
         </mxCell>
         <mxCell id="onb-sso" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#10B981;strokeWidth=2;arcSize=8;" value="" vertex="1">
-          <mxGeometry height="140" width="280" x="1150" y="552" as="geometry" />
+          <mxGeometry height="140" width="280" x="1180" y="590" as="geometry" />
         </mxCell>
         <mxCell id="onb-sso-t" parent="1" style="text;html=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fontColor=#065F46;fillColor=none;strokeColor=none;" value="SSO Keycloak (Realm CARDHOLDER)" vertex="1">
-          <mxGeometry height="20" width="280" x="1150" y="560" as="geometry" />
+          <mxGeometry height="20" width="280" x="1180" y="598" as="geometry" />
         </mxCell>
         <mxCell id="onb-sso-tech" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#065F46;fillColor=none;strokeColor=none;" value="[Identity Provider]" vertex="1">
-          <mxGeometry height="14" width="280" x="1150" y="580" as="geometry" />
+          <mxGeometry height="14" width="280" x="1180" y="618" as="geometry" />
         </mxCell>
         <mxCell id="onb-sso-d" parent="1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#065F46;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="POST /admin/realms/cardholder/users&#xa;• username = doc_number&#xa;• password (hash bcrypt/argon2)&#xa;• attributes: client_id, entity_id, email, phone&#xa;• role: CARDHOLDER · enabled: true&#xa;OAuth2 / OIDC / JWT / MFA." vertex="1">
-          <mxGeometry height="72" width="270" x="1155" y="598" as="geometry" />
+          <mxGeometry height="72" width="270" x="1185" y="636" as="geometry" />
         </mxCell>
         <mxCell id="onb-audit" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#0EA5E9;strokeWidth=2;arcSize=8;" value="" vertex="1">
           <mxGeometry height="140" width="160" x="1335" y="368" as="geometry" />
@@ -936,7 +936,7 @@
         <mxCell id="e-orch-prereg" edge="1" parent="1" source="onb-orchestrator-ext" style="endArrow=block;endFill=1;html=1;strokeColor=#92400E;strokeWidth=2;fontSize=8;fontColor=#92400E;exitX=1;exitY=0.5;entryX=0;entryY=0.3;edgeStyle=orthogonalEdgeStyle;" target="onb-prereg-svc" value="1. createPreRegistration&#xa;(client_id, email)">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-prereg-notif" edge="1" parent="1" source="onb-prereg-svc" style="endArrow=block;endFill=1;html=1;strokeColor=#7C3AED;strokeWidth=2;fontSize=8;fontColor=#7C3AED;exitX=0.25;exitY=1;entryX=0.5;entryY=0;edgeStyle=orthogonalEdgeStyle;" target="onb-notif" value="2. sendPreRegistrationEmail&#xa;6. sendOtp">
+        <mxCell id="e-prereg-notif" edge="1" parent="1" source="onb-prereg-svc" style="endArrow=block;endFill=1;html=1;strokeColor=#7C3AED;strokeWidth=2;fontSize=8;fontColor=#7C3AED;exitX=0.25;exitY=1;entryX=0.5;entryY=0;edgeStyle=orthogonalEdgeStyle;" target="onb-notif" value="sendPreRegEmail · sendOtp · sendAccountCreated&#xa;(orquestado por PreRegistration_Service)">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="e-notif-smtp" edge="1" parent="1" source="onb-notif" style="endArrow=block;endFill=1;html=1;strokeColor=#7C3AED;strokeWidth=1.5;fontSize=8;fontColor=#7C3AED;exitX=0;exitY=0.5;entryX=0.5;entryY=1;edgeStyle=orthogonalEdgeStyle;entryDx=0;entryDy=0;" target="onb-smtp" value="SMTP / TLS&#xa;HTML">
@@ -971,7 +971,7 @@
         <mxCell id="onb-note-innominada" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#EDE9FE;strokeColor=#7C3AED;fontSize=9;fontColor=#5B21B6;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;" value="&lt;b&gt;TARJETAS INNOMINADAS&lt;/b&gt;&#xa;━━━━━━━━━━━━━━━━━━━━━━&#xa;Este flujo aplica solo a tarjetas NOMINADAS&#xa;(email del TH conocido al crear).&#xa;&#xa;Las INNOMINADAS:&#xa;• NO disparan pre-registro al crearse.&#xa;• Activación pública (BIN+last4+exp+CVV2)&#xa;     vía Activacion_PIN_Innominada.drawio (ADR-010).&#xa;• Si tras la activación el TH quiere portal,&#xa;     el flujo de SSO/onboarding es opcional&#xa;     y se ejecuta a posteriori (mismo Service).&#xa;&#xa;ADR-016 — uno por cliente, no por tarjeta." vertex="1">
           <mxGeometry height="220" width="320" y="1200" as="geometry" />
         </mxCell>
-        <mxCell id="onb-note-seg" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#FEE2E2;strokeColor=#DC2626;fontSize=9;fontColor=#991B1B;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;" value="&lt;b&gt;CONTROLES DE SEGURIDAD&lt;/b&gt;&lt;br&gt;━━━━━━━━━━━━━━━━━━━━━━&lt;br&gt;• Code de pre-registro: UUID v4, TTL 30 días, 1 uso.&lt;br&gt;• Verificación cédula + correo electronico : max 3 intentos → BLOQUEADO.&lt;br&gt;• OTP gestionada por OTP_Service: 6 dígitos, hash SHA-256 en BD, TTL 5 min, max 3 intentos.&lt;br&gt;• Session_registro: TTL 10 min post-OTP.&lt;br&gt;• Password: min 12 chars, mayúscula, minúscula, número, especial. TLS 1.3 en tránsito.&lt;br&gt;• SSO almacena hash bcrypt/argon2.&lt;br&gt;• Rate limiting + CAPTCHA en formulario cédula.&lt;br&gt;• Audit_Service registra intentos fallidos (PCI 10.2)." vertex="1">
+        <mxCell id="onb-note-seg" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#FEE2E2;strokeColor=#DC2626;fontSize=9;fontColor=#991B1B;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;" value="&lt;b&gt;CONTROLES DE SEGURIDAD&lt;/b&gt;&lt;br&gt;━━━━━━━━━━━━━━━━━━━━━━&lt;br&gt;• Code de pre-registro: UUID v4, TTL 30 días, 1 uso.&lt;br&gt;• Verificación de identidad: tipo+número de documento&lt;br&gt;  + correo electrónico registrado; max 3 intentos → BLOQUEADO.&lt;br&gt;• OTP gestionada por OTP_Service: 6 dígitos,&lt;br&gt;  hash SHA-256 en BD, TTL 5 min, max 3 intentos.&lt;br&gt;• Session_registro: TTL 10 min post-OTP.&lt;br&gt;• Password: min 12 chars, mayúscula, minúscula,&lt;br&gt;  número, especial. TLS 1.3 en tránsito.&lt;br&gt;• SSO almacena hash bcrypt/argon2.&lt;br&gt;• Rate limiting + CAPTCHA en formulario de identidad.&lt;br&gt;• Audit_Service registra intentos fallidos (PCI 10.2)." vertex="1">
           <mxGeometry height="220" width="320" x="360" y="1200" as="geometry" />
         </mxCell>
         <mxCell id="onb-note-modif-email" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#ECFDF5;strokeColor=#10B981;fontSize=9;fontColor=#065F46;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;" value="&lt;b&gt;DISPARADORES DEL PRE-REGISTRO&lt;/b&gt;&#xa;━━━━━━━━━━━━━━━━━━━━━━&#xa;1. Creación de tarjeta nominada&#xa;     (pestaña &#39;Creacion de tarjetas&#39;).&#xa;2. Modificación de email del TH cuando&#xa;     no tiene usuario registrado&#xa;     (pestaña &#39;Flujo Novedades No Monetarias&#39;).&#xa;3. Operaciones puntuales desde Portal Admin&#xa;     (reenvío manual del link).&#xa;&#xa;En todos los casos: el Service decide si crea&#xa;un nuevo code o reusa el PENDING vigente." vertex="1">
@@ -981,39 +981,38 @@
           <mxGeometry height="220" width="320" x="1080" y="1199" as="geometry" />
         </mxCell>
         <mxCell id="onb-otp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#10B981;strokeWidth=2;arcSize=8;" value="" vertex="1">
-          <mxGeometry height="160" width="180" x="1490" y="143" as="geometry" />
+          <mxGeometry height="160" width="300" x="1490" y="143" as="geometry" />
         </mxCell>
         <mxCell id="onb-otp-t" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#065F46;fillColor=none;strokeColor=none;" value="OTP_Service" vertex="1">
-          <mxGeometry height="20" width="180" x="1490" y="151" as="geometry" />
+          <mxGeometry height="20" width="290" x="1490" y="151" as="geometry" />
         </mxCell>
         <mxCell id="onb-otp-tech" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#065F46;fillColor=none;strokeColor=none;" value="[Container: Java 21 + Spring Service]" vertex="1">
-          <mxGeometry height="14" width="180" x="1490" y="171" as="geometry" />
+          <mxGeometry height="14" width="280" x="1490" y="171" as="geometry" />
         </mxCell>
-        <mxCell id="onb-otp-d" parent="1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#065F46;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="Servicio reusable de OTP:&#xa;• issueOtp(client_id, purpose)&#xa;     - 6 dígitos, TTL 5 min&#xa;     - hash SHA-256 en otp.code_hash&#xa;     - delega envío a Notification_Adapter&#xa;• validateOtp(otp_id, code)&#xa;     - max 3 intentos → BLOQUEADO&#xa;     - status: ACTIVO|USADO|EXPIRADO&#xa;Reusable: pre-registro, login MFA, cambio de PIN." vertex="1">
-          <mxGeometry height="115" width="170" x="1495" y="188" as="geometry" />
+        <mxCell id="onb-otp-d" parent="1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#065F46;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="Servicio reusable de OTP (sin envío):&#xa;• issueOtp(client_id, purpose) → retorna code en memoria&#xa;     - 6 dígitos, TTL 5 min&#xa;     - hash SHA-256 en otp.code_hash&#xa;     - el envío lo orquesta el caller (PreRegistration_Service)&#xa;• validateOtp(otp_id, code)&#xa;     - max 3 intentos → BLOQUEADO&#xa;     - status: ACTIVO|USADO|EXPIRADO&#xa;Reusable: pre-registro, login MFA, cambio de PIN." vertex="1">
+          <mxGeometry height="115" width="285" x="1495" y="188" as="geometry" />
         </mxCell>
         <mxCell id="e-api-otp" edge="1" parent="1" source="onb-api" style="endArrow=block;endFill=1;html=1;strokeColor=#10B981;strokeWidth=2;fontSize=8;fontColor=#065F46;exitX=1;exitY=0.5;entryX=0;entryY=0.3;edgeStyle=orthogonalEdgeStyle;" target="onb-otp" value="POST /validate-otp&lt;br&gt;→ otpService.validateOtp">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-prereg-otp" edge="1" parent="1" source="onb-prereg-svc" style="endArrow=block;endFill=1;html=1;strokeColor=#10B981;strokeWidth=1.5;fontSize=8;fontColor=#065F46;exitX=1;exitY=0.25;entryX=0;entryY=0.7;edgeStyle=orthogonalEdgeStyle;strokeDashArray=4;exitDx=0;exitDy=0;" target="onb-otp" value="3. issueOtp&#xa;(emite OTP)">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e-otp-notif" edge="1" parent="1" source="onb-prereg-svc" style="endArrow=block;endFill=1;html=1;strokeColor=#7C3AED;strokeWidth=1.5;fontSize=8;fontColor=#7C3AED;exitX=0.75;exitY=1;edgeStyle=orthogonalEdgeStyle;exitDx=0;exitDy=0;jumpStyle=arc;" value="sendOtp(to, code)">
+        <mxCell id="e-prereg-otp" edge="1" parent="1" source="onb-prereg-svc" style="endArrow=block;endFill=1;html=1;strokeColor=#10B981;strokeWidth=1.5;fontSize=8;fontColor=#065F46;exitX=0.932;exitY=0.001;entryX=0;entryY=0.5;edgeStyle=orthogonalEdgeStyle;strokeDashArray=4;exitDx=0;exitDy=0;exitPerimeter=0;entryDx=0;entryDy=0;" target="onb-otp" value="3. issueOtp&#xa;(emite OTP)">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="1060" y="624" />
-              <mxPoint x="970" y="624" />
-              <mxPoint x="970" y="769" />
+              <mxPoint x="1177" y="300" />
+              <mxPoint x="1330" y="300" />
+              <mxPoint x="1330" y="223" />
             </Array>
-            <mxPoint x="890" y="769" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="e-otp-oracle" edge="1" parent="1" source="onb-otp-d" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1.5;fontSize=8;fontColor=#3B82F6;exitX=0.75;exitY=1;entryX=1;entryY=0.25;edgeStyle=orthogonalEdgeStyle;entryDx=0;entryDy=0;exitDx=0;exitDy=0;" target="onb-oracle-d" value="INSERT/UPDATE otp&#xa;(code_hash, attempts, status)">
+        <mxCell id="e-otp-svc" edge="1" parent="1" source="onb-otp" style="endArrow=block;endFill=1;html=1;strokeColor=#10B981;strokeWidth=1.5;fontSize=8;fontColor=#065F46;exitX=0;exitY=0.7;entryX=1;entryY=0.3;edgeStyle=orthogonalEdgeStyle;strokeDashArray=4;" target="onb-prereg-svc" value="Retorna code (en memoria)&#xa;PreReg_Service orquesta envío">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-otp-oracle" edge="1" parent="1" source="onb-otp-d" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1.5;fontSize=8;fontColor=#3B82F6;exitX=0.5;exitY=1;entryX=1;entryY=0.25;edgeStyle=orthogonalEdgeStyle;entryDx=0;entryDy=0;exitDx=0;exitDy=0;" target="onb-oracle-d" value="INSERT/UPDATE otp&#xa;(code_hash, attempts, status)">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <object placeholders="1" c4Name="OpenShift" c4Type="SystemScopeBoundary" c4Application="Container Platform" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;&lt;div style=&quot;text-align: left&quot;&gt;%c4Name%&lt;/div&gt;&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;text-align: left&quot;&gt;[%c4Application%]&lt;/div&gt;" id="glGPY5cHa48ghBuQO46Z-1">
           <mxCell parent="1" style="rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#CC0000;fontColor=#CC0000;labelBackgroundColor=none;align=left;verticalAlign=bottom;labelBorderColor=none;spacingTop=0;spacing=10;dashPattern=8 4;metaEdit=1;rotatable=0;perimeter=rectanglePerimeter;noLabel=0;labelPadding=0;allowArrows=0;connectable=0;expand=0;recursiveResize=0;editable=1;pointerEvents=0;absoluteArcSize=1;strokeWidth=2;" vertex="1">
-            <mxGeometry height="900" width="1590" x="150" y="70" as="geometry" />
+            <mxGeometry height="900" width="1770" x="150" y="70" as="geometry" />
           </mxCell>
         </object>
         <object placeholders="1" c4Name="Credibanco" c4Type="SystemScopeBoundary" c4Application="Software System" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;&lt;div style=&quot;text-align: left&quot;&gt;%c4Name%&lt;/div&gt;&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;text-align: left&quot;&gt;[%c4Application%]&lt;/div&gt;" id="CO-OaDs0YuM6YK4BCtIK-1">
@@ -2180,7 +2179,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="non-monetary-novelties-001" name="Flujo Novedades No Monetarias">
-    <mxGraphModel dx="629" dy="450" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1300" math="0" shadow="0">
+    <mxGraphModel dx="1209" dy="865" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1300" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -3713,6 +3712,93 @@
         </mxCell>
         <mxCell id="cs-note" parent="1" style="text;html=1;fontSize=9;align=left;verticalAlign=top;fontColor=#374151;fillColor=#F3F4F6;strokeColor=#D1D5DB;rounded=1;spacingLeft=8;spacingRight=8;spacingTop=6;" value="&lt;b&gt;Transiciones reversibles (desbloqueo):&lt;/b&gt;&lt;br&gt;• BLOQ_TEMP(Cli) → ACTIVA (TH desbloquea por Portal)&lt;br&gt;• BLOQ_TEMP(Ent) → ACTIVA (Entidad desbloquea por Archivo/API)&lt;br&gt;• BLOQ_PIN → ACTIVA (Reset PIN por Admin/Entidad)&lt;br&gt;&lt;br&gt;&lt;b&gt;Irreversibles:&lt;/b&gt;&lt;br&gt;• BLOQ_DEF → solo puede ir a RETIRADA (cuando saldo=0)&lt;br&gt;• EXPIRADA y RETIRADA son estados terminales&lt;br&gt;&lt;br&gt;&lt;b&gt;Mapeo Pomelo:&lt;/b&gt; BLOQ_TEMP → Bloqueado | BLOQ_DEF → Deshabilitado&lt;br&gt;&lt;b&gt;Regla:&lt;/b&gt; No crear tarjeta si existe otra en estado ≠ RETIRADA/EXPIRADA en mismo AFG+UserID" vertex="1">
           <mxGeometry height="170" width="420" x="700" y="150" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="D6U6CzetxwcZSxIkA-AL" name="Página-16">
+    <mxGraphModel dx="786" dy="562" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="tie4i3DoXAy11KD-xQJ--1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="1) Archivo NXXX" vertex="1">
+          <mxGeometry height="60" width="120" x="100" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="tie4i3DoXAy11KD-xQJ--2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Rta NXXX" vertex="1">
+          <mxGeometry height="60" width="120" x="100" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="tie4i3DoXAy11KD-xQJ--4" parent="1" style="swimlane;startSize=50;fillColor=#E0F2FE;strokeColor=#0284C7;fontStyle=1;fontSize=12;fontColor=#0284C7;" value="Entidad" vertex="1">
+          <mxGeometry height="1850" width="280" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="tie4i3DoXAy11KD-xQJ--8" parent="tie4i3DoXAy11KD-xQJ--4" style="rounded=1;whiteSpace=wrap;html=1;" value="No se proceso&lt;div&gt;&amp;nbsp;NXXX&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="100" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="tie4i3DoXAy11KD-xQJ--11" parent="tie4i3DoXAy11KD-xQJ--4" style="rounded=1;whiteSpace=wrap;html=1;" value="RESUMEN Diario" vertex="1">
+          <mxGeometry height="60" width="120" x="110" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="tie4i3DoXAy11KD-xQJ--5" parent="1" style="swimlane;startSize=50;fillColor=#FFE599;strokeColor=#0284C7;fontStyle=1;fontSize=12;fontColor=#0284C7;" value="OCP" vertex="1">
+          <mxGeometry height="1850" width="280" x="280" y="10" as="geometry">
+            <mxRectangle height="50" width="70" x="280" y="10" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tie4i3DoXAy11KD-xQJ--3" parent="tie4i3DoXAy11KD-xQJ--5" style="rounded=1;whiteSpace=wrap;html=1;" value="Procesamiento&lt;div&gt;OCP&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="70" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="tie4i3DoXAy11KD-xQJ--10" parent="tie4i3DoXAy11KD-xQJ--5" style="rounded=1;whiteSpace=wrap;html=1;" value="Procesos Batch" vertex="1">
+          <mxGeometry height="60" width="120" x="74" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="tie4i3DoXAy11KD-xQJ--6" edge="1" parent="1" source="tie4i3DoXAy11KD-xQJ--1" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="tie4i3DoXAy11KD-xQJ--3" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="350" y="320" as="sourcePoint" />
+            <mxPoint x="400" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tie4i3DoXAy11KD-xQJ--17" connectable="0" parent="tie4i3DoXAy11KD-xQJ--6" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Entrada" vertex="1">
+          <mxGeometry relative="1" x="-0.1198" y="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tie4i3DoXAy11KD-xQJ--7" edge="1" parent="1" source="tie4i3DoXAy11KD-xQJ--3" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" target="tie4i3DoXAy11KD-xQJ--2" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="350" y="320" as="sourcePoint" />
+            <mxPoint x="400" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tie4i3DoXAy11KD-xQJ--18" connectable="0" parent="tie4i3DoXAy11KD-xQJ--7" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Salida" vertex="1">
+          <mxGeometry relative="1" x="0.1393" y="2" as="geometry">
+            <mxPoint x="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tie4i3DoXAy11KD-xQJ--9" edge="1" parent="1" source="tie4i3DoXAy11KD-xQJ--3" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.75;exitY=1;exitDx=0;exitDy=0;" target="tie4i3DoXAy11KD-xQJ--8" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="350" y="320" as="sourcePoint" />
+            <mxPoint x="400" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tie4i3DoXAy11KD-xQJ--19" connectable="0" parent="tie4i3DoXAy11KD-xQJ--9" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Salida" vertex="1">
+          <mxGeometry relative="1" x="0.2164" y="2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tie4i3DoXAy11KD-xQJ--12" edge="1" parent="1" source="tie4i3DoXAy11KD-xQJ--10" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" target="tie4i3DoXAy11KD-xQJ--11" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="400" y="410" as="sourcePoint" />
+            <mxPoint x="450" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tie4i3DoXAy11KD-xQJ--13" connectable="0" parent="tie4i3DoXAy11KD-xQJ--12" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&lt;div&gt;Salida&lt;/div&gt;Hora generación" vertex="1">
+          <mxGeometry relative="1" x="-0.0376" y="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tie4i3DoXAy11KD-xQJ--14" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Saldos&lt;div&gt;12:00&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="610" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="tie4i3DoXAy11KD-xQJ--15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="TAS&lt;div&gt;1:00 am&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="770" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="tie4i3DoXAy11KD-xQJ--16" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="TAP&lt;div&gt;1:30&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="940" y="270" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
