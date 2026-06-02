@@ -1,4 +1,4 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.1 Chrome/142.0.7444.265 Electron/39.8.0 Safari/537.36" version="29.6.1" pages="14">
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.3.0 Chrome/140.0.7339.249 Electron/38.7.2 Safari/537.36" version="29.3.0" pages="14">
   <diagram name="Portal" id="Ys766nw4KWMkH7397uTs">
     <mxGraphModel dx="2702" dy="1918" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -3046,7 +3046,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="deferred-charges-engine-001" name="Motor de Cobros Diferidos">
-    <mxGraphModel dx="873" dy="624" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2400" pageHeight="1700" math="0" shadow="0">
+    <mxGraphModel dx="542" dy="356" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2400" pageHeight="1700" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -3118,7 +3118,7 @@
           <mxGeometry height="92" width="380" x="120" y="805" as="geometry" />
         </mxCell>
         <mxCell id="dce-core-header" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=center;fontColor=#1F2937;" value="⚙️  Núcleo común — Liquidación atómica" vertex="1">
-          <mxGeometry height="24" width="500" x="760" y="200" as="geometry" />
+          <mxGeometry height="24" width="500" x="760" y="199" as="geometry" />
         </mxCell>
         <mxCell id="dce-core" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=3;arcSize=8;" value="" vertex="1">
           <mxGeometry height="270" width="500" x="760" y="240" as="geometry" />
@@ -3129,7 +3129,7 @@
         <mxCell id="dce-core-tech" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;" value="[Container: Java 21 + Spring Service — orquestador único]" vertex="1">
           <mxGeometry height="14" width="500" x="760" y="274" as="geometry" />
         </mxCell>
-        <mxCell id="dce-core-d" parent="1" style="text;html=1;fontSize=9;align=left;verticalAlign=top;fontColor=#3B82F6;spacingLeft=12;spacingTop=4;" value="Contrato único: settle(card_id, charge_type, amount, concept, source).&#xa;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━&#xa;Pipeline atómico:&#xa;1. Validar tarjeta en estado elegible (Activa, Bloqueo Temporal, Bloqueo PIN Errado).&#xa;2. Resolver cuenta y bolsillo (multibolsillo si aplica).&#xa;3. EXEC SP_SETTLE_CHARGE (Oracle):&#xa;     • Lee saldo  •  IF saldo &gt;= amount: UPDATE balance + INSERT transaction (txn_type por charge_type)&#xa;     • ELSE: INSERT pending_charge(status=PENDIENTE, expires_at = now + 90d)&#xa;4. Marca movimiento en COMI/CSAT/CINS según resultado.&#xa;5. Audit async (PCI 10.2) + invalidate cache Redis.&#xa;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━&#xa;txn_type derivado de charge_type:&#xa;• CUOTA_MANEJO → CUOTA_MANEJO          • COMISION → COMISION&#xa;• GMF → GMF                                              • TECH_EXITOSA → TECH_EXITOSA&#xa;• RECOBRO → RECOBRO (cobro previo liquidado)&#xa;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━&#xa;Idempotencia: clave (charge_type, card_id, period) impide doble cobro." vertex="1">
+        <mxCell id="dce-core-d" parent="1" style="text;html=1;fontSize=9;align=left;verticalAlign=top;fontColor=#3B82F6;spacingLeft=12;spacingTop=4;" value="Contrato único: settle(card_id, charge_type, amount, concept, source, originalTxnId, periodKey).&lt;br&gt;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━&lt;br&gt;Pipeline atómico:&lt;br&gt;1. Validar tarjeta en estado elegible (Activa, Bloqueo Temporal, Bloqueo PIN Errado).&lt;br&gt;2. Resolver cuenta y bolsillo (multibolsillo si aplica).&lt;br&gt;3. EXEC SP_SETTLE_CHARGE (Oracle):&lt;br&gt;     • Lee saldo  •  IF saldo &amp;gt;= amount: UPDATE balance + INSERT transaction (txn_type por charge_type)&lt;br&gt;     • ELSE: INSERT pending_charge(status=PENDIENTE, expires_at = now + 90d)&lt;br&gt;4. Marca movimiento en COMI/CSAT/CINS según resultado.&lt;br&gt;5. Audit async (PCI 10.2) + invalidate cache Redis.&lt;br&gt;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━&lt;br&gt;txn_type derivado de charge_type:&lt;br&gt;• CUOTA_MANEJO → CUOTA_MANEJO          • COMISION → COMISION&lt;br&gt;• GMF → GMF                                              • TECH_EXITOSA → TECH_EXITOSA&lt;br&gt;• RECOBRO → RECOBRO (cobro previo liquidado)&lt;br&gt;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━&lt;br&gt;Idempotencia: clave (charge_type, card_id, period) impide doble cobro." vertex="1">
           <mxGeometry height="208" width="490" x="765" y="292" as="geometry" />
         </mxCell>
         <mxCell id="dce-rec-header" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=center;fontColor=#1F2937;" value="♻️  Recovery — drena pending_charge" vertex="1">
@@ -3156,7 +3156,7 @@
         <mxCell id="dce-retry-sched-tech" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#D97706;" value="[Spring Batch CronJob diario]" vertex="1">
           <mxGeometry height="14" width="380" x="120" y="960" as="geometry" />
         </mxCell>
-        <mxCell id="dce-retry-sched-d" parent="1" style="text;html=1;fontSize=9;align=left;verticalAlign=top;fontColor=#D97706;spacingLeft=10;spacingTop=4;" value="Recorre pending_charge antiguos sin haber sido liquidados por evento.&#xa;• Cron: 0 3 * * * (03:00 diario)&#xa;• Antigüedad ASC, intenta SP_SETTLE_CHARGE&#xa;• Vencimiento 90 días → marca EXPIRADA + alerta operación" vertex="1">
+        <mxCell id="dce-retry-sched-d" parent="1" style="text;html=1;fontSize=9;align=left;verticalAlign=top;fontColor=#D97706;spacingLeft=10;spacingTop=4;" value="Recorre pending_charge antiguos sin haber sido liquidados por evento.&lt;br&gt;• Cron: 0 3 * * * (03:00 diario)&lt;br&gt;• Vencimiento 90 días → marca EXPIRADA + alerta operación" vertex="1">
           <mxGeometry height="74" width="370" x="125" y="977" as="geometry" />
         </mxCell>
         <mxCell id="dce-oracle" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=2;size=12;" value="" vertex="1">
@@ -3190,16 +3190,16 @@
           <mxGeometry height="380" width="500" x="2490" y="205" as="geometry" />
         </mxCell>
         <mxCell id="dce-ofg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;" value="" vertex="1">
-          <mxGeometry height="160" width="380" x="1490" y="490" as="geometry" />
+          <mxGeometry height="200" width="380" x="1490" y="450" as="geometry" />
         </mxCell>
         <mxCell id="dce-ofg-t" parent="1" style="text;html=1;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;" value="Output_File_Generator" vertex="1">
-          <mxGeometry height="22" width="380" x="1490" y="498" as="geometry" />
+          <mxGeometry height="22" width="380" x="1490" y="462" as="geometry" />
         </mxCell>
         <mxCell id="dce-ofg-tech" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;" value="[Java 21 + Spring Batch — publisher único]" vertex="1">
-          <mxGeometry height="14" width="380" x="1490" y="520" as="geometry" />
+          <mxGeometry height="14" width="380" x="1490" y="484" as="geometry" />
         </mxCell>
-        <mxCell id="dce-ofg-d" parent="1" style="text;html=1;fontSize=9;align=left;verticalAlign=top;fontColor=#3B82F6;spacingLeft=10;spacingTop=4;" value="Lee de transaction y pending_charge, descifra PAN&#xa;en memoria y escribe archivos PLANOS en NFS:&#xa;• COMI dd.MM — Comisiones cobradas + recobros&#xa;• CSAT dd.MM — Comisiones satisfactorias&#xa;• CINS dd.MM — Comisiones insatisfactorias (3 meses)&#xa;• AUM dd.MM — Movimientos del día (incluye CUOTA_MANEJO, GMF)&#xa;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━&#xa;Cron: 0 1 * * * (01:00 AM diario)&#xa;GAW cifra PGP y entrega vía SFTP a la Entidad." vertex="1">
-          <mxGeometry height="106" width="370" x="1495" y="540" as="geometry" />
+        <mxCell id="dce-ofg-d" parent="1" style="text;html=1;fontSize=9;align=left;verticalAlign=top;fontColor=#3B82F6;spacingLeft=10;spacingTop=4;" value="Lee de transaction y pending_charge, escribe archivos PLANOS en NFS:&lt;br&gt;• COMI dd.MM — Comisiones cobradas + recobros&lt;br&gt;• CSAT dd.MM — Comisiones satisfactorias&lt;br&gt;• CINS dd.MM — Comisiones insatisfactorias (3 meses)&lt;br&gt;• AUM dd.MM — Movimientos del día (incluye CUOTA_MANEJO, GMF)&lt;br&gt;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━&lt;br&gt;Cron: 0 1 * * * (01:00 AM diario)&lt;br&gt;GAW cifra PGP y entrega vía SFTP a la Entidad.&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(59, 130, 246), rgb(76, 137, 236));&quot;&gt;AUM -&amp;gt; 00:30 AM&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(59, 130, 246), rgb(76, 137, 236));&quot;&gt;COMI / CSAT / CINS -&amp;gt; 01:15 AM&lt;/span&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="106" width="370" x="1495" y="504" as="geometry" />
         </mxCell>
         <mxCell id="dce-audit" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;" value="" vertex="1">
           <mxGeometry height="120" width="380" x="1490" y="680" as="geometry" />
@@ -3252,9 +3252,7 @@
         <mxCell id="dce-e-rec-oracle" edge="1" parent="1" source="dce-recovery" style="endArrow=block;endFill=1;html=1;strokeColor=#10B981;strokeWidth=1.5;fontSize=8;fontColor=#065F46;exitX=0.5;exitY=1;entryX=-0.001;entryY=0.568;entryDx=0;entryDy=0;entryPerimeter=0;edgeStyle=orthogonalEdgeStyle;" target="dce-oracle" value="EXEC SP_RECOVER_CHARGES&#xa;UPDATE pending_charge=COBRADA&#xa;INSERT transaction(RECOBRO)">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="885" y="1306" />
-              <mxPoint x="1077" y="1306" />
-              <mxPoint x="1077" y="1305" />
+              <mxPoint x="885" y="1305" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -3272,7 +3270,7 @@
             <Array as="points">
               <mxPoint x="880" y="602" />
               <mxPoint x="1410" y="602" />
-              <mxPoint x="1410" y="563" />
+              <mxPoint x="1410" y="542" />
             </Array>
             <mxPoint x="1290" y="670" as="sourcePoint" />
           </mxGeometry>
