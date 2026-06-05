@@ -265,7 +265,7 @@ Pertenecen al ciclo de vida de una transacción y están acoplados al motor tran
 ### 11.5 Cobro de Impuestos
 - Si el cobro es no efectivo → cobro recurrente.
 - Incluir en **COMI** con detalle de la transacción cobrada.
-- GMF **en línea** bajo el modelo actual y **en batch** bajo el nuevo modelo (Ley 2277 de 2022, artículo 881-1 Estatuto Tributario).
+- GMF **en línea** bajo el modelo actual y **GMF batch** entra como **novedad por archivo de la Entidad** bajo el nuevo modelo (Ley 2277 de 2022, artículo 881-1 Estatuto Tributario). Ver `requerimientos-novedades-monetarias.md` §4.5 y ADR-028.
 - Recurrentes cobrados → **COMI** con concepto "Proceso de Cobro Satisfactorio".
 
 **Pendiente:** tratamiento de devolución del 4x1000 cuando una transacción se reversa.
