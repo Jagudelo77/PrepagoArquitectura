@@ -112,7 +112,7 @@ G XXX dd mm cc     (GMF — TBD)
 | 16 | Presentaciones (txn con BIN+PAN) | TBD | Batch | TBD | Si | PGP publica Entidad | Entidad emisora |
 | 17 | Transacciones (todas con BIN+PAN) | TBD | Batch | TBD | Si | PGP publica Entidad | Entidad emisora |
 | 18 | Indicadores Base | `indicadores_baseddmmaaaa.xlsx` | Batch | TBD (mensual) | No | PGP publica Entidad | Entidad emisora |
-| 19 | Archivo Realce por AFG | `consecutivo+AFG+fecha+realzador` | Batch | 05:00 COL | No | PGP publica Realzador | Realzador (embozadora) |
+| 19 | Archivo Realce por AFG | `consecutivo+AFG+fecha+realzador` | Batch | Tras IF Pomelo 09:00 COL | No | PGP publica Realzador | Realzador (embozadora) |
 | 20 | Reporte de Pedido por Entidad | (adjunto email) | Batch | Post-realce | No | No aplica (email) | Entidad (via B2B_Mail_Service) |
 | 21 | TEX — Indicador Exencion GMF | `TEXdd.mm` | Batch | Diaria | No | PGP publica Entidad | Entidad emisora |
 | 22 | Reporte GMF (a TransUnion) | TBD | Batch | TBD | No | PGP publica Entidad | Entidad emisora |

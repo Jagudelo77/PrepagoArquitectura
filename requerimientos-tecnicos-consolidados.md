@@ -46,7 +46,7 @@ Documento maestro que consolida los requerimientos del archivo `Prepago/Requerim
 - Pomelo es la única fuente del PAN, CVV2, fecha de expiración y código de autorización en el momento de la creación.
 - Pomelo es el pre-autorizador de toda transacción financiera; valida PIN, CVV/CVV2, fecha de vencimiento, existencia y estado de tarjeta, BIN y AFG, y límite de intentos de PIN errado.
 - Las entidades emisoras suben archivos cifrados con PGP vía SFTP a través de GoAnywhere MFT.
-- El HSM Thales se reserva para PIN interchange. **No** se usa para cifrar el PAN ni el CVV2.
+- El **PIN se delega 100% a Pomelo** (iframe de Pomelo + HSM de Pomelo). Credibanco NO usa HSM Thales propio (ADR-031). El envelope encryption del PAN se mantiene sin HSM (ADR-006).
 - El equipo opera sobre OpenShift con Java 21 + Spring Boot 3, Oracle 19c+ y Redis 7+ con Sentinel.
 - Existe un SSO Keycloak con dos realms: `ADMIN` (operación interna) y `CARDHOLDER` (tarjetahabientes).
 
@@ -63,7 +63,7 @@ Documento maestro que consolida los requerimientos del archivo `Prepago/Requerim
 | **Cache / contadores** | Redis 7+ Cluster + Sentinel (HA) | AFG config cache + `Limit Counter Service` + cache de `Merchant_Validation_Plan` |
 | **Infraestructura** | OpenShift Container Platform | Despliegue, RBAC, secrets management, CronJobs |
 | **Mensajería** | (TBD) — eventual broker entre orchestrators y notification | Por ahora invocaciones síncronas; introducir Kafka/RabbitMQ si el volumen lo exige |
-| **HSM** | Thales payShield | Solo PIN interchange (cmd EI / GI / EO) |
+| **PIN** | Iframe de Pomelo + HSM de Pomelo | Delegado 100% a Pomelo. Credibanco NO usa HSM propio (ADR-031) |
 | **Cifrado de PAN** | AES-256-GCM + RSA-4096 OAEP (envelope encryption) | KEK en KeyStore PKCS12 montado como OpenShift Secret. Sin HSM (ADR-006/007/018) |
 | **Transferencia de archivos** | GoAnywhere MFT + SFTP + PGP | Validación de formato y depósito en NFS |
 | **SSO / IdP** | Keycloak (OIDC / OAuth2 / JWT) | Realms ADMIN y CARDHOLDER, MFA |
@@ -117,7 +117,7 @@ La arquitectura se documenta en `PrepagoUnificadoArquitectura_V_1_5.drawio` (16 
 | `Prepaid_Cardholder_API` | Java 21 + Spring Boot 3 + WebFlux | Backend del portal TH (consulta saldo, historial, bloqueo/desbloqueo, modificación datos) |
 | `PreRegistration_Portal` | Angular 17+ SPA | Portal público en `preregistro.credibanco.com/registro/{code}` |
 | `Iframe Datos Sensibles` | Angular 17+ en dominio separado | Visualización de PAN/CVV2/exp en `secure-data.credibanco.com` |
-| `Iframe PIN` | Angular 17+ + SubtleCrypto | Captura y cambio de PIN E2E con HSM Thales |
+| `Iframe PIN (Pomelo)` | Iframe servido por Pomelo, integrado en el portal | Captura/cambio/activación de PIN delegado a Pomelo (ADR-031). Credibanco NO desarrolla iframe propio |
 
 ### 3.4 Componentes de proceso batch
 
@@ -274,7 +274,8 @@ Hasta que se libere el portal admin Angular, las operaciones se realizan vía Po
 ### 5.2 Realce
 
 **Funcional:**
-- Pomelo dispone archivo base de realce diariamente 07:00 ARG / 05:00 COL.
+- **Pomelo dispone el archivo base de realce (IF) diariamente a las 09:00 AM hora Colombia** (actualizado en Requerimientos Técnicos (13); antes era 07:00 ARG / 05:00 COL).
+- **Corte:** todas las tarjetas creadas por las entidades hasta las **05:00 AM hora COL del día anterior** entran en el IF de ese día. Las creadas después de las 05:00 AM COL entran en el IF del día siguiente.
 - Generar un archivo por AFG con consecutivo de pedido.
 - Naming: `consecutivo + AFG + fecha + nombre del Realzador`.
 - Estructura de variables expuesta por Pomelo.
@@ -285,11 +286,11 @@ Hasta que se libere el portal admin Angular, las operaciones se realizan vía Po
 - Errores de embozado notificados por el realzador → bloqueo y solicitud de nuevas.
 
 **Técnico:**
-- `Prepaid_Embossing_Batch` (CronJob, schedule diario tras 05:00 COL).
+- `Prepaid_Embossing_Batch` (CronJob, schedule diario tras recibir el IF de Pomelo a las 09:00 COL).
 - `Prepaid_Embossing_Processor` agrupa por AFG, asigna consecutivo (`embossing_order`).
 - `UPDATE card SET status='PENDIENTE_POR_ACTIVAR'`.
 
-**ADR:** ADR-021 (limpieza de la pestaña Realce).
+**ADR:** ADR-021 (limpieza de la pestaña Realce), ADR-030 (actualización horario IF y modelo activación iframe Pomelo).
 
 ### 5.3 Distribución
 
@@ -727,7 +728,7 @@ Ver `docs/modelo-entidad-relacion.md`, `MER_Prepago_V_1_0.drawio` y `db/01_schem
 - `Prepago/PrepagoUnificadoArquitectura_V_1_5.drawio` — arquitectura principal vigente (16 pestañas C4 L2).
 - `Prepago/Envelope_Encryption_PAN.drawio` — detalle envelope encryption + ceremonia KEK.
 - `Prepago/Iframe_Visualizacion_DatosSensibles.drawio` — iframe en dominio separado.
-- `Prepago/pinpad_pci_drawio_6_mejorado.drawio` — flujo PIN E2E con HSM Thales.
+- `Prepago/pinpad_pci_drawio_6_mejorado.drawio` — flujo PIN E2E con HSM Thales (**HISTÓRICO** — reemplazado por iframe de Pomelo, ADR-031).
 - `Prepago/Activacion_PIN_Innominada.drawio` — activación tarjeta innominada.
 - `Prepago/Onboarding_Tarjetahabiente.drawio` — flujo de onboarding por fases (swimlanes).
 
@@ -760,7 +761,7 @@ Ver `docs/modelo-entidad-relacion.md`, `MER_Prepago_V_1_0.drawio` y `db/01_schem
 | ADR-005 | Tabla `transaction` particionada por mes |
 | ADR-006 | Envelope Encryption (RSA + AES, sin HSM para PAN) |
 | ADR-007 | KEK con Split Knowledge (2 custodios) |
-| ADR-008 | PIN encryption E2E con SubtleCrypto + HSM Thales |
+| ADR-008 | PIN encryption E2E con SubtleCrypto + HSM Thales (**SUPERSEDED por ADR-031** — PIN delegado a Pomelo) |
 | ADR-009 | Iframe en dominio separado para datos sensibles |
 | ADR-010 | Activación PIN innominadas vía Proof of Possession |
 | ADR-011 | Reconciliación End-of-Day contra clearing |

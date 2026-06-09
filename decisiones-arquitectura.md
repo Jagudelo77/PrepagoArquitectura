@@ -1042,3 +1042,165 @@ Son **flujos inversos**. El Settlement no tiene visibilidad de abonos; los abono
 - `project-context.md` apunta ahora a V_1_11 como arquitectura principal vigente.
 - ADR-027 sigue vigente; este bloque es aclaración complementaria.
 - Implementación: el equipo debe asegurarse de que el `Novelty_Orchestrator`, `Adjustment_Service` y el motor txn sean los únicos que invoquen `Recovery_Service.recoverByEvent(card_id)`. El `Charge_Settlement_Service` no debe tener referencia a `Recovery_Service` en su código.
+
+## ADR-030: Actualización de lineamientos por Requerimientos Técnicos (13)
+
+**Contexto:** Se entregó una nueva versión del documento de requerimientos (`Requerimientos Técnicos (13).docx`) que reemplaza a la versión (12). El diff entre ambas versiones revela cuatro cambios sustantivos de lineamiento que impactan documentación y arquitectura. Los archivos `ARCHIVOS ENTRADA/SALIDA NUEVO AUTORIZADOR PROCESAMIENTO EMISOR.xlsx` se reentregaron pero mantienen la misma estructura ya documentada en `docs/estructuras-archivos-manual-tecnico.md` (NXXX 600 bytes, MXXX 200 bytes, archivos GMF, etc.).
+
+**Cambios identificados en el docx (13):**
+
+### 1. Horario del archivo de realce (IF) de Pomelo
+
+- **Antes (v12):** "Se genera de manera diaria a las 7:00 am hora ARG → 5:00 am hora COL".
+- **Ahora (v13):** "El IF se envía todos los días a las **9:00 AM hora Colombia**".
+- **Corte nuevo:** todas las tarjetas creadas hasta las **05:00 AM hora COL del día anterior** entran en el IF de ese día. Las creadas después de las 05:00 AM COL entran en el IF del día siguiente.
+
+**Impacto:** se actualizó `requerimientos-tecnicos-consolidados.md` §5.2 (Realce) y `catalogo-archivos-gaw.md` (archivo Realce por AFG: hora "Tras IF Pomelo 09:00 COL"). El `Prepaid_Embossing_Batch` ahora se dispara tras recibir el IF de las 09:00 COL, no a las 05:00.
+
+### 2. Modelo de activación de tarjeta vía iframe de Pomelo (cambio arquitectónico)
+
+- **Antes (v12):** "El modelo de activación de tarjeta no se realizará directamente por el portal sino por el **i-Frame que se desarrollará internamente**".
+- **Ahora (v13):** "El modelo de activación de tarjeta no se realizará directamente por el portal sino **a través de la integración con el i-Frame de Pomelo**".
+
+**Impacto (significativo):**
+- Cambia el alcance de **ADR-008** (iframe E2E con HSM Thales propio para captura de PIN). Si la captura/asignación de PIN se delega al iframe de Pomelo, Credibanco ya no desarrolla ni hostea el iframe de PIN. El HSM Thales propio para interchange de PIN podría dejar de ser necesario (a confirmar — depende de si Pomelo asume todo el ciclo del PIN).
+- Cambia el alcance de **ADR-010** (activación de innominadas con iframe propio reutilizado). Queda pendiente validar con Pomelo cómo se activan innominadas en su iframe.
+- **NO cambia ADR-009** (iframe de visualización de datos sensibles en `secure-data.credibanco.com`): ese iframe es para mostrar PAN/CVV2, es independiente del de PIN. El docx (13) añade explícitamente "Mostrar Datos Sensibles de Tarjeta" como funcionalidad, lo que refuerza ADR-009.
+- Se actualizó `requerimientos-ciclo-vida-tarjeta-y-portal-th.md` §6.5 (Activación) con el nuevo lineamiento y referencia a este ADR.
+
+**Pendientes derivados:**
+- Confirmar con Pomelo el contrato de integración del iframe de activación/PIN (¿postMessage? ¿redirect? ¿qué llaves?).
+- Decidir si el HSM Thales propio sigue siendo necesario o si Pomelo asume el interchange de PIN completo.
+- Revisar diagramas `pinpad_pci_drawio_6_mejorado.drawio` y `Activacion_PIN_Innominada.drawio` contra el nuevo modelo (posiblemente pasen a histórico o requieran nueva versión).
+- Actualizar la pestaña de activación en el unificado si existiera.
+
+### 3. Archivo de Indicadores Base — detalle ampliado
+
+El docx (13) detalla el archivo `indicadores_baseddmmaaaa.xlsx`:
+- Informe en formato Excel, dispuesto automáticamente **mes vencido** en la ruta definida.
+- Filtrable por AFG.
+- El periodo de la data se relaciona en el nombre: `indicadores_base30042025` (formato `indicadores_baseDDMMAAAA`).
+- La columna "total de compras" = compras autorizadas (asociadas o no a una anulación).
+- En lo posible, quitar de las operaciones originales las asociadas a un reverso.
+- El informe debe tener un espacio para descripción de cada columna.
+
+**Impacto:** se actualizó `estructuras-archivos-manual-tecnico.md` §2.18 (Indicadores Base) con estos detalles.
+
+### 4. Renombre: "Tarjetas Inactivas" → "Tarjetas Bloqueadas"
+
+- **Antes (v12):** la columna del Indicador Base se llamaba "TARJETAS INACTIVAS".
+- **Ahora (v13):** "La columna de tarjetas inactivas se llamará **tarjetas bloqueadas**".
+
+**Impacto:** se actualizó `estructuras-archivos-manual-tecnico.md` §2.18.
+
+**Otros cambios menores en el docx (13):**
+- Se reordenaron/consolidaron varias líneas de la sección de archivos de salida (CINS, CSAT, Presentaciones, Transacciones, EXT, CANJ, AUMCT, RAJU) — sin cambio de contenido sustantivo, solo de redacción/posición. Ya estaban reflejados en `estructuras-archivos-manual-tecnico.md`.
+- Se removió la descripción larga del "Cambio de PIN" como funcionalidad separada (queda implícito en la gestión de PIN del portal). Sin impacto documental.
+
+**Decisión:** actualizar la documentación afectada (hecho) y abrir los pendientes de validación con Pomelo sobre el iframe de activación. El cambio #2 (iframe Pomelo) es el más relevante y requiere decisión de arquitectura sobre el futuro del HSM Thales propio. **Se recomienda no descartar el HSM Thales hasta confirmar formalmente con Pomelo el alcance de su iframe de PIN.**
+
+**Alternativas para el cambio #2:**
+- **A) Delegar todo el ciclo de PIN a Pomelo** (iframe + HSM Pomelo): Credibanco no necesita HSM Thales propio. Reduce costo y complejidad pero aumenta dependencia de Pomelo y reduce control sobre el dato PIN.
+- **B) Iframe de Pomelo pero con interchange hacia HSM Thales de Credibanco**: híbrido, mantiene el HSM propio. Más control, más complejidad de integración.
+- **C) Mantener iframe propio (status quo ADR-008)**: contradice el docx (13). Descartada salvo que la integración con Pomelo no sea viable.
+
+Decisión diferida hasta validación con Pomelo. Por ahora se documenta el lineamiento del docx (13) (opción A o B) y se conservan los diagramas de ADR-008/010 como referencia hasta confirmar.
+
+**Impacto en versionado de diagramas:**
+- No se crea versión nueva del unificado en este ADR (los cambios son documentales + pendientes de validación).
+- Cuando se confirme el modelo de iframe Pomelo, se creará la versión del unificado correspondiente y se revisará el estado de `pinpad_pci_drawio_6_mejorado.drawio`.
+
+## ADR-031: Eliminación del iframe interno de PIN y del HSM Thales de Credibanco — PIN delegado 100% a Pomelo
+
+**Estado:** Aceptada. **Reemplaza (supersedes) a ADR-008.** Afecta a ADR-010.
+
+**Contexto:** ADR-030 documentó que Requerimientos Técnicos (13) cambió el modelo de activación de tarjeta a "integración con el i-Frame de Pomelo" y dejó abierta la decisión sobre el futuro del HSM Thales propio. La decisión de arquitectura se confirmó: **Credibanco NO requiere ni el iframe interno de PIN ni el HSM Thales propio**. Todo el ciclo del PIN (captura, asignación inicial en activación, cambio, verificación) se delega a Pomelo a través de su iframe y su HSM.
+
+**Decisión:**
+
+1. **Eliminar el iframe interno de captura/cambio de PIN** (el que se planteaba en ADR-008 con Angular + SubtleCrypto). El PIN se captura en el **iframe de Pomelo** integrado en el portal tarjetahabiente.
+2. **Eliminar el HSM Thales payShield de Credibanco.** Pomelo asume el interchange de PIN con su propio HSM. Credibanco no genera llaves RSA efímeras, no ejecuta cmd EI/GI/EO, no custodia ZPK/ZMK.
+3. **El esquema de llaves de la respuesta a Pomelo (ADR-008 / `Respuesta_Pomelo_PIN_Keys.drawio`) deja de aplicar del lado Credibanco.** La ceremonia TR-34, la ZPK, el PIN block ISO 9564 — todo eso queda del lado de Pomelo. Credibanco no participa en el interchange criptográfico del PIN.
+4. **El PIN nunca toca infraestructura de Credibanco.** El portal carga el iframe de Pomelo; el TH digita el PIN dentro de ese iframe (dominio Pomelo); Pomelo lo procesa con su HSM. Credibanco solo orquesta la apertura del iframe y recibe la confirmación del resultado.
+
+**Lo que NO cambia:**
+
+- **Envelope Encryption del PAN (ADR-006/007/018) se mantiene intacto.** El PAN se cifra con AES-256-GCM + RSA-4096 (KEK en KeyStore PKCS12), **sin HSM**. Esta decisión siempre fue independiente del HSM (el HSM era solo para PIN). El descifrado del PAN para generar archivos (TAR) lo hace el `Envelope_Encryption_Service`, no un HSM.
+- **El iframe de visualización de datos sensibles (ADR-009) se mantiene.** `secure-data.credibanco.com` para mostrar PAN/CVV2 sigue siendo de Credibanco. Es independiente del iframe de PIN. Requerimientos Técnicos (13) lo refuerza al añadir "Mostrar Datos Sensibles de Tarjeta".
+- **SSO, MFA, viewToken, CSP/SRI** siguen igual.
+
+**Razón:**
+
+- **Reduce costo y complejidad:** el HSM Thales payShield es hardware costoso de adquirir, certificar (PCI PIN Security) y operar. Eliminarlo quita una pieza crítica de infraestructura, su ceremonia de llaves, su mantenimiento y su auditoría.
+- **Reduce scope PCI:** sin HSM ni iframe de PIN propio, el PIN nunca entra al CDE de Credibanco. El scope PCI PIN Security pasa a Pomelo. Credibanco mantiene scope PCI DSS solo por el PAN (envelope encryption) y los archivos.
+- **Coherente con el rol de Pomelo:** Pomelo ya es el pre-autorizador y procesador. Que asuma el ciclo del PIN es consistente con su rol. Pomelo ya tiene HSM certificado.
+- **Alineado con Requerimientos Técnicos (13):** el documento de negocio ya define la integración con el iframe de Pomelo.
+
+**Consecuencias:**
+
+- **Diagramas que pasan a HISTÓRICO:**
+  - `pinpad_pci_drawio_6_mejorado.drawio` (flujo PIN E2E con HSM Thales).
+  - `Flujo_Seguridad_PIN_Iframe_HSM.drawio`.
+  - `Respuesta_Pomelo_PIN_Keys.drawio` (esquema de llaves ZPK/ZMK — ahora interno de Pomelo, no de Credibanco).
+  - `Iframe_Credibanco_PIN_DatosSensibles.drawio` (ya era exploratorio).
+- **Diagrama que ahora aplica:** `Iframe_Pomelo_PIN_DatosSensibles.drawio` (la variante donde Pomelo hostea el iframe — pasa de "descartada" a la opción vigente para el PIN).
+- **Unificado:** se crea `PrepagoUnificadoArquitectura_V_1_12.drawio` que elimina las cajas HSM y corrige el descifrado de PAN (debe ser `Envelope_Encryption_Service`, no "HSM cmd M2" — corrección de un error preexistente en el diagrama).
+- **ADR-010 (activación innominadas):** la activación de innominadas que reusaba el iframe propio ahora debe reusar el iframe de Pomelo. Pendiente validar con Pomelo cómo maneja innominadas (sin documento asociado) en su iframe.
+- **Esquema de llaves PIN:** Credibanco ya no necesita custodiar ZPK/ZMK ni participar en ceremonia TR-34. El correo de respuesta a Pomelo (`correos/respuesta-pomelo-pin-keys.md`) queda como histórico.
+- **Steering `project-context.md`:** actualizado — se elimina HSM del stack, decisión #8 reescrita.
+
+**Corrección de error preexistente detectado:**
+El diagrama unificado (pestañas de archivos) mostraba que el `Output_File_Generator` descifraba el PAN "vía HSM cmd M2". Esto era **doblemente incorrecto**: (a) el PAN nunca usó HSM (usa envelope encryption — ADR-006), y (b) ahora no hay HSM. La corrección en V_1_12: el OFG descifra el PAN (solo para el archivo TAR, único con PAN en el nuevo modelo) mediante el `Envelope_Encryption_Service` con la KEK del KeyStore.
+
+**Pendientes derivados:**
+- Confirmar con Pomelo el contrato de integración de su iframe de PIN (postMessage / redirect / parámetros / manejo de innominadas).
+- Confirmar SLA y disponibilidad del iframe de Pomelo (es ahora dependencia crítica para activación).
+- Definir el comportamiento del portal si el iframe de Pomelo no está disponible (degradación).
+- Revisar el contrato de "confirmación de activación" que Pomelo devuelve al portal tras asignar el PIN.
+
+**Alternativas descartadas:**
+- **Mantener HSM Thales propio (status quo ADR-008):** descartado por costo, complejidad y porque Requerimientos Técnicos (13) define la integración con Pomelo.
+- **Híbrido (iframe Pomelo + interchange a HSM Thales Credibanco):** descartado — si el iframe es de Pomelo, el PIN ya está en su dominio; pasar el interchange a un HSM de Credibanco añade complejidad sin beneficio.
+
+### Ampliación de ADR-031 — el iframe de Pomelo cubre 4 procesos (PIN + datos sensibles + activación nominada e innominada)
+
+**Contexto adicional:** tras confirmar la eliminación del iframe interno de PIN y del HSM Thales, se precisó que **el alcance del iframe de Pomelo cubre cuatro procesos del tarjetahabiente**, no solo el PIN:
+
+1. **Activación de Tarjeta Nominada** — captura/asignación del PIN inicial.
+2. **Cambio de PIN** — captura del PIN actual + nuevo.
+3. **Mostrar Datos Sensibles de Tarjeta** — visualización de PAN/CVV2/expiración.
+4. **Activación de Tarjeta Innominada** (Fase 2) — asignación de PIN sin documento asociado.
+
+**Decisión ampliada:**
+
+- **Supersede ADR-008** (iframe interno de PIN con HSM Thales) — confirmado.
+- **Supersede ADR-009 para el tarjetahabiente** (iframe propio de visualización de datos sensibles en `secure-data.credibanco.com`): la visualización de PAN/CVV2 al TH ahora la hace el **iframe de Pomelo**, no un iframe propio de Credibanco. Credibanco no renderiza datos sensibles al TH.
+- **Supersede / pone en revisión ADR-010** (activación de innominadas con Proof of Possession en micro-portal propio): la activación de innominadas se hará mediante el iframe de Pomelo. Pendiente definir con Pomelo el mecanismo para tarjetas sin documento asociado.
+
+**Diagramas que pasan a HISTÓRICO (ampliación):**
+- `Iframe_Visualizacion_DatosSensibles.drawio` — la visualización ahora la hace Pomelo.
+- `Activacion_PIN_Innominada.drawio` — en revisión; la activación de innominadas va por iframe de Pomelo.
+- (ya listados antes) `pinpad_pci_drawio_6_mejorado.drawio`, `Flujo_Seguridad_PIN_Iframe_HSM.drawio`, `Respuesta_Pomelo_PIN_Keys.drawio`, `Iframe_Credibanco_PIN_DatosSensibles.drawio`.
+
+**Diagrama vigente para todos estos flujos:** `Iframe_Pomelo_PIN_DatosSensibles.drawio` (Pomelo hostea el iframe que cubre PIN + datos sensibles).
+
+**Impacto en el descifrado de PAN:**
+- Como la visualización del PAN al TH la hace Pomelo, Credibanco **solo descifra el PAN (envelope encryption — ADR-006) para la generación del archivo de salida TAR** (creación de tarjetas), que es el único archivo del nuevo modelo que lleva PAN (ver `estructuras-archivos-manual-tecnico.md` §4). Ya no hay descifrado de PAN para mostrar al TH.
+- El `Envelope_Encryption_Service` se mantiene solo para: (a) cifrar el PAN al crear la tarjeta, (b) descifrarlo para el archivo TAR.
+
+**Lo que se mantiene de Credibanco (no va por Pomelo):**
+- Onboarding: pre-registro, login, restablecer/cambiar contraseña (SSO Keycloak Realm CARDHOLDER).
+- Generación y validación de OTP (`OTP_Service`, ADR-024).
+- Notificaciones por correo (`B2B_Mail_Service`, ADR-025).
+- Envelope encryption del PAN para storage y archivo TAR.
+
+**Impacto PCI:**
+- El scope CDE de Credibanco se reduce aún más: ni PIN ni visualización de PAN/CVV2 al TH pasan por Credibanco.
+- Credibanco mantiene scope PCI DSS por: almacenamiento del PAN cifrado (envelope encryption) y generación del archivo TAR con PAN.
+- El iframe de Pomelo asume el scope de PIN Security y de visualización de datos sensibles al TH.
+
+**Pendientes derivados (ampliación):**
+- Contrato de integración del iframe de Pomelo para los 4 procesos (apertura, contexto, confirmación de resultado).
+- Mecanismo de activación de innominadas en el iframe de Pomelo (sin documento asociado).
+- CSP/SRI y políticas de embedding del iframe de Pomelo en el portal de Credibanco.
+- Manejo de degradación si el iframe de Pomelo no está disponible.

@@ -47,20 +47,20 @@ Inventario completo de los archivos bajo `Prepago/` con descripción, alcance y 
 | `Envelope_Encryption_PAN.drawio` | Diagrama de detalle del envelope encryption del PAN: AES-256-GCM (DEK) + RSA-4096 (KEK), KeyStore PKCS12 en OpenShift Secret, ceremonia de generación de KEK con split knowledge. | Persistencia segura del PAN en Oracle. PCI DSS req 3.4 / 3.5 / 3.6.6 / 3.6.7. | Vigente |
 | `Envelope_Encryption_PAN.png` | Render PNG del flujo de cifrado/descifrado. | — | Auxiliar |
 | `Envelope_Encryption_PAN-Ceremonia Generación KEK.png` | Render PNG de la ceremonia de generación de la KEK con dos custodios. | — | Auxiliar |
-| `Iframe_Visualizacion_DatosSensibles.drawio` | Iframe en `secure-data.credibanco.com` para mostrar PAN/CVV2/expiración al TH. Portal padre nunca recibe los datos. | Visualización de datos sensibles desde portal tarjetahabiente. PCI DSS req 3.3 / 6.4.3 / 7.2 / 8.3.6. | Vigente |
+| `Iframe_Visualizacion_DatosSensibles.drawio` | Iframe en `secure-data.credibanco.com` para mostrar PAN/CVV2/expiración al TH. | **Histórico** — la visualización de datos sensibles al TH ahora la hace el iframe de Pomelo (ADR-031 ampliado). | Histórico |
 | `Iframe_Visualizacion_DatosSensibles.png` | Render PNG. | — | Auxiliar |
 | `Iframe_Credibanco_PIN_DatosSensibles.drawio` | Variante alterna de iframe (versión Credibanco). | Captura de PIN y datos sensibles — variante exploratoria. | Histórico |
 | `Iframe_Pomelo_PIN_DatosSensibles.drawio` | Variante alterna de iframe (versión Pomelo). | Captura de PIN y datos sensibles si Pomelo hosteara el iframe — opción descartada. | Histórico |
-| `Flujo_Seguridad_PIN_Iframe_HSM.drawio` | Flujo de seguridad PIN end-to-end con iframe + HSM (Thales). | Captura y cambio de PIN por parte del TH. | Vigente |
-| `pinpad_pci_drawio_6_mejorado.drawio` | Flujo definitivo PIN con HSM Thales (cmd EI/GI/EO). | Captura/cambio de PIN E2E — implementación Fase 1. | **Vigente** |
+| `Flujo_Seguridad_PIN_Iframe_HSM.drawio` | Flujo de seguridad PIN end-to-end con iframe + HSM (Thales). | **Histórico** — PIN delegado a iframe de Pomelo (ADR-031). | Histórico |
+| `pinpad_pci_drawio_6_mejorado.drawio` | Flujo definitivo PIN con HSM Thales (cmd EI/GI/EO). | **Histórico** — reemplazado por iframe de Pomelo (ADR-031). Credibanco ya no usa HSM propio. | Histórico |
 | `pinpad_pci_drawio_6_mejorado.png` | Render PNG. | — | Auxiliar |
 | `Respuesta_Pomelo_PIN_Keys.drawio` | Diagrama de respuesta a Pomelo sobre el esquema de llaves para intercambio del PIN: 2 capas (RSA efímero + ZPK simétrica), ceremonia TR-34, rotación TR-31, PIN block ISO 9564 Format 4, controles PCI. | Sustento técnico para reuniones con Pomelo. Soporta ADR-008. | **Vigente** |
 | `pinpad_pci_drawio_V_6.png` | Otro render PNG del mismo diagrama. | — | Auxiliar |
 | `pinpad_pci_drawio_5.drawio` | Versión anterior del flujo PIN. | — | Histórico |
 | `pinpad_pci_drawio_5 - copia.drawio` | Copia residual de la versión 5. | — | Temporal |
 | `pinpad_pci_V1_0.drawio` | Versión 1.0 del flujo PIN — primera iteración. | — | Histórico |
-| `PIN_Selection_Online.drawio` | Flujo de selección de PIN online por parte del TH. | Selección/cambio de PIN desde el portal. | Vigente |
-| `Activacion_PIN_Innominada.drawio` | Activación de PIN para tarjetas innominadas vía Proof of Possession (BIN + last4 + exp + CVV2). | Activación de tarjetas innominadas — micro-portal público (ADR-010). | **Vigente** |
+| `Activacion_PIN_Innominada.drawio` | Activación de PIN para tarjetas innominadas vía Proof of Possession (BIN + last4 + exp + CVV2). | **En revisión** — la activación de innominadas pasa al iframe de Pomelo (ADR-031 ampliado); el micro-portal propio (ADR-010) queda superseded. | En revisión |
+| `PIN_Selection_Online.drawio` | Flujo de selección de PIN online por parte del TH. | **Histórico** — selección/cambio de PIN ahora vía iframe de Pomelo (ADR-031). | Histórico |
 | `Activacion_PIN_Innominada.png` | Render PNG. | — | Auxiliar |
 | `PreRegistro_Tarjeta_Activacion_Portal.drawio` | Flujo de pre-registro con UUID, TTL 30 días, link por email, verify cédula, OTP, password. | Onboarding de TH para tarjetas nominadas. | Vigente |
 | `Onboarding_Tarjetahabiente.drawio` | Diagrama del flujo de onboarding TH (alimenta ADR-016). | Pre-registro y enrolamiento del TH. | Vigente |

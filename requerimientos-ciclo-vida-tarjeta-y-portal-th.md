@@ -272,9 +272,10 @@ Extracto literal y consolidado del documento `Prepago/Requerimientos Técnicos (
 
 ### 6.5 Activación de la Tarjeta (Etapa 4)
 
-**Descripción.** Realizar el proceso de activación de tarjeta por parte del TH a través del Portal. **No se puede realizar la activación por otro medio por norma PCI**, entendiendo que requiere asignación del PIN. El modelo de activación NO se realiza directamente por el portal sino por el **i-Frame** que se desarrollará internamente.
+**Descripción.** Realizar el proceso de activación de tarjeta por parte del TH a través del Portal. **No se puede realizar la activación por otro medio por norma PCI**, entendiendo que requiere asignación del PIN. **El modelo de activación NO se realiza directamente por el portal sino a través de la integración con el i-Frame de Pomelo** (Requerimientos Técnicos (13) + ADR-031; se descartó el i-Frame interno y el HSM Thales de Credibanco).
 
-> Pendiente: validar con Pomelo cómo es la activación de tarjetas que no tienen documento asociado (innominadas).
+> **Cambio de lineamiento confirmado (Req. Técnicos 13 + decisión de arquitectura):** la captura/asignación del PIN se delega **100% al iframe de Pomelo**. Credibanco **NO desarrolla iframe propio ni usa HSM Thales** (decisión confirmada — ver ADR-031, que reemplaza ADR-008). Pomelo asume todo el ciclo del PIN (captura, asignación, cambio, verificación) con su iframe y su HSM.
+> Pendiente: validar con Pomelo cómo es la activación de tarjetas que no tienen documento asociado (innominadas) dentro de su iframe.
 
 **Criterios de Aceptación:**
 

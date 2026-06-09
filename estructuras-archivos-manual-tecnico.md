@@ -512,7 +512,17 @@ Campos clave (ver hoja "REPORTE GMF" del xlsx para detalle completo): tipo doc, 
 | 7 | REVERSOS AUTORIZADOS | Total reversos |
 | 8 | ANULACIONES AUTORIZADAS | Total anulaciones (aplica a compras) |
 | 9 | TARJETAS ACTIVAS | Total activas |
-| 10 | TARJETAS INACTIVAS | Total inactivas |
+| 10 | TARJETAS BLOQUEADAS | Total bloqueadas (antes "tarjetas inactivas" — renombrado en Req. Técnicos (13)) |
+
+**Actualizaciones del Indicador Base (Requerimientos Técnicos (13)):**
+- Informe en formato Excel, dispuesto automáticamente **mes vencido** en la ruta definida.
+- Filtrable por AFG.
+- El periodo de la data se relaciona en el nombre del archivo: `indicadores_base30042025` (formato `indicadores_baseDDMMAAAA`).
+- La columna "total de compras" = compras autorizadas (pueden estar o no asociadas a una anulación).
+- En lo posible, quitar de las operaciones originales aquellas asociadas a un reverso.
+- El informe debe tener un espacio para descripción de cada columna.
+- La columna "tarjetas inactivas" se renombra a **"tarjetas bloqueadas"**.
+- Consolidado incluye: tarjetas activas, bloqueadas, abonos promedio y total, trx exitosas, trx rechazadas, abonos exitosos, abonos rechazados, débitos exitosos.
 
 ---
 
