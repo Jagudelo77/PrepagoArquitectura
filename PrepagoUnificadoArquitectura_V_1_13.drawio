@@ -1,9 +1,15 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.3.0 Chrome/140.0.7339.249 Electron/38.7.2 Safari/537.36" version="29.3.0" pages="16">
   <diagram name="Portal" id="Ys766nw4KWMkH7397uTs">
-    <mxGraphModel dx="2579" dy="1776" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="3619" dy="2459" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="IcuCmjiHhoo69OGeB5tY-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="" vertex="1">
+          <mxGeometry height="200" width="960" x="-191" y="-493.5" as="geometry" />
+        </mxCell>
+        <mxCell id="IcuCmjiHhoo69OGeB5tY-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2EFFF;imageAspect=1;perimeter=rectanglePerimeter;arcSize=4;" value="" vertex="1">
+          <mxGeometry height="806.5" width="1120" x="-1380" y="-700" as="geometry" />
+        </mxCell>
         <mxCell id="2QuNeFU_GCBFWjPr9n5C-1" parent="1" style="text;html=1;fontSize=20;fontStyle=1;align=left;verticalAlign=middle;fontColor=#000000;fillColor=none;strokeColor=none;" value="Portales Admin + Tarjetahabiente" vertex="1">
           <mxGeometry height="35" width="650" x="-1122" y="-1154" as="geometry" />
         </mxCell>
@@ -52,7 +58,7 @@
         <mxCell id="2QuNeFU_GCBFWjPr9n5C-16" parent="1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="• Consulta de saldo en tiempo real&lt;br&gt;• Historial de movimientos (filtrado)&lt;br&gt;• Bloqueo / Desbloqueo de tarjeta&lt;br&gt;• Actualización de datos personales&lt;br&gt;• Descarga de extracto (PDF)&amp;nbsp;&lt;br&gt;• Cambio de PIN (delegado a Pomelo Iframe)&lt;br&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(59, 130, 246), rgb(76, 137, 236));&quot;&gt;•&amp;nbsp;&lt;/span&gt;Activar Tarjeta&lt;br&gt;• Datos de tarjeta (last4, vencimiento)&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="90" width="260" x="-742" y="-853" as="geometry" />
         </mxCell>
-        <mxCell id="2QuNeFU_GCBFWjPr9n5C-18" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;" value="" vertex="1">
+        <mxCell id="2QuNeFU_GCBFWjPr9n5C-18" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;" value="" vertex="1">
           <mxGeometry height="219" width="410" x="-1050" y="-469" as="geometry" />
         </mxCell>
         <mxCell id="2QuNeFU_GCBFWjPr9n5C-19" parent="1" style="text;html=1;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Prepaid_Admin_API" vertex="1">
@@ -67,7 +73,7 @@
         <mxCell id="OjdIslxrwtQdcRD9mFw4-1" edge="1" parent="1" source="2QuNeFU_GCBFWjPr9n5C-22" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.998;exitY=0.625;exitDx=0;exitDy=0;exitPerimeter=0;entryX=-0.004;entryY=0.665;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=#3B82F6;strokeWidth=1.5;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=8;fontColor=#60A5FA;labelBackgroundColor=default;jumpStyle=arc;endArrow=block;endFill=1;" target="uyyDfivbhD1dWegb-tP7-4" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="2QuNeFU_GCBFWjPr9n5C-22" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;" value="" vertex="1">
+        <mxCell id="2QuNeFU_GCBFWjPr9n5C-22" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;" value="" vertex="1">
           <mxGeometry height="137" width="340" x="-617" y="-447" as="geometry" />
         </mxCell>
         <mxCell id="2QuNeFU_GCBFWjPr9n5C-23" parent="1" style="text;html=1;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Prepaid_Cardholder_API" vertex="1">
@@ -88,7 +94,7 @@
         <mxCell id="2QuNeFU_GCBFWjPr9n5C-28" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Admin writes: affinity_group,&lt;br&gt;commission, tax, group_limits, bin_range" vertex="1">
           <mxGeometry height="28" width="200" x="-967" y="47" as="geometry" />
         </mxCell>
-        <mxCell id="2QuNeFU_GCBFWjPr9n5C-29" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=1.5;strokeDashArray=4;size=12;" value="" vertex="1">
+        <mxCell id="2QuNeFU_GCBFWjPr9n5C-29" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=default;strokeColor=#3B82F6;strokeWidth=1.5;strokeDashArray=4;size=12;" value="" vertex="1">
           <mxGeometry height="90" width="210" x="-669" as="geometry" />
         </mxCell>
         <mxCell id="2QuNeFU_GCBFWjPr9n5C-30" parent="1" style="text;html=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Oracle Read Replica" vertex="1">
@@ -150,7 +156,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="2QuNeFU_GCBFWjPr9n5C-50" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;" value="" vertex="1">
+        <mxCell id="2QuNeFU_GCBFWjPr9n5C-50" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;" value="" vertex="1">
           <mxGeometry height="100" width="360" x="-937" y="-667" as="geometry" />
         </mxCell>
         <mxCell id="2QuNeFU_GCBFWjPr9n5C-51" parent="1" style="text;html=1;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Prepaid_Portal_Gateway" vertex="1">
@@ -188,7 +194,7 @@
             <mxGeometry height="1360" width="2000" x="-1640" y="-1160" as="geometry" />
           </mxCell>
         </object>
-        <mxCell id="6JOoHjoJi6BYe87fCDqx-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;" value="" vertex="1">
+        <mxCell id="6JOoHjoJi6BYe87fCDqx-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;" value="" vertex="1">
           <mxGeometry height="100" width="210" x="-1314" y="-449" as="geometry" />
         </mxCell>
         <mxCell id="6JOoHjoJi6BYe87fCDqx-2" parent="1" style="text;html=1;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Gateway_SV" vertex="1">
@@ -253,7 +259,7 @@
         <mxCell id="uyyDfivbhD1dWegb-tP7-3" parent="1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="[Sistema Externo]&lt;br&gt;&lt;br&gt;• GET /affinity-groups/{id}&lt;br&gt;• GET /clients/{docType}/{docNumber}&lt;br&gt;• POST /clients&lt;br&gt;• POST /cards" vertex="1">
           <mxGeometry height="80" width="270" x="471" y="-424" as="geometry" />
         </mxCell>
-        <mxCell id="uyyDfivbhD1dWegb-tP7-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;pointerEvents=0;align=center;verticalAlign=top;fontFamily=Helvetica;fontSize=12;fontColor=default;gradientColor=none;" value="" vertex="1">
+        <mxCell id="uyyDfivbhD1dWegb-tP7-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;pointerEvents=0;align=center;verticalAlign=top;fontFamily=Helvetica;fontSize=12;fontColor=default;gradientColor=none;" value="" vertex="1">
           <mxGeometry height="131" width="340" x="-163" y="-459" as="geometry" />
         </mxCell>
         <mxCell id="uyyDfivbhD1dWegb-tP7-5" parent="1" style="text;html=1;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="Pomelo _API_Client" vertex="1">
@@ -387,16 +393,22 @@
           <mxGeometry height="130" width="370" x="394" y="-861" as="geometry" />
         </mxCell>
         <mxCell id="ySpkxX1h6-Eog-_5oZI9-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;" value="" vertex="1">
-          <mxGeometry height="149" width="350" x="-281" y="-679" as="geometry" />
+          <mxGeometry height="149" width="350" x="-164" y="-679" as="geometry" />
         </mxCell>
         <mxCell id="ySpkxX1h6-Eog-_5oZI9-2" parent="1" style="text;html=1;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;" value="SSO Keycloak" vertex="1">
-          <mxGeometry height="22" width="350" x="-281" y="-673" as="geometry" />
+          <mxGeometry height="22" width="350" x="-164" y="-673" as="geometry" />
         </mxCell>
         <mxCell id="ySpkxX1h6-Eog-_5oZI9-3" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;" value="[Container: Keycloak — Realm CARDHOLDER — OIDC/OAuth2/JWT]" vertex="1">
-          <mxGeometry height="14" width="350" x="-281" y="-651" as="geometry" />
+          <mxGeometry height="14" width="350" x="-164" y="-651" as="geometry" />
         </mxCell>
         <mxCell id="ySpkxX1h6-Eog-_5oZI9-4" parent="1" style="text;html=1;fontSize=9;align=left;verticalAlign=top;fontColor=#3B82F6;spacingLeft=10;spacingTop=4;" value="Gestion de identidad TH:&#xa;• Login: documento + contrasena → JWT (TTL 30 min)&#xa;• Password policy: min 12 chars, 1 mayus, 1 num, 1 especial&#xa;• Max 3 intentos login → bloqueo 24h&#xa;• Restablecer: link por email + BIN + last4&#xa;• Cambiar: con contrasena actual&#xa;• MFA step-up antes de iframe sensible (Req 8.3.6)&#xa;• Bloqueo definitivo por 3 datos errados en pre-registro" vertex="1">
-          <mxGeometry height="107" width="340" x="-275" y="-637" as="geometry" />
+          <mxGeometry height="107" width="340" x="-158" y="-637" as="geometry" />
+        </mxCell>
+        <mxCell id="IcuCmjiHhoo69OGeB5tY-3" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Alcance" vertex="1">
+          <mxGeometry height="30" width="60" x="-1356" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IcuCmjiHhoo69OGeB5tY-4" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="CDE" vertex="1">
+          <mxGeometry height="30" width="60" x="-173" y="-322" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
@@ -1113,7 +1125,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="Etapa1_V1_2" id="2vZ4jaYpajtVqyFtegUc">
-    <mxGraphModel dx="4274" dy="3042" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="3619" dy="2459" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WYurlSI6gKorOprcLl8n-0" />
         <mxCell id="WYurlSI6gKorOprcLl8n-1" parent="WYurlSI6gKorOprcLl8n-0" />
@@ -1343,13 +1355,13 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-66" parent="WYurlSI6gKorOprcLl8n-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6c8ebf;strokeWidth=2;arcSize=8;" value="" vertex="1">
-          <mxGeometry height="135" width="280" x="400" y="-409" as="geometry" />
+          <mxGeometry height="135" width="280" x="400" y="-424" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-67" parent="WYurlSI6gKorOprcLl8n-1" style="text;html=1;fontSize=15;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="APIs Pomelo" vertex="1">
-          <mxGeometry height="25" width="280" x="400" y="-396" as="geometry" />
+          <mxGeometry height="25" width="280" x="400" y="-411" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-68" parent="WYurlSI6gKorOprcLl8n-1" style="text;html=1;fontSize=9;align=center;verticalAlign=top;fontColor=#3B82F6;fillColor=none;strokeColor=none;" value="[Sistema Externo]&lt;br&gt;&lt;br&gt;• GET /affinity-groups/{id}&lt;br&gt;• GET /clients/{docType}/{docNumber}&lt;br&gt;• POST /clients&lt;br&gt;• POST /cards" vertex="1">
-          <mxGeometry height="80" width="270" x="405" y="-372" as="geometry" />
+          <mxGeometry height="80" width="270" x="405" y="-387" as="geometry" />
         </mxCell>
         <mxCell id="WYurlSI6gKorOprcLl8n-69" parent="WYurlSI6gKorOprcLl8n-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;pointerEvents=0;align=center;verticalAlign=top;fontFamily=Helvetica;fontSize=12;fontColor=default;gradientColor=none;" value="" vertex="1">
           <mxGeometry height="131" width="340" x="-180" y="-422" as="geometry" />
@@ -1375,7 +1387,7 @@
             <mxPoint x="-530" y="-50.5" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="WYurlSI6gKorOprcLl8n-74" edge="1" parent="WYurlSI6gKorOprcLl8n-1" source="WYurlSI6gKorOprcLl8n-69" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=2;fontSize=8;fontColor=#3B82F6;align=center;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" value="REST: Validar affinity group,&lt;br&gt;&lt;div&gt;Token autenticación&lt;/div&gt;&lt;div&gt;VPN&lt;/div&gt;">
+        <mxCell id="WYurlSI6gKorOprcLl8n-74" edge="1" parent="WYurlSI6gKorOprcLl8n-1" source="WYurlSI6gKorOprcLl8n-69" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=2;fontSize=8;fontColor=#3B82F6;align=center;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="WYurlSI6gKorOprcLl8n-66" value="REST: Validar affinity group,&lt;br&gt;&lt;div&gt;Token autenticación&lt;/div&gt;&lt;div&gt;VPN&lt;/div&gt;">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="380" y="-330" as="targetPoint" />
           </mxGeometry>
