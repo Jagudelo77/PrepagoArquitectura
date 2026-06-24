@@ -1204,3 +1204,161 @@ El diagrama unificado (pestañas de archivos) mostraba que el `Output_File_Gener
 - Mecanismo de activación de innominadas en el iframe de Pomelo (sin documento asociado).
 - CSP/SRI y políticas de embedding del iframe de Pomelo en el portal de Credibanco.
 - Manejo de degradación si el iframe de Pomelo no está disponible.
+
+## ADR-032: Lineamientos de implementación del Output File Generator con Spring Batch (escalabilidad para archivos grandes)
+
+**Estado:** Aceptada.
+
+**Contexto:** Surgió la pregunta de si la arquitectura Spring Batch del `Output_File_Generator` (OFG) sirve para generar archivos muy grandes (AUM con 1.5M-7.5M registros/día para 10 entidades). Spring Batch es la herramienta correcta (chunk-oriented, diseñado para volumen), pero el resultado depende críticamente de la implementación: una implementación naïve (cargar todo en memoria) causa `OutOfMemoryError`, mientras que el patrón correcto (streaming) escala sin problema para el volumen objetivo.
+
+**Decisión:** Documentar lineamientos de implementación obligatorios del OFG en `docs/lineamientos-output-file-generator.md`, con tres pilares no negociables:
+
+1. **Streaming en lectura** — `JdbcCursorItemReader` (cursor de BD) contra Oracle Read Replica, con `ORDER BY card_id` y `fetchSize` controlado. Prohibido `findAll()` a una `List`.
+2. **Streaming en escritura** — `FlatFileItemWriter` con flush por chunk, escribe archivo PLANO en NFS. Prohibido construir el archivo completo en un `StringBuilder` en memoria.
+3. **Particionamiento por AFG** — `partitionStep` (una partición por AFG, pool de 4-8 threads) para paralelismo y eliminación del SPOF.
+
+**Factores favorables del nuevo modelo de archivos (ADR-028 + xlsx):**
+- Solo el archivo **TAR** lleva PAN (bajo volumen: 0-50k/día). AUM, FIN, COMI, SALD usan Card ID.
+- Por tanto **no hay descifrado criptográfico masivo por registro** en los archivos grandes. El bottleneck histórico (RSA-4096 por tarjeta en AUM = 6 horas) desapareció. El cache de DEK (ADR-029) solo aplica a TAR.
+
+**Cálculo de capacidad (con streaming + partición):**
+- Throughput `FlatFileItemWriter` con cursor: 10.000-50.000 registros/seg/thread.
+- AUM 7.5M registros: 5-15 min con partición. Cabe en ventana 00:00-06:00.
+- Chunk size 1.000-5.000; JVM heap dimensionado al chunk (~1 MB/chunk), no al archivo total.
+
+**Anti-patrones prohibidos (documentados en el lineamiento):**
+- `repository.findAll()` con millones de filas → OOM.
+- `StringBuilder` con todo el archivo → OOM con archivos GB.
+- `JdbcPagingItemReader` con pageSize de decenas de miles.
+- Contar registros acumulando la lista en memoria.
+- Leer de Oracle Primary (impacta hot-path).
+- Cifrar PGP dentro del OFG (lo hace GAW — ADR-029/031).
+
+**Límites y escalamiento futuro:**
+- Volumen actual: `partitionStep` local suficiente.
+- Archivo individual > 5-10 GB: el cuello pasa a I/O de NFS y PGP de GAW → compresión o split.
+- Volumen 10x (75M registros): evaluar `RemotePartitioning`/`RemoteChunking` (workers en pods separados vía broker).
+- Archivos en línea (TNN/TAS/TNM/TAV): batch no es streaming en vivo → append incremental o topic Kafka (roadmap ADR-029).
+
+**Razón:**
+- Spring Batch chunk-oriented mantiene solo un chunk (N registros) en memoria en cualquier momento, lo que lo hace apto para archivos de millones de registros.
+- El riesgo real no es la herramienta sino la implementación. Documentar el patrón correcto + los anti-patrones + un checklist evita que el equipo caiga en el anti-patrón de cargar todo en memoria.
+- Los tres pilares (cursor reader, streaming writer, partición) ya están parcial o totalmente en la arquitectura V_1_14; este ADR los formaliza como obligatorios con guía de código.
+
+**Alternativas descartadas:**
+- **No documentar (dejar a criterio del desarrollador):** rechazado — el anti-patrón de `findAll()` + StringBuilder es muy común y causa OOM en producción; el costo de documentarlo es bajo y el riesgo de no hacerlo es alto.
+- **Usar una herramienta ETL dedicada (ej. Spring Cloud Data Flow, Talend):** rechazado para Fase 1 — Spring Batch es suficiente para el volumen actual, ya está en el stack y no añade infraestructura.
+- **Generar archivos vía Stored Procedure de Oracle (UTL_FILE):** considerado, descartado — saca la lógica de formato del código Java al PL/SQL, dificulta testing y versionado, y el descifrado de PAN (TAR) no puede hacerse en Oracle sin exponer la KEK.
+
+**Impacto:**
+- Documento nuevo: `Prepago/docs/lineamientos-output-file-generator.md` (guía de implementación + checklist de 16 puntos).
+- No cambia diagramas (los lineamientos son de implementación; la pestaña "Generacion Archivos de Salida" de V_1_14 ya refleja la arquitectura).
+- El equipo de desarrollo debe seguir el checklist antes de dar por terminado el OFG, incluyendo un test de carga con 7.5M registros antes de producción.
+- ADR-029 (capacidad del OFG) queda complementado con este detalle de implementación.
+
+## ADR-033: Limpieza de pestañas borrador para entrega unificada (V_1_16)
+
+**Estado:** Aceptada.
+
+**Contexto:** Las versiones del unificado venían arrastrando pestañas borrador (fragmentos de trabajo sin formato C4 completo: sin título, sin boundaries, cajas sueltas). En V_1_15 quedaban 4: Página-15, Página-16, Página-18 y Página-19. Para la **entrega unificada** se requiere un archivo limpio donde todas las pestañas sean vistas formales de arquitectura. Adicionalmente, en V_1_14 se habían colado 40 páginas en blanco (Página-19 a 58) que ya se eliminaron.
+
+**Decisión:** Crear `PrepagoUnificadoArquitectura_V_1_16.drawio` a partir de V_1_15, eliminando las 4 pestañas borrador. Resultado: **15 pestañas formales**.
+
+**Pestañas eliminadas y justificación:**
+
+| Pestaña | Contenido borrador | Cubierto formalmente en |
+|---|---|---|
+| Página-15 | Flujo PIN / iframe Pomelo (IFrame CCO, HSM Pomelo, Backend Pomelo) | Pestaña "Portal Tarjetahabiente" (V_1_13) |
+| Página-16 | Procesamiento de archivos / horarios (NXXX, resumen diario, horarios batch) | Pestañas "Intercambio de Archivos" + "Generacion Archivos de Salida" |
+| Página-18 | Resiliencia / caída con Dynatrace (Tx por hora, Redis, Oracle, caída 2pm) | No formalizado — es observabilidad (hueco pendiente, no se pierde info crítica) |
+| Página-19 | Envelope encryption del PAN (KEK/DEK/cifrado/descifrado) | Archivo dedicado `Envelope_Encryption_PAN.drawio` + `docs/envelope-encryption.md` |
+
+**Pestañas conservadas (15 formales):**
+Portal · Creacion de tarjetas · Onboarding Tarjetahabiente · Intercambio de Archivos · Flujo Novedades No Monetarias · Realce · Flujo de transacciones · Motor de Cobros Diferidos · Flujo de novedades monetarias · Reconciliacion End-of-Day · Etapa1_V1_2 · Portal Faseado · Estados de Tarjeta · Portal Tarjetahabiente · Generacion Archivos de Salida.
+
+**Razón:**
+- La entrega unificada debe contener solo vistas formales de arquitectura, no borradores de trabajo.
+- Ninguna información crítica se pierde: 3 de las 4 pestañas ya estaban cubiertas en pestañas formales o archivos dedicados; la 4ª (resiliencia/Dynatrace) es un fragmento de observabilidad que cuando se formalice tendrá su propia pestaña (hueco identificado).
+
+**Alternativas descartadas:**
+- Conservar los borradores renombrados como "Draft - X": rechazado para la entrega; los borradores confunden al lector de la entrega final. Quedan disponibles en V_1_15 (histórico) si se necesitan de base.
+- Modificar V_1_15 en sitio: rechazado por la convención de no sobreescribir versiones.
+
+**Impacto:**
+- Archivo nuevo: `Prepago/PrepagoUnificadoArquitectura_V_1_16.drawio` (15 páginas). Es la versión para entrega unificada.
+- `project-context.md` apunta a V_1_16 como arquitectura principal vigente.
+- V_1_15 se conserva como histórico (contiene los 4 borradores por si se requieren).
+- Pendiente no afectado: los huecos de cobertura siguen vigentes (Reversos/Anulaciones, GMF Batch end-to-end, observabilidad, DR, segmentación de red).
+
+## ADR-034: Reportería y Facturación a Entidades (Req 30) — Billing_Batch + pestaña dedicada
+
+**Estado:** Aceptada.
+
+**Contexto:** El Req 30 "Generación de Reportes para Facturación a Entidades" tenía cobertura parcial: existía el componente `Prepaid_Reporting_API` declarado como caja en las pestañas "Portal" / "Etapa1_V1_2", la fuente de datos (Oracle Read Replica) y el canal de entrega (GAW + B2B_Mail), pero **no había un flujo de arquitectura dedicado** ni documento de requerimiento. El docx (13) detalla 4 reportes mensuales (por AFG, por BIN, Proveedor Realce, Proveedor Distribución) con campos específicos, un modelo de cobro (Tabla 1 cargos por tarjeta activa por rangos + Tabla 2 inactivas + fee de administración $23M) y una definición especial de "tarjeta activa para facturación".
+
+**Decisión:**
+
+1. **Crear el documento** `docs/requerimientos-facturacion-entidades.md` con los 4 reportes, sus campos literales del docx, el modelo de cobro, las definiciones, programación/reintentos y el mapeo de cada campo a su origen en el modelo de datos.
+
+2. **Separar dos rutas** de reportería de facturación:
+   - **`Billing_Batch`** (Spring Batch, CronJob mensual): genera los 4 archivos `.xlsx` el primer día del mes (datos del mes anterior), los persiste vía `Output_File_Generator` en NFS, GAW los dispone por SFTP a la carpeta del equipo de Facturación. Notifica éxito/error con `B2B_Mail_Service`, 3 reintentos cada hora.
+   - **`Prepaid_Reporting_API`** (REST): consulta on-demand de indicadores desde el portal admin (`/reports/billing/entities`, `/reports/billing/providers`, `/reports/indicators`). Expone JSON, no genera archivos.
+
+3. **Añadir tabla `billing_monthly_snapshot`** (`period, afg_id, bin, ...`, UNIQUE `(period, afg_id, bin)`) para trazabilidad e idempotencia: permite regenerar un reporte sin recalcular y deja registro histórico de lo facturado.
+
+4. **Añadir vista `vw_billing_active_cards`** que implementa la definición de "tarjeta activa para facturación" (≥1 transacción O saldo ≠ 0 en algún momento O generó comisiones), independiente del estado en plataforma.
+
+5. **Crear pestaña "Reporteria y Facturacion"** en `PrepagoUnificadoArquitectura_V_1_17.drawio` (16 páginas) con el flujo C4 L2: Read Replica → Billing_Batch → snapshot → OFG → NFS → GAW → equipo Facturación, más Reporting_API on-demand, B2B_Mail, Audit, y notas de modelo de cobro y definición de tarjeta activa.
+
+**Razón:**
+- El Req 30 estaba sin desarrollar como arquitectura. Documentarlo + diagramarlo cierra el hueco de cobertura #4 identificado en el análisis previo.
+- Separar Billing_Batch (genera archivos) de Reporting_API (consultas on-demand) respeta el patrón writer/publisher (ADR-026) y permite que el portal admin consulte sin disparar la generación masiva.
+- La tabla snapshot da idempotencia y trazabilidad regulatoria (qué se facturó cada mes).
+- Leer de Read Replica cumple el lineamiento de no impactar el hot-path (ADR-002/005).
+- La definición de "tarjeta activa para facturación" es distinta del estado Activa de la tarjeta; documentarla evita un error de cálculo crítico en la facturación.
+
+**Alternativas descartadas:**
+- **Solo usar `Prepaid_Reporting_API` para generar los archivos:** rechazado — la generación mensual masiva es batch (lee millones de transacciones para agregar), no encaja en un API de request/response. Mejor un Batch dedicado.
+- **No persistir snapshot (calcular siempre on-the-fly):** rechazado — sin snapshot no hay trazabilidad de lo facturado ni idempotencia; un recálculo podría dar cifras distintas si los datos base cambian.
+- **Reusar `Output_File_Generator` como único responsable:** parcialmente adoptado — el OFG escribe los archivos (publisher único), pero la lógica de agregación/cálculo de facturación vive en `Billing_Batch`, no en el OFG genérico.
+
+**Impacto:**
+- Documento nuevo: `requerimientos-facturacion-entidades.md`.
+- Archivo nuevo: `PrepagoUnificadoArquitectura_V_1_17.drawio` (16 páginas). `project-context.md` apunta a V_1_17.
+- Modelo de datos: pendiente implementar `billing_monthly_snapshot` y `vw_billing_active_cards` en `db/01_schema_prepago.sql`.
+- Pendientes abiertos (10, listados en el documento): Tabla 1 y 2 de cobro (Producto/Comercial), cálculo de "saldo ≠ 0 en algún momento", origen de PINes innominadas, formato reportes proveedores, stack de BI, carpeta SFTP destino.
+- Cobertura del Req 30: pasa de 🟡 parcial a ✅ documentada y diagramada (el cálculo final de la factura sigue siendo del área de Facturación, fuera del alcance de la plataforma).
+
+## ADR-035: Pestaña de Contexto del Sistema (C4 Nivel 1) — vista de contexto del proyecto completo
+
+**Estado:** Aceptada.
+
+**Contexto:** El diagrama unificado contenía únicamente pestañas C4 Nivel 2 (diagramas de contenedores/componentes por flujo: Creación, Realce, Transacciones, Cobros Diferidos, Reportería, etc.), pero **no existía una vista C4 Nivel 1 (Contexto del Sistema)** que mostrara, en una sola página, la plataforma como caja negra rodeada de sus actores (personas) y sistemas externos. Sin esa vista, un lector nuevo (auditor, stakeholder, equipo entrante) no tenía un punto de entrada que resumiera con quién habla el sistema y por qué, antes de entrar al detalle de cada flujo.
+
+**Decisión:**
+
+1. **Clonar `V_1_17` → `V_1_18`** (sin sobrescribir, según convención de versionado) y añadir una pestaña nueva **"Contexto del Sistema (C4 L1)"**.
+
+2. **Modelar la vista de contexto** con:
+   - **Sistema central:** `Plataforma Prepago Credibanco` (caja azul C4 — software system on-premise/OpenShift, Java 21 · Spring Boot 3 · Oracle 19c · Redis 7 · Angular 17).
+   - **Actores (personas):** Tarjetahabiente, Administrador Credibanco, Operaciones/Facturación, Custodios de Llaves (split knowledge / dual control).
+   - **Sistemas externos:** Pomelo (procesador / iframe PIN / HSM Pomelo — relación crítica resaltada en morado), Entidades Emisoras (SFTP+PGP), Franquicias Visa/Mastercard (clearing/reconciliación), Realzador/Embozador, SmartVista (SVBO), Centralizador de Información (TransUnion, GMF), Servidor SMTP corporativo, SSO Keycloak (OIDC/MFA), Dynatrace/SIEM.
+   - **Relaciones etiquetadas** con la naturaleza de cada integración (dirección y protocolo/propósito).
+   - **Leyenda C4** y **mapa de las pestañas C4 L2** para navegar del contexto al detalle.
+
+3. La pestaña se posiciona como **punto de entrada** del diagrama: contexto (L1) primero, detalle de flujos (L2) después.
+
+**Razón:**
+- Completa la jerarquía C4: ya existía abundante L2, faltaba el L1 de contexto. Un modelo C4 sin su nivel de contexto obliga al lector a inferir el panorama global desde los detalles.
+- Resalta a Pomelo como integración crítica (decisión central del proyecto: pre-autorizador + delegación de PIN/HSM, ADR-031).
+- Da un artefacto único para presentaciones ejecutivas/auditoría PCI sin exponer el detalle interno.
+
+**Alternativas descartadas:**
+- **Crear un archivo drawio aparte solo para el contexto:** rechazado — fragmenta la documentación; tener el L1 dentro del unificado mantiene una sola fuente de verdad navegable por pestañas.
+- **Sobrescribir V_1_17:** rechazado por convención (nunca sobrescribir; V_1_17 se conserva como histórico).
+
+**Impacto:**
+- Archivo nuevo: `PrepagoUnificadoArquitectura_V_1_18.drawio` (19 páginas: 18 heredadas de V_1_17 + la nueva pestaña de contexto). `project-context.md` ahora apunta a V_1_18 como arquitectura principal vigente.
+- V_1_17 se conserva como histórico.
+- No cambia ningún flujo L2 existente; es una adición puramente aditiva.
+- Pendiente menor: V_1_18 arrastra de versiones previas pestañas heredadas ("Portal Faseado", "Etapa1_V1_2", "Página-17", "Página-18") que en una futura entrega podrían depurarse si se confirma que son históricas.
