@@ -2689,7 +2689,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="output-file-gen-001" name="Generacion Archivos de Salida">
-    <mxGraphModel dx="1310" dy="937" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2400" pageHeight="1700" math="0" shadow="0">
+    <mxGraphModel dx="2246" dy="1606" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2400" pageHeight="1700" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -2939,130 +2939,130 @@
     </mxGraphModel>
   </diagram>
   <diagram id="billing-reporting-001" name="Reporteria y Facturacion">
-    <mxGraphModel dx="2986" dy="562" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2200" pageHeight="1500" math="0" shadow="0">
+    <mxGraphModel dx="5240" dy="3747" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2200" pageHeight="1500" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="bil-title" parent="1" style="text;html=1;fontSize=20;fontStyle=1;align=left;fontColor=#000000;" value="Reporteria y Facturacion a Entidades (Req 30) — generacion mensual" vertex="1">
-          <mxGeometry height="32" width="1900" x="40" y="30" as="geometry" />
+          <mxGeometry height="32" width="708" x="40" y="10" as="geometry" />
         </mxCell>
         <mxCell id="bil-sub" parent="1" style="text;html=1;fontSize=11;align=left;fontColor=#9CA3AF;" value="C4 Level 2  |  Billing_Batch lee Read Replica → genera reportes AFG/BIN/Proveedores (.xlsx) → NFS → GAW SFTP a Facturacion. Primer dia del mes, 00:00, antes de 08:00. Ref: requerimientos-facturacion-entidades.md" vertex="1">
-          <mxGeometry height="20" width="2100" x="40" y="65" as="geometry" />
+          <mxGeometry height="20" width="1118" x="40" y="45" as="geometry" />
         </mxCell>
         <object placeholders="1" c4Name="Credibanco" c4Type="SystemScopeBoundary" c4Application="Software System" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;&lt;div style=&quot;text-align: left&quot;&gt;%c4Name%&lt;/div&gt;&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;text-align: left&quot;&gt;[%c4Application%]&lt;/div&gt;" id="bil-cred">
           <mxCell parent="1" style="rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#003366;fontColor=#333333;labelBackgroundColor=none;align=left;verticalAlign=bottom;labelBorderColor=none;spacingTop=0;spacing=10;dashPattern=8 4;metaEdit=1;rotatable=0;perimeter=rectanglePerimeter;noLabel=0;labelPadding=0;allowArrows=0;connectable=0;expand=0;recursiveResize=0;editable=1;pointerEvents=0;absoluteArcSize=1;strokeWidth=2;" vertex="1">
-            <mxGeometry height="1320" width="2760" x="-620" y="100" as="geometry" />
+            <mxGeometry height="1020" width="2530" x="40" y="90" as="geometry" />
           </mxCell>
         </object>
         <mxCell id="bil-rr" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=2;size=12;dashed=1;dashPattern=6 3;" value="" vertex="1">
-          <mxGeometry height="180" width="300" x="100" y="160" as="geometry" />
+          <mxGeometry height="170" width="300" x="550" y="580" as="geometry" />
         </mxCell>
         <mxCell id="bil-rr-t" parent="1" style="text;html=1;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;" value="Oracle Read Replica" vertex="1">
-          <mxGeometry height="22" width="300" x="100" y="192" as="geometry" />
+          <mxGeometry height="22" width="300" x="550" y="612" as="geometry" />
         </mxCell>
         <mxCell id="bil-rr-tech" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;" value="[Oracle 19c — Active Data Guard]" vertex="1">
-          <mxGeometry height="14" width="300" x="100" y="214" as="geometry" />
+          <mxGeometry height="14" width="300" x="550" y="634" as="geometry" />
         </mxCell>
         <mxCell id="bil-rr-d" parent="1" style="text;html=1;fontSize=9;align=left;verticalAlign=top;fontColor=#3B82F6;spacingLeft=10;spacingTop=4;" value="Fuente unica (no impacta hot-path):&#xa;transaction, card, account, commission,&#xa;affinity_group, entity, bin,&#xa;card_state_history, embossing_order.&#xa;Vista vw_billing_active_cards." vertex="1">
-          <mxGeometry height="90" width="290" x="105" y="236" as="geometry" />
+          <mxGeometry height="64" width="290" x="555" y="656" as="geometry" />
         </mxCell>
         <mxCell id="bil-batch" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=3;arcSize=8;" value="" vertex="1">
-          <mxGeometry height="220" width="440" x="510" y="160" as="geometry" />
+          <mxGeometry height="220" width="440" x="985" y="250" as="geometry" />
         </mxCell>
         <mxCell id="bil-batch-t" parent="1" style="text;html=1;fontSize=16;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;" value="Billing_Batch" vertex="1">
-          <mxGeometry height="26" width="440" x="510" y="168" as="geometry" />
+          <mxGeometry height="26" width="440" x="985" y="258" as="geometry" />
         </mxCell>
         <mxCell id="bil-batch-tech" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;" value="[Container: Java 21 + Spring Batch — CronJob OpenShift, mensual]" vertex="1">
-          <mxGeometry height="14" width="440" x="510" y="194" as="geometry" />
+          <mxGeometry height="14" width="440" x="985" y="284" as="geometry" />
         </mxCell>
         <mxCell id="bil-batch-d" parent="1" style="text;html=1;fontSize=9;align=left;verticalAlign=top;fontColor=#3B82F6;spacingLeft=12;spacingTop=6;" value="Genera 4 reportes mensuales (datos del mes anterior):&#xa;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━&#xa;1. Reporte Facturacion por AFG (.xlsx, 1 linea/AFG)&#xa;2. Reporte Facturacion por BIN (.xlsx, 1 linea/BIN)&#xa;3. Reporte Proveedor Realce (.xlsx)&#xa;4. Reporte Proveedor Distribucion (.xlsx)&#xa;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━&#xa;• Cursor reader sobre Read Replica + agregaciones&#xa;• Persiste billing_monthly_snapshot (idempotencia)&#xa;• Cron: primer dia calendario del mes, 00:00&#xa;• Corte: 11:59:59 del ultimo dia del mes anterior&#xa;• Paralelo con job de SALD&#xa;• Sigue lineamientos-output-file-generator.md" vertex="1">
-          <mxGeometry height="152" width="430" x="515" y="208" as="geometry" />
+          <mxGeometry height="152" width="430" x="990" y="298" as="geometry" />
         </mxCell>
         <mxCell id="bil-api" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#10B981;strokeWidth=2;arcSize=8;" value="" vertex="1">
-          <mxGeometry height="160" width="380" x="60" y="539" as="geometry" />
+          <mxGeometry height="160" width="380" x="510" y="256" as="geometry" />
         </mxCell>
         <mxCell id="bil-api-t" parent="1" style="text;html=1;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;fontColor=#10B981;" value="Prepaid_Reporting_API" vertex="1">
-          <mxGeometry height="22" width="380" x="60" y="547" as="geometry" />
+          <mxGeometry height="22" width="380" x="510" y="264" as="geometry" />
         </mxCell>
         <mxCell id="bil-api-tech" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#10B981;" value="[Java 21 + Spring Boot 3 — REST API]" vertex="1">
-          <mxGeometry height="14" width="380" x="60" y="569" as="geometry" />
+          <mxGeometry height="14" width="380" x="510" y="286" as="geometry" />
         </mxCell>
         <mxCell id="bil-api-d" parent="1" style="text;html=1;fontSize=9;align=left;verticalAlign=top;fontColor=#10B981;spacingLeft=10;spacingTop=4;" value="Consulta on-demand de indicadores (portal admin):&#xa;• /reports/billing/entities — facturacion entidades&#xa;• /reports/billing/providers — facturacion proveedores&#xa;• /reports/indicators — consolidados&#xa;• Filtros por rango de fechas, entidad, AFG&#xa;• Lee de Read Replica (no genera archivos, expone JSON)" vertex="1">
-          <mxGeometry height="110" width="370" x="65" y="591" as="geometry" />
+          <mxGeometry height="88" width="370" x="515" y="308" as="geometry" />
         </mxCell>
         <mxCell id="bil-snap" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=2;size=12;" value="" vertex="1">
-          <mxGeometry height="150" width="300" x="570" y="560" as="geometry" />
+          <mxGeometry height="150" width="300" x="1050" y="650" as="geometry" />
         </mxCell>
         <mxCell id="bil-snap-t" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;" value="billing_monthly_snapshot" vertex="1">
-          <mxGeometry height="22" width="300" x="570" y="586" as="geometry" />
+          <mxGeometry height="22" width="300" x="1050" y="676" as="geometry" />
         </mxCell>
         <mxCell id="bil-snap-d" parent="1" style="text;html=1;fontSize=9;align=left;verticalAlign=top;fontColor=#3B82F6;spacingLeft=10;spacingTop=4;" value="Snapshot mensual por (period, afg_id, bin).&#xa;Trazabilidad + idempotencia del reporte.&#xa;UNIQUE (period, afg_id, bin).&#xa;Permite regenerar sin recalcular." vertex="1">
-          <mxGeometry height="70" width="290" x="575" y="612" as="geometry" />
+          <mxGeometry height="70" width="290" x="1055" y="702" as="geometry" />
         </mxCell>
         <mxCell id="bil-ofg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;" value="" vertex="1">
-          <mxGeometry height="130" width="340" x="1080" y="200" as="geometry" />
+          <mxGeometry height="130" width="340" x="1543" y="291" as="geometry" />
         </mxCell>
         <mxCell id="bil-ofg-t" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;" value="Output_File_Generator" vertex="1">
-          <mxGeometry height="22" width="340" x="1080" y="208" as="geometry" />
+          <mxGeometry height="22" width="340" x="1543" y="299" as="geometry" />
         </mxCell>
         <mxCell id="bil-ofg-tech" parent="1" style="text;html=1;fontSize=8;align=center;fontColor=#3B82F6;" value="[Java 21 + Spring Batch — publisher unico]" vertex="1">
-          <mxGeometry height="14" width="340" x="1080" y="230" as="geometry" />
+          <mxGeometry height="14" width="340" x="1543" y="321" as="geometry" />
         </mxCell>
         <mxCell id="bil-ofg-d" parent="1" style="text;html=1;fontSize=9;align=left;verticalAlign=top;fontColor=#3B82F6;spacingLeft=10;spacingTop=4;" value="Escribe los .xlsx de facturacion en NFS /output.&#xa;Sin PAN (los reportes de facturacion no llevan PAN).&#xa;Notifica exito/error." vertex="1">
-          <mxGeometry height="60" width="330" x="1085" y="252" as="geometry" />
+          <mxGeometry height="60" width="330" x="1548" y="343" as="geometry" />
         </mxCell>
         <mxCell id="bil-nfs" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#10B981;strokeWidth=2;size=12;" value="" vertex="1">
-          <mxGeometry height="120" width="280" x="1110" y="380" as="geometry" />
+          <mxGeometry height="120" width="280" x="1572" y="482" as="geometry" />
         </mxCell>
         <mxCell id="bil-nfs-t" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#065F46;" value="NFS /output/billing" vertex="1">
-          <mxGeometry height="22" width="280" x="1110" y="406" as="geometry" />
+          <mxGeometry height="22" width="280" x="1572" y="508" as="geometry" />
         </mxCell>
         <mxCell id="bil-nfs-d" parent="1" style="text;html=1;fontSize=9;align=left;verticalAlign=top;fontColor=#065F46;spacingLeft=10;spacingTop=4;" value="Archivos .xlsx de facturacion.&#xa;Carpeta del equipo de Facturacion." vertex="1">
-          <mxGeometry height="40" width="270" x="1115" y="430" as="geometry" />
+          <mxGeometry height="40" width="270" x="1577" y="532" as="geometry" />
         </mxCell>
         <mxCell id="bil-gaw" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C5CAE9;strokeColor=#3F51B5;fontColor=#1A237E;fontSize=11;arcSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;" value="&lt;b&gt;GoAnywhere MFT&lt;/b&gt;&#xa;━━━━━━━━━━━━━━━━━━━━&#xa;Dispone los .xlsx en la carpeta SFTP&#xa;del equipo de Facturacion (proceso actual).&#xa;Antes de las 08:00 AM." vertex="1">
-          <mxGeometry height="120" width="300" x="1100" y="560" as="geometry" />
+          <mxGeometry height="120" width="300" x="1562" y="662" as="geometry" />
         </mxCell>
         <mxCell id="bil-mail" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;" value="" vertex="1">
-          <mxGeometry height="120" width="300" x="1565" y="110" as="geometry" />
+          <mxGeometry height="120" width="300" x="1995" y="200" as="geometry" />
         </mxCell>
         <mxCell id="bil-mail-t" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;" value="B2B_Mail_Service" vertex="1">
-          <mxGeometry height="22" width="300" x="1565" y="118" as="geometry" />
+          <mxGeometry height="22" width="300" x="1995" y="208" as="geometry" />
         </mxCell>
         <mxCell id="bil-mail-d" parent="1" style="text;html=1;fontSize=9;align=left;verticalAlign=top;fontColor=#3B82F6;spacingLeft=10;spacingTop=4;" value="Notificacion por correo:&#xa;• Procesamiento exitoso&#xa;• Errores durante el procesamiento&#xa;3 reintentos cada hora si hay error." vertex="1">
-          <mxGeometry height="80" width="290" x="1570" y="140" as="geometry" />
+          <mxGeometry height="80" width="290" x="2000" y="230" as="geometry" />
         </mxCell>
         <mxCell id="bil-fact" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;arcSize=8;align=center;verticalAlign=middle;fontColor=#1A237E;" value="Equipo de Facturacion&#xa;[Area interna Credibanco]&#xa;Ejecuta el cobro a Entidades y Proveedores&#xa;a partir de los reportes (Tabla 1 + Tabla 2 + Fee)" vertex="1">
-          <mxGeometry height="120" width="300" x="1560" y="560" as="geometry" />
+          <mxGeometry height="120" width="300" x="1990" y="650" as="geometry" />
         </mxCell>
         <mxCell id="bil-note-active" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#92400E;fontColor=#92400E;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;" value="⚠️ TARJETA ACTIVA (FACTURACION) ≠ estado Activa&#xa;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━&#xa;Para facturacion, una tarjeta es ACTIVA si en el periodo:&#xa;• realizo ≥1 transaccion, O&#xa;• tuvo saldo ≠ 0 en algun momento, O&#xa;• genero comisiones.&#xa;Independiente del estado en la plataforma.&#xa;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━&#xa;Calculo &#39;saldo ≠ 0 en algun momento&#39;: requiere historial&#xa;(transaction) o snapshot diario (SALD) — TBD." vertex="1">
-          <mxGeometry height="200" width="420" x="80" y="760" as="geometry" />
+          <mxGeometry height="160" width="420" x="510" y="850" as="geometry" />
         </mxCell>
         <mxCell id="bil-note-cobro" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#7C3AED;fontColor=#5B21B6;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;" value="💰 MODELO DE COBRO (lo ejecuta Facturacion)&#xa;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━&#xa;• Cargo por tarjeta activa: tabla de rangos por volumen (Tabla 1) — TBD&#xa;• Cargo por tarjeta inactiva: Tabla 2 (valor TBD), SOLO si las inactivas superan el 50% del total de tarjetas de la entidad&#xa;• Fee de Administracion: $23.000.000/mes si la entidad&#xa;     no alcanza el minimo del rango&#xa;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━&#xa;El cobro final y la factura tributaria son del area de&#xa;Facturacion, fuera del alcance de la plataforma." vertex="1">
-          <mxGeometry height="200" width="440" x="540" y="760" as="geometry" />
+          <mxGeometry height="160" width="440" x="970" y="850" as="geometry" />
         </mxCell>
         <mxCell id="bil-note-reps" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#3B82F6;fontColor=#1565C0;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;" value="📑 REPORTES GENERADOS (mensual, .xlsx)&#xa;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━&#xa;ENTIDADES:&#xa;1. Por AFG (32 campos) — 1 linea por AFG&#xa;2. Por BIN (25 campos) — 1 linea por BIN de entidad&#xa;PROVEEDORES (primer dia habil):&#xa;3. Realce (6 campos)&#xa;4. Distribucion (9 campos, incl. custodios)&#xa;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━&#xa;Detalle de campos: requerimientos-facturacion-entidades.md" vertex="1">
-          <mxGeometry height="200" width="440" x="1080" y="760" as="geometry" />
+          <mxGeometry height="160" width="440" x="1510" y="850" as="geometry" />
         </mxCell>
         <mxCell id="bil-audit" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3B82F6;strokeWidth=2;arcSize=8;" value="" vertex="1">
-          <mxGeometry height="90" width="300" x="1560" y="380" as="geometry" />
+          <mxGeometry height="90" width="300" x="1548" y="118" as="geometry" />
         </mxCell>
         <mxCell id="bil-audit-t" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fontColor=#3B82F6;" value="Audit_Service" vertex="1">
-          <mxGeometry height="22" width="300" x="1560" y="386" as="geometry" />
+          <mxGeometry height="22" width="300" x="1548" y="124" as="geometry" />
         </mxCell>
         <mxCell id="bil-audit-d" parent="1" style="text;html=1;fontSize=9;align=left;verticalAlign=top;fontColor=#3B82F6;spacingLeft=10;spacingTop=4;" value="Audit de generacion (usuario, fecha, periodo,&#xa;exito/error). Registro de cambios PCI 10.2." vertex="1">
-          <mxGeometry height="40" width="290" x="1565" y="408" as="geometry" />
+          <mxGeometry height="40" width="290" x="1553" y="146" as="geometry" />
         </mxCell>
-        <mxCell id="bil-e-rr-batch" edge="1" parent="1" source="bil-batch" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=2;fontSize=8;fontColor=#3B82F6;exitX=0;exitY=0.3;entryX=1;entryY=0.5;" target="bil-rr" value="SELECT agregaciones&#xa;(cursor)">
+        <mxCell id="bil-e-rr-batch" edge="1" parent="1" source="bil-batch" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=2;fontSize=8;fontColor=#3B82F6;exitX=0;exitY=0.3;entryX=1;entryY=0.5;edgeStyle=orthogonalEdgeStyle;" target="bil-rr" value="SELECT agregaciones&#xa;(cursor)">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="bil-e-rr-api" edge="1" parent="1" source="bil-api" style="endArrow=block;endFill=1;html=1;strokeColor=#10B981;strokeWidth=1.5;fontSize=8;fontColor=#10B981;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" target="bil-rr" value="SELECT (consulta on-demand)">
+        <mxCell id="bil-e-rr-api" edge="1" parent="1" source="bil-api" style="endArrow=block;endFill=1;html=1;strokeColor=#10B981;strokeWidth=1.5;fontSize=8;fontColor=#10B981;exitX=0.5;exitY=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;exitDx=0;exitDy=0;" target="bil-rr" value="SELECT (consulta on-demand)">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="bil-e-batch-snap" edge="1" parent="1" source="bil-batch" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1.5;fontSize=8;fontColor=#3B82F6;exitX=0.484;exitY=1.009;entryX=0.5;entryY=0;exitDx=0;exitDy=0;exitPerimeter=0;" target="bil-snap" value="persiste snapshot">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="bil-e-batch-ofg" edge="1" parent="1" source="bil-batch" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=2;fontSize=8;fontColor=#3B82F6;exitX=1;exitY=0.3;entryX=0;entryY=0.5;" target="bil-ofg" value="entrega datos de reportes">
+        <mxCell id="bil-e-batch-ofg" edge="1" parent="1" source="bil-batch" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=2;fontSize=8;fontColor=#3B82F6;exitX=1;exitY=0.75;entryX=0;entryY=0.5;edgeStyle=orthogonalEdgeStyle;exitDx=0;exitDy=0;" target="bil-ofg" value="entrega datos de reportes">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="bil-e-ofg-nfs" edge="1" parent="1" source="bil-ofg" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=2;fontSize=8;fontColor=#3B82F6;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="bil-nfs" value="escribe .xlsx">
@@ -3077,23 +3077,23 @@
         <mxCell id="bil-e-batch-mail" edge="1" parent="1" source="bil-batch" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1;fontSize=8;fontColor=#3B82F6;dashed=1;exitX=1;exitY=0.1;entryX=0;entryY=0.5;edgeStyle=orthogonalEdgeStyle;" target="bil-mail" value="notifica exito/error">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="bil-e-batch-audit" edge="1" parent="1" source="bil-batch" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1;fontSize=8;fontColor=#3B82F6;dashed=1;exitX=1;exitY=0.6;entryX=0;entryY=0.5;edgeStyle=orthogonalEdgeStyle;" target="bil-audit" value="audit async">
+        <mxCell id="bil-e-batch-audit" edge="1" parent="1" source="bil-batch" style="endArrow=block;endFill=1;html=1;strokeColor=#3B82F6;strokeWidth=1;fontSize=8;fontColor=#3B82F6;dashed=1;exitX=1.005;exitY=0.412;entryX=0;entryY=0.5;edgeStyle=orthogonalEdgeStyle;exitDx=0;exitDy=0;exitPerimeter=0;" target="bil-audit" value="audit async">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="bil-legend" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F9FAFB;strokeColor=#9CA3AF;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;" value="LEYENDA&#xa;━━━━━━━━━━━━━━━━━━━━━&#xa;🔵 Componente Credibanco&#xa;🟢 API consulta on-demand&#xa;🟦 On-prem (GAW)&#xa;━━━━━━━━━━━━━━━━━━━━━&#xa;Dos rutas: (1) Billing_Batch genera archivos mensuales;&#xa;(2) Prepaid_Reporting_API expone consultas on-demand.&#xa;Ambas leen de Read Replica.&#xa;Ref: requerimientos-facturacion-entidades.md · ADR-034" vertex="1">
-          <mxGeometry height="170" width="420" x="1560" y="760" as="geometry" />
+          <mxGeometry height="160" width="420" x="1990" y="850" as="geometry" />
         </mxCell>
-        <mxCell id="bil-eod" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#FFFFFF;fontSize=11;arcSize=8;align=center;verticalAlign=top;spacingTop=6;" value="&lt;b&gt;EoD_Balance_Snapshot_Job&lt;/b&gt;&#xa;[Java 21 + Spring Batch — CronJob EoD diario]&#xa;&#xa;Cada noche escribe el cierre de saldo&#xa;por cuenta. job_name=EOD_BALANCE_SNAPSHOT.&#xa;Liviano: 1 fila por cuenta/dia." vertex="1">
-          <mxGeometry height="110" width="320" x="-540" y="216" as="geometry" />
+        <mxCell id="bil-eod" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#10B981;fontColor=#10B981;fontSize=12;arcSize=8;align=center;verticalAlign=middle;spacingTop=6;strokeWidth=2;fontFamily=Helvetica;" value="&lt;b&gt;EoD_Balance_Snapshot_Job&lt;/b&gt;&#xa;[Java 21 + Spring Batch — CronJob EoD diario]&#xa;&#xa;Cada noche escribe el cierre de saldo&#xa;por cuenta. job_name=EOD_BALANCE_SNAPSHOT.&#xa;Liviano: 1 fila por cuenta/dia." vertex="1">
+          <mxGeometry height="110" width="320" x="90" y="258" as="geometry" />
         </mxCell>
-        <mxCell id="bil-adb" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontColor=#7F4F00;fontSize=11;arcSize=8;align=center;verticalAlign=top;spacingTop=6;" value="&lt;b&gt;account_daily_balance&lt;/b&gt;&#xa;[Oracle — particionada por mes]&#xa;&#xa;Cierre diario de saldo por cuenta.&#xa;Resuelve &quot;saldo ≠ 0 en algun momento&#xa;del periodo&quot; via EXISTS indexado&#xa;(sin recorrer transaction). ADR-037." vertex="1">
-          <mxGeometry height="120" width="320" x="-520" y="463" as="geometry" />
-        </mxCell>
-        <mxCell id="bil-e-eod-adb" edge="1" parent="1" source="bil-eod" style="endArrow=block;endFill=1;html=1;strokeColor=#0B4884;strokeWidth=2;fontSize=9;fontColor=#0B4884;" target="bil-adb" value="escribe cierre diario">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="bil-e-adb-rr" edge="1" parent="1" source="bil-adb" style="endArrow=block;endFill=1;html=1;strokeColor=#D79B00;strokeWidth=2;fontSize=9;fontColor=#9C6500;dashed=1;" target="bil-rr" value="replica → vw_billing_active_cards">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="bil-e-eod-adb" edge="1" parent="1" source="bil-eod" style="endArrow=block;endFill=1;html=1;strokeColor=#0B4884;strokeWidth=2;fontSize=9;fontColor=#0B4884;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="bil-snap" value="escribe cierre diario">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="250" y="530" />
+              <mxPoint x="960" y="530" />
+              <mxPoint x="960" y="725" />
+            </Array>
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
