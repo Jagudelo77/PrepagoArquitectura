@@ -433,6 +433,45 @@ Requerimiento menciona notificación para activación y bloqueos. Decisión: pen
 - Modelado de BD (`On-prem/MER_Prepago_Inicial.drawio`) debe revisarse para confirmar que la tabla `card` use los tipos `RAW` documentados aquí.
 - Inventario de archivos: `envelope-encryption.md` sigue marcado como Vigente; el cambio es de contenido, no de estado.
 
+## ADR-019: Modelo Entidad-Relación (MER) + script DDL Oracle como fuente de verdad del modelo de datos
+
+**Estado:** Aceptada. *(Entrada reconstruida — ver nota al final. La decisión es de la misma época que ADR-017/018, alineada con `Requerimientos Técnicos (12).docx` y la arquitectura v1.4.)*
+
+**Contexto:** Las decisiones de arquitectura (ADR-001 a ADR-018) describían componentes y flujos, pero el **modelo de datos** vivía implícito en los diagramas y en notas dispersas. No había una representación formal del esquema relacional ni un script DDL ejecutable. Esto generaba tres problemas: (1) el cifrado del PAN (ADR-006/018) requería tipos de columna concretos (`RAW` para `pan_encrypted`, `pan_iv`, `pan_auth_tag`, `dek_encrypted`) que no estaban materializados en ningún artefacto; (2) las reglas de negocio del AFG (límites, comisiones, GMF, plan de validación de comercio — ADR-002/012/013/014/017) necesitaban tablas concretas para parametrizarse; (3) la tabla `transaction` particionada por mes (ADR-005) no tenía su DDL de particionamiento escrito.
+
+**Decisión:**
+
+1. **Crear el MER** `MER_Prepago_V_1_0.drawio` (a partir del borrador `On-prem/MER_Prepago_Inicial.drawio`) como vista entidad-relación del modelo de datos de Fase 1 MVP, alineado con `Requerimientos Técnicos (12).docx` y la arquitectura unificada v1.4.
+
+2. **Crear el script DDL** `db/01_schema_prepago.sql` como **fuente de verdad** del esquema Oracle 19c+, con las tablas del modelo agrupadas por dominio:
+   - **Parametrización / catálogo:** `entity`, `bin`, `affinity_group`, `afg_business_rule` (pivote de reglas por `rule_code`), `commission`, `tech_successful_charge`, `tax_config`, `merchant_validation_plan`, `merchant_validation_item`.
+   - **Tarjetahabiente y producto:** `client`, `account`, `card` (con columnas `RAW` de envelope encryption — ADR-006/018), `card_state_history`.
+   - **Archivos:** `file_processing`, `file_record`, `output_file`.
+   - **Transaccional:** `transaction` (particionada por mes — ADR-005), `pending_charge` (recobros hasta 3 meses — ADR-014), `gmf_accumulator`.
+   - **Portal / onboarding:** `app_user`, `preregistration` (ADR-016), `otp`.
+   - **Batch y liquidación:** `batch_job`, `output_file`, `settlement` (ADR-011).
+   - **Auditoría:** `audit_log`, `pci_event_log` (PCI DSS 10.2).
+
+3. **Establecer el SQL como fuente de verdad** sobre el drawio del MER: ante cualquier discrepancia, manda `db/01_schema_prepago.sql` (los tipos, constraints, índices y particionamiento se definen ahí; el MER es la vista de comunicación).
+
+4. **Crear el documento** `docs/modelo-entidad-relacion.md` como descripción narrativa del modelo.
+
+**Razón:**
+- Un script DDL ejecutable es verificable y versionable, a diferencia de un diagrama. Tener una sola fuente de verdad evita que el modelo derive entre diagrama y código.
+- Materializar los tipos `RAW` del PAN cierra el gap detectado en ADR-018 (alineación del envelope encryption con el modelo físico).
+- La tabla pivote `afg_business_rule` (identificada por `rule_code`) evita columnas dispersas y soporta el catálogo de reglas variable del AFG (reglas 02, 11, 14, 19, 20, ..., 81).
+
+**Alternativas descartadas:**
+- **Mantener solo el MER en drawio:** rechazado — un diagrama no es ejecutable ni garantiza tipos/constraints; el cifrado del PAN exige precisión de tipos físicos.
+- **Columnas dispersas por cada regla de AFG:** rechazado — el conjunto de reglas es variable y disperso; se optó por la tabla pivote `afg_business_rule`.
+
+**Impacto:**
+- Archivos nuevos: `MER_Prepago_V_1_0.drawio`, `db/01_schema_prepago.sql`, `docs/modelo-entidad-relacion.md`.
+- Las decisiones posteriores que tocan datos (ADR-023 onboarding, ADR-026/027 cobros, ADR-034 facturación) extienden este esquema; cada una indica las tablas/vistas que añade.
+- Pendiente histórico (resuelto después): `db/02_stored_procedures.sql` con los SPs del motor transaccional (ADR-003).
+
+> **Nota de trazabilidad:** esta entrada fue **reconstruida**. El ADR-019 figuraba referenciado en `requerimientos-tecnicos-consolidados.md`, `requerimientos-ciclo-vida-tarjeta-y-portal-th.md` e `inventario-archivos-prepago.md` ("Pestaña MER + SQL + ADR", "ADR-001 a ADR-019"), pero su sección no se había escrito en esta bitácora (saltaba de ADR-018 a ADR-020). Se redactó a partir de esas referencias y del estado real de `MER_Prepago_V_1_0.drawio` y `db/01_schema_prepago.sql` para cerrar el hueco de numeración y eliminar las referencias huérfanas.
+
 ## ADR-020: Pestaña "Flujo Novedades No Monetarias" en `PrepagoUnificadoArquitectura_V_1_4.drawio`
 
 **Contexto:** El documento `requerimientos-ciclo-vida-tarjeta-y-portal-th.md` consolidó los requerimientos de Etapa 2 — Bloqueo Definitivo (Deshabilitado), Bloqueo Temporal, Desbloqueo y Modificación de Datos (§4 y §5). La pestaña existente "Intercambio de Archivos" mostraba un único `Prepaid_Non_Monetary_Novelty_Processor` agrupando todas las novedades sin distinguir las cuatro variantes ni sus reglas específicas (estados válidos, manejo de saldo en deshabilitación, lógica de cambio de email, campos no modificables). Esto dejaba implícitas reglas críticas del requerimiento.
@@ -1362,3 +1401,124 @@ Portal · Creacion de tarjetas · Onboarding Tarjetahabiente · Intercambio de A
 - V_1_17 se conserva como histórico.
 - No cambia ningún flujo L2 existente; es una adición puramente aditiva.
 - Pendiente menor: V_1_18 arrastra de versiones previas pestañas heredadas ("Portal Faseado", "Etapa1_V1_2", "Página-17", "Página-18") que en una futura entrega podrían depurarse si se confirma que son históricas.
+
+## ADR-036: Corrección de la nota de cobro de la pestaña "Reporteria y Facturacion" — umbral del 50% para tarjetas inactivas (V_1_19)
+
+**Estado:** Aceptada.
+
+**Contexto:** Al verificar la cobertura de la pestaña "Reporteria y Facturacion" (creada en ADR-034) contra el documento `requerimientos-facturacion-entidades.md`, se detectó un único desajuste de contenido: la nota "Modelo de Cobro" del diagrama indicaba *"Cargo por tarjeta inactiva: Tabla 2 (si aplica) — TBD"*, una redacción vaga heredada de la versión inicial. El documento de requerimientos fue actualizado con la regla literal del `Requerimientos Técnicos (15).docx` (párrafo 1078): el cobro por tarjetas inactivas **solo aplica cuando la cantidad de inactivas supera el 50% del total de tarjetas de la entidad en el sistema**. El diagrama quedaba así desalineado con el requerimiento y con el documento.
+
+**Decisión:**
+
+1. **Clonar `V_1_18` → `V_1_19`** (sin sobrescribir, según convención de versionado).
+2. **Actualizar la nota "Modelo de Cobro"** de la pestaña "Reporteria y Facturacion": el texto del cargo por tarjeta inactiva pasa de *"Tabla 2 (si aplica) — TBD"* a *"Tabla 2 (valor TBD), SOLO si las inactivas superan el 50% del total de tarjetas de la entidad"*.
+
+**Razón:**
+- Es una regla de negocio concreta (umbral del 50%), no un "si aplica" ambiguo. Dejarla vaga en el diagrama induce a un cálculo de facturación incorrecto.
+- Alinea el diagrama con el documento de requerimientos y con la fuente (`Requerimientos Técnicos (15).docx`).
+
+**Alternativas descartadas:**
+- **Sobrescribir V_1_18:** rechazado por convención (nunca sobrescribir; V_1_18 se conserva como histórico).
+- **Dejar el TBD en el diagrama:** rechazado — la condición del 50% ya está definida en el requerimiento; lo único que sigue TBD es el *valor* de la Tabla 2, no la condición de aplicación.
+
+**Impacto:**
+- Archivo nuevo: `PrepagoUnificadoArquitectura_V_1_19.drawio` (19 páginas, idéntico a V_1_18 salvo la nota corregida). `project-context.md` apunta ahora a V_1_19 como arquitectura principal vigente.
+- V_1_18 se conserva como histórico.
+- La pestaña "Reporteria y Facturacion" queda 100% alineada con `requerimientos-facturacion-entidades.md`. El único contenido que permanece TBD son los valores numéricos de las Tablas 1 y 2 (pendiente de Producto/Comercial), no las reglas.
+
+## ADR-037: Lineamientos de implementación del Billing_Batch — agregación en Oracle y cálculo de tarjeta activa
+
+**Estado:** Aceptada.
+
+**Contexto:** Surgió la duda de si Spring Batch sería capaz de procesar y consolidar la información de facturación (millones de transacciones del mes) para generar los reportes del Req 30. El análisis mostró que el reto del `Billing_Batch` es distinto al del `Output_File_Generator`: en el OFG el cuello es el **tamaño del archivo de salida** (millones de líneas → streaming write), mientras que en facturación la salida es **diminuta** (1 línea por AFG/BIN) y el verdadero costo es la **agregación de entrada** (COUNT/SUM/AVG sobre la tabla `transaction`). Sin una guía explícita, el equipo de desarrollo podría caer en el anti-patrón de traer millones de filas a memoria para agregarlas en Java (OutOfMemoryError). Además, un cálculo del requerimiento —"tarjeta activa por saldo ≠ 0 en algún momento del periodo"— no es resoluble con el balance actual y requería diseño.
+
+**Decisión:**
+
+1. **Crear el documento** `docs/lineamientos-billing-batch.md` con el patrón de implementación del `Billing_Batch`.
+
+2. **Principio rector — agregar en Oracle, no en Java:** el `ItemReader` (`JdbcCursorItemReader`) lee el resultado de un `SELECT ... GROUP BY afg_id/bin`; la JVM recibe solo el consolidado (decenas de filas), nunca las transacciones crudas.
+
+3. **Leer de la Read Replica** (ADR-002/005) y **explotar el partition pruning** de la tabla `transaction` (ADR-005): filtro por rango `txn_date >= :start AND < :end` (sin `TRUNC`), verificado con `EXPLAIN PLAN`.
+
+4. **Resolver "tarjeta activa por saldo ≠ 0 en algún momento"** con una tabla nueva `account_daily_balance` (cierre diario de saldo por cuenta, particionada por mes), consultada con `EXISTS` indexado, en lugar de reconstruir el saldo histórico recorriendo `transaction`. La vista `vw_billing_active_cards` consolida las tres condiciones (≥1 txn, saldo ≠ 0 en algún momento, generó comisiones).
+
+5. **Mantener separación writer/publisher (ADR-026):** el `Billing_Batch` calcula y persiste el snapshot; el `Output_File_Generator` escribe el `.xlsx`. Formato `.xlsx` con Apache POI normal (volumen bajo); SXSSF solo si algún reporte creciera.
+
+6. **Idempotencia y trazabilidad** vía `billing_monthly_snapshot` (UNIQUE period/afg/bin): reproceso sin recálculo.
+
+**Razón:**
+- Responde con base técnica la pregunta de capacidad: el límite no es Spring Batch, es agregar en Java o invalidar el pruning. Con agregación en BD el batch es de los menos exigentes del sistema.
+- El cálculo de "saldo ≠ 0 en algún momento" es el único punto realmente costoso; el snapshot diario lo convierte en un `EXISTS` barato.
+- Escalar este batch pasa por dimensionar la Read Replica e índices, no la JVM (lo contrario al OFG).
+
+**Alternativas descartadas:**
+- **Agregar en streams de Java:** rechazado — OutOfMemoryError con millones de filas.
+- **Reconstruir el saldo histórico desde `transaction` por tarjeta:** rechazado — escaneo costoso; se usa `account_daily_balance`.
+- **Escribir el `.xlsx` desde el propio batch:** rechazado — rompe el patrón writer/publisher (ADR-026).
+
+**Impacto:**
+- Documento nuevo: `docs/lineamientos-billing-batch.md`. `project-context.md` lo referencia.
+- Cierra (a nivel de diseño) el pendiente #5 del requerimiento de facturación ("saldo ≠ 0 en algún momento").
+- Modelo de datos: pendiente implementar `account_daily_balance` (nueva), `billing_monthly_snapshot` y `vw_billing_active_cards` en `db/01_schema_prepago.sql`, más un job EoD liviano que pueble el snapshot diario de saldos.
+- No cambia diagramas (V_1_19 vigente); es guía de implementación.
+
+## ADR-038: Materialización de `account_daily_balance` + `billing_monthly_snapshot` + `vw_billing_active_cards` (Opción A) y reflejo en V_1_20
+
+**Estado:** Aceptada.
+
+**Contexto:** El ADR-037 definió, a nivel de diseño, que el cálculo de "tarjeta activa para facturación por saldo ≠ 0 en algún momento del periodo" se resolvería con una tabla de cierre diario de saldo (`account_daily_balance`). Sin embargo, esa tabla, junto con `billing_monthly_snapshot` y la vista `vw_billing_active_cards`, **solo existían como propuesta en el lineamiento** (`lineamientos-billing-batch.md`): no estaban en el esquema `db/01_schema_prepago.sql` (fuente de verdad del modelo) ni reflejadas en ningún diagrama. Se evaluaron dos enfoques: (A) tabla de snapshot diario + job EoD dedicado; (B) derivar la condición de `transaction` + snapshot mensual de saldo de apertura. Se eligió **Opción A** por decisión del equipo (consulta de facturación más simple y barata vía `EXISTS` indexado).
+
+**Decisión:**
+
+1. **Materializar en `db/01_schema_prepago.sql`** (sección "Reportería y Facturación"):
+   - **`account_daily_balance`** — cierre diario de saldo por cuenta, particionada por mes (partition pruning), con índices por `card_id`/`afg_id`/`(card_id, snapshot_date, eod_balance)`. PK `(snapshot_date, account_id)`.
+   - **`billing_monthly_snapshot`** — consolidado mensual por `(period, afg_id, bin_code)` con `report_type` (AFG/BIN), totales de tarjetas/transacciones por canal, `closing_balance` y la bandera `applies_inactive_fee` (regla del 50%, ADR-036). UNIQUE `(period, afg_id, bin_code)`.
+   - **`vw_billing_active_cards`** — vista que materializa las tres condiciones de "tarjeta activa para facturación" (≥1 txn aprobada, generó comisiones, saldo ≠ 0 vía `account_daily_balance`), con ventana del mes inmediatamente anterior.
+
+2. **Reflejar en el diagrama (V_1_20, clon de V_1_19):** añadir a la pestaña "Reporteria y Facturacion" los nodos `EoD_Balance_Snapshot_Job` (CronJob EoD diario) y `account_daily_balance` (tabla), con los edges: el job escribe el cierre diario en la tabla, y la tabla alimenta la vista usada por el Billing_Batch / Read Replica.
+
+3. **Introducir el job `EOD_BALANCE_SNAPSHOT`** como nuevo `job_name` en `batch_job` (proceso EoD liviano: 1 fila por cuenta/día).
+
+**Razón:**
+- El modelo de datos (SQL) es la fuente de verdad; una estructura propuesta solo en un lineamiento no es parte de la arquitectura hasta materializarse. Esto cierra la inconsistencia detectada.
+- Partition pruning mensual en `account_daily_balance` mantiene barata la consulta de "saldo ≠ 0 en algún momento".
+- La bandera `applies_inactive_fee` en el snapshot deja explícita la regla del 50% (ADR-036) para el área de Facturación.
+
+**Alternativas descartadas:**
+- **Opción B (derivar de `transaction` + snapshot mensual de apertura):** descartada por decisión del equipo a favor de la consulta más simple de la Opción A, asumiendo el costo de un job EoD diario y una tabla adicional.
+- **Dejar las estructuras solo en el lineamiento:** rechazado — deja la arquitectura inconsistente (el diagrama y el SQL no reflejaban el diseño).
+- **Sobrescribir V_1_19:** rechazado por convención de versionado.
+
+**Impacto:**
+- `db/01_schema_prepago.sql`: +2 tablas (`account_daily_balance`, `billing_monthly_snapshot`) y +1 vista (`vw_billing_active_cards`).
+- Archivo nuevo: `PrepagoUnificadoArquitectura_V_1_20.drawio` (19 páginas). `project-context.md` apunta a V_1_20. V_1_19 se conserva como histórico.
+- Cierra el pendiente #11 del requerimiento de facturación (DDL). Queda abierto el #12: implementar el `EoD_Balance_Snapshot_Job`.
+- `account_daily_balance` introduce un proceso EoD diario nuevo a operar y monitorear (costo operativo asumido en la Opción A).
+
+## ADR-039: Documento de requerimiento funcional de Generación de Archivos de Salida
+
+**Estado:** Aceptada.
+
+**Contexto:** La pestaña "Generacion Archivos de Salida" del unificado tenía abundante soporte del lado del "cómo" (`lineamientos-output-file-generator.md` — ADR-032), del catálogo (`catalogo-archivos-gaw.md`) y de la estructura campo-por-campo (`estructuras-archivos-manual-tecnico.md`), pero **carecía de un documento de requerimiento funcional dedicado** (el "qué"): qué archivos de salida debe generar la plataforma, en qué modo, para quién, con qué reglas, programación y criterios de aceptación. Esa información estaba dispersa entre el catálogo, las estructuras y el docx de requerimientos, sin un documento de entrada único — a diferencia de otros flujos (facturación, novedades, cobros) que sí tenían su `requerimientos-*.md`.
+
+**Decisión:**
+
+1. **Crear** `docs/requerimientos-generacion-archivos-salida.md` consolidando el requerimiento funcional: alcance, componente responsable (OFG como publisher único), catálogo funcional de los 25 archivos de salida, modos de generación (en línea / batch diario / batch mensual / por evento), reglas de negocio, manejo del PAN y scope PCI, schedule escalonado, entrega/cifrado/notificación, tolerancia a fallos, criterios de aceptación, cobertura y pendientes.
+
+2. **Mantener la separación de responsabilidades documentales:** este documento es el "qué" (requerimiento); `lineamientos-output-file-generator.md` es el "cómo" (implementación Spring Batch); `estructuras-archivos-manual-tecnico.md` es la estructura exacta; `catalogo-archivos-gaw.md` es el naming/hora/destino. Se referencian entre sí sin duplicar contenido.
+
+3. **Delimitar el alcance frente a facturación:** los reportes de facturación (Req 30) quedan explícitamente fuera (tienen su propio `requerimientos-facturacion-entidades.md` y componente `Billing_Batch`); el OFG es el writer común de ambos.
+
+**Razón:**
+- Cierra la inconsistencia de tener el "cómo" sin el "qué" para esta pestaña, alineándola con el resto de flujos del proyecto.
+- Da un punto de entrada único para entender el requerimiento de archivos de salida, con criterios de aceptación verificables.
+- Consolida reglas críticas ya dispersas: solo TAR lleva PAN, Card ID en lugar de PAN en archivos masivos, un archivo por Entidad, GAW cifra (no el OFG).
+
+**Alternativas descartadas:**
+- **Ampliar el lineamiento técnico con el requerimiento:** rechazado — mezcla el "qué" con el "cómo"; se prefiere mantenerlos en documentos separados como en el resto del proyecto.
+- **Dejar el requerimiento implícito en catálogo/estructuras:** rechazado — no hay criterios de aceptación ni visión funcional consolidada.
+
+**Impacto:**
+- Documento nuevo: `docs/requerimientos-generacion-archivos-salida.md`. `project-context.md` lo referencia.
+- No cambia diagramas ni esquema; es documentación de requerimiento.
+- Pendientes funcionales registrados (Presentaciones/Transacciones, naming GMF, Indicadores Base, COMI/PAN, naming Realce, retención `output_file`).
